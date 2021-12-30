@@ -1,0 +1,44 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var categories_1 = __importDefault(require("./categories"));
+var commands_1 = __importDefault(require("./commands"));
+var companies_1 = require("./companies");
+var contactNotes_1 = require("./contactNotes");
+var contacts_1 = require("./contacts");
+var customers_1 = __importDefault(require("./customers"));
+var dealNotes_1 = require("./dealNotes");
+var deals_1 = require("./deals");
+var finalize_1 = __importDefault(require("./finalize"));
+var invoices_1 = __importDefault(require("./invoices"));
+var products_1 = __importDefault(require("./products"));
+var reviews_1 = __importDefault(require("./reviews"));
+var sales_1 = require("./sales");
+var tags_1 = require("./tags");
+var tasks_1 = require("./tasks");
+exports.default = (function (options) {
+    if (options === void 0) { options = { serializeDate: true }; }
+    var db = {};
+    db.categories = (0, categories_1.default)();
+    db.companies = (0, companies_1.generateCompanies)(db);
+    db.contacts = (0, contacts_1.generateContacts)(db);
+    db.contactNotes = (0, contactNotes_1.generateContactNotes)(db);
+    db.customers = (0, customers_1.default)(db, options);
+    db.deals = (0, deals_1.generateDeals)(db);
+    db.dealNotes = (0, dealNotes_1.generateDealNotes)(db);
+    db.products = (0, products_1.default)(db);
+    db.commands = (0, commands_1.default)(db, options);
+    db.invoices = (0, invoices_1.default)(db);
+    db.service = (0, invoices_1.default)(db);
+    // db.services = generateInvoices(db);
+    db.incidents = (0, invoices_1.default)(db);
+    db.requests = (0, invoices_1.default)(db);
+    db.reviews = (0, reviews_1.default)(db, options);
+    db.sales = (0, sales_1.generateSales)(db);
+    db.tags = (0, tags_1.generateTags)(db);
+    db.tasks = (0, tasks_1.generateTasks)(db);
+    (0, finalize_1.default)(db);
+    return db;
+});

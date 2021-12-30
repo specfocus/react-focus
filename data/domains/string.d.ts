@@ -1,0 +1,13 @@
+import { StringDomain } from '../../lib/StringDomain';
+export declare const DATE: StringDomain;
+export declare const DATE_TIME: StringDomain;
+export declare const TEXT: StringDomain;
+export declare const EMAIL: StringDomain;
+export declare const GUID: StringDomain;
+export declare const PHONE_NUMBER: StringDomain;
+export { COUNTRY_CODE } from './localization/COUNTRY';
+export { PRODUCT_CODE } from './service-order/PRODUCT';
+export { NETWORK_TYPE_CODE } from './service-order/NETWORK_TYPE';
+export { PACKAGE_TYPE_CODE } from './service-order/PACKAGE_TYPE';
+export { SERVICE_CATEGORY_CODE } from './service-order/SERVICE_CATEGORY';
+export { SERVICE_ORDER_TYPE_CODE } from './service-order/SERVICE_ORDER_TYPE';
