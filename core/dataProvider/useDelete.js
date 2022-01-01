@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useMutation_1 = __importDefault(require("./useMutation"));
+const react_1 = require("react");
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the dataProvider.delete() method, the result
  * of the call (the deleted record), and the loading state.
@@ -51,17 +51,16 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  *     return <button disabled={loading} onClick={deleteOne}>Delete</button>;
  * };
  */
-var useDelete = function (resource, id, previousData, options) {
-    if (previousData === void 0) { previousData = {}; }
-    var _a = (0, useMutation_1.default)({ type: 'delete', resource: resource, payload: { id: id, previousData: previousData } }, options), mutate = _a[0], state = _a[1];
-    var deleteOne = (0, react_1.useCallback)(function (resource, id, previousData, options) {
+const useDelete = (resource, id, previousData = {}, options) => {
+    const [mutate, state] = (0, useMutation_1.default)({ type: 'delete', resource, payload: { id, previousData } }, options);
+    const deleteOne = (0, react_1.useCallback)((resource, id, previousData, options) => {
         if (typeof resource === 'string') {
-            var query = {
+            const query = {
                 type: 'delete',
-                resource: resource,
+                resource,
                 payload: {
                     id: id,
-                    previousData: previousData,
+                    previousData,
                 },
             };
             return mutate(query, options);

@@ -20,7 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initialValues = exports.validationSchema = exports.data = void 0;
-var Yup = __importStar(require("yup"));
+const Yup = __importStar(require("yup"));
 exports.data = [
     [
         {

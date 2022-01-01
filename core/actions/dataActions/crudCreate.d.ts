@@ -1,5 +1,5 @@
 import { Record } from '../../types';
-import { CREATE } from '../../core';
+import { CREATE } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, RedirectionSideEffect } from '../../sideEffect';
 export declare const crudCreate: (resource: string, data: any, basePath: string, redirectTo?: RedirectionSideEffect) => CrudCreateAction;

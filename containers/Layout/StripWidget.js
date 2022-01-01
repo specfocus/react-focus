@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,38 +15,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useStyles = exports.PATCH = exports.FOREWARD = exports.BACKWARD = void 0;
-var SpeedDial_1 = __importDefault(require("@mui/lab/SpeedDial"));
-var SpeedDialAction_1 = __importDefault(require("@mui/lab/SpeedDialAction"));
-var Container_1 = __importDefault(require("@mui/material/Container"));
-var Divider_1 = __importDefault(require("@mui/material/Divider"));
-var Step_1 = __importDefault(require("@mui/material/Step"));
-var Stepper_1 = __importDefault(require("@mui/material/Stepper"));
-var Tabs_1 = __importDefault(require("@mui/material/Tabs"));
-var Toolbar_1 = __importDefault(require("@mui/material/Toolbar"));
-var styles_1 = require("@mui/styles");
-var react_1 = __importStar(require("react"));
-var TranslatedStepLabel_1 = __importDefault(require("../../components/TranslatedStepLabel"));
-var TranslatedTab_1 = __importDefault(require("../../components/TranslatedTab"));
-var TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const SpeedDial_1 = __importDefault(require("@mui/lab/SpeedDial"));
+const SpeedDialAction_1 = __importDefault(require("@mui/material/SpeedDialAction"));
+const Container_1 = __importDefault(require("@mui/material/Container"));
+const Divider_1 = __importDefault(require("@mui/material/Divider"));
+const Step_1 = __importDefault(require("@mui/material/Step"));
+const Stepper_1 = __importDefault(require("@mui/material/Stepper"));
+const Tabs_1 = __importDefault(require("@mui/material/Tabs"));
+const Toolbar_1 = __importDefault(require("@mui/material/Toolbar"));
+const styles_1 = require("@mui/styles");
+const react_1 = require("react");
+const TranslatedStepLabel_1 = __importDefault(require("../../components/TranslatedStepLabel"));
+const TranslatedTab_1 = __importDefault(require("../../components/TranslatedTab"));
+const TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
 exports.BACKWARD = 'BACKWARD';
 exports.FOREWARD = 'FOREWARD';
 exports.PATCH = 'NAV_TO';
 function tabProps(index) {
     return {
-        key: "tab-".concat(index),
-        id: "tab-".concat(index),
-        'aria-controls': "tabpanel-".concat(index),
+        key: `tab-${index}`,
+        id: `tab-${index}`,
+        'aria-controls': `tabpanel-${index}`,
     };
 }
 function panelProps(index) {
     return {
         role: 'tabpanel',
-        key: "tabpanel-".concat(index),
-        id: "tabpanel-".concat(index),
-        'aria-labelledby': "tab-".concat(index),
+        key: `tabpanel-${index}`,
+        id: `tabpanel-${index}`,
+        'aria-labelledby': `tab-${index}`,
     };
 }
-exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+exports.useStyles = (0, styles_1.makeStyles)((theme) => ({
     button: {
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
@@ -98,7 +69,7 @@ exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
     },
     container: {
         display: 'block',
-        height: "calc(100% - ".concat(theme.spacing(6), "px)"),
+        height: `calc(100% - ${theme.spacing(6)}px)`,
         overflowY: 'auto',
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(2)
@@ -143,85 +114,64 @@ exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         textAlign: 'center'
     },
     toolbar: {}
-}); });
+}));
 function Widget(_a) {
-    var actions = _a.actions, children = _a.children, Icon = _a.icon, maxWidth = _a.maxWidth, reducer = _a.reducer, sections = _a.sections, subtitle = _a.subtitle, title = _a.title, variant = _a.variant, props = __rest(_a, ["actions", "children", "icon", "maxWidth", "reducer", "sections", "subtitle", "title", "variant"]);
-    var classes = (0, exports.useStyles)();
-    var _b = (0, react_1.useState)(false), openSpeedDial = _b[0], setOpenSpeedDial = _b[1];
-    var handleSpeedDialClose = function () {
+    var { actions, children, icon: Icon, maxWidth, reducer, sections, subtitle, title, variant } = _a, props = __rest(_a, ["actions", "children", "icon", "maxWidth", "reducer", "sections", "subtitle", "title", "variant"]);
+    const classes = (0, exports.useStyles)();
+    const [openSpeedDial, setOpenSpeedDial] = (0, react_1.useState)(false);
+    const handleSpeedDialClose = () => {
         setOpenSpeedDial(false);
     };
-    var handleSpeedDialOpen = function () {
+    const handleSpeedDialOpen = () => {
         setOpenSpeedDial(true);
     };
-    var widgetReducer = (0, react_1.useCallback)(function (state, action) {
+    const widgetReducer = (0, react_1.useCallback)((state, action) => {
         if (reducer) {
-            var next = reducer(state, action);
+            const next = reducer(state, action);
             if (next !== state) {
                 return next;
             }
         }
-        var type = action.type, values = __rest(action, ["type"]);
+        const { type } = action, values = __rest(action, ["type"]);
         switch (type) {
             case exports.BACKWARD:
                 if (!!state.canBack) {
-                    return __assign(__assign({}, state), { index: state.index - 1 });
+                    return Object.assign(Object.assign({}, state), { index: state.index - 1 });
                 }
                 break;
             case exports.FOREWARD:
                 if (!!state.canNext) {
-                    return __assign(__assign({}, state), { index: state.index + 1 });
+                    return Object.assign(Object.assign({}, state), { index: state.index + 1 });
                 }
                 break;
             case exports.PATCH:
-                return __assign(__assign({}, state), values);
+                return Object.assign(Object.assign({}, state), values);
             default:
                 return state;
         }
         return state;
     }, [reducer]);
     // filter here what the end user can see
-    var steps = Object.values(sections);
-    var _c = (0, react_1.useReducer)(widgetReducer, { index: 0, canNext: true }), state = _c[0], dispatch = _c[1];
-    var handleTabChange = function (event, newValue) {
+    const steps = Object.values(sections);
+    const [state, dispatch] = (0, react_1.useReducer)(widgetReducer, { index: 0, canNext: true });
+    const handleTabChange = (event, newValue) => {
         console.log('tab', newValue);
         dispatch({ type: exports.PATCH, index: newValue });
     };
-    var Strip = (0, react_1.useCallback)(function () {
+    const Strip = (0, react_1.useCallback)(() => {
         switch (variant) {
             case 'stepper':
-                return (react_1.default.createElement(Stepper_1.default, { activeStep: state.index, className: classes.stepper }, steps.map(function (_a, index) {
-                    var title = _a.title;
-                    return (react_1.default.createElement(Step_1.default, __assign({}, tabProps(index)),
-                        react_1.default.createElement(TranslatedStepLabel_1.default, null, title)));
-                })));
+                return ((0, jsx_runtime_1.jsx)(Stepper_1.default, Object.assign({ activeStep: state.index, className: classes.stepper }, { children: steps.map(({ title }, index) => ((0, jsx_runtime_1.jsx)(Step_1.default, Object.assign({}, tabProps(index), { children: (0, jsx_runtime_1.jsx)(TranslatedStepLabel_1.default, { children: title }, void 0) }), void 0))) }), void 0));
             case 'scroller':
-                return (react_1.default.createElement(Stepper_1.default, { activeStep: state.index, className: classes.stepper }, steps.map(function (_a, index) {
-                    var title = _a.title;
-                    return (react_1.default.createElement(Step_1.default, __assign({}, tabProps(index)),
-                        react_1.default.createElement(TranslatedStepLabel_1.default, null, title)));
-                })));
+                return ((0, jsx_runtime_1.jsx)(Stepper_1.default, Object.assign({ activeStep: state.index, className: classes.stepper }, { children: steps.map(({ title }, index) => ((0, jsx_runtime_1.jsx)(Step_1.default, Object.assign({}, tabProps(index), { children: (0, jsx_runtime_1.jsx)(TranslatedStepLabel_1.default, { children: title }, void 0) }), void 0))) }), void 0));
             case 'tabs':
-                return (react_1.default.createElement(Tabs_1.default, __assign({ value: state.index, onChange: handleTabChange, "aria-label": "tabs" }, props), steps.map(function (_a, index) {
-                    var title = _a.title;
-                    return (react_1.default.createElement(TranslatedTab_1.default, __assign({ label: title }, tabProps(index))));
-                })));
+                return ((0, jsx_runtime_1.jsx)(Tabs_1.default, Object.assign({ value: state.index, onChange: handleTabChange, "aria-label": "tabs" }, props, { children: steps.map(({ title }, index) => ((0, jsx_runtime_1.jsx)(TranslatedTab_1.default, Object.assign({ label: title }, tabProps(index)), void 0))) }), void 0));
             default:
                 return null;
         }
     }, [classes, state, variant]);
-    var handleBack = function () { dispatch({ type: exports.BACKWARD }); };
-    var handleNext = function () { dispatch({ type: exports.FOREWARD }); };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(Toolbar_1.default, { className: classes.header },
-            react_1.default.createElement(TranslatedTypography_1.default, { className: classes.title, color: "inherit", component: "h3", i18nKey: title, variant: "h6", noWrap: true }, title),
-            react_1.default.createElement(SpeedDial_1.default, { ariaLabel: "SpeedDial example", className: classes.speedDial, FabProps: { className: classes.speedDialFav }, hidden: false, icon: react_1.default.createElement(Icon, { className: classes.icon }), onClose: handleSpeedDialClose, onOpen: handleSpeedDialOpen, open: openSpeedDial, direction: 'down' }, Object.entries(actions).map(function (_a) {
-                var name = _a[0], _b = _a[1], action = _b.action, Icon = _b.icon, label = _b.label;
-                return (react_1.default.createElement(SpeedDialAction_1.default, { key: name, icon: react_1.default.createElement(Icon, null), title: label, onClick: function () { return dispatch(action); } }));
-            })),
-            react_1.default.createElement(Strip, null)),
-        !variant || variant === 'scroller' ? (react_1.default.createElement(Container_1.default, { className: classes.container, maxWidth: maxWidth }, react_1.Children.toArray(children).map(function (Child, index) { return (react_1.default.createElement(react_1.default.Fragment, null,
-            index > 0 && (react_1.default.createElement(Divider_1.default, { className: classes.divider })),
-            Child)); }))) : (react_1.default.createElement(react_1.default.Fragment, null, react_1.Children.toArray(children).map(function (Child, index) { return (react_1.default.createElement(Container_1.default, __assign({ className: classes.container, hidden: state.index !== index, maxWidth: maxWidth }, panelProps(index)), state.index === index && Child)); })))));
+    const handleBack = () => { dispatch({ type: exports.BACKWARD }); };
+    const handleNext = () => { dispatch({ type: exports.FOREWARD }); };
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)(Toolbar_1.default, Object.assign({ className: classes.header }, { children: [(0, jsx_runtime_1.jsx)(TranslatedTypography_1.default, Object.assign({ className: classes.title, color: "inherit", component: "h3", i18nKey: title, variant: "h6", noWrap: true }, { children: title }), void 0), (0, jsx_runtime_1.jsx)(SpeedDial_1.default, Object.assign({ ariaLabel: "SpeedDial example", className: classes.speedDial, FabProps: { className: classes.speedDialFav }, hidden: false, icon: (0, jsx_runtime_1.jsx)(Icon, { className: classes.icon }, void 0), onClose: handleSpeedDialClose, onOpen: handleSpeedDialOpen, open: openSpeedDial, direction: 'down' }, { children: Object.entries(actions).map(([name, { action, icon: Icon, label }]) => ((0, jsx_runtime_1.jsx)(SpeedDialAction_1.default, { icon: (0, jsx_runtime_1.jsx)(Icon, {}, void 0), title: label, onClick: () => dispatch(action) }, name))) }), void 0), (0, jsx_runtime_1.jsx)(Strip, {}, void 0)] }), void 0), !variant || variant === 'scroller' ? ((0, jsx_runtime_1.jsx)(Container_1.default, Object.assign({ className: classes.container, maxWidth: maxWidth }, { children: react_1.Children.toArray(children).map((Child, index) => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [index > 0 && ((0, jsx_runtime_1.jsx)(Divider_1.default, { className: classes.divider }, void 0)), Child] }, void 0))) }), void 0)) : ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: react_1.Children.toArray(children).map((Child, index) => ((0, jsx_runtime_1.jsx)(Container_1.default, Object.assign({ className: classes.container, hidden: state.index !== index, maxWidth: maxWidth }, panelProps(index), { children: state.index === index && Child }), void 0))) }, void 0))] }, void 0));
 }
 exports.default = Widget;

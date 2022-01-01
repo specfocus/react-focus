@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,88 +34,72 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ListView = void 0;
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Card_1 = __importDefault(require("@mui/material/Card"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var Title_1 = __importStar(require("../layout/Title"));
-var ListToolbar_1 = __importDefault(require("./ListToolbar"));
-var Pagination_1 = __importDefault(require("./pagination/Pagination"));
-var BulkDeleteButton_1 = __importDefault(require("../button/BulkDeleteButton"));
-var BulkActionsToolbar_1 = __importDefault(require("./BulkActionsToolbar"));
-var ListActions_1 = __importDefault(require("./ListActions"));
-var Empty_1 = require("./Empty");
-var PREFIX = 'RaList';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
-    main: "".concat(PREFIX, "-main"),
-    content: "".concat(PREFIX, "-content"),
-    bulkActionsDisplayed: "".concat(PREFIX, "-bulkActionsDisplayed"),
-    actions: "".concat(PREFIX, "-actions"),
-    noResults: "".concat(PREFIX, "-noResults"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Card_1 = __importDefault(require("@mui/material/Card"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const Title_1 = __importStar(require("../layout/Title"));
+const ListToolbar_1 = __importDefault(require("./ListToolbar"));
+const Pagination_1 = __importDefault(require("./pagination/Pagination"));
+const BulkDeleteButton_1 = __importDefault(require("../button/BulkDeleteButton"));
+const BulkActionsToolbar_1 = __importDefault(require("./BulkActionsToolbar"));
+const ListActions_1 = __importDefault(require("./ListActions"));
+const Empty_1 = require("./Empty");
+const PREFIX = 'RaList';
+const classes = {
+    root: `${PREFIX}-root`,
+    main: `${PREFIX}-main`,
+    content: `${PREFIX}-content`,
+    bulkActionsDisplayed: `${PREFIX}-bulkActionsDisplayed`,
+    actions: `${PREFIX}-actions`,
+    noResults: `${PREFIX}-noResults`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b, _c;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.root)] = {},
-        _b["& .".concat(classes.main)] = {
-            display: 'flex',
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`&.${classes.root}`]: {},
+    [`& .${classes.main}`]: {
+        display: 'flex',
+    },
+    [`& .${classes.content}`]: {
+        marginTop: 0,
+        transition: theme.transitions.create('margin-top'),
+        position: 'relative',
+        flex: '1 1 auto',
+        [theme.breakpoints.down('sm')]: {
+            boxShadow: 'none',
         },
-        _b["& .".concat(classes.content)] = (_c = {
-                marginTop: 0,
-                transition: theme.transitions.create('margin-top'),
-                position: 'relative',
-                flex: '1 1 auto'
-            },
-            _c[theme.breakpoints.down('sm')] = {
-                boxShadow: 'none',
-            },
-            _c.overflow = 'inherit',
-            _c),
-        _b["& .".concat(classes.bulkActionsDisplayed)] = {
-            marginTop: -theme.spacing(8),
-            transition: theme.transitions.create('margin-top'),
-        },
-        _b["& .".concat(classes.actions)] = {
-            zIndex: 2,
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexWrap: 'wrap',
-        },
-        _b["& .".concat(classes.noResults)] = { padding: 20 },
-        _b);
-});
-var ListView = function (props) {
-    var actions = props.actions, aside = props.aside, filters = props.filters, bulkActionButtons = props.bulkActionButtons, pagination = props.pagination, children = props.children, className = props.className, Content = props.component, _a = props.exporter, exporter = _a === void 0 ? core_1.defaultExporter : _a, title = props.title, empty = props.empty, rest = __rest(props, ["actions", "aside", "filters", "bulkActionButtons", "pagination", "children", "className", "component", "exporter", "title", "empty"]);
-    var controllerProps = (0, core_1.getListControllerProps)(props); // deprecated, to be removed in v4
-    var listContext = (0, core_1.useListContext)(props);
-    var defaultTitle = listContext.defaultTitle, total = listContext.total, loaded = listContext.loaded, loading = listContext.loading, filterValues = listContext.filterValues, selectedIds = listContext.selectedIds;
-    var version = (0, core_1.useVersion)();
-    var renderList = function () {
-        var _a;
-        return (React.createElement(React.Fragment, null,
-            (filters || actions) && (React.createElement(ListToolbar_1.default, __assign({ filters: filters }, controllerProps, { actions: actions, exporter: exporter }))),
-            React.createElement("div", { className: classes.main },
-                React.createElement(Content, { className: (0, classnames_1.default)(classes.content, (_a = {},
-                        _a[classes.bulkActionsDisplayed] = selectedIds.length > 0,
-                        _a)), key: version },
-                    bulkActionButtons !== false && bulkActionButtons && (React.createElement(BulkActionsToolbar_1.default, __assign({}, controllerProps), bulkActionButtons)),
-                    children &&
-                        // @ts-ignore-line
-                        (0, react_1.cloneElement)(react_1.Children.only(children), __assign(__assign({}, controllerProps), { hasBulkActions: bulkActionButtons !== false })),
-                    pagination && (0, react_1.cloneElement)(pagination, listContext)),
-                aside && (0, react_1.cloneElement)(aside, listContext))));
-    };
-    var shouldRenderEmptyPage = loaded && !loading && total === 0 && !Object.keys(filterValues).length;
-    return (React.createElement(Root, __assign({ className: (0, classnames_1.default)('list-page', classes.root, className) }, sanitizeRestProps(rest)),
-        React.createElement(Title_1.default, { title: title, defaultTitle: defaultTitle }),
-        shouldRenderEmptyPage && empty !== false
-            ? (0, react_1.cloneElement)(empty, listContext)
-            : renderList()));
+        overflow: 'inherit',
+    },
+    [`& .${classes.bulkActionsDisplayed}`]: {
+        marginTop: -theme.spacing(8),
+        transition: theme.transitions.create('margin-top'),
+    },
+    [`& .${classes.actions}`]: {
+        zIndex: 2,
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexWrap: 'wrap',
+    },
+    [`& .${classes.noResults}`]: { padding: 20 },
+}));
+const ListView = (props) => {
+    const { actions, aside, filters, bulkActionButtons, pagination, children, className, component: Content, exporter = core_1.defaultExporter, title, empty } = props, rest = __rest(props, ["actions", "aside", "filters", "bulkActionButtons", "pagination", "children", "className", "component", "exporter", "title", "empty"]);
+    const controllerProps = (0, core_1.getListControllerProps)(props); // deprecated, to be removed in v4
+    const listContext = (0, core_1.useListContext)(props);
+    const { defaultTitle, total, loaded, loading, filterValues, selectedIds, } = listContext;
+    const version = (0, core_1.useVersion)();
+    const renderList = () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(filters || actions) && ((0, jsx_runtime_1.jsx)(ListToolbar_1.default, Object.assign({ filters: filters }, controllerProps, { actions: actions, exporter: exporter }), void 0)), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.main }, { children: [(0, jsx_runtime_1.jsxs)(Content, Object.assign({ className: (0, classnames_1.default)(classes.content, {
+                            [classes.bulkActionsDisplayed]: selectedIds.length > 0,
+                        }) }, { children: [bulkActionButtons !== false && bulkActionButtons && ((0, jsx_runtime_1.jsx)(BulkActionsToolbar_1.default, Object.assign({}, controllerProps, { children: bulkActionButtons }), void 0)), children &&
+                                // @ts-ignore-line
+                                (0, react_1.cloneElement)(react_1.Children.only(children), Object.assign(Object.assign({}, controllerProps), { hasBulkActions: bulkActionButtons !== false })), pagination && (0, react_1.cloneElement)(pagination, listContext)] }), version), aside && (0, react_1.cloneElement)(aside, listContext)] }), void 0)] }, void 0));
+    const shouldRenderEmptyPage = loaded && !loading && total === 0 && !Object.keys(filterValues).length;
+    return ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: (0, classnames_1.default)('list-page', classes.root, className) }, sanitizeRestProps(rest), { children: [(0, jsx_runtime_1.jsx)(Title_1.default, { title: title, defaultTitle: defaultTitle }, void 0), shouldRenderEmptyPage && empty !== false
+                // @ts-ignore
+                ? (0, react_1.cloneElement)(empty, listContext)
+                : renderList()] }), void 0));
 };
 exports.ListView = ListView;
 exports.ListView.propTypes = {
@@ -178,16 +151,22 @@ exports.ListView.propTypes = {
     total: prop_types_1.default.number,
     version: prop_types_1.default.number,
 };
-var DefaultBulkActionButtons = function (props) { return React.createElement(BulkDeleteButton_1.default, __assign({}, props)); };
+const DefaultBulkActionButtons = props => (0, jsx_runtime_1.jsx)(BulkDeleteButton_1.default, Object.assign({}, props), void 0);
 exports.ListView.defaultProps = {
-    actions: React.createElement(ListActions_1.default, null),
+    actions: (0, jsx_runtime_1.jsx)(ListActions_1.default, {}, void 0),
     component: Card_1.default,
-    bulkActionButtons: React.createElement(DefaultBulkActionButtons, null),
-    pagination: React.createElement(Pagination_1.default, null),
-    empty: React.createElement(Empty_1.Empty, null),
+    bulkActionButtons: (0, jsx_runtime_1.jsx)(DefaultBulkActionButtons, {}, void 0),
+    pagination: (0, jsx_runtime_1.jsx)(Pagination_1.default, {}, void 0),
+    empty: (0, jsx_runtime_1.jsx)(Empty_1.Empty, {}, void 0),
 };
-var sanitizeRestProps = function (_a) {
-    var _b = _a.basePath, basePath = _b === void 0 ? null : _b, _c = _a.currentSort, currentSort = _c === void 0 ? null : _c, _d = _a.data, data = _d === void 0 ? null : _d, _e = _a.defaultTitle, defaultTitle = _e === void 0 ? null : _e, _f = _a.displayedFilters, displayedFilters = _f === void 0 ? null : _f, _g = _a.filterDefaultValues, filterDefaultValues = _g === void 0 ? null : _g, _h = _a.filterValues, filterValues = _h === void 0 ? null : _h, _j = _a.hasCreate, hasCreate = _j === void 0 ? null : _j, _k = _a.hasEdit, hasEdit = _k === void 0 ? null : _k, _l = _a.hasList, hasList = _l === void 0 ? null : _l, _m = _a.hasShow, hasShow = _m === void 0 ? null : _m, _o = _a.hideFilter, hideFilter = _o === void 0 ? null : _o, _p = _a.history, history = _p === void 0 ? null : _p, _q = _a.ids, ids = _q === void 0 ? null : _q, _r = _a.loading, loading = _r === void 0 ? null : _r, _s = _a.loaded, loaded = _s === void 0 ? null : _s, _t = _a.location, location = _t === void 0 ? null : _t, _u = _a.match, match = _u === void 0 ? null : _u, _v = _a.onSelect, onSelect = _v === void 0 ? null : _v, _w = _a.onToggleItem, onToggleItem = _w === void 0 ? null : _w, _x = _a.onUnselectItems, onUnselectItems = _x === void 0 ? null : _x, _y = _a.options, options = _y === void 0 ? null : _y, _z = _a.page, page = _z === void 0 ? null : _z, _0 = _a.permissions, permissions = _0 === void 0 ? null : _0, _1 = _a.perPage, perPage = _1 === void 0 ? null : _1, _2 = _a.refetch, refetch = _2 === void 0 ? null : _2, _3 = _a.resource, resource = _3 === void 0 ? null : _3, _4 = _a.selectedIds, selectedIds = _4 === void 0 ? null : _4, _5 = _a.setFilters, setFilters = _5 === void 0 ? null : _5, _6 = _a.setPage, setPage = _6 === void 0 ? null : _6, _7 = _a.setPerPage, setPerPage = _7 === void 0 ? null : _7, _8 = _a.setSort, setSort = _8 === void 0 ? null : _8, _9 = _a.showFilter, showFilter = _9 === void 0 ? null : _9, _10 = _a.syncWithLocation, syncWithLocation = _10 === void 0 ? null : _10, _11 = _a.sort, sort = _11 === void 0 ? null : _11, _12 = _a.total, total = _12 === void 0 ? null : _12, rest = __rest(_a, ["basePath", "currentSort", "data", "defaultTitle", "displayedFilters", "filterDefaultValues", "filterValues", "hasCreate", "hasEdit", "hasList", "hasShow", "hideFilter", "history", "ids", "loading", "loaded", "location", "match", "onSelect", "onToggleItem", "onUnselectItems", "options", "page", "permissions", "perPage", "refetch", "resource", "selectedIds", "setFilters", "setPage", "setPerPage", "setSort", "showFilter", "syncWithLocation", "sort", "total"]);
+const sanitizeRestProps = (_a) => {
+    var { basePath = null, currentSort = null, data = null, defaultTitle = null, displayedFilters = null, filterDefaultValues = null, filterValues = null, hasCreate = null, hasEdit = null, hasList = null, hasShow = null, hideFilter = null, 
+    // @ts-ignore
+    history = null, ids = null, loading = null, loaded = null, 
+    // @ts-ignore
+    location = null, 
+    // @ts-ignore
+    match = null, onSelect = null, onToggleItem = null, onUnselectItems = null, options = null, page = null, permissions = null, perPage = null, refetch = null, resource = null, selectedIds = null, setFilters = null, setPage = null, setPerPage = null, setSort = null, showFilter = null, syncWithLocation = null, sort = null, total = null } = _a, rest = __rest(_a, ["basePath", "currentSort", "data", "defaultTitle", "displayedFilters", "filterDefaultValues", "filterValues", "hasCreate", "hasEdit", "hasList", "hasShow", "hideFilter", "history", "ids", "loading", "loaded", "location", "match", "onSelect", "onToggleItem", "onUnselectItems", "options", "page", "permissions", "perPage", "refetch", "resource", "selectedIds", "setFilters", "setPage", "setPerPage", "setSort", "showFilter", "syncWithLocation", "sort", "total"]);
     return rest;
 };
 exports.default = exports.ListView;

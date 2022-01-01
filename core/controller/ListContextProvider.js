@@ -22,11 +22,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var ListContext_1 = __importDefault(require("./ListContext"));
-var ListFilterContext_1 = __importStar(require("./ListFilterContext"));
-var ListSortContext_1 = __importStar(require("./ListSortContext"));
-var ListPaginationContext_1 = __importStar(require("./ListPaginationContext"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const ListContext_1 = __importDefault(require("./ListContext"));
+const ListFilterContext_1 = __importStar(require("./ListFilterContext"));
+const ListSortContext_1 = __importStar(require("./ListSortContext"));
+const ListPaginationContext_1 = __importStar(require("./ListPaginationContext"));
 /**
  * Create a List Context and several thematic List subcontext.
  *
@@ -54,11 +54,5 @@ var ListPaginationContext_1 = __importStar(require("./ListPaginationContext"));
  * @see ListContext
  * @see ListFilterContext
  */
-var ListContextProvider = function (_a) {
-    var value = _a.value, children = _a.children;
-    return (React.createElement(ListContext_1.default.Provider, { value: value },
-        React.createElement(ListFilterContext_1.default.Provider, { value: (0, ListFilterContext_1.usePickFilterContext)(value) },
-            React.createElement(ListSortContext_1.default.Provider, { value: (0, ListSortContext_1.usePickSortContext)(value) },
-                React.createElement(ListPaginationContext_1.default.Provider, { value: (0, ListPaginationContext_1.usePickPaginationContext)(value) }, children)))));
-};
+const ListContextProvider = ({ value, children }) => ((0, jsx_runtime_1.jsx)(ListContext_1.default.Provider, Object.assign({ value: value }, { children: (0, jsx_runtime_1.jsx)(ListFilterContext_1.default.Provider, Object.assign({ value: (0, ListFilterContext_1.usePickFilterContext)(value) }, { children: (0, jsx_runtime_1.jsx)(ListSortContext_1.default.Provider, Object.assign({ value: (0, ListSortContext_1.usePickSortContext)(value) }, { children: (0, jsx_runtime_1.jsx)(ListPaginationContext_1.default.Provider, Object.assign({ value: (0, ListPaginationContext_1.usePickPaginationContext)(value) }, { children: children }), void 0) }), void 0) }), void 0) }), void 0));
 exports.default = ListContextProvider;

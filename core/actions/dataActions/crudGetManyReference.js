@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CRUD_GET_MANY_REFERENCE_SUCCESS = exports.CRUD_GET_MANY_REFERENCE_FAILURE = exports.CRUD_GET_MANY_REFERENCE_LOADING = exports.CRUD_GET_MANY_REFERENCE = exports.crudGetManyReference = void 0;
-var core_1 = require("../../core");
-var crudGetManyReference = function (reference, target, id, relatedTo, pagination, sort, filter, source) { return ({
+const core_1 = require("../../../core");
+const crudGetManyReference = (reference, target, id, relatedTo, pagination, sort, filter, source) => ({
     type: exports.CRUD_GET_MANY_REFERENCE,
-    payload: { target: target, id: id, pagination: pagination, sort: sort, filter: filter, source: source },
+    payload: { target, id, pagination, sort, filter, source },
     meta: {
         resource: reference,
-        relatedTo: relatedTo,
+        relatedTo,
         fetch: core_1.GET_MANY_REFERENCE,
         onFailure: {
             notification: {
@@ -16,7 +16,7 @@ var crudGetManyReference = function (reference, target, id, relatedTo, paginatio
             },
         },
     },
-}); };
+});
 exports.crudGetManyReference = crudGetManyReference;
 exports.CRUD_GET_MANY_REFERENCE = 'CRUD_GET_MANY_REFERENCE';
 exports.CRUD_GET_MANY_REFERENCE_LOADING = 'CRUD_GET_MANY_REFERENCE_LOADING';

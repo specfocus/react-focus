@@ -20,7 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilterContext = void 0;
-var React = __importStar(require("react"));
+const React = __importStar(require("react"));
 /**
  * Make filters accessible to sub components
  */

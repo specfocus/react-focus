@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { Company } from '../../data/db/types';
+import { Company } from '../db/types';
 export declare const CompanyAside: ({ record, link, }: {
-    record?: Company | undefined;
-    link?: string | undefined;
-}) => JSX.Element | null;
+    record?: Company;
+    link?: string;
+}) => JSX.Element;

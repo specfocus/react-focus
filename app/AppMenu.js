@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -33,31 +22,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var PowerSettingsNew_1 = __importDefault(require("@mui/icons-material/PowerSettingsNew"));
-var SpeedDial_1 = __importDefault(require("@mui/lab/SpeedDial"));
-var SpeedDialAction_1 = __importDefault(require("@mui/lab/SpeedDialAction"));
-var Avatar_1 = __importDefault(require("@mui/material/Avatar"));
-var styles_1 = require("@mui/styles");
-var react_1 = __importStar(require("react"));
-var AzureAuthentication_1 = require("../azure/AzureAuthentication");
-var AppStack_1 = require("./AppStack");
-var examples = [
+const jsx_runtime_1 = require("react/jsx-runtime");
+const PowerSettingsNew_1 = __importDefault(require("@mui/icons-material/PowerSettingsNew"));
+const SpeedDial_1 = __importDefault(require("@mui/material/SpeedDial"));
+const SpeedDialAction_1 = __importDefault(require("@mui/material/SpeedDialAction"));
+const Avatar_1 = __importDefault(require("@mui/material/Avatar"));
+const styles_1 = require("@mui/styles");
+const react_1 = __importStar(require("react"));
+const AppStack_1 = require("./AppStack");
+const SIGN_OUT = 'sign-out';
+const examples = [
     ["Lucas Oromi", "/avatar-male.png"],
     ["Komra Salo", "/avatar-female.png"],
     ["Remy Sharp", "https://mui.com/static/images/avatar/1.jpg"],
     ["Travis Howard", "https://mui.com/static/images/avatar/2.jpg"],
     ["Cindy Baker", "https://mui.com/static/images/avatar/3.jpg"]
 ];
-var actions = [
+const actions = [
     /*
     { icon: <UserPreferencesIcon />, name: 'Preferences', type: USER_PREFERENCES },
     { icon: <UserAccountIcon />, name: 'View Account', type: USER_ACCOUNT },
     { icon: <UserProfileIcon />, name: 'Profile', type: USER_PROFILE },
     { icon: <SwitchAccountIcon />, name: 'Switch Tenant', type: SWITCH_ACCOUNT },
     */
-    { icon: react_1.default.createElement(PowerSettingsNew_1.default, null), name: 'Sign Out', type: AzureAuthentication_1.SIGN_OUT },
+    { icon: (0, jsx_runtime_1.jsx)(PowerSettingsNew_1.default, {}, void 0), name: 'Sign Out', type: SIGN_OUT },
 ];
-var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const useStyles = (0, styles_1.makeStyles)((theme) => ({
     avatar: {
         width: theme.spacing(7),
         height: theme.spacing(7)
@@ -73,27 +63,27 @@ var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
             right: theme.spacing(.5),
         },
     },
-}); });
-var UserMenu = function () {
-    var classes = useStyles();
-    var _a = react_1.default.useState(false), open = _a[0], setOpen = _a[1];
-    var trigger = (0, AppStack_1.useAppStack)().trigger;
-    var props = (0, react_1.useMemo)(function () {
-        var _a = examples[Math.round(4 * Math.random())], alt = _a[0], src = _a[1];
-        return { alt: alt, src: src };
+}));
+const UserMenu = () => {
+    const classes = useStyles();
+    const [open, setOpen] = react_1.default.useState(false);
+    const { trigger } = (0, AppStack_1.useAppStack)();
+    const props = (0, react_1.useMemo)(() => {
+        const [alt, src] = examples[Math.round(4 * Math.random())];
+        return { alt, src };
     }, []);
-    var handleAction = function (action) {
+    const handleAction = (action) => {
         if (action.type) {
             trigger(action.type);
         }
         setOpen(false);
     };
-    var handleClose = function () {
+    const handleClose = () => {
         setOpen(false);
     };
-    var handleOpen = function () {
+    const handleOpen = () => {
         setOpen(true);
     };
-    return (react_1.default.createElement(SpeedDial_1.default, { ariaLabel: "User menu", className: classes.speedDial, hidden: false, icon: react_1.default.createElement(Avatar_1.default, __assign({ className: classes.avatar }, props)), onClose: handleClose, onOpen: handleOpen, open: open, direction: 'down' }, actions.map(function (action) { return (react_1.default.createElement(SpeedDialAction_1.default, { key: action.name, icon: action.icon, tooltipTitle: action.name, onClick: function () { return handleAction(action); } })); })));
+    return ((0, jsx_runtime_1.jsx)(SpeedDial_1.default, Object.assign({ ariaLabel: "User menu", className: classes.speedDial, hidden: false, icon: (0, jsx_runtime_1.jsx)(Avatar_1.default, Object.assign({ className: classes.avatar }, props), void 0), onClose: handleClose, onOpen: handleOpen, open: open, direction: 'down' }, { children: actions.map((action) => ((0, jsx_runtime_1.jsx)(SpeedDialAction_1.default, { icon: action.icon, tooltipTitle: action.name, onClick: () => handleAction(action) }, action.name))) }), void 0));
 };
 exports.default = UserMenu;

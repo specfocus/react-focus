@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var DataProviderContext_1 = __importDefault(require("./DataProviderContext"));
-var defaultDataProvider_1 = __importDefault(require("./defaultDataProvider"));
-var useLogoutIfAccessDenied_1 = __importDefault(require("../auth/useLogoutIfAccessDenied"));
-var getDataProviderCallArguments_1 = require("./getDataProviderCallArguments");
-var performQuery_1 = require("./performQuery");
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const DataProviderContext_1 = __importDefault(require("./DataProviderContext"));
+const defaultDataProvider_1 = __importDefault(require("./defaultDataProvider"));
+const useLogoutIfAccessDenied_1 = __importDefault(require("../auth/useLogoutIfAccessDenied"));
+const getDataProviderCallArguments_1 = require("./getDataProviderCallArguments");
+const performQuery_1 = require("./performQuery");
 /**
  * Hook for getting a dataProvider
  *
@@ -110,29 +110,25 @@ var performQuery_1 = require("./performQuery");
  * // - CRUD_GET_ONE_SUCCESS
  * // - FETCH_END
  */
-var useDataProvider = function () {
-    var dispatch = (0, react_redux_1.useDispatch)();
-    var dataProvider = (0, react_1.useContext)(DataProviderContext_1.default) || defaultDataProvider_1.default;
+const useDataProvider = () => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const dataProvider = (0, react_1.useContext)(DataProviderContext_1.default) || defaultDataProvider_1.default;
     // optimistic mode can be triggered by a previous optimistic or undoable query
-    var isOptimistic = (0, react_redux_1.useSelector)(function (state) { return state.admin.ui.optimistic; });
-    var store = (0, react_redux_1.useStore)();
-    var logoutIfAccessDenied = (0, useLogoutIfAccessDenied_1.default)();
-    var dataProviderProxy = (0, react_1.useMemo)(function () {
+    const isOptimistic = (0, react_redux_1.useSelector)((state) => state.admin.ui.optimistic);
+    const store = (0, react_redux_1.useStore)();
+    const logoutIfAccessDenied = (0, useLogoutIfAccessDenied_1.default)();
+    const dataProviderProxy = (0, react_1.useMemo)(() => {
         return new Proxy(dataProvider, {
-            get: function (target, name) {
+            get: (target, name) => {
                 if (typeof name === 'symbol') {
                     return;
                 }
-                return function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    var _a = (0, getDataProviderCallArguments_1.getDataProviderCallArguments)(args), resource = _a.resource, payload = _a.payload, allArguments = _a.allArguments, options = _a.options;
-                    var type = name.toString();
-                    var _b = options || {}, _c = _b.action, action = _c === void 0 ? 'CUSTOM_FETCH' : _c, _d = _b.undoable, undoable = _d === void 0 ? false : _d, _e = _b.onSuccess, onSuccess = _e === void 0 ? undefined : _e, _f = _b.onFailure, onFailure = _f === void 0 ? undefined : _f, _g = _b.mutationMode, mutationMode = _g === void 0 ? undoable ? 'undoable' : 'pessimistic' : _g, _h = _b.enabled, enabled = _h === void 0 ? true : _h, rest = __rest(_b, ["action", "undoable", "onSuccess", "onFailure", "mutationMode", "enabled"]);
+                return (...args) => {
+                    const { resource, payload, allArguments, options, } = (0, getDataProviderCallArguments_1.getDataProviderCallArguments)(args);
+                    const type = name.toString();
+                    const _a = options || {}, { action = 'CUSTOM_FETCH', undoable = false, onSuccess = undefined, onFailure = undefined, mutationMode = undoable ? 'undoable' : 'pessimistic', enabled = true } = _a, rest = __rest(_a, ["action", "undoable", "onSuccess", "onFailure", "mutationMode", "enabled"]);
                     if (typeof dataProvider[type] !== 'function') {
-                        throw new Error("Unknown dataProvider function: ".concat(type));
+                        throw new Error(`Unknown dataProvider function: ${type}`);
                     }
                     if (onSuccess && typeof onSuccess !== 'function') {
                         throw new Error('The onSuccess option must be a function');
@@ -149,21 +145,21 @@ var useDataProvider = function () {
                     if (enabled === false) {
                         return Promise.resolve({});
                     }
-                    var params = {
-                        resource: resource,
-                        type: type,
-                        payload: payload,
-                        action: action,
-                        onFailure: onFailure,
-                        onSuccess: onSuccess,
-                        rest: rest,
-                        mutationMode: mutationMode,
+                    const params = {
+                        resource,
+                        type,
+                        payload,
+                        action,
+                        onFailure,
+                        onSuccess,
+                        rest,
+                        mutationMode,
                         // these ones are passed down because of the rules of hooks
-                        dataProvider: dataProvider,
-                        store: store,
-                        dispatch: dispatch,
-                        logoutIfAccessDenied: logoutIfAccessDenied,
-                        allArguments: allArguments,
+                        dataProvider,
+                        store,
+                        dispatch,
+                        logoutIfAccessDenied,
+                        allArguments,
                     };
                     if (isOptimistic) {
                         // When in optimistic mode, fetch calls aren't executed
@@ -186,7 +182,7 @@ var useDataProvider = function () {
                         // before the content actually reaches the Redux store.
                         // But as we can't determine when this particular query was finished,
                         // the Promise resolves only when *all* optimistic queries are done.
-                        return waitFor(function () { return (0, performQuery_1.getRemainingStackedCalls)() === 0; });
+                        return waitFor(() => (0, performQuery_1.getRemainingStackedCalls)() === 0);
                     }
                     else {
                         return (0, performQuery_1.doQuery)(params);
@@ -198,18 +194,11 @@ var useDataProvider = function () {
     return dataProviderProxy;
 };
 // get a Promise that resolves after a delay in milliseconds
-var later = function (delay) {
-    if (delay === void 0) { delay = 100; }
-    return new Promise(function (resolve) {
-        setTimeout(resolve, delay);
-    });
-};
+const later = (delay = 100) => new Promise(function (resolve) {
+    setTimeout(resolve, delay);
+});
 // get a Promise that resolves once a condition is satisfied
-var waitFor = function (condition) {
-    return new Promise(function (resolve) {
-        return condition()
-            ? resolve()
-            : later().then(function () { return waitFor(condition).then(function () { return resolve(); }); });
-    });
-};
+const waitFor = (condition) => new Promise(resolve => condition()
+    ? resolve()
+    : later().then(() => waitFor(condition).then(() => resolve())));
 exports.default = useDataProvider;

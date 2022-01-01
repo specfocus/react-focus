@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArrayInputContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * A React context that provides access to an ArrayInput mutators and meta as provided by react-final-form-array
  * Useful to create custom array input iterators.

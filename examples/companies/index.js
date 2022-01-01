@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/no-anonymous-default-export */
-var CompanyList_1 = require("./CompanyList");
-var CompanyCreate_1 = require("./CompanyCreate");
-var CompanyShow_1 = require("./CompanyShow");
-var CompanyEdit_1 = require("./CompanyEdit");
+const CompanyList_1 = require("./CompanyList");
+const CompanyCreate_1 = require("./CompanyCreate");
+const CompanyShow_1 = require("./CompanyShow");
+const CompanyEdit_1 = require("./CompanyEdit");
 exports.default = {
     list: CompanyList_1.CompanyList,
     create: CompanyCreate_1.CompanyCreate,

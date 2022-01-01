@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,19 +33,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var date_fns_1 = __importDefault(require("@date-io/date-fns"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const date_fns_1 = __importDefault(require("@date-io/date-fns"));
 require("date-fns");
-var react_1 = __importDefault(require("react"));
-var react_i18next_1 = require("react-i18next");
-var KeyboardDatePicker_1 = require("../../../components/final-form/KeyboardDatePicker");
+const react_i18next_1 = require("react-i18next");
+const DatePicker_1 = require("../../../components/final-form/DatePicker");
 // import ruLocale from 'date-fns/locale/ru';
-var DOMAINS = __importStar(require("../../../data/domains"));
+const DOMAINS = __importStar(require("../../../lib/domains"));
 function domainProps(type, domain) {
-    var domains = DOMAINS;
-    var props = domains[type.toUpperCase()] || {};
-    var position = domain ? domain.length : -1;
+    const domains = DOMAINS;
+    let props = domains[type.toUpperCase()] || {};
+    let position = domain ? domain.length : -1;
     while (domain && position > 0) {
-        var val = domains[domain];
+        const val = domains[domain];
         if (val) {
             props = val;
             break;
@@ -67,15 +56,15 @@ function domainProps(type, domain) {
     return props;
 }
 ;
-var DateField = function (_a) {
-    var readonly = _a.readonly, required = _a.required, value = _a.value, props = __rest(_a, ["readonly", "required", "value"]);
-    var t = (0, react_i18next_1.useTranslation)().t;
-    var domain = props.domain;
-    return (react_1.default.createElement(KeyboardDatePicker_1.KeyboardDatePicker, __assign({}, props, { 
-        // format='yyyy-MM-dd'
-        // placeholder={/*translate(placeholder, t) ||*/ 'yyyy-MM-dd'}
+const DateField = (_a) => {
+    var { readonly, required, value } = _a, props = __rest(_a, ["readonly", "required", "value"]);
+    const { t } = (0, react_i18next_1.useTranslation)();
+    const { domain } = props;
+    return ((0, jsx_runtime_1.jsx)(DatePicker_1.DatePicker, Object.assign({}, props, { 
+        // format="yyyy-MM-dd"
+        // placeholder={/*translate(placeholder, t) ||*/ "yyyy-MM-dd"}
         dateFunsUtils: date_fns_1.default, 
         // helperText={required && '* Required'}
-        readOnly: readonly }, domainProps('string', domain))));
+        readOnly: readonly }, domainProps('string', domain)), void 0));
 };
 exports.default = DateField;

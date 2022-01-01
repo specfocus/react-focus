@@ -1,85 +1,55 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var material_1 = require("@mui/material");
-var AccountCircle_1 = __importDefault(require("@mui/icons-material/AccountCircle"));
-var PREFIX = 'RaUserMenu';
-var classes = {
-    user: "".concat(PREFIX, "-user"),
-    userButton: "".concat(PREFIX, "-userButton"),
-    avatar: "".concat(PREFIX, "-avatar"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const material_1 = require("@mui/material");
+const AccountCircle_1 = __importDefault(require("@mui/icons-material/AccountCircle"));
+const PREFIX = 'RaUserMenu';
+const classes = {
+    user: `${PREFIX}-user`,
+    userButton: `${PREFIX}-userButton`,
+    avatar: `${PREFIX}-avatar`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.user)] = {},
-        _b["& .".concat(classes.userButton)] = {
-            textTransform: 'none',
-        },
-        _b["& .".concat(classes.avatar)] = {
-            width: theme.spacing(4),
-            height: theme.spacing(4),
-        },
-        _b);
-});
-var defaultIcon = React.createElement(AccountCircle_1.default, null);
-var AnchorOrigin = {
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`&.${classes.user}`]: {},
+    [`& .${classes.userButton}`]: {
+        textTransform: 'none',
+    },
+    [`& .${classes.avatar}`]: {
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+    },
+}));
+const defaultIcon = (0, jsx_runtime_1.jsx)(AccountCircle_1.default, {}, void 0);
+const AnchorOrigin = {
     vertical: 'bottom',
     horizontal: 'right',
 };
-var TransformOrigin = {
+const TransformOrigin = {
     vertical: 'top',
     horizontal: 'right',
 };
-var UserMenu = function (props) {
-    var _a = (0, react_1.useState)(null), anchorEl = _a[0], setAnchorEl = _a[1];
-    var translate = (0, core_1.useTranslate)();
-    var _b = (0, core_1.useGetIdentity)(), loaded = _b.loaded, identity = _b.identity;
-    var children = props.children, _c = props.label, label = _c === void 0 ? 'ra.auth.user_menu' : _c, _d = props.icon, icon = _d === void 0 ? defaultIcon : _d, logout = props.logout;
+const UserMenu = (props) => {
+    const [anchorEl, setAnchorEl] = (0, react_1.useState)(null);
+    const translate = (0, core_1.useTranslate)();
+    const { loaded, identity } = (0, core_1.useGetIdentity)();
+    const { children, label = 'ra.auth.user_menu', icon = defaultIcon, logout, } = props;
     if (!logout && !children)
         return null;
-    var open = Boolean(anchorEl);
-    var handleMenu = function (event) { return setAnchorEl(event.currentTarget); };
-    var handleClose = function () { return setAnchorEl(null); };
-    return (React.createElement(Root, { className: classes.user },
-        loaded && (identity === null || identity === void 0 ? void 0 : identity.fullName) ? (React.createElement(material_1.Button, { "aria-label": label && translate(label, { _: label }), className: classes.userButton, color: "inherit", startIcon: identity.avatar ? (React.createElement(material_1.Avatar, { className: classes.avatar, src: identity.avatar, alt: identity.fullName })) : (icon), onClick: handleMenu }, identity.fullName)) : (React.createElement(material_1.Tooltip, { title: label && translate(label, { _: label }) },
-            React.createElement(material_1.IconButton, { "aria-label": label && translate(label, { _: label }), "aria-owns": open ? 'menu-appbar' : null, "aria-haspopup": true, color: "inherit", onClick: handleMenu, size: "large" }, icon))),
-        React.createElement(material_1.Menu, { id: "menu-appbar", disableScrollLock: true, anchorEl: anchorEl, anchorOrigin: AnchorOrigin, transformOrigin: TransformOrigin, open: open, onClose: handleClose },
-            react_1.Children.map(children, function (menuItem) {
-                return (0, react_1.isValidElement)(menuItem)
-                    ? (0, react_1.cloneElement)(menuItem, {
-                        onClick: handleClose,
-                    })
-                    : null;
-            }),
-            logout)));
+    const open = Boolean(anchorEl);
+    const handleMenu = event => setAnchorEl(event.currentTarget);
+    const handleClose = () => setAnchorEl(null);
+    return ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: classes.user }, { children: [loaded && (identity === null || identity === void 0 ? void 0 : identity.fullName) ? ((0, jsx_runtime_1.jsx)(material_1.Button, Object.assign({ "aria-label": label && translate(label, { _: label }), className: classes.userButton, color: "inherit", startIcon: identity.avatar ? ((0, jsx_runtime_1.jsx)(material_1.Avatar, { className: classes.avatar, src: identity.avatar, alt: identity.fullName }, void 0)) : (icon), onClick: handleMenu }, { children: identity.fullName }), void 0)) : ((0, jsx_runtime_1.jsx)(material_1.Tooltip, Object.assign({ title: label && translate(label, { _: label }) }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ "aria-label": label && translate(label, { _: label }), "aria-owns": open ? 'menu-appbar' : null, "aria-haspopup": true, color: "inherit", onClick: handleMenu, size: "large" }, { children: icon }), void 0) }), void 0)), (0, jsx_runtime_1.jsxs)(material_1.Menu, Object.assign({ id: "menu-appbar", disableScrollLock: true, anchorEl: anchorEl, anchorOrigin: AnchorOrigin, transformOrigin: TransformOrigin, open: open, onClose: handleClose }, { children: [react_1.Children.map(children, menuItem => (0, react_1.isValidElement)(menuItem)
+                        ? (0, react_1.cloneElement)(menuItem, {
+                            onClick: handleClose,
+                        })
+                        : null), logout] }), void 0)] }), void 0));
 };
 UserMenu.propTypes = {
     children: prop_types_1.default.node,

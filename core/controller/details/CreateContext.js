@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context to store the result of the useCreateController() hook.
  *
@@ -9,7 +9,7 @@ var react_1 = require("react");
  *
  * @example
  *
- * import { useCreateController, CreateContextProvider } from '../../core';
+ * import { useCreateController, CreateContextProvider } from '../../../core';
  *
  * const Create = props => {
  *     const controllerProps = useCreateController(props);

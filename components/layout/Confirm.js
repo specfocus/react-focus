@@ -1,81 +1,47 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Dialog_1 = __importDefault(require("@mui/material/Dialog"));
-var DialogActions_1 = __importDefault(require("@mui/material/DialogActions"));
-var DialogContent_1 = __importDefault(require("@mui/material/DialogContent"));
-var DialogContentText_1 = __importDefault(require("@mui/material/DialogContentText"));
-var DialogTitle_1 = __importDefault(require("@mui/material/DialogTitle"));
-var Button_1 = __importDefault(require("@mui/material/Button"));
-var styles_2 = require("@mui/material/styles");
-var CheckCircle_1 = __importDefault(require("@mui/icons-material/CheckCircle"));
-var ErrorOutline_1 = __importDefault(require("@mui/icons-material/ErrorOutline"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var PREFIX = 'RaConfirm';
-var classes = {
-    confirmPrimary: "".concat(PREFIX, "-confirmPrimary"),
-    confirmWarning: "".concat(PREFIX, "-confirmWarning"),
-    iconPaddingStyle: "".concat(PREFIX, "-iconPaddingStyle"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Dialog_1 = __importDefault(require("@mui/material/Dialog"));
+const DialogActions_1 = __importDefault(require("@mui/material/DialogActions"));
+const DialogContent_1 = __importDefault(require("@mui/material/DialogContent"));
+const DialogContentText_1 = __importDefault(require("@mui/material/DialogContentText"));
+const DialogTitle_1 = __importDefault(require("@mui/material/DialogTitle"));
+const Button_1 = __importDefault(require("@mui/material/Button"));
+const styles_2 = require("@mui/material/styles");
+const CheckCircle_1 = __importDefault(require("@mui/icons-material/CheckCircle"));
+const ErrorOutline_1 = __importDefault(require("@mui/icons-material/ErrorOutline"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const PREFIX = 'RaConfirm';
+const classes = {
+    confirmPrimary: `${PREFIX}-confirmPrimary`,
+    confirmWarning: `${PREFIX}-confirmWarning`,
+    iconPaddingStyle: `${PREFIX}-iconPaddingStyle`,
 };
-var StyledDialog = (0, styles_1.styled)(Dialog_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.confirmPrimary)] = {
-            color: theme.palette.primary.main,
-        },
-        _b["& .".concat(classes.confirmWarning)] = {
-            color: theme.palette.error.main,
-            '&:hover': {
-                backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
-                // Reset on mouse devices
-                '@media (hover: none)': {
-                    backgroundColor: 'transparent',
-                },
+const StyledDialog = (0, styles_1.styled)(Dialog_1.default)(({ theme }) => ({
+    [`& .${classes.confirmPrimary}`]: {
+        color: theme.palette.primary.main,
+    },
+    [`& .${classes.confirmWarning}`]: {
+        color: theme.palette.error.main,
+        '&:hover': {
+            backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
+            // Reset on mouse devices
+            '@media (hover: none)': {
+                backgroundColor: 'transparent',
             },
         },
-        _b["& .".concat(classes.iconPaddingStyle)] = {
-            paddingRight: '0.5em',
-        },
-        _b);
-});
+    },
+    [`& .${classes.iconPaddingStyle}`]: {
+        paddingRight: '0.5em',
+    },
+}));
 /**
  * Confirmation dialog
  *
@@ -93,30 +59,20 @@ var StyledDialog = (0, styles_1.styled)(Dialog_1.default)(function (_a) {
  *     onClose={() => { // do something }}
  * />
  */
-var Confirm = function (props) {
-    var _a;
-    var isOpen = props.isOpen, loading = props.loading, title = props.title, content = props.content, confirm = props.confirm, cancel = props.cancel, confirmColor = props.confirmColor, ConfirmIcon = props.ConfirmIcon, CancelIcon = props.CancelIcon, onClose = props.onClose, onConfirm = props.onConfirm, _b = props.translateOptions, translateOptions = _b === void 0 ? {} : _b;
-    var translate = (0, core_1.useTranslate)();
-    var handleConfirm = (0, react_1.useCallback)(function (e) {
+const Confirm = (props) => {
+    const { isOpen, loading, title, content, confirm, cancel, confirmColor, ConfirmIcon, CancelIcon, onClose, onConfirm, translateOptions = {}, } = props;
+    const translate = (0, core_1.useTranslate)();
+    const handleConfirm = (0, react_1.useCallback)(e => {
         e.stopPropagation();
         onConfirm(e);
     }, [onConfirm]);
-    var handleClick = (0, react_1.useCallback)(function (e) {
+    const handleClick = (0, react_1.useCallback)(e => {
         e.stopPropagation();
     }, []);
-    return (React.createElement(StyledDialog, { open: isOpen, onClose: onClose, onClick: handleClick, "aria-labelledby": "alert-dialog-title" },
-        React.createElement(DialogTitle_1.default, { id: "alert-dialog-title" }, translate(title, __assign({ _: title }, translateOptions))),
-        React.createElement(DialogContent_1.default, null, typeof content === 'string' ? (React.createElement(DialogContentText_1.default, null, translate(content, __assign({ _: content }, translateOptions)))) : (content)),
-        React.createElement(DialogActions_1.default, null,
-            React.createElement(Button_1.default, { disabled: loading, onClick: onClose },
-                React.createElement(CancelIcon, { className: classes.iconPaddingStyle }),
-                translate(cancel, { _: cancel })),
-            React.createElement(Button_1.default, { disabled: loading, onClick: handleConfirm, className: (0, classnames_1.default)('ra-confirm', (_a = {},
-                    _a[classes.confirmWarning] = confirmColor === 'warning',
-                    _a[classes.confirmPrimary] = confirmColor === 'primary',
-                    _a)), autoFocus: true },
-                React.createElement(ConfirmIcon, { className: classes.iconPaddingStyle }),
-                translate(confirm, { _: confirm })))));
+    return ((0, jsx_runtime_1.jsxs)(StyledDialog, Object.assign({ open: isOpen, onClose: onClose, onClick: handleClick, "aria-labelledby": "alert-dialog-title" }, { children: [(0, jsx_runtime_1.jsx)(DialogTitle_1.default, Object.assign({ id: "alert-dialog-title" }, { children: translate(title, Object.assign({ _: title }, translateOptions)) }), void 0), (0, jsx_runtime_1.jsx)(DialogContent_1.default, { children: typeof content === 'string' ? ((0, jsx_runtime_1.jsx)(DialogContentText_1.default, { children: translate(content, Object.assign({ _: content }, translateOptions)) }, void 0)) : (content) }, void 0), (0, jsx_runtime_1.jsxs)(DialogActions_1.default, { children: [(0, jsx_runtime_1.jsxs)(Button_1.default, Object.assign({ disabled: loading, onClick: onClose }, { children: [(0, jsx_runtime_1.jsx)(CancelIcon, { className: classes.iconPaddingStyle }, void 0), translate(cancel, { _: cancel })] }), void 0), (0, jsx_runtime_1.jsxs)(Button_1.default, Object.assign({ disabled: loading, onClick: handleConfirm, className: (0, classnames_1.default)('ra-confirm', {
+                            [classes.confirmWarning]: confirmColor === 'warning',
+                            [classes.confirmPrimary]: confirmColor === 'primary',
+                        }), autoFocus: true }, { children: [(0, jsx_runtime_1.jsx)(ConfirmIcon, { className: classes.iconPaddingStyle }, void 0), translate(confirm, { _: confirm })] }), void 0)] }, void 0)] }), void 0));
 };
 Confirm.propTypes = {
     cancel: prop_types_1.default.string,

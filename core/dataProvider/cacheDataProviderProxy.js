@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fiveMinutes = 5 * 60 * 1000;
+const fiveMinutes = 5 * 60 * 1000;
 /**
  * Wrap a dataProvider in a Proxy that modifies responses to add caching.
  *
@@ -17,27 +17,24 @@ var fiveMinutes = 5 * 60 * 1000;
  *
  * const cacheEnabledDataProvider = cacheDataProviderProxy(dataProvider);
  */
-exports.default = (function (dataProvider, duration) {
-    if (duration === void 0) { duration = fiveMinutes; }
-    return new Proxy(dataProvider, {
-        get: function (target, name) {
-            if (typeof name === 'symbol') {
-                return;
+exports.default = (dataProvider, duration = fiveMinutes) => new Proxy(dataProvider, {
+    get: (target, name) => {
+        if (typeof name === 'symbol') {
+            return;
+        }
+        return (resource, params) => {
+            if (name === 'getList' ||
+                name === 'getMany' ||
+                name === 'getOne') {
+                // @ts-ignore
+                return dataProvider[name](resource, params).then(response => {
+                    const validUntil = new Date();
+                    validUntil.setTime(validUntil.getTime() + duration);
+                    response.validUntil = validUntil;
+                    return response;
+                });
             }
-            return function (resource, params) {
-                if (name === 'getList' ||
-                    name === 'getMany' ||
-                    name === 'getOne') {
-                    // @ts-ignore
-                    return dataProvider[name](resource, params).then(function (response) {
-                        var validUntil = new Date();
-                        validUntil.setTime(validUntil.getTime() + duration);
-                        response.validUntil = validUntil;
-                        return response;
-                    });
-                }
-                return dataProvider[name](resource, params);
-            };
-        },
-    });
+            return dataProvider[name](resource, params);
+        };
+    },
 });

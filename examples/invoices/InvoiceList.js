@@ -1,79 +1,31 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var app_1 = require("../../app");
-var FullNameField_1 = __importDefault(require("../visitors/FullNameField"));
-var AddressField_1 = __importDefault(require("../visitors/AddressField"));
-var InvoiceShow_1 = __importDefault(require("./InvoiceShow"));
-var PREFIX = 'InvoiceList';
-var classes = {
-    hiddenOnSmallScreens: "".concat(PREFIX, "-hiddenOnSmallScreens"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const app_1 = require("../../app");
+const FullNameField_1 = __importDefault(require("../visitors/FullNameField"));
+const AddressField_1 = __importDefault(require("../visitors/AddressField"));
+const InvoiceShow_1 = __importDefault(require("./InvoiceShow"));
+const PREFIX = 'InvoiceList';
+const classes = {
+    hiddenOnSmallScreens: `${PREFIX}-hiddenOnSmallScreens`,
 };
-var StyledList = (0, styles_1.styled)(app_1.List)(function (_a) {
-    var _b, _c;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.hiddenOnSmallScreens)] = (_c = {
-                display: 'table-cell'
-            },
-            _c[theme.breakpoints.down('lg')] = {
-                display: 'none',
-            },
-            _c),
-        _b);
-});
-var listFilters = [
-    React.createElement(app_1.DateInput, { source: "date_gte", alwaysOn: true }),
-    React.createElement(app_1.DateInput, { source: "date_lte", alwaysOn: true }),
+const StyledList = (0, styles_1.styled)(app_1.List)(({ theme }) => ({
+    [`& .${classes.hiddenOnSmallScreens}`]: {
+        display: 'table-cell',
+        [theme.breakpoints.down('lg')]: {
+            display: 'none',
+        },
+    },
+}));
+const listFilters = [
+    (0, jsx_runtime_1.jsx)(app_1.DateInput, { source: "date_gte", alwaysOn: true }, void 0),
+    (0, jsx_runtime_1.jsx)(app_1.DateInput, { source: "date_lte", alwaysOn: true }, void 0),
 ];
-var InvoiceList = function (props) {
-    return (React.createElement(StyledList, __assign({}, props, { filters: listFilters, perPage: 25, sort: { field: 'date', order: 'desc' } }),
-        React.createElement(app_1.Datagrid, { rowClick: "expand", expand: React.createElement(InvoiceShow_1.default, null) },
-            React.createElement(app_1.TextField, { source: "id" }),
-            React.createElement(app_1.DateField, { source: "date" }),
-            React.createElement(app_1.ReferenceField, { source: "customer_id", reference: "customers" },
-                React.createElement(FullNameField_1.default, null)),
-            React.createElement(app_1.ReferenceField, { source: "customer_id", reference: "customers", link: false, label: "resources.invoices.fields.address", cellClassName: classes.hiddenOnSmallScreens, headerClassName: classes.hiddenOnSmallScreens },
-                React.createElement(AddressField_1.default, null)),
-            React.createElement(app_1.ReferenceField, { source: "command_id", reference: "commands" },
-                React.createElement(app_1.TextField, { source: "reference" })),
-            React.createElement(app_1.NumberField, { source: "total_ex_taxes" }),
-            React.createElement(app_1.NumberField, { source: "delivery_fees" }),
-            React.createElement(app_1.NumberField, { source: "taxes" }),
-            React.createElement(app_1.NumberField, { source: "total" }))));
+const InvoiceList = (props) => {
+    return ((0, jsx_runtime_1.jsx)(StyledList, Object.assign({}, props, { filters: listFilters, perPage: 25, sort: { field: 'date', order: 'desc' } }, { children: (0, jsx_runtime_1.jsxs)(app_1.Datagrid, Object.assign({ rowClick: "expand", expand: (0, jsx_runtime_1.jsx)(InvoiceShow_1.default, {}, void 0) }, { children: [(0, jsx_runtime_1.jsx)(app_1.TextField, { source: "id" }, void 0), (0, jsx_runtime_1.jsx)(app_1.DateField, { source: "date" }, void 0), (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ source: "customer_id", reference: "customers" }, { children: (0, jsx_runtime_1.jsx)(FullNameField_1.default, {}, void 0) }), void 0), (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ source: "customer_id", reference: "customers", link: false, label: "resources.invoices.fields.address", cellClassName: classes.hiddenOnSmallScreens, headerClassName: classes.hiddenOnSmallScreens }, { children: (0, jsx_runtime_1.jsx)(AddressField_1.default, {}, void 0) }), void 0), (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ source: "command_id", reference: "commands" }, { children: (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "reference" }, void 0) }), void 0), (0, jsx_runtime_1.jsx)(app_1.NumberField, { source: "total_ex_taxes" }, void 0), (0, jsx_runtime_1.jsx)(app_1.NumberField, { source: "delivery_fees" }, void 0), (0, jsx_runtime_1.jsx)(app_1.NumberField, { source: "taxes" }, void 0), (0, jsx_runtime_1.jsx)(app_1.NumberField, { source: "total" }, void 0)] }), void 0) }), void 0));
 };
 exports.default = InvoiceList;

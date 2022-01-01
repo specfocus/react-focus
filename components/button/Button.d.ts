@@ -2,7 +2,6 @@ import { ReactElement, SyntheticEvent, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonProps as MuiButtonProps, PropTypes as MuiPropTypes } from '@mui/material';
 import { Record, RedirectionSideEffect } from '../../core';
-import { LocationDescriptor } from 'history';
 /**
  * A generic Button with side icon. Only the icon is displayed on small screens.
  *
@@ -36,7 +35,7 @@ interface Props {
     className?: string;
     color?: MuiPropTypes.Color;
     component?: ReactNode;
-    to?: string | LocationDescriptor;
+    to?: string;
     disabled?: boolean;
     label?: string;
     size?: 'small' | 'medium' | 'large';

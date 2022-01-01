@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,31 +15,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArrayField = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var get_1 = __importDefault(require("lodash/get"));
-var core_1 = require("../../core");
-var types_1 = require("./types");
-var prop_types_1 = __importDefault(require("prop-types"));
-var initialState = {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const get_1 = __importDefault(require("lodash/get"));
+const core_1 = require("../../core");
+const types_1 = require("./types");
+const prop_types_1 = __importDefault(require("prop-types"));
+const initialState = {
     data: {},
     ids: [],
 };
-var getDataAndIds = function (record, source, fieldKey) {
-    var list = (0, get_1.default)(record, source);
+const getDataAndIds = (record, source, fieldKey) => {
+    const list = (0, get_1.default)(record, source);
     if (!list) {
         return initialState;
     }
     return fieldKey
         ? {
-            data: list.reduce(function (prev, item) {
+            data: list.reduce((prev, item) => {
                 prev[item[fieldKey]] = item;
                 return prev;
             }, {}),
-            ids: list.map(function (item) { return item[fieldKey]; }),
+            ids: list.map(item => item[fieldKey]),
         }
         : {
-            data: list.reduce(function (prev, item) {
+            data: list.reduce((prev, item) => {
                 prev[JSON.stringify(item)] = item;
                 return prev;
             }, {}),
@@ -149,21 +119,21 @@ var getDataAndIds = function (record, source, fieldKey) {
  *     );
  *     TagsField.defaultProps = { addLabel: true };
  */
-exports.ArrayField = (0, react_1.memo)(function (props) {
-    var addLabel = props.addLabel, basePath = props.basePath, children = props.children, _record = props.record, resource = props.resource, sortable = props.sortable, source = props.source, fieldKey = props.fieldKey, rest = __rest(props, ["addLabel", "basePath", "children", "record", "resource", "sortable", "source", "fieldKey"]);
-    var record = (0, core_1.useRecordContext)(props);
-    var _a = (0, react_1.useState)(initialState.ids), ids = _a[0], setIds = _a[1];
-    var _b = (0, react_1.useState)(initialState.data), data = _b[0], setData = _b[1];
-    (0, react_1.useEffect)(function () {
-        var _a = getDataAndIds(record, source, fieldKey), ids = _a.ids, data = _a.data;
+exports.ArrayField = (0, react_1.memo)(props => {
+    const { addLabel, basePath, children, record: _record, resource, sortable, source, fieldKey } = props, rest = __rest(props, ["addLabel", "basePath", "children", "record", "resource", "sortable", "source", "fieldKey"]);
+    const record = (0, core_1.useRecordContext)(props);
+    const [ids, setIds] = (0, react_1.useState)(initialState.ids);
+    const [data, setData] = (0, react_1.useState)(initialState.data);
+    (0, react_1.useEffect)(() => {
+        const { ids, data } = getDataAndIds(record, source, fieldKey);
         setIds(ids);
         setData(data);
     }, [record, source, fieldKey]);
-    return (React.createElement(core_1.ListContextProvider, { value: {
-            ids: ids,
-            data: data,
+    return ((0, jsx_runtime_1.jsx)(core_1.ListContextProvider, Object.assign({ value: {
+            ids,
+            data,
             loading: false,
-            basePath: basePath,
+            basePath,
             selectedIds: [],
             currentSort: { field: null, order: null },
             displayedFilters: null,
@@ -176,18 +146,19 @@ exports.ArrayField = (0, react_1.memo)(function (props) {
             onUnselectItems: null,
             page: null,
             perPage: null,
-            resource: resource,
+            resource,
             setFilters: null,
             setPage: null,
             setPerPage: null,
             setSort: null,
             showFilter: null,
             total: null,
-        } }, (0, react_1.cloneElement)(react_1.Children.only(children), __assign({ ids: ids, data: data, loading: false, basePath: basePath, currentSort: { field: null, order: null }, resource: resource }, rest))));
+        } }, { children: (0, react_1.cloneElement)(react_1.Children.only(children), Object.assign({ ids,
+            data, loading: false, basePath, currentSort: { field: null, order: null }, resource }, rest)) }), void 0));
 });
 exports.ArrayField.defaultProps = {
     addLabel: true,
 };
-exports.ArrayField.propTypes = __assign(__assign({}, types_1.fieldPropTypes), { fieldKey: prop_types_1.default.string });
+exports.ArrayField.propTypes = Object.assign(Object.assign({}, types_1.fieldPropTypes), { fieldKey: prop_types_1.default.string });
 exports.ArrayField.displayName = 'ArrayField';
 exports.default = exports.ArrayField;

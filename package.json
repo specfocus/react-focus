@@ -1,24 +1,41 @@
 {
   "name": "@specfocus/react-focus",
-  "version": "0.1.0",
+  "version": "0.1.13",
   "repository": {
     "type": "git",
     "url": "http://github.com/specfocus/react-focus"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
-    "@monaco-editor/react": "^4.3.1",
     "@mui/icons-material": "^5.2.5",
     "@mui/lab": "^5.0.0-alpha.61",
     "@mui/material": "^5.2.5",
     "@mui/styles": "^5.2.3",
+    "@nivo/bar": "^0.76.0",
+    "@specfocus/spec-focus": "0.1.2",
+    "@types/faker": "^5.5.9",
+    "date-fns": "^2.28.0",
+    "faker": "^5.5.3",
+    "fakerest": "^3.3.0",
+    "final-form": "^4.20.6",
+    "final-form-arrays": "^3.0.2",
     "i18next": "^21.6.3",
     "i18next-http-backend": "^1.3.1",
+    "inflection": "^1.13.1",
+    "query-string": "^7.0.1",
     "react": "^17.0.2",
+    "react-async": "^10.0.1",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-dropzone": "^11.4.2",
+    "react-final-form": "^6.5.7",
+    "react-final-form-arrays": "^3.1.3",
     "react-i18next": "^11.15.1",
     "react-router": "^6.2.1",
+    "react-spring": "^9.3.3",
     "recoil": "^0.5.2",
-    "spec-focus": "^0.1.0",
     "web-vitals": "^2.1.0"
-  }
+  },
+  "peerDependencies": {},
+  "main": "index.js",
+  "types": "index.d.ts"
 }

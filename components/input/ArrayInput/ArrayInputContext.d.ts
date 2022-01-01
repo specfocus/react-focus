@@ -6,5 +6,5 @@ import { FieldArrayRenderProps } from 'react-final-form-arrays';
  * @see {ArrayInput}
  * @see {@link https://github.com/final-form/react-final-form-arrays|react-final-form-array}
  */
-export declare const ArrayInputContext: import("react").Context<FieldArrayRenderProps<any, HTMLElement>>;
+export declare const ArrayInputContext: import("react").Context<ArrayInputContextValue>;
 export declare type ArrayInputContextValue = FieldArrayRenderProps<any, HTMLElement>;

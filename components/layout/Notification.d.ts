@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import PropTypes from 'prop-types';
 import { SnackbarProps } from '@mui/material';
-export interface NotificationProps {
+import PropTypes from 'prop-types';
+export interface NotificationProps extends Omit<SnackbarProps, 'open'> {
     type?: string;
 }
 declare const Notification: {
-    (props: NotificationProps & Omit<SnackbarProps, 'open'>): JSX.Element;
+    (props: NotificationProps): JSX.Element;
     propTypes: {
         type: PropTypes.Requireable<string>;
     };

@@ -11,7 +11,7 @@ export interface ListToolbarProps extends Omit<ToolbarProps, 'classes' | 'onSele
 declare const _default: React.MemoExoticComponent<{
     (props: ListToolbarProps): JSX.Element;
     propTypes: {
-        filters: PropTypes.Requireable<PropTypes.ReactElementLike | (PropTypes.ReactElementLike | null | undefined)[]>;
+        filters: PropTypes.Requireable<PropTypes.ReactElementLike | PropTypes.ReactElementLike[]>;
         actions: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         exporter: PropTypes.Requireable<boolean | ((...args: any[]) => any)>;
     };

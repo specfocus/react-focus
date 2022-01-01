@@ -1,3 +1,12 @@
-export declare const appSidebar: import("recoil").RecoilState<"expanded" | "collapsed">;
-export declare const appTheme: import("recoil").RecoilState<"light" | "dark">;
-export declare const appWidget: import("recoil").RecoilState<string | undefined>;
+export declare const atomSidebar: import("recoil").RecoilState<"expanded" | "collapsed">;
+export declare const atomTheme: import("recoil").RecoilState<"light" | "dark">;
+export declare const atomWidget: import("recoil").RecoilState<string>;
+export declare const useSetSidebarState: () => import("recoil").SetterOrUpdater<"expanded" | "collapsed">;
+export declare const useSetThemeState: () => import("recoil").SetterOrUpdater<"light" | "dark">;
+export declare const useSetWidgetState: () => import("recoil").SetterOrUpdater<string>;
+export declare const useSidebarState: () => ["expanded" | "collapsed", import("recoil").SetterOrUpdater<"expanded" | "collapsed">];
+export declare const useSidebarValue: () => "expanded" | "collapsed";
+export declare const useThemetState: () => ["light" | "dark", import("recoil").SetterOrUpdater<"light" | "dark">];
+export declare const useThemetValue: () => "light" | "dark";
+export declare const useWidgetState: () => [string, import("recoil").SetterOrUpdater<string>];
+export declare const useWidgetValue: () => string;

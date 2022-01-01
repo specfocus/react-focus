@@ -1,3 +1,4 @@
+import { IconButtonProps } from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { ListProps } from '../../core/controller/useListController';
@@ -21,7 +22,7 @@ declare namespace DataFrame {
         className: PropTypes.Requireable<string>;
         filter: PropTypes.Requireable<object>;
         filterDefaultValues: PropTypes.Requireable<object>;
-        filters: PropTypes.Requireable<PropTypes.ReactElementLike | (PropTypes.ReactElementLike | null | undefined)[]>;
+        filters: PropTypes.Requireable<PropTypes.ReactElementLike | PropTypes.ReactElementLike[]>;
         pagination: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         perPage: PropTypes.Validator<number>;
         sort: PropTypes.Requireable<PropTypes.InferProps<{

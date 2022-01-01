@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultAuthParams = void 0;
-var react_1 = require("react");
-var AuthContext_1 = __importDefault(require("./AuthContext"));
+const react_1 = require("react");
+const AuthContext_1 = __importDefault(require("./AuthContext"));
 exports.defaultAuthParams = {
     loginUrl: '/login',
     afterLoginUrl: '/',
@@ -13,5 +13,5 @@ exports.defaultAuthParams = {
 /**
  * Get the authProvider stored in the context
  */
-var useAuthProvider = function () { return (0, react_1.useContext)(AuthContext_1.default); };
+const useAuthProvider = () => (0, react_1.useContext)(AuthContext_1.default);
 exports.default = useAuthProvider;

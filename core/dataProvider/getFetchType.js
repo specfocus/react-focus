@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("../core");
+const core_1 = require("../../core");
 /**
  * Get a fetch type for a data provider verb.
  *
@@ -8,7 +8,7 @@ var core_1 = require("../core");
  *
  * @example getFetchType('getMany'); // 'GET_MANY'
  */
-exports.default = (function (actionType) {
+exports.default = actionType => {
     switch (actionType) {
         case 'getList':
             return core_1.GET_LIST;
@@ -31,4 +31,4 @@ exports.default = (function (actionType) {
         default:
             return actionType;
     }
-});
+};

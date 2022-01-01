@@ -1,6 +1,6 @@
 import { AutocompleteProps as MuiAutocompleteProps } from '@mui/material/Autocomplete';
 import { FieldProps } from 'react-final-form';
-import { UseAutocompleteProps as MuiUseAutocompleteProps } from '@mui/core';
+import { UseAutocompleteProps as MuiUseAutocompleteProps } from '@mui/material';
 import { ShowErrorFunc } from './ErrorMessage';
 import { ReactNode } from 'react';
 import { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField';

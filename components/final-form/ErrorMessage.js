@@ -1,37 +1,22 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.showErrorOnBlur = exports.showErrorOnChange = exports.useFieldForErrors = exports.ErrorMessage = void 0;
-var react_1 = __importDefault(require("react"));
-var react_final_form_1 = require("react-final-form");
-var material_1 = require("@mui/material");
-function ErrorMessage(_a) {
-    var showError = _a.showError, meta = _a.meta, formHelperTextProps = _a.formHelperTextProps, helperText = _a.helperText;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_final_form_1 = require("react-final-form");
+const material_1 = require("@mui/material");
+function ErrorMessage({ showError, meta, formHelperTextProps, helperText }) {
     if (showError) {
-        return react_1.default.createElement(material_1.FormHelperText, __assign({}, formHelperTextProps), meta.error || meta.submitError);
+        return (0, jsx_runtime_1.jsx)(material_1.FormHelperText, Object.assign({}, formHelperTextProps, { children: meta.error || meta.submitError }), void 0);
     }
     else if (helperText) {
-        return react_1.default.createElement(material_1.FormHelperText, __assign({}, formHelperTextProps), helperText);
+        return (0, jsx_runtime_1.jsx)(material_1.FormHelperText, Object.assign({}, formHelperTextProps, { children: helperText }), void 0);
     }
     else {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, {}, void 0);
     }
 }
 exports.ErrorMessage = ErrorMessage;
-var config = {
+const config = {
     subscription: {
         error: true,
         submitError: true,
@@ -40,15 +25,9 @@ var config = {
         modified: true,
     },
 };
-var useFieldForErrors = function (name) { return (0, react_final_form_1.useField)(name, config); };
+const useFieldForErrors = (name) => (0, react_final_form_1.useField)(name, config);
 exports.useFieldForErrors = useFieldForErrors;
-var showErrorOnChange = function (_a) {
-    var _b = _a.meta, submitError = _b.submitError, dirtySinceLastSubmit = _b.dirtySinceLastSubmit, error = _b.error, touched = _b.touched, modified = _b.modified;
-    return !!(((submitError && !dirtySinceLastSubmit) || error) && (touched || modified));
-};
+const showErrorOnChange = ({ meta: { submitError, dirtySinceLastSubmit, error, touched, modified }, }) => !!(((submitError && !dirtySinceLastSubmit) || error) && (touched || modified));
 exports.showErrorOnChange = showErrorOnChange;
-var showErrorOnBlur = function (_a) {
-    var _b = _a.meta, submitError = _b.submitError, dirtySinceLastSubmit = _b.dirtySinceLastSubmit, error = _b.error, touched = _b.touched;
-    return !!(((submitError && !dirtySinceLastSubmit) || error) && touched);
-};
+const showErrorOnBlur = ({ meta: { submitError, dirtySinceLastSubmit, error, touched }, }) => !!(((submitError && !dirtySinceLastSubmit) || error) && touched);
 exports.showErrorOnBlur = showErrorOnBlur;

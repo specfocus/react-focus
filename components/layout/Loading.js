@@ -1,78 +1,48 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
-var core_1 = require("../../core");
-var PREFIX = 'RaLoading';
-var classes = {
-    container: "".concat(PREFIX, "-container"),
-    icon: "".concat(PREFIX, "-icon"),
-    message: "".concat(PREFIX, "-message"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
+const core_1 = require("../../core");
+const PREFIX = 'RaLoading';
+const classes = {
+    container: `${PREFIX}-container`,
+    icon: `${PREFIX}-icon`,
+    message: `${PREFIX}-message`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b, _c;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.container)] = (_c = {
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-            },
-            _c[theme.breakpoints.up('md')] = {
-                height: '100%',
-            },
-            _c[theme.breakpoints.down('xl')] = {
-                height: '100vh',
-                marginTop: '-3em',
-            },
-            _c),
-        _b["& .".concat(classes.icon)] = {
-            width: '9em',
-            height: '9em',
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`&.${classes.container}`]: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        [theme.breakpoints.up('md')]: {
+            height: '100%',
         },
-        _b["& .".concat(classes.message)] = {
-            textAlign: 'center',
-            fontFamily: 'Roboto, sans-serif',
-            opacity: 0.5,
-            margin: '0 1em',
+        [theme.breakpoints.down('xl')]: {
+            height: '100vh',
+            marginTop: '-3em',
         },
-        _b);
-});
-var Loading = function (props) {
-    var className = props.className, _a = props.loadingPrimary, loadingPrimary = _a === void 0 ? 'ra.page.loading' : _a, _b = props.loadingSecondary, loadingSecondary = _b === void 0 ? 'ra.message.loading' : _b;
-    var translate = (0, core_1.useTranslate)();
-    return (React.createElement(Root, { className: (0, classnames_1.default)(classes.container, className) },
-        React.createElement("div", { className: classes.message },
-            React.createElement(CircularProgress_1.default, { className: classes.icon, color: "primary" }),
-            React.createElement("h1", null, translate(loadingPrimary)),
-            React.createElement("div", null,
-                translate(loadingSecondary),
-                "."))));
+    },
+    [`& .${classes.icon}`]: {
+        width: '9em',
+        height: '9em',
+    },
+    [`& .${classes.message}`]: {
+        textAlign: 'center',
+        fontFamily: 'Roboto, sans-serif',
+        opacity: 0.5,
+        margin: '0 1em',
+    },
+}));
+const Loading = props => {
+    const { className, loadingPrimary = 'ra.page.loading', loadingSecondary = 'ra.message.loading', } = props;
+    const translate = (0, core_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsx)(Root, Object.assign({ className: (0, classnames_1.default)(classes.container, className) }, { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.message }, { children: [(0, jsx_runtime_1.jsx)(CircularProgress_1.default, { className: classes.icon, color: "primary" }, void 0), (0, jsx_runtime_1.jsx)("h1", { children: translate(loadingPrimary) }, void 0), (0, jsx_runtime_1.jsxs)("div", { children: [translate(loadingSecondary), "."] }, void 0)] }), void 0) }), void 0));
 };
 Loading.propTypes = {
     className: prop_types_1.default.string,

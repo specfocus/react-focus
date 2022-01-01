@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useGetResourceLabel = void 0;
-var inflection_1 = __importDefault(require("inflection"));
-var react_redux_1 = require("react-redux");
-var reducer_1 = require("../reducer");
-var i18n_1 = require("../i18n");
+const inflection_1 = __importDefault(require("inflection"));
+const react_redux_1 = require("react-redux");
+const reducer_1 = require("../reducer");
+const i18n_1 = require("../i18n");
 /**
  * A hook which returns function to get a translated resource name. It will use the label option of the `Resource` component if it was provided.
  *
@@ -28,13 +28,12 @@ var i18n_1 = require("../i18n");
  *     )
  * }
  */
-var useGetResourceLabel = function () {
-    var store = (0, react_redux_1.useStore)();
-    var translate = (0, i18n_1.useTranslate)();
-    return function (resource, count) {
-        if (count === void 0) { count = 2; }
-        var resourceDefinition = (0, reducer_1.getResources)(store.getState()).find(function (r) { return (r === null || r === void 0 ? void 0 : r.name) === resource; });
-        var label = translate("resources.".concat(resource, ".name"), {
+const useGetResourceLabel = () => {
+    const store = (0, react_redux_1.useStore)();
+    const translate = (0, i18n_1.useTranslate)();
+    return (resource, count = 2) => {
+        const resourceDefinition = (0, reducer_1.getResources)(store.getState()).find(r => (r === null || r === void 0 ? void 0 : r.name) === resource);
+        const label = translate(`resources.${resource}.name`, {
             smart_count: count,
             _: resourceDefinition &&
                 resourceDefinition.options &&

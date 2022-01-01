@@ -1,5 +1,5 @@
 import { DataProvider } from '../core';
-declare const _default: (params?: LocalStorageDataProviderParams | undefined) => DataProvider;
+declare const _default: (params?: LocalStorageDataProviderParams) => DataProvider;
 /**
  * Respond to ../../app data queries using a local database persisted in localStorage
  *

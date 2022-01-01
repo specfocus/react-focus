@@ -13,7 +13,7 @@ export * from './loading';
 export * from './util';
 export * from './controller';
 export * from './form';
-export { getResources, getReferenceResource, getNotification, getPossibleReferences, getPossibleReferenceValues, } from './reducer';
+export { getResources, getReferenceResource, firstNotification, getPossibleReferences, getPossibleReferenceValues, } from './reducer';
 export { getIds, getReferences, getReferencesByIds, nameRelatedTo, } from './reducer/admin/references/oneToMany';
 export * from './sideEffect';
 export * from './types';

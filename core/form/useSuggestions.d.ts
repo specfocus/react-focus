@@ -2,7 +2,7 @@ import { UseChoicesOptions } from './useChoices';
 declare const useSuggestions: ({ allowCreate, allowDuplicates, allowEmpty, choices, createText, createValue, emptyText, emptyValue, limitChoicesToValue, matchSuggestion, optionText, optionValue, selectedItem, suggestionLimit, translateChoice, }: UseSuggestionsOptions) => {
     getChoiceText: (choice: any) => any;
     getChoiceValue: (choice: any) => any;
-    getSuggestions: (filter: any) => never[];
+    getSuggestions: (filter: any) => any[];
 };
 export default useSuggestions;
 export interface UseSuggestionsOptions extends UseChoicesOptions {
@@ -44,4 +44,4 @@ export interface UseSuggestionsOptions extends UseChoicesOptions {
 export declare const getSuggestionsFactory: ({ allowCreate, allowDuplicates, allowEmpty, choices, createText, createValue, emptyText, emptyValue, optionText, optionValue, getChoiceText, getChoiceValue, limitChoicesToValue, matchSuggestion, selectedItem, suggestionLimit, }: UseSuggestionsOptions & {
     getChoiceText: (choice: any) => string;
     getChoiceValue: (choice: any) => string;
-}) => (filter: any) => never[];
+}) => (filter: any) => any[];

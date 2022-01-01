@@ -62,7 +62,7 @@ declare const List: {
         className: PropTypes.Requireable<string>;
         filter: PropTypes.Requireable<object>;
         filterDefaultValues: PropTypes.Requireable<object>;
-        filters: PropTypes.Requireable<PropTypes.ReactElementLike | (PropTypes.ReactElementLike | null | undefined)[]>;
+        filters: PropTypes.Requireable<PropTypes.ReactElementLike | PropTypes.ReactElementLike[]>;
         pagination: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         perPage: PropTypes.Validator<number>;
         sort: PropTypes.Requireable<PropTypes.InferProps<{

@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var redux_1 = require("redux");
-var cachedRequests_1 = __importDefault(require("./cachedRequests"));
-var expanded_1 = __importDefault(require("./expanded"));
-var ids_1 = __importDefault(require("./ids"));
-var loadedOnce_1 = __importDefault(require("./loadedOnce"));
-var params_1 = __importDefault(require("./params"));
-var selectedIds_1 = __importDefault(require("./selectedIds"));
-var total_1 = __importDefault(require("./total"));
-var defaultReducer = function () { return null; };
+const redux_1 = require("redux");
+const cachedRequests_1 = __importDefault(require("./cachedRequests"));
+const expanded_1 = __importDefault(require("./expanded"));
+const ids_1 = __importDefault(require("./ids"));
+const loadedOnce_1 = __importDefault(require("./loadedOnce"));
+const params_1 = __importDefault(require("./params"));
+const selectedIds_1 = __importDefault(require("./selectedIds"));
+const total_1 = __importDefault(require("./total"));
+const defaultReducer = () => null;
 exports.default = (0, redux_1.combineReducers)({
     /**
      * ts-jest does some aggressive module mocking when unit testing reducers individually.

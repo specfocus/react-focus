@@ -1,6 +1,5 @@
 /// <reference types="react" />
-declare const Root: ({ children, values }: {
-    children: any;
+export * from 'recoil';
+export declare const Debug: ({ values }: {
     values: any;
 }) => JSX.Element;
-export default Root;

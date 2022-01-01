@@ -1,55 +1,34 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var Chip_1 = __importDefault(require("@mui/material/Chip"));
-var app_1 = require("../../app");
-var data_1 = __importDefault(require("../segments/data"));
-var PREFIX = 'SegmentsField';
-var classes = {
-    main: "".concat(PREFIX, "-main"),
-    chip: "".concat(PREFIX, "-chip"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const Chip_1 = __importDefault(require("@mui/material/Chip"));
+const app_1 = require("../../app");
+const data_1 = __importDefault(require("../segments/data"));
+const PREFIX = 'SegmentsField';
+const classes = {
+    main: `${PREFIX}-main`,
+    chip: `${PREFIX}-chip`,
 };
-var Root = (0, styles_1.styled)('span')((_a = {},
-    _a["&.".concat(classes.main)] = {
+const Root = (0, styles_1.styled)('span')({
+    [`&.${classes.main}`]: {
         display: 'flex',
         flexWrap: 'wrap',
         marginTop: -8,
         marginBottom: -8,
     },
-    _a["& .".concat(classes.chip)] = { margin: 4 },
-    _a));
-var SegmentsField = function (_a) {
-    var record = _a.record;
-    var translate = (0, app_1.useTranslate)();
-    return record ? (React.createElement(Root, { className: classes.main }, record.groups &&
-        record.groups.map(function (segmentId) {
-            var segment = data_1.default.find(function (s) { return s.id === segmentId; });
-            return segment ? (React.createElement(Chip_1.default, { size: "small", key: segment.id, className: classes.chip, label: translate(segment.name) })) : null;
-        }))) : null;
+    [`& .${classes.chip}`]: { margin: 4 },
+});
+const SegmentsField = ({ record }) => {
+    const translate = (0, app_1.useTranslate)();
+    return record ? ((0, jsx_runtime_1.jsx)(Root, Object.assign({ className: classes.main }, { children: record.groups &&
+            record.groups.map(segmentId => {
+                const segment = data_1.default.find(s => s.id === segmentId);
+                return segment ? ((0, jsx_runtime_1.jsx)(Chip_1.default, { size: "small", className: classes.chip, label: translate(segment.name) }, segment.id)) : null;
+            }) }), void 0)) : null;
 };
 SegmentsField.defaultProps = {
     addLabel: true,

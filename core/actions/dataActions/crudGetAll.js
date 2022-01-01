@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CRUD_GET_ALL_SUCCESS = exports.CRUD_GET_ALL_FAILURE = exports.CRUD_GET_ALL_LOADING = exports.CRUD_GET_ALL = exports.crudGetAll = void 0;
-var core_1 = require("../../core");
-var crudGetAll = function (resource, sort, filter, maxResults, callback) { return ({
+const core_1 = require("../../../core");
+const crudGetAll = (resource, sort, filter, maxResults, callback) => ({
     type: exports.CRUD_GET_ALL,
-    payload: { sort: sort, filter: filter, pagination: { page: 1, perPage: maxResults } },
+    payload: { sort, filter, pagination: { page: 1, perPage: maxResults } },
     meta: {
-        resource: resource,
+        resource,
         fetch: core_1.GET_LIST,
         onSuccess: {
-            callback: callback,
+            callback,
         },
         onFailure: {
             notification: {
@@ -18,7 +18,7 @@ var crudGetAll = function (resource, sort, filter, maxResults, callback) { retur
             },
         },
     },
-}); };
+});
 exports.crudGetAll = crudGetAll;
 exports.CRUD_GET_ALL = 'CRUD_GET_ALL';
 exports.CRUD_GET_ALL_LOADING = 'CRUD_GET_ALL_LOADING';

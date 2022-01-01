@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -42,29 +31,29 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IconButtonWithTooltip = void 0;
-var React = __importStar(require("react"));
-var material_1 = require("@mui/material");
-var core_1 = require("../../core");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const material_1 = require("@mui/material");
+const core_1 = require("../../core");
 /**
  * An IconButton with a tooltip which ensures the tooltip is closed on click to avoid ghost tooltips
  * when the button position changes.
  */
-var IconButtonWithTooltip = function (_a) {
-    var label = _a.label, onClick = _a.onClick, props = __rest(_a, ["label", "onClick"]);
-    var translate = (0, core_1.useTranslate)();
-    var _b = React.useState(false), open = _b[0], setOpen = _b[1];
-    var handleClose = function () {
+const IconButtonWithTooltip = (_a) => {
+    var { label, onClick } = _a, props = __rest(_a, ["label", "onClick"]);
+    const translate = (0, core_1.useTranslate)();
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
         setOpen(false);
     };
-    var handleOpen = function () {
+    const handleOpen = () => {
         setOpen(true);
     };
-    var translatedLabel = translate(label, { _: label });
-    var handleClick = function (event) {
+    const translatedLabel = translate(label, { _: label });
+    const handleClick = (event) => {
         handleClose();
         onClick(event);
     };
-    return (React.createElement(material_1.Tooltip, { title: translatedLabel, open: open, onOpen: handleOpen, onClose: handleClose },
-        React.createElement(material_1.IconButton, __assign({ "aria-label": translatedLabel, onClick: handleClick }, props, { size: "large" }))));
+    return ((0, jsx_runtime_1.jsx)(material_1.Tooltip, Object.assign({ title: translatedLabel, open: open, onOpen: handleOpen, onClose: handleClose }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ "aria-label": translatedLabel, onClick: handleClick }, props, { size: "large" }), void 0) }), void 0));
 };
 exports.IconButtonWithTooltip = IconButtonWithTooltip;

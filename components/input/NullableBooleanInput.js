@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,48 +14,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var TextField_1 = __importDefault(require("@mui/material/TextField"));
-var MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
-var InputHelperText_1 = __importDefault(require("./InputHelperText"));
-var PREFIX = 'RaNullableBooleanInput';
-var classes = {
-    input: "".concat(PREFIX, "-input"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const TextField_1 = __importDefault(require("@mui/material/TextField"));
+const MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
+const InputHelperText_1 = __importDefault(require("./InputHelperText"));
+const PREFIX = 'RaNullableBooleanInput';
+const classes = {
+    input: `${PREFIX}-input`,
 };
-var StyledTextField = (0, styles_1.styled)(TextField_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.input)] = { width: theme.spacing(16) },
-        _b);
-});
-var getBooleanFromString = function (value) {
+const StyledTextField = (0, styles_1.styled)(TextField_1.default)(({ theme }) => ({
+    [`&.${classes.input}`]: { width: theme.spacing(16) },
+}));
+const getBooleanFromString = (value) => {
     if (value === 'true')
         return true;
     if (value === 'false')
         return false;
     return null;
 };
-var getStringFromBoolean = function (value) {
+const getStringFromBoolean = (value) => {
     if (value === true)
         return 'true';
     if (value === false)
         return 'false';
     return '';
 };
-var NullableBooleanInput = function (props) {
-    var className = props.className, _a = props.format, format = _a === void 0 ? getStringFromBoolean : _a, helperText = props.helperText, label = props.label, _b = props.margin, margin = _b === void 0 ? 'dense' : _b, onBlur = props.onBlur, onChange = props.onChange, onFocus = props.onFocus, options = props.options, _c = props.parse, parse = _c === void 0 ? getBooleanFromString : _c, resource = props.resource, source = props.source, validate = props.validate, _d = props.variant, variant = _d === void 0 ? 'filled' : _d, _e = props.nullLabel, nullLabel = _e === void 0 ? 'ra.boolean.null' : _e, _f = props.falseLabel, falseLabel = _f === void 0 ? 'ra.boolean.false' : _f, _g = props.trueLabel, trueLabel = _g === void 0 ? 'ra.boolean.true' : _g, rest = __rest(props, ["className", "format", "helperText", "label", "margin", "onBlur", "onChange", "onFocus", "options", "parse", "resource", "source", "validate", "variant", "nullLabel", "falseLabel", "trueLabel"]);
-    var translate = (0, core_1.useTranslate)();
-    var _h = (0, core_1.useInput)(__assign({ format: format, onBlur: onBlur, onChange: onChange, onFocus: onFocus, parse: parse, resource: resource, source: source, validate: validate }, rest)), id = _h.id, input = _h.input, isRequired = _h.isRequired, _j = _h.meta, error = _j.error, submitError = _j.submitError, touched = _j.touched;
-    return (React.createElement(StyledTextField, __assign({ id: id }, input, { select: true, margin: margin, label: React.createElement(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired }), error: !!(touched && (error || submitError)), helperText: React.createElement(InputHelperText_1.default, { touched: touched, error: error || submitError, helperText: helperText }), className: (0, classnames_1.default)(classes.input, className), variant: variant }, options, (0, sanitizeInputRestProps_1.default)(rest)),
-        React.createElement(MenuItem_1.default, { value: "" }, translate(nullLabel)),
-        React.createElement(MenuItem_1.default, { value: "false" }, translate(falseLabel)),
-        React.createElement(MenuItem_1.default, { value: "true" }, translate(trueLabel))));
+const NullableBooleanInput = (props) => {
+    const { className, format = getStringFromBoolean, helperText, label, margin = 'dense', onBlur, onChange, onFocus, options, parse = getBooleanFromString, resource, source, validate, variant = 'filled', nullLabel = 'ra.boolean.null', falseLabel = 'ra.boolean.false', trueLabel = 'ra.boolean.true' } = props, rest = __rest(props, ["className", "format", "helperText", "label", "margin", "onBlur", "onChange", "onFocus", "options", "parse", "resource", "source", "validate", "variant", "nullLabel", "falseLabel", "trueLabel"]);
+    const translate = (0, core_1.useTranslate)();
+    const { id, input, isRequired, meta: { error, submitError, touched }, } = (0, core_1.useInput)(Object.assign({ format,
+        onBlur,
+        onChange,
+        onFocus,
+        parse,
+        resource,
+        source,
+        validate }, rest));
+    return ((0, jsx_runtime_1.jsxs)(StyledTextField, Object.assign({ id: id }, input, { select: true, margin: margin, label: (0, jsx_runtime_1.jsx)(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired }, void 0), error: !!(touched && (error || submitError)), helperText: (0, jsx_runtime_1.jsx)(InputHelperText_1.default, { touched: touched, error: error || submitError, helperText: helperText }, void 0), className: (0, classnames_1.default)(classes.input, className), variant: variant }, options, (0, sanitizeInputRestProps_1.default)(rest), { children: [(0, jsx_runtime_1.jsx)(MenuItem_1.default, Object.assign({ value: "" }, { children: translate(nullLabel) }), void 0), (0, jsx_runtime_1.jsx)(MenuItem_1.default, Object.assign({ value: "false" }, { children: translate(falseLabel) }), void 0), (0, jsx_runtime_1.jsx)(MenuItem_1.default, Object.assign({ value: "true" }, { children: translate(trueLabel) }), void 0)] }), void 0));
 };
 NullableBooleanInput.propTypes = {
     label: prop_types_1.default.oneOfType([prop_types_1.default.string, prop_types_1.default.bool]),

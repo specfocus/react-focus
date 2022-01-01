@@ -1,55 +1,39 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getReferenceResource = exports.getResources = void 0;
-var actions_1 = require("../../../actions");
-var data_1 = __importDefault(require("./data"));
-var list_1 = __importDefault(require("./list"));
-var validity_1 = __importDefault(require("./validity"));
-var initialState = {};
-exports.default = (function (previousState, action) {
-    var _a;
-    if (previousState === void 0) { previousState = initialState; }
+const actions_1 = require("../../../actions");
+const data_1 = __importDefault(require("./data"));
+const list_1 = __importDefault(require("./list"));
+const validity_1 = __importDefault(require("./validity"));
+const initialState = {};
+exports.default = (previousState = initialState, action) => {
     if (action.type === actions_1.REGISTER_RESOURCE) {
-        var resourceState = {
+        const resourceState = {
             props: action.payload,
             data: (0, data_1.default)(undefined, action),
             list: (0, list_1.default)(undefined, action),
             validity: (0, validity_1.default)(undefined, action),
         };
         console.log('REGISTER_RESOURCE', action.payload.name);
-        return __assign(__assign({}, previousState), (_a = {}, _a[action.payload.name] = resourceState, _a));
+        return Object.assign(Object.assign({}, previousState), { [action.payload.name]: resourceState });
     }
     if (action.type === actions_1.UNREGISTER_RESOURCE) {
-        return Object.keys(previousState).reduce(function (acc, key) {
-            var _a;
+        return Object.keys(previousState).reduce((acc, key) => {
             if (key === action.payload) {
                 return acc;
             }
-            return __assign(__assign({}, acc), (_a = {}, _a[key] = previousState[key], _a));
+            return Object.assign(Object.assign({}, acc), { [key]: previousState[key] });
         }, {});
     }
     if (action.type !== actions_1.REFRESH_VIEW &&
         (!action.meta || !action.meta.resource)) {
         return previousState;
     }
-    var resources = Object.keys(previousState);
-    var newState = resources.reduce(function (acc, resource) {
-        var _a;
-        return (__assign(__assign({}, acc), (_a = {}, _a[resource] = action.type === actions_1.REFRESH_VIEW ||
+    const resources = Object.keys(previousState);
+    const newState = resources.reduce((acc, resource) => (Object.assign(Object.assign({}, acc), { [resource]: action.type === actions_1.REFRESH_VIEW ||
             action.meta.resource === resource
             ? {
                 props: previousState[resource].props,
@@ -57,13 +41,10 @@ exports.default = (function (previousState, action) {
                 list: (0, list_1.default)(previousState[resource].list, action),
                 validity: (0, validity_1.default)(previousState[resource].validity, action),
             }
-            : previousState[resource], _a)));
-    }, {});
+            : previousState[resource] })), {});
     return newState;
-});
-var getResources = function (state) {
-    return Object.keys(state).map(function (key) { return state[key].props; });
 };
+const getResources = state => Object.keys(state).map(key => state[key].props);
 exports.getResources = getResources;
-var getReferenceResource = function (state, props) { return state[props.reference]; };
+const getReferenceResource = (state, props) => state[props.reference];
 exports.getReferenceResource = getReferenceResource;

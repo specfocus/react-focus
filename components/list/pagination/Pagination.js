@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,28 +33,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var material_1 = require("@mui/material");
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-var PaginationActions_1 = __importDefault(require("./PaginationActions"));
-var PaginationLimit_1 = __importDefault(require("./PaginationLimit"));
-var emptyArray = [];
-var Pagination = function (props) {
-    var rowsPerPageOptions = props.rowsPerPageOptions, actions = props.actions, limit = props.limit, rest = __rest(props, ["rowsPerPageOptions", "actions", "limit"]);
-    var _a = (0, core_1.useListPaginationContext)(props), loading = _a.loading, page = _a.page, perPage = _a.perPage, total = _a.total, setPage = _a.setPage, setPerPage = _a.setPerPage;
-    var translate = (0, core_1.useTranslate)();
-    var isSmall = (0, material_1.useMediaQuery)(function (theme) {
-        return theme.breakpoints.down('md');
-    });
-    var totalPages = (0, react_1.useMemo)(function () {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const prop_types_1 = __importDefault(require("prop-types"));
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+const PaginationActions_1 = __importDefault(require("./PaginationActions"));
+const PaginationLimit_1 = __importDefault(require("./PaginationLimit"));
+const emptyArray = [];
+const Pagination = (props) => {
+    const { rowsPerPageOptions, actions, limit } = props, rest = __rest(props, ["rowsPerPageOptions", "actions", "limit"]);
+    const { loading, page, perPage, total, setPage, setPerPage, } = (0, core_1.useListPaginationContext)(props);
+    const translate = (0, core_1.useTranslate)();
+    const isSmall = (0, material_1.useMediaQuery)((theme) => theme.breakpoints.down('md'));
+    const totalPages = (0, react_1.useMemo)(() => {
         return Math.ceil(total / perPage) || 1;
     }, [perPage, total]);
     /**
      * Warning: material-ui's page is 0-based
      */
-    var handlePageChange = (0, react_1.useCallback)(function (event, page) {
+    const handlePageChange = (0, react_1.useCallback)((event, page) => {
         event && event.stopPropagation();
         if (page < 0 || page > totalPages - 1) {
             throw new Error(translate('ra.navigation.page_out_of_boundaries', {
@@ -74,25 +62,22 @@ var Pagination = function (props) {
         }
         setPage(page + 1);
     }, [totalPages, setPage, translate]);
-    var handlePerPageChange = (0, react_1.useCallback)(function (event) {
+    const handlePerPageChange = (0, react_1.useCallback)(event => {
         setPerPage(event.target.value);
     }, [setPerPage]);
-    var labelDisplayedRows = (0, react_1.useCallback)(function (_a) {
-        var from = _a.from, to = _a.to, count = _a.count;
-        return translate('ra.navigation.page_range_info', {
-            offsetBegin: from,
-            offsetEnd: to,
-            total: count,
-        });
-    }, [translate]);
+    const labelDisplayedRows = (0, react_1.useCallback)(({ from, to, count }) => translate('ra.navigation.page_range_info', {
+        offsetBegin: from,
+        offsetEnd: to,
+        total: count,
+    }), [translate]);
     // Avoid rendering TablePagination if "page" value is invalid
     if (total === null || total === 0 || page < 1 || page > totalPages) {
-        return loading ? React.createElement(material_1.Toolbar, { variant: "dense" }) : limit;
+        return loading ? (0, jsx_runtime_1.jsx)(material_1.Toolbar, { variant: "dense" }, void 0) : limit;
     }
     if (isSmall) {
-        return (React.createElement(material_1.TablePagination, __assign({ count: total, rowsPerPage: perPage, page: page - 1, onPageChange: handlePageChange, rowsPerPageOptions: emptyArray, component: "span", labelDisplayedRows: labelDisplayedRows }, (0, core_1.sanitizeListRestProps)(rest))));
+        return ((0, jsx_runtime_1.jsx)(material_1.TablePagination, Object.assign({ count: total, rowsPerPage: perPage, page: page - 1, onPageChange: handlePageChange, rowsPerPageOptions: emptyArray, component: "span", labelDisplayedRows: labelDisplayedRows }, (0, core_1.sanitizeListRestProps)(rest)), void 0));
     }
-    return (React.createElement(material_1.TablePagination, __assign({ count: total, rowsPerPage: perPage, page: page - 1, onPageChange: handlePageChange, onRowsPerPageChange: handlePerPageChange, ActionsComponent: actions, component: "span", labelRowsPerPage: translate('ra.navigation.page_rows_per_page'), labelDisplayedRows: labelDisplayedRows, rowsPerPageOptions: rowsPerPageOptions }, (0, core_1.sanitizeListRestProps)(rest))));
+    return ((0, jsx_runtime_1.jsx)(material_1.TablePagination, Object.assign({ count: total, rowsPerPage: perPage, page: page - 1, onPageChange: handlePageChange, onRowsPerPageChange: handlePerPageChange, ActionsComponent: actions, component: "span", labelRowsPerPage: translate('ra.navigation.page_rows_per_page'), labelDisplayedRows: labelDisplayedRows, rowsPerPageOptions: rowsPerPageOptions }, (0, core_1.sanitizeListRestProps)(rest)), void 0));
 };
 Pagination.propTypes = {
     actions: core_1.ComponentPropType,
@@ -101,7 +86,7 @@ Pagination.propTypes = {
 };
 Pagination.defaultProps = {
     actions: PaginationActions_1.default,
-    limit: React.createElement(PaginationLimit_1.default, null),
+    limit: (0, jsx_runtime_1.jsx)(PaginationLimit_1.default, {}, void 0),
     rowsPerPageOptions: [5, 10, 25],
 };
 exports.default = React.memo(Pagination);

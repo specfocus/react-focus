@@ -5,5 +5,5 @@ export interface SortButtonProps {
     label?: string;
     icon?: ReactElement;
 }
-declare const _default: React.NamedExoticComponent<SortButtonProps>;
+declare const _default: React.MemoExoticComponent<(props: SortButtonProps) => JSX.Element>;
 export default _default;

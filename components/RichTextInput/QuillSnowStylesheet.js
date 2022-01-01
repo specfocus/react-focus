@@ -1,4 +1,5 @@
 "use strict";
+// import { StyleRules } from '@mui/material/styles';
 Object.defineProperty(exports, "__esModule", { value: true });
 // converted from vendor (node_modules/quill/dist/quill.snow.css) using the jss cli
 exports.default = {
@@ -797,4 +798,4 @@ exports.default = {
     '.ql-container.ql-snow': {
         border: '1px solid #ccc',
     },
-};
+}; // as StyleRules;

@@ -20,5 +20,5 @@ import { ListProps } from '../types';
  *     </Admin>
  * );
  */
-declare const ListGuesser: (props: ListProps) => JSX.Element;
+declare const ListGuesser: ({ children, ...props }: ListProps) => JSX.Element;
 export default ListGuesser;

@@ -1,5 +1,5 @@
 import { Identifier, Record } from '../../types';
-import { GET_ONE } from '../../core';
+import { GET_ONE } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, RedirectionSideEffect, RefreshSideEffect } from '../../sideEffect';
 export declare const crudGetOne: (resource: string, id: Identifier, basePath: string, refresh?: RefreshSideEffect) => CrudGetOneAction;

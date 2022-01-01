@@ -1,8 +1,8 @@
 import { Record, PaginationPayload, SortPayload } from '../../types';
-import { GET_LIST } from '../../core';
+import { GET_LIST } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, CallbackSideEffect } from '../../sideEffect';
-export declare const crudGetAll: (resource: string, sort: SortPayload, filter: object, maxResults: number, callback?: CallbackSideEffect | undefined) => CrudGetAllAction;
+export declare const crudGetAll: (resource: string, sort: SortPayload, filter: object, maxResults: number, callback?: CallbackSideEffect) => CrudGetAllAction;
 interface RequestPayload {
     pagination: PaginationPayload;
     sort: SortPayload;

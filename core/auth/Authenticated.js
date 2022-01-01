@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useAuthenticated_1 = __importDefault(require("./useAuthenticated"));
+const react_1 = require("react");
+const useAuthenticated_1 = __importDefault(require("./useAuthenticated"));
 /**
  * Restrict access to children to authenticated users.
  * Redirects anonymous users to the login page.
@@ -44,8 +44,8 @@ var useAuthenticated_1 = __importDefault(require("./useAuthenticated"));
  *         </Admin>
  *     );
  */
-var Authenticated = function (props) {
-    var authParams = props.authParams, children = props.children, location = props.location, // kept for backwards compatibility, unused
+const Authenticated = (props) => {
+    const { authParams, children, location } = props, // kept for backwards compatibility, unused
     rest = __rest(props, ["authParams", "children", "location"]);
     (0, useAuthenticated_1.default)(authParams);
     // render the child even though the useAuthenticated() call isn't finished (optimistic rendering)

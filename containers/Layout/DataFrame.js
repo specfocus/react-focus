@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,23 +15,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ToolButton = exports.useStyles = void 0;
-var Box_1 = __importDefault(require("@mui/material/Box"));
-var IconButton_1 = __importDefault(require("@mui/material/IconButton"));
-var Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
-var styles_1 = require("@mui/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_1 = __importStar(require("react"));
-var recoil_1 = require("recoil");
-var AppState_1 = require("../../app/AppState");
-var core_1 = require("../../core");
-var ListContextProvider_1 = __importDefault(require("../../core/controller/ListContextProvider"));
-var useListController_1 = __importDefault(require("../../core/controller/useListController"));
-var Copyright_1 = __importDefault(require("./Copyright"));
-var Frame_1 = __importDefault(require("./Frame"));
-var AddCircle_1 = __importDefault(require("@mui/icons-material/AddCircle"));
-var Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
-var Edit_1 = __importDefault(require("@mui/icons-material/Edit"));
-var toolButtons = {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const AddCircle_1 = __importDefault(require("@mui/icons-material/AddCircle"));
+const Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
+const Edit_1 = __importDefault(require("@mui/icons-material/Edit"));
+const Box_1 = __importDefault(require("@mui/material/Box"));
+const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
+const Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
+const styles_1 = require("@mui/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_1 = require("react");
+const recoil_1 = require("recoil");
+const AppState_1 = require("../../app/AppState");
+const core_1 = require("../../core");
+const ListContextProvider_1 = __importDefault(require("../../core/controller/ListContextProvider"));
+const useListController_1 = __importDefault(require("../../core/controller/useListController"));
+const Copyright_1 = __importDefault(require("./Copyright"));
+const Frame_1 = __importDefault(require("./Frame"));
+const toolButtons = {
     create: {
         Icon: AddCircle_1.default,
     },
@@ -72,11 +43,11 @@ var toolButtons = {
         Icon: Edit_1.default,
     }
 };
-exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+exports.useStyles = (0, styles_1.makeStyles)((theme) => ({
     container: {
         display: 'block',
         overflow: 'auto',
-        height: "calc(100% - ".concat(theme.spacing(14), ")")
+        height: `calc(100% - ${theme.spacing(14)})`
     },
     footer: {
         backgroundColor: theme.palette.background.paper,
@@ -86,43 +57,35 @@ exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         position: 'fixed',
         right: 0
     }
-}); });
-var ToolButton = function (_a) {
-    var name = _a.name, title = _a.title, props = __rest(_a, ["name", "title"]);
-    return (react_1.default.createElement(Tooltip_1.default, { key: "data-".concat(name, "-button"), title: title },
-        react_1.default.createElement(IconButton_1.default, __assign({ color: "inherit" }, props))));
+}));
+const ToolButton = (_a) => {
+    var { name, title } = _a, props = __rest(_a, ["name", "title"]);
+    return ((0, jsx_runtime_1.jsx)(Tooltip_1.default, Object.assign({ title: title }, { children: (0, jsx_runtime_1.jsx)(IconButton_1.default, Object.assign({ color: "inherit" }, props), void 0) }), `data-${name}-button`));
 };
 exports.ToolButton = ToolButton;
 function DataFrame(props) {
     (0, core_1.useCheckMinimumRequiredProps)('DataFrame', ['children'], props);
-    var children = props.children, footer = props.footer, title = props.title, widgets = props.widgets, otherProps = __rest(props, ["children", "footer", "title", "widgets"]);
-    var classes = (0, exports.useStyles)();
-    var _a = (0, recoil_1.useRecoilState)(AppState_1.appWidget), widget = _a[0], setWidget = _a[1];
-    var tools = (0, react_1.useMemo)(function () {
-        var triggers = Object.keys(widgets).reduce(function (acc, name) {
-            var _a;
-            var button = toolButtons[name];
+    const { children, footer, title, widgets } = props, otherProps = __rest(props, ["children", "footer", "title", "widgets"]);
+    const classes = (0, exports.useStyles)();
+    const [widget, setWidget] = (0, recoil_1.useRecoilState)(AppState_1.atomWidget);
+    const tools = (0, react_1.useMemo)(() => {
+        const triggers = Object.keys(widgets).reduce((acc, name) => {
+            const button = toolButtons[name];
             if (!button) {
                 return acc;
             }
-            var Icon = button.Icon, title = button.title;
-            var props = { disabled: widget === name, name: name, onClick: function () { return setWidget(name); }, title: title };
-            return Object.assign(acc, (_a = {},
-                _a[name] = function () { return (react_1.default.createElement(exports.ToolButton, __assign({}, props),
-                    react_1.default.createElement(Icon, null))); },
-                _a));
+            const { Icon, title } = button;
+            const props = { disabled: widget === name, name, onClick: () => setWidget(name), title };
+            return Object.assign(acc, {
+                [name]: () => ((0, jsx_runtime_1.jsx)(exports.ToolButton, Object.assign({}, props, { children: (0, jsx_runtime_1.jsx)(Icon, {}, void 0) }), void 0))
+            });
         }, {});
         Object.assign(triggers, { divider1: null });
         return triggers;
     }, [widget, widgets, setWidget]);
-    var controllerProps = (0, useListController_1.default)(props);
+    const controllerProps = (0, useListController_1.default)(props);
     console.log('DataFrame render', controllerProps);
-    return (react_1.default.createElement(Frame_1.default, __assign({}, otherProps, { title: title, tools: Object.values(tools), widgets: widgets }),
-        react_1.default.createElement(ListContextProvider_1.default, { value: controllerProps },
-            react_1.default.createElement("div", { className: classes.container },
-                children,
-                react_1.default.createElement("footer", { className: classes.footer }, footer || (react_1.default.createElement(Box_1.default, { pt: 2 },
-                    react_1.default.createElement(Copyright_1.default, null))))))));
+    return ((0, jsx_runtime_1.jsx)(Frame_1.default, Object.assign({}, otherProps, { title: title, tools: Object.values(tools), widgets: widgets }, { children: (0, jsx_runtime_1.jsx)(ListContextProvider_1.default, Object.assign({ value: controllerProps }, { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.container }, { children: [children, (0, jsx_runtime_1.jsx)("footer", Object.assign({ className: classes.footer }, { children: footer || ((0, jsx_runtime_1.jsx)(Box_1.default, Object.assign({ pt: 2 }, { children: (0, jsx_runtime_1.jsx)(Copyright_1.default, {}, void 0) }), void 0)) }), void 0)] }), void 0) }), void 0) }), void 0));
 }
 exports.default = DataFrame;
 DataFrame.propTypes = {

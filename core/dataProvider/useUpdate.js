@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useMutation_1 = __importDefault(require("./useMutation"));
+const react_1 = require("react");
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the dataProvider.update() method, the result and the loading state.
  *
@@ -57,17 +57,17 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  * const [update, { data }] = useUpdate<Product>('products', id, changes, product);
  *                    \-- data is Product
  */
-var useUpdate = function (resource, id, data, previousData, options) {
-    var _a = (0, useMutation_1.default)({ type: 'update', resource: resource, payload: { id: id, data: data, previousData: previousData } }, options), mutate = _a[0], state = _a[1];
-    var update = (0, react_1.useCallback)(function (resource, id, data, previousData, options) {
+const useUpdate = (resource, id, data, previousData, options) => {
+    const [mutate, state] = (0, useMutation_1.default)({ type: 'update', resource, payload: { id, data, previousData } }, options);
+    const update = (0, react_1.useCallback)((resource, id, data, previousData, options) => {
         if (typeof resource === 'string') {
-            var query = {
+            const query = {
                 type: 'update',
-                resource: resource,
+                resource,
                 payload: {
                     id: id,
-                    data: data,
-                    previousData: previousData,
+                    data,
+                    previousData,
                 },
             };
             return mutate(query, options);

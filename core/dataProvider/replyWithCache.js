@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getResultFromCache = exports.canReplyWithCache = void 0;
-var get_1 = __importDefault(require("lodash/get"));
-var canReplyWithCache = function (type, payload, resourceState) {
-    var now = new Date();
+const get_1 = __importDefault(require("lodash/get"));
+const canReplyWithCache = (type, payload, resourceState) => {
+    const now = new Date();
     switch (type) {
         case 'getList':
             return ((0, get_1.default)(resourceState, [
@@ -22,20 +22,20 @@ var canReplyWithCache = function (type, payload, resourceState) {
         case 'getMany':
             return (resourceState &&
                 resourceState.validity &&
-                payload.ids.every(function (id) { return resourceState.validity[id] > now; }));
+                payload.ids.every(id => resourceState.validity[id] > now));
         default:
             return false;
     }
 };
 exports.canReplyWithCache = canReplyWithCache;
-var getResultFromCache = function (type, payload, resourceState) {
+const getResultFromCache = (type, payload, resourceState) => {
     switch (type) {
         case 'getList': {
-            var data_1 = resourceState.data;
-            var requestSignature = JSON.stringify(payload);
-            var cachedRequest = resourceState.list.cachedRequests[requestSignature];
+            const data = resourceState.data;
+            const requestSignature = JSON.stringify(payload);
+            const cachedRequest = resourceState.list.cachedRequests[requestSignature];
             return {
-                data: cachedRequest.ids.map(function (id) { return data_1[id]; }),
+                data: cachedRequest.ids.map(id => data[id]),
                 total: cachedRequest.total,
             };
         }
@@ -43,7 +43,7 @@ var getResultFromCache = function (type, payload, resourceState) {
             return { data: resourceState.data[payload.id] };
         case 'getMany':
             return {
-                data: payload.ids.map(function (id) { return resourceState.data[id]; }),
+                data: payload.ids.map(id => resourceState.data[id]),
             };
         default:
             throw new Error('cannot reply with cache for this method');

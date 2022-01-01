@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useCheckAuth_1 = __importDefault(require("./useCheckAuth"));
-var emptyParams = {};
+const react_1 = require("react");
+const useCheckAuth_1 = __importDefault(require("./useCheckAuth"));
+const emptyParams = {};
 /**
  * Restrict access to authenticated users.
  * Redirect anonymous users to the login page.
@@ -31,10 +31,9 @@ var emptyParams = {};
  *         </Admin>
  *     );
  */
-exports.default = (function (params) {
-    if (params === void 0) { params = emptyParams; }
-    var checkAuth = (0, useCheckAuth_1.default)();
-    (0, react_1.useEffect)(function () {
-        checkAuth(params).catch(function () { });
+exports.default = (params = emptyParams) => {
+    const checkAuth = (0, useCheckAuth_1.default)();
+    (0, react_1.useEffect)(() => {
+        checkAuth(params).catch(() => { });
     }, [checkAuth, params]);
-});
+};

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.inferTypeFromValues = exports.InferenceTypes = void 0;
-var inflection_1 = __importDefault(require("inflection"));
-var getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
-var assertions_1 = require("./assertions");
+const inflection_1 = __importDefault(require("inflection"));
+const getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
+const assertions_1 = require("./assertions");
 exports.InferenceTypes = [
     'array',
     'boolean',
@@ -37,8 +37,7 @@ exports.InferenceTypes = [
  * @param {string} name Property name, e.g. 'date_of_birth'
  * @param {any[]} values an array of values from which to determine the type, e.g. [12, 34.4, 43]
  */
-var inferTypeFromValues = function (name, values) {
-    if (values === void 0) { values = []; }
+const inferTypeFromValues = (name, values = []) => {
     if (name === 'id') {
         return { type: 'id', props: { source: name } };
     }
@@ -94,14 +93,12 @@ var inferTypeFromValues = function (name, values) {
     }
     if ((0, assertions_1.valuesAreArray)(values)) {
         if ((0, assertions_1.isObject)(values[0][0])) {
-            var leafValues_1 = (0, getValuesFromRecords_1.default)(values.reduce(function (acc, vals) { return acc.concat(vals); }, []));
+            const leafValues = (0, getValuesFromRecords_1.default)(values.reduce((acc, vals) => acc.concat(vals), []));
             // FIXME bad visual representation
             return {
                 type: 'array',
                 props: { source: name },
-                children: Object.keys(leafValues_1).map(function (leafName) {
-                    return (0, exports.inferTypeFromValues)(leafName, leafValues_1[leafName]);
-                }),
+                children: Object.keys(leafValues).map(leafName => (0, exports.inferTypeFromValues)(leafName, leafValues[leafName])),
             };
         }
         // FIXME introspect further
@@ -139,9 +136,9 @@ var inferTypeFromValues = function (name, values) {
     }
     if ((0, assertions_1.valuesAreObject)(values)) {
         /// Arbitrarily, choose the first prop of the first object
-        var propName_1 = Object.keys(values[0]).shift();
-        var leafValues = values.map(function (v) { return v[propName_1]; });
-        return (0, exports.inferTypeFromValues)("".concat(name, ".").concat(propName_1), leafValues);
+        const propName = Object.keys(values[0]).shift();
+        const leafValues = values.map(v => v[propName]);
+        return (0, exports.inferTypeFromValues)(`${name}.${propName}`, leafValues);
     }
     return { type: 'string', props: { source: name } };
 };

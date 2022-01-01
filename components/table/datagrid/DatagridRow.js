@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -38,33 +27,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -81,98 +43,81 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PureDatagridRow = void 0;
-var react_1 = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var material_1 = require("@mui/material");
-var core_1 = require("../../../core");
-var react_redux_1 = require("react-redux");
-var react_router_dom_1 = require("react-router-dom");
-var DatagridCell_1 = __importDefault(require("./DatagridCell"));
-var ExpandRowButton_1 = __importDefault(require("./ExpandRowButton"));
-var useDatagridContext_1 = require("./useDatagridContext");
-var computeNbColumns = function (expand, children, hasBulkActions) {
-    return expand
-        ? 1 + // show expand button
-            (hasBulkActions ? 1 : 0) + // checkbox column
-            react_1.default.Children.toArray(children).filter(function (child) { return !!child; }).length // non-null children
-        : 0;
-}; // we don't need to compute columns if there is no expand panel;
-var defaultClasses = { expandIconCell: '', checkbox: '', rowCell: '' };
-var DatagridRow = react_1.default.forwardRef(function (props, ref) {
-    var basePath = props.basePath, children = props.children, _a = props.classes, classes = _a === void 0 ? defaultClasses : _a, className = props.className, expand = props.expand, hasBulkActions = props.hasBulkActions, hover = props.hover, id = props.id, onToggleItem = props.onToggleItem, record = props.record, rowClick = props.rowClick, selected = props.selected, style = props.style, selectable = props.selectable, rest = __rest(props, ["basePath", "children", "classes", "className", "expand", "hasBulkActions", "hover", "id", "onToggleItem", "record", "rowClick", "selected", "style", "selectable"]);
-    var context = (0, useDatagridContext_1.useDatagridContext)();
-    var expandable = (!context ||
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = __importStar(require("react"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const material_1 = require("@mui/material");
+const core_1 = require("../../../core");
+const react_redux_1 = require("react-redux");
+const react_router_dom_1 = require("react-router-dom");
+const DatagridCell_1 = __importDefault(require("./DatagridCell"));
+const ExpandRowButton_1 = __importDefault(require("./ExpandRowButton"));
+const useDatagridContext_1 = require("./useDatagridContext");
+const computeNbColumns = (expand, children, hasBulkActions) => expand
+    ? 1 + // show expand button
+        (hasBulkActions ? 1 : 0) + // checkbox column
+        react_1.default.Children.toArray(children).filter(child => !!child).length // non-null children
+    : 0; // we don't need to compute columns if there is no expand panel;
+const defaultClasses = { expandIconCell: '', checkbox: '', rowCell: '' };
+const DatagridRow = react_1.default.forwardRef((props, ref) => {
+    const { basePath, children, classes = defaultClasses, className, expand, hasBulkActions, hover, id, onToggleItem, record, rowClick, selected, style, selectable } = props, rest = __rest(props, ["basePath", "children", "classes", "className", "expand", "hasBulkActions", "hover", "id", "onToggleItem", "record", "rowClick", "selected", "style", "selectable"]);
+    const context = (0, useDatagridContext_1.useDatagridContext)();
+    const expandable = (!context ||
         !context.isRowExpandable ||
         context.isRowExpandable(record)) &&
         expand;
-    var resource = (0, core_1.useResourceContext)(props);
-    var _b = (0, core_1.useExpanded)(resource, id), expanded = _b[0], toggleExpanded = _b[1];
-    var _c = (0, react_1.useState)(function () {
-        return computeNbColumns(expandable, children, hasBulkActions);
-    }), nbColumns = _c[0], setNbColumns = _c[1];
-    (0, react_1.useEffect)(function () {
+    const resource = (0, core_1.useResourceContext)(props);
+    const [expanded, toggleExpanded] = (0, core_1.useExpanded)(resource, id);
+    const [nbColumns, setNbColumns] = (0, react_1.useState)(() => computeNbColumns(expandable, children, hasBulkActions));
+    (0, react_1.useEffect)(() => {
         // Fields can be hidden dynamically based on permissions;
         // The expand panel must span over the remaining columns
         // So we must recompute the number of columns to span on
-        var newNbColumns = computeNbColumns(expandable, children, hasBulkActions);
+        const newNbColumns = computeNbColumns(expandable, children, hasBulkActions);
         if (newNbColumns !== nbColumns) {
             setNbColumns(newNbColumns);
         }
     }, [expandable, nbColumns, children, hasBulkActions]);
-    var history = (0, react_router_dom_1.useHistory)();
-    var handleToggleExpand = (0, react_1.useCallback)(function (event) {
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const handleToggleExpand = (0, react_1.useCallback)(event => {
         toggleExpanded();
         event.stopPropagation();
     }, [toggleExpanded]);
-    var handleToggleSelection = (0, react_1.useCallback)(function (event) {
+    const handleToggleSelection = (0, react_1.useCallback)(event => {
         if (!selectable)
             return;
         onToggleItem(id, event);
         event.stopPropagation();
     }, [id, onToggleItem, selectable]);
-    var handleClick = (0, react_1.useCallback)(function (event) { return __awaiter(void 0, void 0, void 0, function () {
-        var effect, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    console.log('CLICK');
-                    if (!rowClick)
-                        return [2 /*return*/];
-                    event.persist();
-                    if (!(typeof rowClick === 'function')) return [3 /*break*/, 2];
-                    return [4 /*yield*/, rowClick(id, basePath || "/".concat(resource), record)];
-                case 1:
-                    _a = _b.sent();
-                    return [3 /*break*/, 3];
-                case 2:
-                    _a = rowClick;
-                    _b.label = 3;
-                case 3:
-                    effect = _a;
-                    console.log({ effect: effect });
-                    switch (effect) {
-                        case 'edit':
-                            history.push((0, core_1.linkToRecord)(basePath || "/".concat(resource), id));
-                            return [2 /*return*/];
-                        case 'show':
-                            history.push((0, core_1.linkToRecord)(basePath || "/".concat(resource), id, 'show'));
-                            return [2 /*return*/];
-                        case 'expand':
-                            handleToggleExpand(event);
-                            return [2 /*return*/];
-                        case 'toggleSelection':
-                            handleToggleSelection(event);
-                            return [2 /*return*/];
-                        default:
-                            if (effect)
-                                history.push(effect);
-                            return [2 /*return*/];
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    }); }, [
+    const handleClick = (0, react_1.useCallback)((event) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log('CLICK');
+        if (!rowClick)
+            return;
+        event.persist();
+        const effect = typeof rowClick === 'function'
+            ? yield rowClick(id, basePath || `/${resource}`, record)
+            : rowClick;
+        console.log({ effect });
+        switch (effect) {
+            case 'edit':
+                navigate((0, core_1.linkToRecord)(basePath || `/${resource}`, id));
+                return;
+            case 'show':
+                navigate((0, core_1.linkToRecord)(basePath || `/${resource}`, id, 'show'));
+                return;
+            case 'expand':
+                handleToggleExpand(event);
+                return;
+            case 'toggleSelection':
+                handleToggleSelection(event);
+                return;
+            default:
+                if (effect)
+                    navigate(effect);
+                return;
+        }
+    }), [
         basePath,
         history,
         handleToggleExpand,
@@ -182,28 +127,20 @@ var DatagridRow = react_1.default.forwardRef(function (props, ref) {
         resource,
         rowClick,
     ]);
-    return (react_1.default.createElement(core_1.RecordContextProvider, { value: record },
-        react_1.default.createElement(material_1.TableRow, __assign({ ref: ref, className: className, key: id, style: style, hover: hover, onClick: handleClick }, rest),
-            expand && (react_1.default.createElement(material_1.TableCell, { padding: "none", className: classes.expandIconCell }, expandable && (react_1.default.createElement(ExpandRowButton_1.default, { classes: classes, expanded: expanded, onClick: handleToggleExpand, expandContentId: "".concat(id, "-expand") })))),
-            hasBulkActions && (react_1.default.createElement(material_1.TableCell, { padding: "checkbox" }, selectable && (react_1.default.createElement(material_1.Checkbox, { color: "primary", className: "select-item ".concat(classes.checkbox), checked: selected, onClick: handleToggleSelection })))),
-            react_1.default.Children.map(children, function (field, index) {
-                return (0, react_1.isValidElement)(field) ? (react_1.default.createElement(DatagridCell_1.default, __assign({ key: "".concat(id, "-").concat(field.props.source || index), className: (0, classnames_1.default)("column-".concat(field.props.source), classes.rowCell), record: record }, { field: field, basePath: basePath, resource: resource }))) : null;
-            })),
-        expandable && expanded && (react_1.default.createElement(material_1.TableRow, { key: "".concat(id, "-expand"), id: "".concat(id, "-expand") },
-            react_1.default.createElement(material_1.TableCell, { colSpan: nbColumns }, (0, react_1.isValidElement)(expand)
-                ? (0, react_1.cloneElement)(expand, {
-                    // @ts-ignore
-                    record: record,
-                    basePath: basePath,
-                    resource: resource,
-                    id: String(id),
-                })
-                : (0, react_1.createElement)(expand, {
-                    record: record,
-                    basePath: basePath,
-                    resource: resource,
-                    id: String(id),
-                }))))));
+    return ((0, jsx_runtime_1.jsxs)(core_1.RecordContextProvider, Object.assign({ value: record }, { children: [(0, jsx_runtime_1.jsxs)(material_1.TableRow, Object.assign({ ref: ref, className: className, style: style, hover: hover, onClick: handleClick }, rest, { children: [expand && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "none", className: classes.expandIconCell }, { children: expandable && ((0, jsx_runtime_1.jsx)(ExpandRowButton_1.default, { classes: classes, expanded: expanded, onClick: handleToggleExpand, expandContentId: `${id}-expand` }, void 0)) }), void 0)), hasBulkActions && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "checkbox" }, { children: selectable && ((0, jsx_runtime_1.jsx)(material_1.Checkbox, { color: "primary", className: `select-item ${classes.checkbox}`, checked: selected, onClick: handleToggleSelection }, void 0)) }), void 0)), react_1.default.Children.map(children, (field, index) => (0, react_1.isValidElement)(field) ? ((0, jsx_runtime_1.jsx)(DatagridCell_1.default, Object.assign({ className: (0, classnames_1.default)(`column-${field.props.source}`, classes.rowCell), record: record }, { field, basePath, resource }), `${id}-${field.props.source || index}`)) : null)] }), id), expandable && expanded && ((0, jsx_runtime_1.jsx)(material_1.TableRow, Object.assign({ id: `${id}-expand` }, { children: (0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ colSpan: nbColumns }, { children: (0, react_1.isValidElement)(expand)
+                        ? (0, react_1.cloneElement)(expand, {
+                            // @ts-ignore
+                            record,
+                            basePath,
+                            resource,
+                            id: String(id),
+                        })
+                        : (0, react_1.createElement)(expand, {
+                            record,
+                            basePath,
+                            resource,
+                            id: String(id),
+                        }) }), void 0) }), `${id}-expand`))] }), void 0));
 });
 DatagridRow.propTypes = {
     basePath: prop_types_1.default.string,
@@ -231,9 +168,9 @@ DatagridRow.defaultProps = {
     selected: false,
     selectable: true,
 };
-var areEqual = function (prevProps, nextProps) {
-    var _1 = prevProps.children, _2 = prevProps.expand, prevPropsWithoutChildren = __rest(prevProps, ["children", "expand"]);
-    var _3 = nextProps.children, _4 = nextProps.expand, nextPropsWithoutChildren = __rest(nextProps, ["children", "expand"]);
+const areEqual = (prevProps, nextProps) => {
+    const { children: _1, expand: _2 } = prevProps, prevPropsWithoutChildren = __rest(prevProps, ["children", "expand"]);
+    const { children: _3, expand: _4 } = nextProps, nextPropsWithoutChildren = __rest(nextProps, ["children", "expand"]);
     return (0, react_redux_1.shallowEqual)(prevPropsWithoutChildren, nextPropsWithoutChildren);
 };
 exports.PureDatagridRow = (0, react_1.memo)(DatagridRow, areEqual);

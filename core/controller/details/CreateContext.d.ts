@@ -7,7 +7,7 @@ import { CreateControllerProps } from './useCreateController';
  *
  * @example
  *
- * import { useCreateController, CreateContextProvider } from '../../core';
+ * import { useCreateController, CreateContextProvider } from '../../../core';
  *
  * const Create = props => {
  *     const controllerProps = useCreateController(props);

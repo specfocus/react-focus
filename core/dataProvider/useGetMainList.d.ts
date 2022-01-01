@@ -42,9 +42,9 @@ import { Refetch } from './useQueryWithStore';
  * };
  */
 export declare const useGetMainList: <RecordType extends Record = Record>(resource: string, pagination: PaginationPayload, sort: SortPayload, filter: object, options?: any) => {
-    data?: RecordMap<RecordType> | undefined;
-    ids?: Identifier[] | undefined;
-    total?: number | undefined;
+    data?: RecordMap<RecordType>;
+    ids?: Identifier[];
+    total?: number;
     error?: any;
     loading: boolean;
     loaded: boolean;

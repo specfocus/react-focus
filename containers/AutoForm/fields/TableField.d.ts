@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { ArraySchema } from '../../../lib/ArraySchema';
 import { SimpleType } from '../../../lib/ObjectSchema';
-import { FieldContext, FieldSchema } from '../FieldSchema';
-export interface ArrayFieldsetProps extends ArraySchema<FieldSchema>, FieldContext {
+import { FieldSchema } from '../FieldSchema';
+export interface ArrayFieldsetProps extends ArraySchema, FieldSchema {
     data: SimpleType[];
     name: string;
 }

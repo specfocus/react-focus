@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,14 +15,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SelectField = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var get_1 = __importDefault(require("lodash/get"));
-var core_1 = require("../../core");
-var material_1 = require("@mui/material");
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var types_1 = require("./types");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const get_1 = __importDefault(require("lodash/get"));
+const core_1 = require("../../core");
+const material_1 = require("@mui/material");
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const types_1 = require("./types");
 /**
  * Display a value in an enumeration
  *
@@ -112,21 +82,21 @@ var types_1 = require("./types");
  *
  * **Tip**: <ReferenceField> sets `translateChoice` to false by default.
  */
-exports.SelectField = (0, react_1.memo)(function (props) {
-    var className = props.className, emptyText = props.emptyText, source = props.source, choices = props.choices, optionValue = props.optionValue, optionText = props.optionText, translateChoice = props.translateChoice, rest = __rest(props, ["className", "emptyText", "source", "choices", "optionValue", "optionText", "translateChoice"]);
-    var record = (0, core_1.useRecordContext)(props);
-    var value = (0, get_1.default)(record, source);
-    var _a = (0, core_1.useChoices)({
-        optionText: optionText,
-        optionValue: optionValue,
-        translateChoice: translateChoice,
-    }), getChoiceText = _a.getChoiceText, getChoiceValue = _a.getChoiceValue;
-    var choice = choices.find(function (choice) { return getChoiceValue(choice) === value; });
+exports.SelectField = (0, react_1.memo)(props => {
+    const { className, emptyText, source, choices, optionValue, optionText, translateChoice } = props, rest = __rest(props, ["className", "emptyText", "source", "choices", "optionValue", "optionText", "translateChoice"]);
+    const record = (0, core_1.useRecordContext)(props);
+    const value = (0, get_1.default)(record, source);
+    const { getChoiceText, getChoiceValue } = (0, core_1.useChoices)({
+        optionText,
+        optionValue,
+        translateChoice,
+    });
+    const choice = choices.find(choice => getChoiceValue(choice) === value);
     if (!choice) {
-        return emptyText ? (React.createElement(material_1.Typography, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), emptyText)) : null;
+        return emptyText ? ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: emptyText }), void 0)) : null;
     }
-    var choiceText = getChoiceText(choice);
-    return (React.createElement(material_1.Typography, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), choiceText));
+    let choiceText = getChoiceText(choice);
+    return ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: choiceText }), void 0));
 });
 exports.SelectField.defaultProps = {
     optionText: 'name',
@@ -136,7 +106,7 @@ exports.SelectField.defaultProps = {
 exports.SelectField.defaultProps = {
     addLabel: true,
 };
-exports.SelectField.propTypes = __assign(__assign(__assign({}, material_1.Typography.propTypes), types_1.fieldPropTypes), { choices: prop_types_1.default.arrayOf(prop_types_1.default.object).isRequired, optionText: prop_types_1.default.oneOfType([
+exports.SelectField.propTypes = Object.assign(Object.assign(Object.assign({}, material_1.Typography.propTypes), types_1.fieldPropTypes), { choices: prop_types_1.default.arrayOf(prop_types_1.default.object).isRequired, optionText: prop_types_1.default.oneOfType([
         prop_types_1.default.string,
         prop_types_1.default.func,
         prop_types_1.default.element,

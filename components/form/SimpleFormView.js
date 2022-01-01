@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,35 +34,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SimpleFormView = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var classnames_1 = __importDefault(require("classnames"));
-var FormInput_1 = __importDefault(require("./FormInput"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var Toolbar_1 = __importDefault(require("./Toolbar"));
-var CardContentInner_1 = __importDefault(require("../layout/CardContentInner"));
-var SimpleFormView = function (_a) {
-    var basePath = _a.basePath, children = _a.children, className = _a.className, Component = _a.component, handleSubmit = _a.handleSubmit, handleSubmitWithRedirect = _a.handleSubmitWithRedirect, invalid = _a.invalid, margin = _a.margin, mutationMode = _a.mutationMode, pristine = _a.pristine, record = _a.record, redirect = _a.redirect, resource = _a.resource, saving = _a.saving, submitOnEnter = _a.submitOnEnter, toolbar = _a.toolbar, undoable = _a.undoable, variant = _a.variant, validating = _a.validating, rest = __rest(_a, ["basePath", "children", "className", "component", "handleSubmit", "handleSubmitWithRedirect", "invalid", "margin", "mutationMode", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "toolbar", "undoable", "variant", "validating"]);
-    return (React.createElement("form", __assign({ className: (0, classnames_1.default)('simple-form', className) }, sanitizeRestProps(rest)),
-        React.createElement(Component, null, react_1.Children.map(children, function (input) {
-            return input && (React.createElement(FormInput_1.default, { basePath: basePath, input: input, record: record, resource: resource, variant: input.props.variant || variant, margin: input.props.margin || margin }));
-        })),
-        toolbar &&
-            React.cloneElement(toolbar, {
-                basePath: basePath,
-                handleSubmitWithRedirect: handleSubmitWithRedirect,
-                handleSubmit: handleSubmit,
-                invalid: invalid,
-                mutationMode: mutationMode,
-                pristine: pristine,
-                record: record,
-                redirect: redirect,
-                resource: resource,
-                saving: saving,
-                submitOnEnter: submitOnEnter,
-                validating: validating,
-                undoable: undoable,
-            })));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const classnames_1 = __importDefault(require("classnames"));
+const FormInput_1 = __importDefault(require("./FormInput"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const Toolbar_1 = __importDefault(require("./Toolbar"));
+const CardContentInner_1 = __importDefault(require("../layout/CardContentInner"));
+const SimpleFormView = (_a) => {
+    var { basePath, children, className, component: Component, handleSubmit, handleSubmitWithRedirect, invalid, margin, mutationMode, pristine, record, redirect, resource, saving, submitOnEnter, toolbar, undoable, variant, validating } = _a, rest = __rest(_a, ["basePath", "children", "className", "component", "handleSubmit", "handleSubmitWithRedirect", "invalid", "margin", "mutationMode", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "toolbar", "undoable", "variant", "validating"]);
+    return ((0, jsx_runtime_1.jsxs)("form", Object.assign({ className: (0, classnames_1.default)('simple-form', className) }, sanitizeRestProps(rest), { children: [(0, jsx_runtime_1.jsx)(Component, { children: react_1.Children.map(children, (input) => input && ((0, jsx_runtime_1.jsx)(FormInput_1.default, { basePath: basePath, input: input, record: record, resource: resource, variant: input.props.variant || variant, margin: input.props.margin || margin }, void 0))) }, void 0), toolbar &&
+                React.cloneElement(toolbar, {
+                    basePath,
+                    handleSubmitWithRedirect,
+                    handleSubmit,
+                    invalid,
+                    mutationMode,
+                    pristine,
+                    record,
+                    redirect,
+                    resource,
+                    saving,
+                    submitOnEnter,
+                    validating,
+                    undoable,
+                })] }), void 0));
 };
 exports.SimpleFormView = SimpleFormView;
 exports.SimpleFormView.propTypes = {
@@ -101,10 +87,10 @@ exports.SimpleFormView.propTypes = {
 };
 exports.SimpleFormView.defaultProps = {
     submitOnEnter: true,
-    toolbar: React.createElement(Toolbar_1.default, null),
+    toolbar: (0, jsx_runtime_1.jsx)(Toolbar_1.default, {}, void 0),
     component: CardContentInner_1.default,
 };
-var sanitizeRestProps = function (_a) {
-    var active = _a.active, dirty = _a.dirty, dirtyFields = _a.dirtyFields, dirtyFieldsSinceLastSubmit = _a.dirtyFieldsSinceLastSubmit, dirtySinceLastSubmit = _a.dirtySinceLastSubmit, error = _a.error, errors = _a.errors, form = _a.form, hasSubmitErrors = _a.hasSubmitErrors, hasValidationErrors = _a.hasValidationErrors, initialValues = _a.initialValues, _b = _a.modified, modified = _b === void 0 ? null : _b, modifiedSinceLastSubmit = _a.modifiedSinceLastSubmit, _c = _a.save, save = _c === void 0 ? null : _c, submitError = _a.submitError, submitErrors = _a.submitErrors, submitFailed = _a.submitFailed, submitSucceeded = _a.submitSucceeded, submitting = _a.submitting, _d = _a.touched, touched = _d === void 0 ? null : _d, valid = _a.valid, values = _a.values, _e = _a.visited, visited = _e === void 0 ? null : _e, _f = _a.__versions, __versions = _f === void 0 ? null : _f, props = __rest(_a, ["active", "dirty", "dirtyFields", "dirtyFieldsSinceLastSubmit", "dirtySinceLastSubmit", "error", "errors", "form", "hasSubmitErrors", "hasValidationErrors", "initialValues", "modified", "modifiedSinceLastSubmit", "save", "submitError", "submitErrors", "submitFailed", "submitSucceeded", "submitting", "touched", "valid", "values", "visited", "__versions"]);
+const sanitizeRestProps = (_a) => {
+    var { active, dirty, dirtyFields, dirtyFieldsSinceLastSubmit, dirtySinceLastSubmit, error, errors, form, hasSubmitErrors, hasValidationErrors, initialValues, modified = null, modifiedSinceLastSubmit, save = null, submitError, submitErrors, submitFailed, submitSucceeded, submitting, touched = null, valid, values, visited = null, __versions = null } = _a, props = __rest(_a, ["active", "dirty", "dirtyFields", "dirtyFieldsSinceLastSubmit", "dirtySinceLastSubmit", "error", "errors", "form", "hasSubmitErrors", "hasValidationErrors", "initialValues", "modified", "modifiedSinceLastSubmit", "save", "submitError", "submitErrors", "submitFailed", "submitSucceeded", "submitting", "touched", "valid", "values", "visited", "__versions"]);
     return props;
 };

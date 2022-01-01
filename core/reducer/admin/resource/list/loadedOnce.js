@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var dataActions_1 = require("../../../../actions/dataActions");
+const dataActions_1 = require("../../../../actions/dataActions");
 /**
  * This resource reducer is false until the list loads successfully
  */
-var loadedOnce = function (previousState, _a) {
-    if (previousState === void 0) { previousState = false; }
-    var type = _a.type;
+const loadedOnce = (previousState = false, { type }) => {
     // early return
     if (previousState === true) {
         return previousState;

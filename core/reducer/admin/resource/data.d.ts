@@ -34,16 +34,16 @@ export declare const hideFetchedAt: (records: RecordSetWithDate) => RecordSetWit
  * The cached data is displayed before fetching, and stale data is removed
  * only once fresh data is fetched.
  */
-export declare const addRecordsAndRemoveOutdated: (newRecords: Record[] | undefined, oldRecords: RecordSetWithDate) => RecordSetWithDate;
+export declare const addRecordsAndRemoveOutdated: (newRecords: Record[], oldRecords: RecordSetWithDate) => RecordSetWithDate;
 /**
  * Add new records to the pool, without touching the other ones.
  */
-export declare const addRecords: (newRecords: Record[] | undefined, oldRecords: RecordSetWithDate) => RecordSetWithDate;
+export declare const addRecords: (newRecords: Record[], oldRecords: RecordSetWithDate) => RecordSetWithDate;
 export declare const addOneRecord: (newRecord: Record, oldRecords: RecordSetWithDate, date?: Date) => RecordSetWithDate;
 /**
  * Remove records from the pool
  */
-export declare const removeRecords: (removedRecordIds: Identifier[] | undefined, oldRecords: RecordSetWithDate) => RecordSetWithDate;
+export declare const removeRecords: (removedRecordIds: Identifier[], oldRecords: RecordSetWithDate) => RecordSetWithDate;
 declare const dataReducer: Reducer<RecordSetWithDate>;
 export declare const getRecord: (state: {
     [x: string]: any;

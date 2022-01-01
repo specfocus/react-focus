@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -34,10 +23,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useThemeLocaleState = exports.useAppThemeValue = exports.useAppThemeState = exports.appTheme = exports.APP_THEME = void 0;
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var recoil_1 = require("recoil");
-var default_1 = __importDefault(require("../theme/default"));
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const recoil_1 = require("recoil");
+const default_1 = __importDefault(require("../theme/default"));
 exports.APP_THEME = 'appTheme';
 exports.appTheme = (0, recoil_1.atom)({
     key: exports.APP_THEME,
@@ -45,31 +34,29 @@ exports.appTheme = (0, recoil_1.atom)({
         themeOptions: default_1.default
     }
 });
-var useAppThemeState = function (_a) {
-    var themeKey = _a.themeKey;
-    var _b = (0, recoil_1.useRecoilState)(exports.appTheme), state = _b[0], setState = _b[1];
-    (0, react_1.useEffect)(function () {
-        Promise.resolve().then(function () { return __importStar(require("../theme/".concat(themeKey))); }).then(function (themeOptions) {
-            var theme = (0, styles_1.createTheme)(themeOptions, state.localization);
-            setState(__assign(__assign({}, state), { theme: theme, themeKey: themeKey, themeOptions: themeOptions }));
+const useAppThemeState = ({ themeKey }) => {
+    const [state, setState] = (0, recoil_1.useRecoilState)(exports.appTheme);
+    (0, react_1.useEffect)(() => {
+        Promise.resolve().then(() => __importStar(require(`../theme/${themeKey}`))).then(themeOptions => {
+            const theme = (0, styles_1.createTheme)(themeOptions, state.localization);
+            setState(Object.assign(Object.assign({}, state), { theme, themeKey, themeOptions }));
         });
     }, [themeKey]);
 };
 exports.useAppThemeState = useAppThemeState;
-var useAppThemeValue = function () {
-    var theme = (0, recoil_1.useRecoilValue)(exports.appTheme).theme;
+const useAppThemeValue = () => {
+    const { theme } = (0, recoil_1.useRecoilValue)(exports.appTheme);
     return theme;
 };
 exports.useAppThemeValue = useAppThemeValue;
-var useThemeLocaleState = function (_a) {
-    var languageTag = _a.languageTag;
-    var _b = (0, recoil_1.useRecoilState)(exports.appTheme), state = _b[0], setState = _b[1];
-    (0, react_1.useEffect)(function () {
-        Promise.resolve().then(function () { return __importStar(require('@mui/material/locale')); }).then(function (locales) {
-            var localization = locales.default[languageTag.replace('-', '')];
+const useThemeLocaleState = ({ languageTag }) => {
+    const [state, setState] = (0, recoil_1.useRecoilState)(exports.appTheme);
+    (0, react_1.useEffect)(() => {
+        Promise.resolve().then(() => __importStar(require('@mui/material/locale'))).then(locales => {
+            const localization = locales.default[languageTag.replace('-', '')];
             if (localization) {
-                var theme = (0, styles_1.createTheme)(state.themeOptions, localization);
-                setState(__assign(__assign({}, state), { localization: localization, theme: theme }));
+                const theme = (0, styles_1.createTheme)(state.themeOptions, localization);
+                setState(Object.assign(Object.assign({}, state), { localization, theme }));
             }
         });
     }, [languageTag]);

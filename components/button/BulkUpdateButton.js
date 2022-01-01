@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var BulkUpdateWithConfirmButton_1 = __importDefault(require("./BulkUpdateWithConfirmButton"));
-var BulkUpdateWithUndoButton_1 = __importDefault(require("./BulkUpdateWithUndoButton"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const prop_types_1 = __importDefault(require("prop-types"));
+const BulkUpdateWithConfirmButton_1 = __importDefault(require("./BulkUpdateWithConfirmButton"));
+const BulkUpdateWithUndoButton_1 = __importDefault(require("./BulkUpdateWithUndoButton"));
 /**
  * Updates the selected rows.
  *
@@ -71,9 +41,9 @@ var BulkUpdateWithUndoButton_1 = __importDefault(require("./BulkUpdateWithUndoBu
  *     </List>
  * );
  */
-var BulkUpdateButton = function (props) {
-    var mutationMode = props.mutationMode, rest = __rest(props, ["mutationMode"]);
-    return mutationMode === 'undoable' ? (React.createElement(BulkUpdateWithUndoButton_1.default, __assign({}, rest))) : (React.createElement(BulkUpdateWithConfirmButton_1.default, __assign({ mutationMode: mutationMode }, rest)));
+const BulkUpdateButton = (props) => {
+    const { mutationMode } = props, rest = __rest(props, ["mutationMode"]);
+    return mutationMode === 'undoable' ? ((0, jsx_runtime_1.jsx)(BulkUpdateWithUndoButton_1.default, Object.assign({}, rest), void 0)) : ((0, jsx_runtime_1.jsx)(BulkUpdateWithConfirmButton_1.default, Object.assign({ mutationMode: mutationMode }, rest), void 0));
 };
 BulkUpdateButton.propTypes = {
     basePath: prop_types_1.default.string,

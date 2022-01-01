@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,11 +15,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceInputView = void 0;
-var react_1 = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
-var ReferenceError_1 = __importDefault(require("./ReferenceError"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
+const ReferenceError_1 = __importDefault(require("./ReferenceError"));
 /**
  * An Input component for choosing a reference record. Useful for foreign keys.
  *
@@ -129,10 +100,15 @@ var ReferenceError_1 = __importDefault(require("./ReferenceError"));
  *     <AutocompleteInput optionText="title" />
  * </ReferenceInput>
  */
-var ReferenceInput = function (props) {
-    var format = props.format, onBlur = props.onBlur, onChange = props.onChange, onFocus = props.onFocus, parse = props.parse, validate = props.validate, rest = __rest(props, ["format", "onBlur", "onChange", "onFocus", "parse", "validate"]);
-    var inputProps = (0, core_1.useInput)(__assign({ format: format, onBlur: onBlur, onChange: onChange, onFocus: onFocus, parse: parse, validate: validate }, rest));
-    return (react_1.default.createElement(exports.ReferenceInputView, __assign({}, inputProps, rest, (0, core_1.useReferenceInputController)(__assign(__assign({}, rest), inputProps)))));
+const ReferenceInput = (props) => {
+    const { format, onBlur, onChange, onFocus, parse, validate } = props, rest = __rest(props, ["format", "onBlur", "onChange", "onFocus", "parse", "validate"]);
+    const inputProps = (0, core_1.useInput)(Object.assign({ format,
+        onBlur,
+        onChange,
+        onFocus,
+        parse,
+        validate }, rest));
+    return ((0, jsx_runtime_1.jsx)(exports.ReferenceInputView, Object.assign({}, inputProps, rest, (0, core_1.useReferenceInputController)(Object.assign(Object.assign({}, rest), inputProps))), void 0));
 };
 ReferenceInput.propTypes = {
     allowEmpty: prop_types_1.default.bool,
@@ -156,35 +132,45 @@ ReferenceInput.propTypes = {
 };
 ReferenceInput.defaultProps = {
     filter: {},
-    filterToQuery: function (searchText) { return (searchText ? { q: searchText } : {}); },
+    filterToQuery: searchText => (searchText ? { q: searchText } : {}),
     perPage: 25,
     sort: { field: 'id', order: 'DESC' },
 };
-var sanitizeRestProps = function (_a) {
-    var _b = _a.dataStatus, dataStatus = _b === void 0 ? null : _b, _c = _a.filter, filter = _c === void 0 ? null : _c, _d = _a.filterToQuery, filterToQuery = _d === void 0 ? null : _d, _e = _a.onChange, onChange = _e === void 0 ? null : _e, _f = _a.perPage, perPage = _f === void 0 ? null : _f, _g = _a.reference, reference = _g === void 0 ? null : _g, _h = _a.referenceRecord, referenceRecord = _h === void 0 ? null : _h, _j = _a.referenceSource, referenceSource = _j === void 0 ? null : _j, _k = _a.sort, sort = _k === void 0 ? null : _k, _l = _a.validation, validation = _l === void 0 ? null : _l, rest = __rest(_a, ["dataStatus", "filter", "filterToQuery", "onChange", "perPage", "reference", "referenceRecord", "referenceSource", "sort", "validation"]);
+const sanitizeRestProps = (_a) => {
+    var { dataStatus = null, filter = null, filterToQuery = null, onChange = null, perPage = null, reference = null, referenceRecord = null, referenceSource = null, sort = null, validation = null } = _a, rest = __rest(_a, ["dataStatus", "filter", "filterToQuery", "onChange", "perPage", "reference", "referenceRecord", "referenceSource", "sort", "validation"]);
     return (0, sanitizeInputRestProps_1.default)(rest);
 };
-var ReferenceInputView = function (props) {
-    var allowEmpty = props.allowEmpty, basePath = props.basePath, children = props.children, choices = props.choices, classes = props.classes, className = props.className, error = props.error, helperText = props.helperText, id = props.id, input = props.input, isRequired = props.isRequired, label = props.label, meta = props.meta, possibleValues = props.possibleValues, resource = props.resource, reference = props.reference, setFilter = props.setFilter, setPagination = props.setPagination, setSort = props.setSort, source = props.source, warning = props.warning, rest = __rest(props, ["allowEmpty", "basePath", "children", "choices", "classes", "className", "error", "helperText", "id", "input", "isRequired", "label", "meta", "possibleValues", "resource", "reference", "setFilter", "setPagination", "setSort", "source", "warning"]);
+const ReferenceInputView = (props) => {
+    const { allowEmpty, basePath, children, choices, classes, className, error, helperText, id, input, isRequired, label, meta, possibleValues, resource, reference, setFilter, setPagination, setSort, source, warning } = props, rest = __rest(props, ["allowEmpty", "basePath", "children", "choices", "classes", "className", "error", "helperText", "id", "input", "isRequired", "label", "meta", "possibleValues", "resource", "reference", "setFilter", "setPagination", "setSort", "source", "warning"]);
     if (react_1.Children.count(children) !== 1) {
         throw new Error('<ReferenceInput> only accepts a single child');
     }
     // This is not a final-form error but an unrecoverable error from the
     // useReferenceInputController hook
     if (error) {
-        return react_1.default.createElement(ReferenceError_1.default, { label: label, error: error });
+        return (0, jsx_runtime_1.jsx)(ReferenceError_1.default, { label: label, error: error }, void 0);
     }
     // When the useReferenceInputController returns a warning, it means it
     // had an issue trying to load the referenced record
     // We display it by overriding the final-form meta
-    var finalMeta = warning
-        ? __assign(__assign({}, meta), { error: warning }) : meta;
+    const finalMeta = warning
+        ? Object.assign(Object.assign({}, meta), { error: warning }) : meta;
     // helperText should never be set on ReferenceInput, only in child component
     // But in a Filter component, the child helperText have to be forced to false
     (0, core_1.warning)(helperText !== undefined && helperText !== false, "<ReferenceInput> doesn't accept a helperText prop. Set the helperText prop on the child component instead");
-    var disabledHelperText = helperText === false ? { helperText: helperText } : {};
-    return (react_1.default.createElement(core_1.ResourceContextProvider, { value: reference },
-        react_1.default.createElement(core_1.ListContextProvider, { value: possibleValues }, (0, react_1.cloneElement)(children, __assign(__assign({ allowEmpty: allowEmpty, classes: classes, className: className, input: input, isRequired: isRequired, label: label, resource: resource, meta: finalMeta, source: source, choices: choices, basePath: basePath, setFilter: setFilter, setPagination: setPagination, setSort: setSort, translateChoice: false }, disabledHelperText), sanitizeRestProps(rest))))));
+    const disabledHelperText = helperText === false ? { helperText } : {};
+    return ((0, jsx_runtime_1.jsx)(core_1.ResourceContextProvider, Object.assign({ value: reference }, { children: (0, jsx_runtime_1.jsx)(core_1.ListContextProvider, Object.assign({ value: possibleValues }, { children: (0, react_1.cloneElement)(children, Object.assign(Object.assign({ allowEmpty,
+                classes,
+                className,
+                input,
+                isRequired,
+                label,
+                resource, meta: finalMeta, source,
+                choices,
+                basePath,
+                setFilter,
+                setPagination,
+                setSort, translateChoice: false }, disabledHelperText), sanitizeRestProps(rest))) }), void 0) }), void 0));
 };
 exports.ReferenceInputView = ReferenceInputView;
 exports.default = ReferenceInput;

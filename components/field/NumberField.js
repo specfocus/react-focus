@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,15 +15,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NumberField = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var get_1 = __importDefault(require("lodash/get"));
-var Typography_1 = __importDefault(require("@mui/material/Typography"));
-var core_1 = require("../../core");
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var types_1 = require("./types");
-var hasNumberFormat = !!(typeof Intl === 'object' &&
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const get_1 = __importDefault(require("lodash/get"));
+const Typography_1 = __importDefault(require("@mui/material/Typography"));
+const core_1 = require("../../core");
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const types_1 = require("./types");
+const hasNumberFormat = !!(typeof Intl === 'object' &&
     Intl &&
     typeof Intl.NumberFormat === 'function');
 /**
@@ -84,17 +54,17 @@ var hasNumberFormat = !!(typeof Intl === 'object' &&
  * // renders the record { id: 1234, price: 25.99 } as
  * <span>25,99 $US</span>
  */
-exports.NumberField = (0, react_1.memo)(function (props) {
-    var className = props.className, emptyText = props.emptyText, source = props.source, locales = props.locales, options = props.options, textAlign = props.textAlign, rest = __rest(props, ["className", "emptyText", "source", "locales", "options", "textAlign"]);
-    var record = (0, core_1.useRecordContext)(props);
+exports.NumberField = (0, react_1.memo)(props => {
+    const { className, emptyText, source, locales, options, textAlign } = props, rest = __rest(props, ["className", "emptyText", "source", "locales", "options", "textAlign"]);
+    const record = (0, core_1.useRecordContext)(props);
     if (!record) {
         return null;
     }
-    var value = (0, get_1.default)(record, source);
+    const value = (0, get_1.default)(record, source);
     if (value == null) {
-        return emptyText ? (React.createElement(Typography_1.default, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), emptyText)) : null;
+        return emptyText ? ((0, jsx_runtime_1.jsx)(Typography_1.default, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: emptyText }), void 0)) : null;
     }
-    return (React.createElement(Typography_1.default, __assign({ variant: "body2", component: "span", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), hasNumberFormat ? value.toLocaleString(locales, options) : value));
+    return ((0, jsx_runtime_1.jsx)(Typography_1.default, Object.assign({ variant: "body2", component: "span", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: hasNumberFormat ? value.toLocaleString(locales, options) : value }), void 0));
 });
 // what? TypeScript loses the displayName if we don't set it explicitly
 exports.NumberField.displayName = 'NumberField';
@@ -102,7 +72,7 @@ exports.NumberField.defaultProps = {
     addLabel: true,
     textAlign: 'right',
 };
-exports.NumberField.propTypes = __assign(__assign(__assign({}, Typography_1.default.propTypes), types_1.fieldPropTypes), { locales: prop_types_1.default.oneOfType([
+exports.NumberField.propTypes = Object.assign(Object.assign(Object.assign({}, Typography_1.default.propTypes), types_1.fieldPropTypes), { locales: prop_types_1.default.oneOfType([
         prop_types_1.default.string,
         prop_types_1.default.arrayOf(prop_types_1.default.string),
     ]), options: prop_types_1.default.object });

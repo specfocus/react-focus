@@ -33,7 +33,7 @@ import { Refetch } from './useQueryWithStore';
  *     return <div>User {data.username}</div>;
  * };
  */
-declare const useGetOne: <RecordType extends Record = Record>(resource: string, id: Identifier, options?: UseDataProviderOptions | undefined) => UseGetOneHookValue<RecordType>;
+declare const useGetOne: <RecordType extends Record = Record>(resource: string, id: Identifier, options?: UseDataProviderOptions) => UseGetOneHookValue<RecordType>;
 export declare type UseGetOneHookValue<RecordType extends Record = Record> = {
     data?: RecordType;
     loading: boolean;

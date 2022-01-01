@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var merge_1 = __importDefault(require("lodash/merge"));
+const merge_1 = __importDefault(require("lodash/merge"));
 /**
  * Because final-form removes undefined and empty string values completely
  * (the key for the empty field is removed from the values), we have to check
@@ -14,20 +14,18 @@ var merge_1 = __importDefault(require("lodash/merge"));
  * @param initialValues The initial values provided to the form
  * @param values The current form values
  */
-var sanitizeEmptyValues = function (initialValues, values) {
+const sanitizeEmptyValues = (initialValues, values) => {
     // For every field initially provided, we check whether it value has been removed
     // and set it explicitly to an empty string
     if (!initialValues)
         return values;
-    var initialValuesWithEmptyFields = Object.keys(initialValues).reduce(function (acc, key) {
+    const initialValuesWithEmptyFields = Object.keys(initialValues).reduce((acc, key) => {
         if (values[key] instanceof Date) {
             acc[key] = values[key];
         }
         else if (Array.isArray(values[key])) {
             if (Array.isArray(initialValues[key])) {
-                acc[key] = values[key].map(function (value, index) {
-                    return sanitizeEmptyValues(initialValues[key][index], value);
-                });
+                acc[key] = values[key].map((value, index) => sanitizeEmptyValues(initialValues[key][index], value));
             }
             else {
                 acc[key] = values[key];

@@ -10,10 +10,8 @@
  * const FooButton = () => (
  *     <Button
  *         component={Link}
- *         to={{
- *             pathname: '/foo',
- *             state: { _scrollToTop: true },
- *         }}
+ *         to={'/foo'}
+ *         state={{ _scrollToTop: true }}
  *     >
  *         Go to foo
  *     </Button>

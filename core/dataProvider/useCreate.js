@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useMutation_1 = __importDefault(require("./useMutation"));
+const react_1 = require("react");
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the dataProvider.create() method, the result and the loading state.
  *
@@ -51,15 +51,15 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  *     return <button disabled={loading} onClick={create}>Like</button>;
  * };
  */
-var useCreate = function (resource, data, options) {
-    var _a = (0, useMutation_1.default)({ type: 'create', resource: resource, payload: { data: data } }, options), mutate = _a[0], state = _a[1];
-    var create = (0, react_1.useCallback)(function (resource, data, options) {
+const useCreate = (resource, data, options) => {
+    const [mutate, state] = (0, useMutation_1.default)({ type: 'create', resource, payload: { data } }, options);
+    const create = (0, react_1.useCallback)((resource, data, options) => {
         if (typeof resource === 'string') {
-            var query = {
+            const query = {
                 type: 'create',
-                resource: resource,
+                resource,
                 payload: {
-                    data: data,
+                    data,
                 },
             };
             return mutate(query, options);

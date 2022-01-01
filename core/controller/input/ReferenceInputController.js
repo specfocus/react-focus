@@ -12,14 +12,14 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceInputController = void 0;
-var useReferenceInputController_1 = require("./useReferenceInputController");
+const useReferenceInputController_1 = require("./useReferenceInputController");
 /**
  * Render prop version of the useReferenceInputController hook.
  *
  * @see useReferenceInputController
  */
-var ReferenceInputController = function (props) {
-    var children = props.children, rest = __rest(props, ["children"]);
+const ReferenceInputController = (props) => {
+    const { children } = props, rest = __rest(props, ["children"]);
     return children((0, useReferenceInputController_1.useReferenceInputController)(rest));
 };
 exports.ReferenceInputController = ReferenceInputController;

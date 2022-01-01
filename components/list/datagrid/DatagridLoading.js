@@ -1,58 +1,21 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
-var material_1 = require("@mui/material");
-var classnames_1 = __importDefault(require("classnames"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-var Placeholder_1 = __importDefault(require("../Placeholder"));
-var useDatagridStyles_1 = require("./useDatagridStyles");
-var times = function (nbChildren, fn) {
-    return Array.from({ length: nbChildren }, function (_, key) { return fn(key); });
-};
-var DatagridLoading = function (_a) {
-    var className = _a.className, expand = _a.expand, hasBulkActions = _a.hasBulkActions, nbChildren = _a.nbChildren, _b = _a.nbFakeLines, nbFakeLines = _b === void 0 ? 5 : _b, size = _a.size;
-    var oneSecondHasPassed = (0, core_1.useTimeout)(1000);
-    return oneSecondHasPassed ? (React.createElement(useDatagridStyles_1.StyledTable, { className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.table, className), size: size },
-        React.createElement(material_1.TableHead, null,
-            React.createElement(material_1.TableRow, { className: useDatagridStyles_1.DatagridClasses.row },
-                expand && (React.createElement(material_1.TableCell, { padding: "none", className: useDatagridStyles_1.DatagridClasses.expandHeader })),
-                hasBulkActions && (React.createElement(material_1.TableCell, { padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.expandIconCell },
-                    React.createElement(material_1.Checkbox, { className: "select-all", color: "primary", checked: false }))),
-                times(nbChildren, function (key) { return (React.createElement(material_1.TableCell, { variant: "head", className: useDatagridStyles_1.DatagridClasses.headerCell, key: key },
-                    React.createElement(Placeholder_1.default, null))); }))),
-        React.createElement(material_1.TableBody, null, times(nbFakeLines, function (key1) { return (React.createElement(material_1.TableRow, { key: key1, style: { opacity: 1 / (key1 + 1) } },
-            expand && (React.createElement(material_1.TableCell, { padding: "none", className: useDatagridStyles_1.DatagridClasses.expandIconCell },
-                React.createElement(material_1.IconButton, { className: useDatagridStyles_1.DatagridClasses.expandIcon, component: "div", "aria-hidden": "true", size: "large" },
-                    React.createElement(ExpandMore_1.default, null)))),
-            hasBulkActions && (React.createElement(material_1.TableCell, { padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.expandIconCell },
-                React.createElement(material_1.Checkbox, { className: "select-all", color: "primary", checked: false }))),
-            times(nbChildren, function (key2) { return (React.createElement(material_1.TableCell, { className: useDatagridStyles_1.DatagridClasses.rowCell, key: key2 },
-                React.createElement(Placeholder_1.default, null))); }))); })))) : null;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
+const material_1 = require("@mui/material");
+const classnames_1 = __importDefault(require("classnames"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+const Placeholder_1 = __importDefault(require("../Placeholder"));
+const useDatagridStyles_1 = require("./useDatagridStyles");
+const times = (nbChildren, fn) => Array.from({ length: nbChildren }, (_, key) => fn(key));
+const DatagridLoading = ({ className, expand, hasBulkActions, nbChildren, nbFakeLines = 5, size, }) => {
+    const oneSecondHasPassed = (0, core_1.useTimeout)(1000);
+    return oneSecondHasPassed ? ((0, jsx_runtime_1.jsxs)(useDatagridStyles_1.StyledTable, Object.assign({ className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.table, className), size: size }, { children: [(0, jsx_runtime_1.jsx)(material_1.TableHead, { children: (0, jsx_runtime_1.jsxs)(material_1.TableRow, Object.assign({ className: useDatagridStyles_1.DatagridClasses.row }, { children: [expand && ((0, jsx_runtime_1.jsx)(material_1.TableCell, { padding: "none", className: useDatagridStyles_1.DatagridClasses.expandHeader }, void 0)), hasBulkActions && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.expandIconCell }, { children: (0, jsx_runtime_1.jsx)(material_1.Checkbox, { className: "select-all", color: "primary", checked: false }, void 0) }), void 0)), times(nbChildren, key => ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ variant: "head", className: useDatagridStyles_1.DatagridClasses.headerCell }, { children: (0, jsx_runtime_1.jsx)(Placeholder_1.default, {}, void 0) }), key)))] }), void 0) }, void 0), (0, jsx_runtime_1.jsx)(material_1.TableBody, { children: times(nbFakeLines, key1 => ((0, jsx_runtime_1.jsxs)(material_1.TableRow, Object.assign({ style: { opacity: 1 / (key1 + 1) } }, { children: [expand && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "none", className: useDatagridStyles_1.DatagridClasses.expandIconCell }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ className: useDatagridStyles_1.DatagridClasses.expandIcon, component: "div", "aria-hidden": "true", size: "large" }, { children: (0, jsx_runtime_1.jsx)(ExpandMore_1.default, {}, void 0) }), void 0) }), void 0)), hasBulkActions && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.expandIconCell }, { children: (0, jsx_runtime_1.jsx)(material_1.Checkbox, { className: "select-all", color: "primary", checked: false }, void 0) }), void 0)), times(nbChildren, key2 => ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ className: useDatagridStyles_1.DatagridClasses.rowCell }, { children: (0, jsx_runtime_1.jsx)(Placeholder_1.default, {}, void 0) }), key2)))] }), key1))) }, void 0)] }), void 0)) : null;
 };
 DatagridLoading.propTypes = {
     className: prop_types_1.default.string,

@@ -15,13 +15,10 @@ exports.indexById = void 0;
  *     2: { id: 2, name: 'bar' },
  * }
  */
-var indexById = function (records) {
-    if (records === void 0) { records = []; }
-    return records
-        .filter(function (r) { return typeof r !== 'undefined'; })
-        .reduce(function (prev, current) {
-        prev[current.id] = current;
-        return prev;
-    }, {});
-};
+const indexById = (records = []) => records
+    .filter(r => typeof r !== 'undefined')
+    .reduce((prev, current) => {
+    prev[current.id] = current;
+    return prev;
+}, {});
 exports.indexById = indexById;

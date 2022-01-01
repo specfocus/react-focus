@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,53 +14,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Avatar_1 = __importDefault(require("@mui/material/Avatar"));
-var List_1 = __importDefault(require("@mui/material/List"));
-var ListItem_1 = __importDefault(require("@mui/material/ListItem"));
-var ListItemAvatar_1 = __importDefault(require("@mui/material/ListItemAvatar"));
-var ListItemSecondaryAction_1 = __importDefault(require("@mui/material/ListItemSecondaryAction"));
-var ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
-var Placeholder_1 = __importDefault(require("./Placeholder"));
-var core_1 = require("../../core");
-var PREFIX = 'RaSimpleListLoading';
-var classes = {
-    primary: "".concat(PREFIX, "-primary"),
-    tertiary: "".concat(PREFIX, "-tertiary"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Avatar_1 = __importDefault(require("@mui/material/Avatar"));
+const List_1 = __importDefault(require("@mui/material/List"));
+const ListItem_1 = __importDefault(require("@mui/material/ListItem"));
+const ListItemAvatar_1 = __importDefault(require("@mui/material/ListItemAvatar"));
+const ListItemSecondaryAction_1 = __importDefault(require("@mui/material/ListItemSecondaryAction"));
+const ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
+const Placeholder_1 = __importDefault(require("./Placeholder"));
+const core_1 = require("../../core");
+const PREFIX = 'RaSimpleListLoading';
+const classes = {
+    primary: `${PREFIX}-primary`,
+    tertiary: `${PREFIX}-tertiary`,
 };
-var StyledList = (0, styles_1.styled)(List_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.primary)] = {
-            width: '30vw',
-            display: 'inline-block',
-            marginBottom: theme.spacing(),
-        },
-        _b["& .".concat(classes.tertiary)] = {
-            float: 'right',
-            opacity: 0.541176,
-            minWidth: '10vw',
-        },
-        _b);
-});
-var times = function (nbChildren, fn) {
-    return Array.from({ length: nbChildren }, function (_, key) { return fn(key); });
-};
-var SimpleListLoading = function (props) {
-    var classesOverride = props.classes, className = props.className, hasLeftAvatarOrIcon = props.hasLeftAvatarOrIcon, hasRightAvatarOrIcon = props.hasRightAvatarOrIcon, hasSecondaryText = props.hasSecondaryText, hasTertiaryText = props.hasTertiaryText, _a = props.nbFakeLines, nbFakeLines = _a === void 0 ? 5 : _a, rest = __rest(props, ["classes", "className", "hasLeftAvatarOrIcon", "hasRightAvatarOrIcon", "hasSecondaryText", "hasTertiaryText", "nbFakeLines"]);
-    var oneSecondHasPassed = (0, core_1.useTimeout)(1000);
-    return oneSecondHasPassed ? (React.createElement(StyledList, __assign({ className: className }, rest), times(nbFakeLines, function (key) { return (React.createElement(ListItem_1.default, { key: key },
-        hasLeftAvatarOrIcon && (React.createElement(ListItemAvatar_1.default, null,
-            React.createElement(Avatar_1.default, null, "\u00A0"))),
-        React.createElement(ListItemText_1.default, { primary: React.createElement("div", null,
-                React.createElement(Placeholder_1.default, { className: classes.primary }),
-                hasTertiaryText && (React.createElement("span", { className: classes.tertiary },
-                    React.createElement(Placeholder_1.default, null)))), secondary: hasSecondaryText ? React.createElement(Placeholder_1.default, null) : undefined }),
-        hasRightAvatarOrIcon && (React.createElement(ListItemSecondaryAction_1.default, null,
-            React.createElement(Avatar_1.default, null, "\u00A0"))))); }))) : null;
+const StyledList = (0, styles_1.styled)(List_1.default)(({ theme }) => ({
+    [`& .${classes.primary}`]: {
+        width: '30vw',
+        display: 'inline-block',
+        marginBottom: theme.spacing(),
+    },
+    [`& .${classes.tertiary}`]: {
+        float: 'right',
+        opacity: 0.541176,
+        minWidth: '10vw',
+    },
+}));
+const times = (nbChildren, fn) => Array.from({ length: nbChildren }, (_, key) => fn(key));
+const SimpleListLoading = (props) => {
+    const { classes: classesOverride, className, hasLeftAvatarOrIcon, hasRightAvatarOrIcon, hasSecondaryText, hasTertiaryText, nbFakeLines = 5 } = props, rest = __rest(props, ["classes", "className", "hasLeftAvatarOrIcon", "hasRightAvatarOrIcon", "hasSecondaryText", "hasTertiaryText", "nbFakeLines"]);
+    const oneSecondHasPassed = (0, core_1.useTimeout)(1000);
+    return oneSecondHasPassed ? ((0, jsx_runtime_1.jsx)(StyledList, Object.assign({ className: className }, rest, { children: times(nbFakeLines, key => ((0, jsx_runtime_1.jsxs)(ListItem_1.default, { children: [hasLeftAvatarOrIcon && ((0, jsx_runtime_1.jsx)(ListItemAvatar_1.default, { children: (0, jsx_runtime_1.jsx)(Avatar_1.default, { children: "\u00A0" }, void 0) }, void 0)), (0, jsx_runtime_1.jsx)(ListItemText_1.default, { primary: (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)(Placeholder_1.default, { className: classes.primary }, void 0), hasTertiaryText && ((0, jsx_runtime_1.jsx)("span", Object.assign({ className: classes.tertiary }, { children: (0, jsx_runtime_1.jsx)(Placeholder_1.default, {}, void 0) }), void 0))] }, void 0), secondary: hasSecondaryText ? (0, jsx_runtime_1.jsx)(Placeholder_1.default, {}, void 0) : undefined }, void 0), hasRightAvatarOrIcon && ((0, jsx_runtime_1.jsx)(ListItemSecondaryAction_1.default, { children: (0, jsx_runtime_1.jsx)(Avatar_1.default, { children: "\u00A0" }, void 0) }, void 0))] }, key))) }), void 0)) : null;
 };
 SimpleListLoading.propTypes = {
     className: prop_types_1.default.string,

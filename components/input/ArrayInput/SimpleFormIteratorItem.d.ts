@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
-import { Record } from '../../core';
+import { Record } from '../../../core';
 import { ArrayInputContextValue } from './ArrayInputContext';
 export declare const SimpleFormIteratorItem: (props: SimpleFormIteratorItemProps) => JSX.Element;
 export declare type DisableRemoveFunction = (record: Record) => boolean;

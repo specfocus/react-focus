@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFormGroupState = exports.useFormGroup = void 0;
-var react_1 = require("react");
-var react_final_form_1 = require("react-final-form");
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var useFormContext_1 = require("./useFormContext");
+const react_1 = require("react");
+const react_final_form_1 = require("react-final-form");
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const useFormContext_1 = require("./useFormContext");
 /**
  * Retrieve a specific form group data such as its validation status (valid/invalid) or
  * or whether its inputs have been updated (dirty/pristine)
@@ -50,27 +50,27 @@ var useFormContext_1 = require("./useFormContext");
  * @param {string} name The form group name
  * @returns {FormGroupState} The form group state
  */
-var useFormGroup = function (name) {
-    var form = (0, react_final_form_1.useForm)();
-    var formContext = (0, useFormContext_1.useFormContext)();
-    var _a = (0, react_1.useState)({
+const useFormGroup = (name) => {
+    const form = (0, react_final_form_1.useForm)();
+    const formContext = (0, useFormContext_1.useFormContext)();
+    const [state, setState] = (0, react_1.useState)({
         dirty: false,
         errors: undefined,
         invalid: false,
         pristine: true,
         touched: false,
         valid: true,
-    }), state = _a[0], setState = _a[1];
-    (0, react_1.useEffect)(function () {
-        var unsubscribe = form.subscribe(function () {
-            var fields = formContext.getGroupFields(name);
-            var fieldStates = fields
-                .map(function (field) {
+    });
+    (0, react_1.useEffect)(() => {
+        const unsubscribe = form.subscribe(() => {
+            const fields = formContext.getGroupFields(name);
+            const fieldStates = fields
+                .map(field => {
                 return form.getFieldState(field);
             })
-                .filter(function (fieldState) { return fieldState != undefined; }); // eslint-disable-line
-            var newState = (0, exports.getFormGroupState)(fieldStates);
-            setState(function (oldState) {
+                .filter(fieldState => fieldState != undefined); // eslint-disable-line
+            const newState = (0, exports.getFormGroupState)(fieldStates);
+            setState(oldState => {
                 if (!(0, isEqual_1.default)(oldState, newState)) {
                     return newState;
                 }
@@ -95,15 +95,15 @@ exports.useFormGroup = useFormGroup;
  * @param {FieldState[]} fieldStates A map of field states from final-form where the key is the field name.
  * @returns {FormGroupState} The state of the group.
  */
-var getFormGroupState = function (fieldStates) {
-    return fieldStates.reduce(function (acc, fieldState) {
-        var errors = acc.errors || {};
+const getFormGroupState = (fieldStates) => {
+    return fieldStates.reduce((acc, fieldState) => {
+        let errors = acc.errors || {};
         if (fieldState.error) {
             errors[fieldState.name] = fieldState.error;
         }
-        var newState = {
+        const newState = {
             dirty: acc.dirty || fieldState.dirty,
-            errors: errors,
+            errors,
             invalid: acc.invalid || fieldState.invalid,
             pristine: acc.pristine && fieldState.pristine,
             touched: acc.touched || fieldState.touched,

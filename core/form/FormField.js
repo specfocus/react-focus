@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,31 +34,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isRequired = void 0;
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_final_form_1 = require("react-final-form");
-var validate_1 = require("./validate");
-var isRequired = function (validate) {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_final_form_1 = require("react-final-form");
+const validate_1 = require("./validate");
+const isRequired = validate => {
     if (validate && validate.isRequired) {
         return true;
     }
     if (Array.isArray(validate)) {
-        return !!validate.find(function (it) { return it.isRequired; });
+        return !!validate.find(it => it.isRequired);
     }
     return false;
 };
 exports.isRequired = isRequired;
-var FormField = function (props) {
-    var id = props.id, input = props.input, validate = props.validate, rest = __rest(props, ["id", "input", "validate"]);
+const FormField = (props) => {
+    const { id, input, validate } = props, rest = __rest(props, ["id", "input", "validate"]);
     if (process.env.NODE_ENV !== 'production') {
         console.log('FormField is deprecated, use the useInput hook instead.');
     }
-    var sanitizedValidate = Array.isArray(validate)
+    const sanitizedValidate = Array.isArray(validate)
         ? (0, validate_1.composeValidators)(validate)
         : validate;
-    var finalId = id || rest.source;
+    const finalId = id || rest.source;
     return input ? ( // An ancestor is already decorated by Field
-    React.createElement(rest.component, __assign({ input: input, id: finalId }, rest))) : (React.createElement(react_final_form_1.Field, __assign({}, rest, { id: finalId, name: rest.source, isRequired: (0, exports.isRequired)(validate), validate: sanitizedValidate })));
+    React.createElement(rest.component, Object.assign({ input, id: finalId }, rest))) : ((0, jsx_runtime_1.jsx)(react_final_form_1.Field, Object.assign({}, rest, { id: finalId, name: rest.source, isRequired: (0, exports.isRequired)(validate), validate: sanitizedValidate }), void 0));
 };
 FormField.propTypes = {
     defaultValue: prop_types_1.default.any,

@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,33 +15,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormTabHeader = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_router_dom_1 = require("react-router-dom");
-var Tab_1 = __importDefault(require("@mui/material/Tab"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var react_final_form_1 = require("react-final-form");
-var TabbedFormView_1 = require("./TabbedFormView");
-var FormTabHeader = function (_a) {
-    var _b;
-    var label = _a.label, value = _a.value, icon = _a.icon, className = _a.className, syncWithLocation = _a.syncWithLocation, rest = __rest(_a, ["label", "value", "icon", "className", "syncWithLocation"]);
-    var translate = (0, core_1.useTranslate)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var submitFailed = (0, react_final_form_1.useFormState)(UseFormStateOptions).submitFailed;
-    var formGroup = (0, core_1.useFormGroup)(value.toString());
-    var propsForLink = {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_router_dom_1 = require("react-router-dom");
+const Tab_1 = __importDefault(require("@mui/material/Tab"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const react_final_form_1 = require("react-final-form");
+const TabbedFormView_1 = require("./TabbedFormView");
+const FormTabHeader = (_a) => {
+    var { label, value, icon, className, syncWithLocation } = _a, rest = __rest(_a, ["label", "value", "icon", "className", "syncWithLocation"]);
+    const translate = (0, core_1.useTranslate)();
+    const location = (0, react_router_dom_1.useLocation)();
+    const { submitFailed } = (0, react_final_form_1.useFormState)(UseFormStateOptions);
+    const formGroup = (0, core_1.useFormGroup)(value.toString());
+    const propsForLink = {
         component: react_router_dom_1.Link,
-        to: __assign(__assign({}, location), { pathname: value }),
+        to: Object.assign(Object.assign({}, location), { pathname: value }),
     };
-    return (React.createElement(Tab_1.default, __assign({ label: (0, react_1.isValidElement)(label) ? label : translate(label, { _: label }), value: value, icon: icon, className: (0, classnames_1.default)('form-tab', className, (_b = {},
-            _b[TabbedFormView_1.TabbedFormClasses.errorTabButton] = formGroup.invalid && (formGroup.touched || submitFailed),
-            _b.error = formGroup.invalid && (formGroup.touched || submitFailed),
-            _b)) }, (syncWithLocation ? propsForLink : {}), { id: "tabheader-".concat(value), "aria-controls": "tabpanel-".concat(value) }, rest)));
+    return ((0, jsx_runtime_1.jsx)(Tab_1.default, Object.assign({ label: (0, react_1.isValidElement)(label) ? label : translate(label, { _: label }), value: value, icon: icon, className: (0, classnames_1.default)('form-tab', className, {
+            [TabbedFormView_1.TabbedFormClasses.errorTabButton]: formGroup.invalid && (formGroup.touched || submitFailed),
+            error: formGroup.invalid && (formGroup.touched || submitFailed),
+        }) }, (syncWithLocation ? propsForLink : {}), { id: `tabheader-${value}`, "aria-controls": `tabpanel-${value}` }, rest), void 0));
 };
 exports.FormTabHeader = FormTabHeader;
-var UseFormStateOptions = {
+const UseFormStateOptions = {
     subscription: {
         submitFailed: true,
     },

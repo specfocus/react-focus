@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,44 +14,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Update_1 = __importDefault(require("@mui/icons-material/Update"));
-var styles_2 = require("@mui/material/styles");
-var core_1 = require("../../core");
-var Button_1 = __importDefault(require("./Button"));
-var PREFIX = 'RaBulkUpdateWithUndoButton';
-var classes = {
-    updateButton: "".concat(PREFIX, "-updateButton"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Update_1 = __importDefault(require("@mui/icons-material/Update"));
+const styles_2 = require("@mui/material/styles");
+const core_1 = require("../../core");
+const Button_1 = __importDefault(require("./Button"));
+const PREFIX = 'RaBulkUpdateWithUndoButton';
+const classes = {
+    updateButton: `${PREFIX}-updateButton`,
 };
-var StyledButton = (0, styles_1.styled)(Button_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.updateButton)] = {
-            color: theme.palette.error.main,
-            '&:hover': {
-                backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
-                // Reset on mouse devices
-                '@media (hover: none)': {
-                    backgroundColor: 'transparent',
-                },
+const StyledButton = (0, styles_1.styled)(Button_1.default)(({ theme }) => ({
+    [`&.${classes.updateButton}`]: {
+        color: theme.palette.error.main,
+        '&:hover': {
+            backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
+            // Reset on mouse devices
+            '@media (hover: none)': {
+                backgroundColor: 'transparent',
             },
         },
-        _b);
-});
-var BulkUpdateWithUndoButton = function (props) {
-    var selectedIds = (0, core_1.useListContext)(props).selectedIds;
-    var notify = (0, core_1.useNotify)();
-    var unselectAll = (0, core_1.useUnselectAll)();
-    var refresh = (0, core_1.useRefresh)();
-    var resource = (0, core_1.useResourceContext)(props);
-    var basePath = props.basePath, classesOverride = props.classes, data = props.data, _a = props.label, label = _a === void 0 ? 'ra.action.update' : _a, _b = props.icon, icon = _b === void 0 ? defaultIcon : _b, onClick = props.onClick, _c = props.onSuccess, onSuccess = _c === void 0 ? function () {
+    },
+}));
+const BulkUpdateWithUndoButton = (props) => {
+    const { selectedIds } = (0, core_1.useListContext)(props);
+    const notify = (0, core_1.useNotify)();
+    const unselectAll = (0, core_1.useUnselectAll)();
+    const refresh = (0, core_1.useRefresh)();
+    const resource = (0, core_1.useResourceContext)(props);
+    const { basePath, classes: classesOverride, data, label = 'ra.action.update', icon = defaultIcon, onClick, onSuccess = () => {
         notify('ra.notification.updated', 'info', { smart_count: selectedIds.length }, true);
         unselectAll(resource);
         refresh();
-    } : _c, _d = props.onFailure, onFailure = _d === void 0 ? function (error) {
+    }, onFailure = error => {
         notify(typeof error === 'string'
             ? error
             : error.message || 'ra.notification.http_error', 'warning', {
@@ -92,24 +58,24 @@ var BulkUpdateWithUndoButton = function (props) {
                     : undefined,
         });
         refresh();
-    } : _d, rest = __rest(props, ["basePath", "classes", "data", "label", "icon", "onClick", "onSuccess", "onFailure"]);
-    var _e = (0, core_1.useUpdateMany)(resource, selectedIds, data, {
+    } } = props, rest = __rest(props, ["basePath", "classes", "data", "label", "icon", "onClick", "onSuccess", "onFailure"]);
+    const [updateMany, { loading }] = (0, core_1.useUpdateMany)(resource, selectedIds, data, {
         action: core_1.CRUD_UPDATE_MANY,
-        onSuccess: onSuccess,
-        onFailure: onFailure,
+        onSuccess,
+        onFailure,
         undoable: true,
-    }), updateMany = _e[0], loading = _e[1].loading;
-    var handleClick = function (e) {
+    });
+    const handleClick = e => {
         updateMany();
         if (typeof onClick === 'function') {
             onClick(e);
         }
     };
-    return (React.createElement(StyledButton, __assign({ onClick: handleClick, label: label, className: classes.updateButton, disabled: loading }, sanitizeRestProps(rest)), icon));
+    return ((0, jsx_runtime_1.jsx)(StyledButton, Object.assign({ onClick: handleClick, label: label, className: classes.updateButton, disabled: loading }, sanitizeRestProps(rest), { children: icon }), void 0));
 };
-var defaultIcon = React.createElement(Update_1.default, null);
-var sanitizeRestProps = function (_a) {
-    var basePath = _a.basePath, classes = _a.classes, filterValues = _a.filterValues, label = _a.label, selectedIds = _a.selectedIds, onSuccess = _a.onSuccess, onFailure = _a.onFailure, rest = __rest(_a, ["basePath", "classes", "filterValues", "label", "selectedIds", "onSuccess", "onFailure"]);
+const defaultIcon = (0, jsx_runtime_1.jsx)(Update_1.default, {}, void 0);
+const sanitizeRestProps = (_a) => {
+    var { basePath, classes, filterValues, label, selectedIds, onSuccess, onFailure } = _a, rest = __rest(_a, ["basePath", "classes", "filterValues", "label", "selectedIds", "onSuccess", "onFailure"]);
     return rest;
 };
 BulkUpdateWithUndoButton.propTypes = {

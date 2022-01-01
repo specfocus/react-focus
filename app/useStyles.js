@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var styles_1 = require("@mui/styles");
-var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const styles_1 = require("@mui/styles");
+const useStyles = (0, styles_1.makeStyles)((theme) => ({
     buttons: {
         // bottom: theme.spacing(2),
         display: 'flex',
@@ -29,5 +29,5 @@ var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         height: theme.spacing(8),
         justifyContent: 'stretch',
     }
-}); });
+}));
 exports.default = useStyles;

@@ -15,5 +15,5 @@ export interface SelectionState {
  * const { selectedIds, onSelect, onToggleItem, onUnselectItems } = useSelectionState();
  *
  */
-declare const useSelectionState: (initialSelection?: never[]) => SelectionState;
+declare const useSelectionState: (initialSelection?: any[]) => SelectionState;
 export default useSelectionState;

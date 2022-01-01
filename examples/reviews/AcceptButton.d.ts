@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import PropTypes from 'prop-types';
-import { Review } from '../types';
+import { Review } from '../db/types';
 /**
  * This custom button demonstrate using useUpdate to update data
  */

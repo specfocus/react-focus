@@ -7,7 +7,7 @@ import { EditControllerProps } from './useEditController';
  *
  * @example
  *
- * import { useEditController, EditContextProvider } from '../../core';
+ * import { useEditController, EditContextProvider } from '../../../core';
  *
  * const Edit = props => {
  *     const controllerProps = useEditController(props);

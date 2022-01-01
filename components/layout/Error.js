@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,106 +33,71 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var material_1 = require("@mui/material");
-var Report_1 = __importDefault(require("@mui/icons-material/Report"));
-var ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
-var History_1 = __importDefault(require("@mui/icons-material/History"));
-var core_1 = require("../../core");
-var Title_1 = __importStar(require("./Title"));
-var PREFIX = 'RaError';
-var classes = {
-    container: "".concat(PREFIX, "-container"),
-    title: "".concat(PREFIX, "-title"),
-    icon: "".concat(PREFIX, "-icon"),
-    panel: "".concat(PREFIX, "-panel"),
-    panelDetails: "".concat(PREFIX, "-panelDetails"),
-    toolbar: "".concat(PREFIX, "-toolbar"),
-    advice: "".concat(PREFIX, "-advice"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const material_1 = require("@mui/material");
+const Report_1 = __importDefault(require("@mui/icons-material/Report"));
+const ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
+const History_1 = __importDefault(require("@mui/icons-material/History"));
+const core_1 = require("../../core");
+const Title_1 = __importStar(require("./Title"));
+const PREFIX = 'RaError';
+const classes = {
+    container: `${PREFIX}-container`,
+    title: `${PREFIX}-title`,
+    icon: `${PREFIX}-icon`,
+    panel: `${PREFIX}-panel`,
+    panelDetails: `${PREFIX}-panelDetails`,
+    toolbar: `${PREFIX}-toolbar`,
+    advice: `${PREFIX}-advice`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b, _c;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.container)] = (_c = {
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center'
-            },
-            _c[theme.breakpoints.down('md')] = {
-                padding: '1em',
-            },
-            _c.fontFamily = 'Roboto, sans-serif',
-            _c.opacity = 0.5,
-            _c),
-        _b["& .".concat(classes.title)] = {
-            display: 'flex',
-            alignItems: 'center',
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`&.${classes.container}`]: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        [theme.breakpoints.down('md')]: {
+            padding: '1em',
         },
-        _b["& .".concat(classes.icon)] = {
-            width: '2em',
-            height: '2em',
-            marginRight: '0.5em',
-        },
-        _b["& .".concat(classes.panel)] = {
-            marginTop: '1em',
-            maxWidth: '60em',
-        },
-        _b["& .".concat(classes.panelDetails)] = {
-            whiteSpace: 'pre-wrap',
-        },
-        _b["& .".concat(classes.toolbar)] = {
-            marginTop: '2em',
-        },
-        _b["& .".concat(classes.advice)] = {
-            marginTop: '2em',
-        },
-        _b);
-});
+        fontFamily: 'Roboto, sans-serif',
+        opacity: 0.5,
+    },
+    [`& .${classes.title}`]: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    [`& .${classes.icon}`]: {
+        width: '2em',
+        height: '2em',
+        marginRight: '0.5em',
+    },
+    [`& .${classes.panel}`]: {
+        marginTop: '1em',
+        maxWidth: '60em',
+    },
+    [`& .${classes.panelDetails}`]: {
+        whiteSpace: 'pre-wrap',
+    },
+    [`& .${classes.toolbar}`]: {
+        marginTop: '2em',
+    },
+    [`& .${classes.advice}`]: {
+        marginTop: '2em',
+    },
+}));
 function goBack() {
     window.history.go(-1);
 }
-var Error = function (props) {
-    var error = props.error, errorInfo = props.errorInfo, className = props.className, title = props.title, rest = __rest(props, ["error", "errorInfo", "className", "title"]);
-    var translate = (0, core_1.useTranslate)();
-    return (React.createElement(react_1.Fragment, null,
-        title && React.createElement(Title_1.default, { defaultTitle: title }),
-        React.createElement(Root, __assign({ className: (0, classnames_1.default)(classes.container, className) }, rest),
-            React.createElement("h1", { className: classes.title, role: "alert" },
-                React.createElement(Report_1.default, { className: classes.icon }),
-                translate('ra.page.error')),
-            React.createElement("div", null, translate('ra.message.error')),
-            process.env.NODE_ENV !== 'production' && (React.createElement(React.Fragment, null,
-                React.createElement(material_1.Accordion, { className: classes.panel },
-                    React.createElement(material_1.AccordionSummary, { expandIcon: React.createElement(ExpandMore_1.default, null) }, translate(error.toString(), {
-                        _: error.toString(),
-                    })),
-                    errorInfo && (React.createElement(material_1.AccordionDetails, { className: classes.panelDetails }, errorInfo.componentStack))),
-                React.createElement("div", { className: classes.advice },
-                    React.createElement(material_1.Typography, { align: "center" }, "Need help with this error? Try the following:"),
-                    React.createElement(material_1.Typography, { component: "div" },
-                        React.createElement("ul", null,
-                            React.createElement("li", null,
-                                "Check the",
-                                ' ',
-                                React.createElement("a", { href: "https://marmelab.com/../../app/Readme.html" }, "../../app documentation")),
-                            React.createElement("li", null,
-                                "Search on",
-                                ' ',
-                                React.createElement("a", { href: "https://stackoverflow.com/questions/tagged/../../app" }, "StackOverflow"),
-                                ' ',
-                                "for community answers"),
-                            React.createElement("li", null,
-                                "Get help from the core team via",
-                                ' ',
-                                React.createElement("a", { href: "https://marmelab.com/ra-enterprise/#fromsww" }, "../../app Enterprise Edition"))))))),
-            React.createElement("div", { className: classes.toolbar },
-                React.createElement(material_1.Button, { variant: "contained", startIcon: React.createElement(History_1.default, null), onClick: goBack }, translate('ra.action.back'))))));
+const Error = (props) => {
+    const { error, errorInfo, className, title } = props, rest = __rest(props, ["error", "errorInfo", "className", "title"]);
+    const translate = (0, core_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsxs)(react_1.Fragment, { children: [title && (0, jsx_runtime_1.jsx)(Title_1.default, { defaultTitle: title }, void 0), (0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: (0, classnames_1.default)(classes.container, className) }, rest, { children: [(0, jsx_runtime_1.jsxs)("h1", Object.assign({ className: classes.title, role: "alert" }, { children: [(0, jsx_runtime_1.jsx)(Report_1.default, { className: classes.icon }, void 0), translate('ra.page.error')] }), void 0), (0, jsx_runtime_1.jsx)("div", { children: translate('ra.message.error') }, void 0), process.env.NODE_ENV !== 'production' && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)(material_1.Accordion, Object.assign({ className: classes.panel }, { children: [(0, jsx_runtime_1.jsx)(material_1.AccordionSummary, Object.assign({ expandIcon: (0, jsx_runtime_1.jsx)(ExpandMore_1.default, {}, void 0) }, { children: translate(error.toString(), {
+                                            _: error.toString(),
+                                        }) }), void 0), errorInfo && ((0, jsx_runtime_1.jsx)(material_1.AccordionDetails, Object.assign({ className: classes.panelDetails }, { children: errorInfo.componentStack }), void 0))] }), void 0), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.advice }, { children: [(0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ align: "center" }, { children: "Need help with this error? Try the following:" }), void 0), (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "div" }, { children: (0, jsx_runtime_1.jsxs)("ul", { children: [(0, jsx_runtime_1.jsxs)("li", { children: ["Check the", ' ', (0, jsx_runtime_1.jsx)("a", Object.assign({ href: "https://marmelab.com/../../app/Readme.html" }, { children: "../../app documentation" }), void 0)] }, void 0), (0, jsx_runtime_1.jsxs)("li", { children: ["Search on", ' ', (0, jsx_runtime_1.jsx)("a", Object.assign({ href: "https://stackoverflow.com/questions/tagged/../../app" }, { children: "StackOverflow" }), void 0), ' ', "for community answers"] }, void 0), (0, jsx_runtime_1.jsxs)("li", { children: ["Get help from the core team via", ' ', (0, jsx_runtime_1.jsx)("a", Object.assign({ href: "https://marmelab.com/ra-enterprise/#fromsww" }, { children: "../../app Enterprise Edition" }), void 0)] }, void 0)] }, void 0) }), void 0)] }), void 0)] }, void 0)), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.toolbar }, { children: (0, jsx_runtime_1.jsx)(material_1.Button, Object.assign({ variant: "contained", startIcon: (0, jsx_runtime_1.jsx)(History_1.default, {}, void 0), onClick: goBack }, { children: translate('ra.action.back') }), void 0) }), void 0)] }), void 0)] }, void 0));
 };
 Error.propTypes = {
     className: prop_types_1.default.string,

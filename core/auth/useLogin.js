@@ -19,11 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_router_dom_1 = require("react-router-dom");
-var react_redux_1 = require("react-redux");
-var useAuthProvider_1 = __importStar(require("./useAuthProvider"));
-var notificationActions_1 = require("../actions/notificationActions");
+const react_1 = require("react");
+const react_router_dom_1 = require("react-router-dom");
+const react_redux_1 = require("react-redux");
+const useAuthProvider_1 = __importStar(require("./useAuthProvider"));
+const notificationActions_1 = require("../actions/notificationActions");
 /**
  * Get a callback for calling the authProvider.login() method
  * and redirect to the previous authenticated page (or the home page) on success.
@@ -47,29 +47,26 @@ var notificationActions_1 = require("../actions/notificationActions");
  *     return <button onClick={handleClick}>Login</button>;
  * }
  */
-var useLogin = function () {
-    var authProvider = (0, useAuthProvider_1.default)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var locationState = location.state;
-    var history = (0, react_router_dom_1.useHistory)();
-    var dispatch = (0, react_redux_1.useDispatch)();
-    var nextPathName = locationState && locationState.nextPathname;
-    var nextSearch = locationState && locationState.nextSearch;
-    var login = (0, react_1.useCallback)(function (params, pathName) {
-        if (params === void 0) { params = {}; }
-        return authProvider.login(params).then(function (ret) {
-            dispatch((0, notificationActions_1.resetNotification)());
-            var redirectUrl = pathName
-                ? pathName
-                : nextPathName + nextSearch ||
-                    useAuthProvider_1.defaultAuthParams.afterLoginUrl;
-            history.push(redirectUrl);
-            return ret;
-        });
-    }, [authProvider, history, nextPathName, nextSearch, dispatch]);
-    var loginWithoutProvider = (0, react_1.useCallback)(function (_, __) {
+const useLogin = () => {
+    const authProvider = (0, useAuthProvider_1.default)();
+    const location = (0, react_router_dom_1.useLocation)();
+    const locationState = location.state;
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const nextPathName = locationState && locationState.nextPathname;
+    const nextSearch = locationState && locationState.nextSearch;
+    const login = (0, react_1.useCallback)((params = {}, pathName) => authProvider.login(params).then(ret => {
         dispatch((0, notificationActions_1.resetNotification)());
-        history.push(useAuthProvider_1.defaultAuthParams.afterLoginUrl);
+        const redirectUrl = pathName
+            ? pathName
+            : nextPathName + nextSearch ||
+                useAuthProvider_1.defaultAuthParams.afterLoginUrl;
+        navigate(redirectUrl);
+        return ret;
+    }), [authProvider, history, nextPathName, nextSearch, dispatch]);
+    const loginWithoutProvider = (0, react_1.useCallback)((_, __) => {
+        dispatch((0, notificationActions_1.resetNotification)());
+        navigate(useAuthProvider_1.defaultAuthParams.afterLoginUrl);
         return Promise.resolve();
     }, [history, dispatch]);
     return authProvider ? login : loginWithoutProvider;

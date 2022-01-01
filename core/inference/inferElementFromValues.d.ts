@@ -37,5 +37,5 @@ import { InferredTypeMap } from './types';
  *
  * @return InferredElement
  */
-declare const inferElementFromValues: (name: any, values?: never[], types?: InferredTypeMap) => any;
+declare const inferElementFromValues: (name: any, values?: any[], types?: InferredTypeMap) => any;
 export default inferElementFromValues;

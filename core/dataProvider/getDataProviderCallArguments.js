@@ -1,17 +1,8 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDataProviderCallArguments = void 0;
 // List of properties we expect in the options
-var OptionsProperties = [
+const OptionsProperties = [
     'action',
     'fetch',
     'meta',
@@ -21,21 +12,21 @@ var OptionsProperties = [
     'mutationMode',
     'enabled',
 ];
-var isDataProviderOptions = function (value) {
+const isDataProviderOptions = (value) => {
     if (typeof value === 'undefined')
         return [];
-    var options = value;
-    return Object.keys(options).some(function (key) { return OptionsProperties.includes(key); });
+    let options = value;
+    return Object.keys(options).some(key => OptionsProperties.includes(key));
 };
 // As all dataProvider methods do not have the same signature, we must differentiate
 // standard methods which have the (resource, params, options) signature
 // from the custom ones
-var getDataProviderCallArguments = function (args) {
-    var lastArg = args[args.length - 1];
-    var allArguments = __spreadArray([], args, true);
-    var resource;
-    var payload;
-    var options;
+const getDataProviderCallArguments = (args) => {
+    const lastArg = args[args.length - 1];
+    let allArguments = [...args];
+    let resource;
+    let payload;
+    let options;
     if (isDataProviderOptions(lastArg)) {
         options = lastArg;
         allArguments = allArguments.slice(0, args.length - 1);
@@ -45,10 +36,10 @@ var getDataProviderCallArguments = function (args) {
         payload = allArguments[1];
     }
     return {
-        resource: resource,
-        payload: payload,
-        allArguments: allArguments,
-        options: options,
+        resource,
+        payload,
+        allArguments,
+        options,
     };
 };
 exports.getDataProviderCallArguments = getDataProviderCallArguments;

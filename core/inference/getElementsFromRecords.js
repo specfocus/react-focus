@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var inferElementFromValues_1 = __importDefault(require("./inferElementFromValues"));
-var getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
+const inferElementFromValues_1 = __importDefault(require("./inferElementFromValues"));
+const getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
 /**
  * Get a list of React-admin field components from a list of records
  *
@@ -36,11 +36,9 @@ var getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
  * //    <ReferenceField source="user_id" reference="users"><NumberField source="id" /></ReferenceField>,
  * // ];
  */
-exports.default = (function (records, types) {
-    var fieldValues = (0, getValuesFromRecords_1.default)(records);
+exports.default = (records, types) => {
+    const fieldValues = (0, getValuesFromRecords_1.default)(records);
     return Object.keys(fieldValues)
-        .reduce(function (fields, fieldName) {
-        return fields.concat((0, inferElementFromValues_1.default)(fieldName, fieldValues[fieldName], types));
-    }, [])
-        .filter(function (inferredElement) { return inferredElement.isDefined(); });
-});
+        .reduce((fields, fieldName) => fields.concat((0, inferElementFromValues_1.default)(fieldName, fieldValues[fieldName], types)), [])
+        .filter(inferredElement => inferredElement.isDefined());
+};

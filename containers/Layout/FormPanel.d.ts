@@ -1,6 +1,6 @@
 import { ContainerProps } from '@mui/material/Container';
-import React from 'react';
 import { IconProps } from '@mui/material/Icon';
+import React from 'react';
 import { FormProps } from 'react-final-form';
 import { SimpleObject } from '../../lib/ObjectSchema';
 export declare function panelProps(index: any): {
@@ -9,7 +9,7 @@ export declare function panelProps(index: any): {
     id: string;
     'aria-labelledby': string;
 };
-export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"button" | "title" | "icon" | "container" | "toolbar" | "speedDial" | "divider" | "buttons" | "strip" | "speedDialFav" | "stepper">;
+export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"title" | "button" | "icon" | "toolbar" | "speedDial" | "container" | "divider" | "buttons" | "strip" | "speedDialFav" | "stepper">;
 export interface WidgetAction {
     action: any;
     icon: React.FC<IconProps>;

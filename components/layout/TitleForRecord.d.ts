@@ -5,7 +5,7 @@ declare const TitleForRecord: {
         defaultTitle: any;
         record: any;
         title: any;
-    }): JSX.Element | null;
+    }): JSX.Element;
     propTypes: {
         defaultTitle: PropTypes.Requireable<any>;
         record: PropTypes.Requireable<object>;

@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -30,120 +19,98 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_final_form_1 = require("react-final-form");
-var react_i18next_1 = require("react-i18next");
-var DOMAINS = __importStar(require("../../data/domains"));
-var ObjectSchema_1 = require("../../lib/ObjectSchema");
-var StringSchema_1 = require("../../lib/StringSchema");
+const react_1 = require("react");
+const react_final_form_1 = require("react-final-form");
+const react_i18next_1 = require("react-i18next");
+const DOMAINS = __importStar(require("../../lib/domains"));
+const ObjectSchema_1 = require("../../lib/ObjectSchema");
+const StringSchema_1 = require("../../lib/StringSchema");
 ;
-var getIn = function (key, rec) { return rec && rec[key]; };
-var textIn = function (key, t, rec) {
-    var val = getIn(key, rec);
+const getIn = (key, rec) => rec && rec[key];
+const textIn = (key, t, rec) => {
+    const val = getIn(key, rec);
     if (typeof val === 'string') {
         return { label: t(val) || val };
     }
-    var trans = function (obj) { return Object.entries(obj)
-        .reduce(function (acc, _a) {
-        var _b, _c;
-        var key = _a[0], val = _a[1];
-        return typeof val === 'string'
-            ? Object.assign(acc, (_b = {}, _b[key] = t(val) || val, _b))
-            : Object.assign(acc, (_c = {}, _c[key] = trans(val), _c));
-    }, {}); };
+    const trans = obj => Object.entries(obj)
+        .reduce((acc, [key, val]) => typeof val === 'string'
+        ? Object.assign(acc, { [key]: t(val) || val })
+        : Object.assign(acc, { [key]: trans(val) }), {});
     return trans(val || { label: key });
 };
-var useFieldset = function (_a) {
-    var context = _a.context, fieldset = _a.name, fields = _a.schema.fields;
-    var api = (0, react_final_form_1.useForm)();
-    var batch = api.batch, change = api.change;
-    var t = (0, react_i18next_1.useTranslation)().t;
-    var classes = context.classes, dispatch = context.dispatch, dependencies = context.dependencies, immutables = context.immutables, i18n = context.i18n, requires = context.requires, styles = context.styles, values = context.values, variants = context.variants;
-    var getName = function (key) { return fieldset ? "".concat(fieldset, ".").concat(key) : key; };
-    var getDependencies = function (name) {
-        var _a;
+const useFieldset = ({ context, name: fieldset, schema: { fields } }) => {
+    const api = (0, react_final_form_1.useForm)();
+    const { batch, change } = api;
+    const { t } = (0, react_i18next_1.useTranslation)();
+    const { classes, dispatch, dependencies, immutables, i18n, requires, styles, values, variants } = context;
+    const getName = (key) => fieldset ? `${fieldset}.${key}` : key;
+    const getDependencies = (name) => {
         if (!name) {
             return;
         }
-        var dependency = getIn(name, dependencies);
+        const dependency = getIn(name, dependencies);
         if (typeof dependency === 'string') {
-            return _a = {}, _a[dependency] = values[dependency], _a;
+            return { [dependency]: values[dependency] };
         }
         else if (Array.isArray(dependency)) {
-            return dependency.reduce(function (acc, item) {
-                var _a;
-                return Object.assign(acc, (_a = {}, _a[item] = values[item], _a));
-            }, {});
+            return dependency.reduce((acc, item) => Object.assign(acc, { [item]: values[item] }), {});
         }
         else if ((0, ObjectSchema_1.isSimpleObject)(dependency)) {
             return Object.entries(dependency)
-                .reduce(function (acc, _a) {
-                var _b;
-                var item = _a[0];
-                return Object.assign(acc, (_b = {}, _b[item] = values[item], _b));
-            }, {});
+                .reduce((acc, [item]) => Object.assign(acc, { [item]: values[item] }), {});
         }
         ;
     };
-    var isReady = function (name) {
+    const isReady = (name) => {
         if (!name) {
             return true;
         }
-        var dependency = getIn(name, dependencies);
+        const dependency = getIn(name, dependencies);
         if (typeof dependency === 'string') {
             return Boolean(values[dependency]);
         }
         else if (Array.isArray(dependency)) {
-            return dependency.some(function (name) { return !Boolean(values[name]); });
+            return dependency.some(name => !Boolean(values[name]));
         }
         else if ((0, ObjectSchema_1.isSimpleObject)(dependency)) {
             return Object.entries(dependency) // TODO: also check for val being an array of values or a sift expre
-                .map(function (_a) {
-                var key = _a[0], val = _a[1];
-                return ([values[key], val]);
-            })
-                .filter(function (_a) {
-                var lhs = _a[0], rhs = _a[1];
-                return lhs != rhs;
-            })
+                .map(([key, val]) => ([values[key], val]))
+                .filter(([lhs, rhs]) => lhs != rhs)
                 .length === 0;
         }
         return true;
     };
-    (0, react_1.useEffect)(function () {
-        return batch(function () {
-            var dirty = Object.keys(fields)
-                .map(getName)
-                .filter(function (name) { return isReady(name) === false; })
-                .filter(function (name) { return typeof values[name] !== 'undefined'; });
-            dirty.forEach(change);
-        });
-    }, [batch, change, fields, fieldset, values]);
-    var getFieldProps = function (key, schema) {
-        var name = getName(key);
-        var value = values[name];
+    (0, react_1.useEffect)(() => batch(() => {
+        const dirty = Object.keys(fields)
+            .map(getName)
+            .filter(name => isReady(name) === false)
+            .filter(name => typeof values[name] !== 'undefined');
+        dirty.forEach(change);
+    }), [batch, change, fields, fieldset, values]);
+    const getFieldProps = (key, schema) => {
+        const name = getName(key);
+        let value = values[name];
         if (!value) {
-            var tuples = Object.entries(values).filter(function (_a) {
-                var key = _a[0];
-                return key.startsWith(name + '.');
-            });
+            const tuples = Object.entries(values).filter(([key]) => key.startsWith(name + '.'));
             if (tuples.length) {
-                value = tuples.reduce(function (acc, _a) {
-                    var _b;
-                    var key = _a[0], val = _a[1];
-                    return Object.assign(acc, (_b = {}, _b[key.substring(name.length + 1)] = val, _b));
-                }, {});
+                value = tuples.reduce((acc, [key, val]) => Object.assign(acc, { [key.substring(name.length + 1)]: val }), {});
             }
         }
-        var props = __assign(__assign({}, textIn(name, t, i18n)), { api: api, 
+        const props = Object.assign(Object.assign({}, textIn(name, t, i18n)), { api, 
             // context,
-            dependencies: getDependencies(name), dispatch: dispatch, name: name, schema: schema, t: t, value: value });
+            dependencies: getDependencies(name), 
+            // @ts-ignore
+            dispatch,
+            name,
+            schema,
+            t,
+            value });
         if (classes && styles) {
-            var style = styles[name];
+            const style = styles[name];
             if (style) {
-                var className = classes[style];
+                const className = classes[style];
                 if (className) {
-                    Object.assign(props, { className: className });
+                    Object.assign(props, { className });
                 }
             }
         }
@@ -159,32 +126,34 @@ var useFieldset = function (_a) {
         if (variants && variants[name]) {
             Object.assign(props, { variant: variants[name] });
         }
-        var _a = schema, domainName = _a.domain, placeholder = _a.placeholder, type = _a.type;
+        const { domain: domainName, type } = schema;
         if (!domainName) {
         }
         else {
-            var domain = DOMAINS[domainName];
+            const domain = DOMAINS[domainName];
             if (domain) {
-                Object.assign(props, { domain: domain });
+                Object.assign(props, { domain });
                 if (type === StringSchema_1.STRING_TYPE && (domain === null || domain === void 0 ? void 0 : domain.enum) && !props.disabled) {
-                    var parent_1 = dependencies[name];
-                    if (typeof parent_1 === 'string') {
-                        var filter = values[parent_1];
-                        Object.assign(props, { filter: filter });
+                    const parent = dependencies[name];
+                    if (typeof parent === 'string') {
+                        const filter = values[parent];
+                        Object.assign(props, { filter });
                     }
                 }
             }
         }
+        /*
         if (placeholder) {
-            Object.assign(props, { placeholder: t(placeholder) });
+          Object.assign(props, { placeholder: t(placeholder) });
         }
+        */
         return props;
     };
     return {
-        api: api,
+        api,
         hidden: !isReady(fieldset),
-        getFieldProps: getFieldProps,
-        t: t
+        getFieldProps,
+        t
     };
 };
 exports.default = useFieldset;

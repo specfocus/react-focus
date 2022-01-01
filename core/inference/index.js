@@ -14,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InferredElement = exports.getValuesFromRecords = exports.getElementsFromRecords = void 0;
-var getElementsFromRecords_1 = __importDefault(require("./getElementsFromRecords"));
+const getElementsFromRecords_1 = __importDefault(require("./getElementsFromRecords"));
 exports.getElementsFromRecords = getElementsFromRecords_1.default;
-var InferredElement_1 = __importDefault(require("./InferredElement"));
+const InferredElement_1 = __importDefault(require("./InferredElement"));
 exports.InferredElement = InferredElement_1.default;
-var getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
+const getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
 exports.getValuesFromRecords = getValuesFromRecords_1.default;
 __exportStar(require("./inferTypeFromValues"), exports);
 __exportStar(require("./types"), exports);

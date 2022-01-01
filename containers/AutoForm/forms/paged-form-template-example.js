@@ -20,8 +20,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initialValues = exports.validationSchema = exports.data = void 0;
-var Yup = __importStar(require("yup"));
-var data1 = [
+const Yup = __importStar(require("yup"));
+const data1 = [
     ///
     [
         {
@@ -34,7 +34,7 @@ var data1 = [
     ]
     ///
 ];
-var data2 = [
+const data2 = [
     ///
     { name: 'time', label: 'Time', type: 'time' },
     {
@@ -50,7 +50,7 @@ var data2 = [
     }
     ///
 ];
-var data3 = [
+const data3 = [
     {
         name: 'checkbox',
         type: 'checkbox',
@@ -67,7 +67,7 @@ var data3 = [
     }
 ];
 exports.data = [data1, data2, data3];
-var schema1 = Yup.object().shape({
+const schema1 = Yup.object().shape({
     username: Yup.string()
         .min(2, 'Too Short! ')
         .max(50, 'Too Long! ')
@@ -78,7 +78,7 @@ var schema1 = Yup.object().shape({
         .required('Required'),
     date: Yup.date().required('Required').nullable()
 });
-var schema2 = Yup.object().shape({
+const schema2 = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     time: Yup.date().required('Required').nullable()
 });

@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,19 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var react_final_form_1 = require("react-final-form");
-var final_form_arrays_1 = __importDefault(require("final-form-arrays"));
-var useInitializeFormWithRecord_1 = __importDefault(require("./useInitializeFormWithRecord"));
-var useWarnWhenUnsavedChanges_1 = __importDefault(require("./useWarnWhenUnsavedChanges"));
-var useResetSubmitErrors_1 = __importDefault(require("./useResetSubmitErrors"));
-var sanitizeEmptyValues_1 = __importDefault(require("./sanitizeEmptyValues"));
-var getFormInitialValues_1 = __importDefault(require("./getFormInitialValues"));
-var react_redux_1 = require("react-redux");
-var uiActions_1 = require("../actions/uiActions");
-var FormContextProvider_1 = require("./FormContextProvider");
-var submitErrorsMutators_1 = __importDefault(require("./submitErrorsMutators"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const react_final_form_1 = require("react-final-form");
+const final_form_arrays_1 = __importDefault(require("final-form-arrays"));
+const useInitializeFormWithRecord_1 = __importDefault(require("./useInitializeFormWithRecord"));
+const useWarnWhenUnsavedChanges_1 = __importDefault(require("./useWarnWhenUnsavedChanges"));
+const useResetSubmitErrors_1 = __importDefault(require("./useResetSubmitErrors"));
+const sanitizeEmptyValues_1 = __importDefault(require("./sanitizeEmptyValues"));
+const getFormInitialValues_1 = __importDefault(require("./getFormInitialValues"));
+const react_redux_1 = require("react-redux");
+const uiActions_1 = require("../actions/uiActions");
+const FormContextProvider_1 = require("./FormContextProvider");
+const submitErrorsMutators_1 = __importDefault(require("./submitErrorsMutators"));
 /**
  * Wrapper around react-final-form's Form to handle redirection on submit,
  * legacy defaultValue prop, and array inputs.
@@ -82,20 +52,18 @@ var submitErrorsMutators_1 = __importDefault(require("./submitErrorsMutators"));
  *
  * @param {Props} props
  */
-var FormWithRedirect = function (_a) {
-    var debug = _a.debug, decorators = _a.decorators, defaultValue = _a.defaultValue, destroyOnUnregister = _a.destroyOnUnregister, form = _a.form, initialValues = _a.initialValues, initialValuesEqual = _a.initialValuesEqual, _b = _a.keepDirtyOnReinitialize, keepDirtyOnReinitialize = _b === void 0 ? true : _b, _c = _a.mutators, mutators = _c === void 0 ? defaultMutators : _c, record = _a.record, render = _a.render, save = _a.save, saving = _a.saving, _d = _a.subscription, subscription = _d === void 0 ? defaultSubscription : _d, validate = _a.validate, validateOnBlur = _a.validateOnBlur, version = _a.version, warnWhenUnsavedChanges = _a.warnWhenUnsavedChanges, _e = _a.sanitizeEmptyValues, shouldSanitizeEmptyValues = _e === void 0 ? true : _e, props = __rest(_a, ["debug", "decorators", "defaultValue", "destroyOnUnregister", "form", "initialValues", "initialValuesEqual", "keepDirtyOnReinitialize", "mutators", "record", "render", "save", "saving", "subscription", "validate", "validateOnBlur", "version", "warnWhenUnsavedChanges", "sanitizeEmptyValues"]);
-    var redirect = (0, react_1.useRef)(props.redirect);
-    var onSave = (0, react_1.useRef)(save);
-    var formGroups = (0, react_1.useRef)({});
-    var finalMutators = (0, react_1.useMemo)(function () {
-        return mutators === defaultMutators
-            ? mutators
-            : __assign(__assign({}, defaultMutators), mutators);
-    }, [mutators]);
+const FormWithRedirect = (_a) => {
+    var { debug, decorators, defaultValue, destroyOnUnregister, form, initialValues, initialValuesEqual, keepDirtyOnReinitialize = true, mutators = defaultMutators, record, render, save, saving, subscription = defaultSubscription, validate, validateOnBlur, version, warnWhenUnsavedChanges, sanitizeEmptyValues: shouldSanitizeEmptyValues = true } = _a, props = __rest(_a, ["debug", "decorators", "defaultValue", "destroyOnUnregister", "form", "initialValues", "initialValuesEqual", "keepDirtyOnReinitialize", "mutators", "record", "render", "save", "saving", "subscription", "validate", "validateOnBlur", "version", "warnWhenUnsavedChanges", "sanitizeEmptyValues"]);
+    const redirect = (0, react_1.useRef)(props.redirect);
+    const onSave = (0, react_1.useRef)(save);
+    const formGroups = (0, react_1.useRef)({});
+    const finalMutators = (0, react_1.useMemo)(() => mutators === defaultMutators
+        ? mutators
+        : Object.assign(Object.assign({}, defaultMutators), mutators), [mutators]);
     // We don't use state here for two reasons:
     // 1. There no way to execute code only after the state has been updated
     // 2. We don't want the form to rerender when redirect is changed
-    var setRedirect = function (newRedirect) {
+    const setRedirect = newRedirect => {
         redirect.current = newRedirect;
     };
     /**
@@ -107,77 +75,76 @@ var FormWithRedirect = function (_a) {
      * if it has no custom onSave, and why this function forces a default to
      * save.
      */
-    var setOnSave = (0, react_1.useCallback)(function (newOnSave) {
+    const setOnSave = (0, react_1.useCallback)(newOnSave => {
         typeof newOnSave === 'function'
             ? (onSave.current = newOnSave)
             : (onSave.current = save);
     }, [save]);
-    var formContextValue = (0, react_1.useMemo)(function () { return ({
-        setOnSave: setOnSave,
-        getGroupFields: function (name) { return formGroups.current[name] || []; },
-        registerGroup: function (name) {
+    const formContextValue = (0, react_1.useMemo)(() => ({
+        setOnSave,
+        getGroupFields: name => formGroups.current[name] || [],
+        registerGroup: name => {
             formGroups.current[name] = formGroups.current[name] || [];
         },
-        unregisterGroup: function (name) {
+        unregisterGroup: name => {
             delete formGroups[name];
         },
-        registerField: function (source, group) {
+        registerField: (source, group) => {
             if (group) {
-                var fields = new Set(formGroups.current[group] || []);
+                const fields = new Set(formGroups.current[group] || []);
                 fields.add(source);
                 formGroups.current[group] = Array.from(fields);
             }
         },
-        unregisterField: function (source, group) {
+        unregisterField: (source, group) => {
             if (group) {
                 if (!formGroups.current[group]) {
-                    console.warn("Invalid form group ".concat(group));
+                    console.warn(`Invalid form group ${group}`);
                 }
                 else {
-                    var fields = new Set(formGroups.current[group]);
+                    const fields = new Set(formGroups.current[group]);
                     fields.delete(source);
                     formGroups.current[group] = Array.from(fields);
                 }
             }
         },
-    }); }, [setOnSave]);
-    var finalInitialValues = (0, react_1.useMemo)(function () { return (0, getFormInitialValues_1.default)(initialValues, defaultValue, record); }, [JSON.stringify({ initialValues: initialValues, defaultValue: defaultValue, record: record })]); // eslint-disable-line
-    var submit = function (values) {
-        var finalRedirect = typeof redirect.current === undefined
+    }), [setOnSave]);
+    const finalInitialValues = (0, react_1.useMemo)(() => (0, getFormInitialValues_1.default)(initialValues, defaultValue, record), [JSON.stringify({ initialValues, defaultValue, record })]); // eslint-disable-line
+    const submit = values => {
+        const finalRedirect = typeof redirect.current === undefined
             ? props.redirect
             : redirect.current;
         if (shouldSanitizeEmptyValues) {
-            var sanitizedValues = (0, sanitizeEmptyValues_1.default)(finalInitialValues, values);
+            const sanitizedValues = (0, sanitizeEmptyValues_1.default)(finalInitialValues, values);
             return onSave.current(sanitizedValues, finalRedirect);
         }
         else {
             return onSave.current(values, finalRedirect);
         }
     };
-    return (React.createElement(FormContextProvider_1.FormContextProvider, { value: formContextValue },
-        React.createElement(react_final_form_1.Form, { key: version, debug: debug, decorators: decorators, destroyOnUnregister: destroyOnUnregister, form: form, initialValues: finalInitialValues, initialValuesEqual: initialValuesEqual, keepDirtyOnReinitialize: keepDirtyOnReinitialize, mutators: finalMutators, onSubmit: submit, subscription: subscription, validate: validate, validateOnBlur: validateOnBlur, render: function (formProps) { return (
+    return ((0, jsx_runtime_1.jsx)(FormContextProvider_1.FormContextProvider, Object.assign({ value: formContextValue }, { children: (0, jsx_runtime_1.jsx)(react_final_form_1.Form, { debug: debug, decorators: decorators, destroyOnUnregister: destroyOnUnregister, form: form, initialValues: finalInitialValues, initialValuesEqual: initialValuesEqual, keepDirtyOnReinitialize: keepDirtyOnReinitialize, mutators: finalMutators, onSubmit: submit, subscription: subscription, validate: validate, validateOnBlur: validateOnBlur, render: formProps => (
             // @ts-ignore Ignored because of a weird error about the active prop
-            React.createElement(FormView, __assign({}, props, formProps, { record: record, setRedirect: setRedirect, saving: formProps.submitting || saving, render: render, save: save, warnWhenUnsavedChanges: warnWhenUnsavedChanges }))); } })));
+            (0, jsx_runtime_1.jsx)(FormView, Object.assign({}, props, formProps, { record: record, setRedirect: setRedirect, saving: formProps.form.getState().submitting || saving, render: render, save: save, warnWhenUnsavedChanges: warnWhenUnsavedChanges }), void 0)) }, version) }), void 0));
 };
-var defaultMutators = __assign(__assign({}, final_form_arrays_1.default), submitErrorsMutators_1.default);
-var defaultSubscription = {
+const defaultMutators = Object.assign(Object.assign({}, final_form_arrays_1.default), submitErrorsMutators_1.default);
+const defaultSubscription = {
     submitting: true,
     pristine: true,
     valid: true,
     invalid: true,
     validating: true,
 };
-var FormView = function (_a) {
-    var render = _a.render, warnWhenUnsavedChanges = _a.warnWhenUnsavedChanges, setRedirect = _a.setRedirect, props = __rest(_a, ["render", "warnWhenUnsavedChanges", "setRedirect"]);
+const FormView = (_a) => {
+    var { render, warnWhenUnsavedChanges, setRedirect } = _a, props = __rest(_a, ["render", "warnWhenUnsavedChanges", "setRedirect"]);
     // if record changes (after a getOne success or a refresh), the form must be updated
     (0, useInitializeFormWithRecord_1.default)(props.record);
     (0, useWarnWhenUnsavedChanges_1.default)(warnWhenUnsavedChanges);
     (0, useResetSubmitErrors_1.default)();
-    var dispatch = (0, react_redux_1.useDispatch)();
-    (0, react_1.useEffect)(function () {
-        dispatch((0, uiActions_1.setAutomaticRefresh)(props.pristine));
-    }, [dispatch, props.pristine]);
-    var redirect = props.redirect, handleSubmit = props.handleSubmit;
+    const dispatch = (0, react_redux_1.useDispatch)();
+    (0, react_1.useEffect)(() => {
+        dispatch((0, uiActions_1.setAutomaticRefresh)(props.form.getState().pristine));
+    }, [dispatch, props.form.getState().pristine]);
+    const { redirect, handleSubmit } = props;
     /**
      * We want to let developers define the redirection target from inside the form,
      * e.g. in a <SaveButton redirect="list" />.
@@ -194,11 +161,10 @@ var FormView = function (_a) {
      *     Save and edit
      * </Button>
      */
-    var handleSubmitWithRedirect = (0, react_1.useCallback)(function (redirectTo) {
-        if (redirectTo === void 0) { redirectTo = redirect; }
+    const handleSubmitWithRedirect = (0, react_1.useCallback)((redirectTo = redirect) => {
         setRedirect(redirectTo);
         handleSubmit();
     }, [setRedirect, redirect, handleSubmit]);
-    return render(__assign(__assign({}, props), { handleSubmitWithRedirect: handleSubmitWithRedirect }));
+    return render(Object.assign(Object.assign({}, props), { handleSubmitWithRedirect }));
 };
 exports.default = FormWithRedirect;

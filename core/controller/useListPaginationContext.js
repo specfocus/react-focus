@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var ListPaginationContext_1 = __importDefault(require("./ListPaginationContext"));
+const react_1 = require("react");
+const ListPaginationContext_1 = __importDefault(require("./ListPaginationContext"));
 /**
  * Hook to read the list controller props from the ListContext.
  *
@@ -23,8 +23,8 @@ var ListPaginationContext_1 = __importDefault(require("./ListPaginationContext")
  *
  * @see useListController for how it is filled
  */
-var useListPaginationContext = function (props) {
-    var context = (0, react_1.useContext)(ListPaginationContext_1.default);
+const useListPaginationContext = (props) => {
+    const context = (0, react_1.useContext)(ListPaginationContext_1.default);
     if (!context.setPage) {
         /**
          * The element isn't inside a <ListPaginationContext.Provider>

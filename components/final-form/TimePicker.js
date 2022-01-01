@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,22 +15,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimePicker = void 0;
-var react_1 = __importDefault(require("react"));
-var DatePicker_1 = require("@mui/lab/DatePicker");
-var react_final_form_1 = require("react-final-form");
-var ErrorMessage_1 = require("./ErrorMessage");
-var PickerProvider_1 = __importDefault(require("./PickerProvider"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const AdapterDateFns_1 = __importDefault(require("@mui/lab/AdapterDateFns"));
+const LocalizationProvider_1 = __importDefault(require("@mui/lab/LocalizationProvider"));
+const TimePicker_1 = __importDefault(require("@mui/lab/TimePicker"));
+const TextField_1 = __importDefault(require("@mui/material/TextField"));
+const react_final_form_1 = require("react-final-form");
+const ErrorMessage_1 = require("./ErrorMessage");
 function TimePicker(props) {
-    var name = props.name, fieldProps = props.fieldProps, rest = __rest(props, ["name", "fieldProps"]);
-    return (react_1.default.createElement(react_final_form_1.Field, __assign({ name: name, render: function (fieldRenderProps) { return react_1.default.createElement(TimePickerWrapper, __assign({}, fieldRenderProps, rest)); } }, fieldProps)));
+    const { name, fieldProps } = props, rest = __rest(props, ["name", "fieldProps"]);
+    return ((0, jsx_runtime_1.jsx)(react_final_form_1.Field, Object.assign({ name: name, render: (params) => (0, jsx_runtime_1.jsx)(TimePickerWrapper, Object.assign({}, params, rest), void 0) }, fieldProps), void 0));
 }
 exports.TimePicker = TimePicker;
 function TimePickerWrapper(props) {
-    var _a = props.input, name = _a.name, onChange = _a.onChange, value = _a.value, restInput = __rest(_a, ["name", "onChange", "value"]), meta = props.meta, dateFunsUtils = props.dateFunsUtils, locale = props.locale, _b = props.showError, showError = _b === void 0 ? ErrorMessage_1.showErrorOnChange : _b, rest = __rest(props, ["input", "meta", "dateFunsUtils", "locale", "showError"]);
-    var error = meta.error, submitError = meta.submitError;
-    var isError = showError({ meta: meta });
-    var helperText = rest.helperText, lessrest = __rest(rest, ["helperText"]);
-    return (0, PickerProvider_1.default)(dateFunsUtils, react_1.default.createElement(DatePicker_1.TimePicker, __assign({ fullWidth: true, 
+    const _a = props.input, { name, onChange, value } = _a, restInput = __rest(_a, ["name", "onChange", "value"]), { meta, dateFunsUtils, locale, showError = ErrorMessage_1.showErrorOnChange } = props, rest = __rest(props, ["input", "meta", "dateFunsUtils", "locale", "showError"]);
+    const { error, submitError } = meta;
+    const isError = showError({ meta });
+    const { helperText } = rest, lessrest = __rest(rest, ["helperText"]);
+    return ((0, jsx_runtime_1.jsx)(LocalizationProvider_1.default, Object.assign({ dateAdapter: AdapterDateFns_1.default }, { children: (0, jsx_runtime_1.jsx)(TimePicker_1.default
         // autoOk={true}
-        helperText: isError ? error || submitError : helperText, error: isError, onChange: onChange, name: name, value: value === '' ? null : value }, lessrest, { inputProps: restInput })), locale);
+        , Object.assign({ 
+            // autoOk={true}
+            onChange: onChange, value: value === '' ? null : value }, lessrest, { InputProps: restInput, renderInput: (params) => ((0, jsx_runtime_1.jsx)(TextField_1.default, Object.assign({}, params, { error: isError, name: name, onChange: onChange, helperText: isError ? (error || submitError) : helperText, fullWidth: true }), void 0)) }), void 0) }), void 0));
 }

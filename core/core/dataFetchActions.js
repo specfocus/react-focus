@@ -1,13 +1,4 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sanitizeFetchType = exports.fetchActionsWithTotalResponse = exports.fetchActionsWithArrayOfRecordsResponse = exports.fetchActionsWithArrayOfIdentifiedRecordsResponse = exports.fetchActionsWithRecordResponse = exports.DELETE_MANY = exports.DELETE = exports.UPDATE_MANY = exports.UPDATE = exports.CREATE = exports.GET_MANY_REFERENCE = exports.GET_MANY = exports.GET_ONE = exports.GET_LIST = void 0;
 exports.GET_LIST = 'GET_LIST';
@@ -25,12 +16,13 @@ exports.fetchActionsWithArrayOfIdentifiedRecordsResponse = [
     'getMany',
     'getManyReference',
 ];
-exports.fetchActionsWithArrayOfRecordsResponse = __spreadArray(__spreadArray([], exports.fetchActionsWithArrayOfIdentifiedRecordsResponse, true), [
+exports.fetchActionsWithArrayOfRecordsResponse = [
+    ...exports.fetchActionsWithArrayOfIdentifiedRecordsResponse,
     'updateMany',
     'deleteMany',
-], false);
+];
 exports.fetchActionsWithTotalResponse = ['getList', 'getManyReference'];
-var sanitizeFetchType = function (fetchType) {
+const sanitizeFetchType = (fetchType) => {
     switch (fetchType) {
         case exports.GET_LIST:
             return 'getList';

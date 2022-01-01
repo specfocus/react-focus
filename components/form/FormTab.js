@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,19 +34,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormTab = void 0;
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var FormInput_1 = __importDefault(require("./FormInput"));
-var FormTabHeader_1 = require("./FormTabHeader");
-var hiddenStyle = { display: 'none' };
-var FormTab = function (props) {
-    var basePath = props.basePath, className = props.className, contentClassName = props.contentClassName, children = props.children, hidden = props.hidden, icon = props.icon, intent = props.intent, label = props.label, margin = props.margin, path = props.path, record = props.record, resource = props.resource, variant = props.variant, value = props.value, rest = __rest(props, ["basePath", "className", "contentClassName", "children", "hidden", "icon", "intent", "label", "margin", "path", "record", "resource", "variant", "value"]);
-    var renderHeader = function () { return (React.createElement(FormTabHeader_1.FormTabHeader, __assign({ label: label, value: value, icon: icon, className: className }, rest))); };
-    var renderContent = function () { return (React.createElement(core_1.FormGroupContextProvider, { name: value.toString() },
-        React.createElement("span", { style: hidden ? hiddenStyle : null, className: contentClassName, id: "tabpanel-".concat(value), "aria-labelledby": "tabheader-".concat(value), "aria-hidden": hidden || undefined }, React.Children.map(children, function (input) {
-            return input && (React.createElement(FormInput_1.default, { basePath: basePath, input: input, record: record, resource: resource, variant: input.props.variant || variant, margin: input.props.margin || margin }));
-        })))); };
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const FormInput_1 = __importDefault(require("./FormInput"));
+const FormTabHeader_1 = require("./FormTabHeader");
+const hiddenStyle = { display: 'none' };
+const FormTab = (props) => {
+    const { basePath, className, contentClassName, children, hidden, icon, intent, label, margin, path, record, resource, variant, value } = props, rest = __rest(props, ["basePath", "className", "contentClassName", "children", "hidden", "icon", "intent", "label", "margin", "path", "record", "resource", "variant", "value"]);
+    const renderHeader = () => ((0, jsx_runtime_1.jsx)(FormTabHeader_1.FormTabHeader, Object.assign({ label: label, value: value, icon: icon, className: className }, rest), void 0));
+    const renderContent = () => ((0, jsx_runtime_1.jsx)(core_1.FormGroupContextProvider, Object.assign({ name: value.toString() }, { children: (0, jsx_runtime_1.jsx)("span", Object.assign({ style: hidden ? hiddenStyle : null, className: contentClassName, id: `tabpanel-${value}`, "aria-labelledby": `tabheader-${value}`, "aria-hidden": hidden || undefined }, { children: React.Children.map(children, (input) => input && ((0, jsx_runtime_1.jsx)(FormInput_1.default, { basePath: basePath, input: input, record: record, resource: resource, variant: input.props.variant || variant, margin: input.props.margin || margin }, void 0))) }), void 0) }), void 0));
     return intent === 'header' ? renderHeader() : renderContent();
 };
 exports.FormTab = FormTab;

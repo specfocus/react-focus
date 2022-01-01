@@ -11,11 +11,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useShowController = exports.useEditController = exports.useCreateController = void 0;
-var useCreateController_1 = require("./useCreateController");
+const useCreateController_1 = require("./useCreateController");
 Object.defineProperty(exports, "useCreateController", { enumerable: true, get: function () { return useCreateController_1.useCreateController; } });
-var useEditController_1 = require("./useEditController");
+const useEditController_1 = require("./useEditController");
 Object.defineProperty(exports, "useEditController", { enumerable: true, get: function () { return useEditController_1.useEditController; } });
-var useShowController_1 = require("./useShowController");
+const useShowController_1 = require("./useShowController");
 Object.defineProperty(exports, "useShowController", { enumerable: true, get: function () { return useShowController_1.useShowController; } });
 __exportStar(require("./CreateBase"), exports);
 __exportStar(require("./CreateContext"), exports);

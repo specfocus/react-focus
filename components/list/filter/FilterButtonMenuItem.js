@@ -1,44 +1,24 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilterButtonMenuItem = void 0;
-var MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-exports.FilterButtonMenuItem = (0, react_1.forwardRef)(function (props, ref) {
-    var filter = props.filter, onShow = props.onShow;
-    var resource = (0, core_1.useResourceContext)(props);
-    var handleShow = (0, react_1.useCallback)(function () {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+exports.FilterButtonMenuItem = (0, react_1.forwardRef)((props, ref) => {
+    const { filter, onShow } = props;
+    const resource = (0, core_1.useResourceContext)(props);
+    const handleShow = (0, react_1.useCallback)(() => {
         onShow({
             source: filter.props.source,
             defaultValue: filter.props.defaultValue,
         });
     }, [filter.props.defaultValue, filter.props.source, onShow]);
-    return (React.createElement(MenuItem_1.default, { className: "new-filter-item", "data-key": filter.props.source, "data-default-value": filter.props.defaultValue, key: filter.props.source, onClick: handleShow, ref: ref },
-        React.createElement(core_1.FieldTitle, { label: filter.props.label, source: filter.props.source, resource: resource })));
+    return ((0, jsx_runtime_1.jsx)(MenuItem_1.default, Object.assign({ className: "new-filter-item", "data-key": filter.props.source, "data-default-value": filter.props.defaultValue, onClick: handleShow, ref: ref }, { children: (0, jsx_runtime_1.jsx)(core_1.FieldTitle, { label: filter.props.label, source: filter.props.source, resource: resource }, void 0) }), filter.props.source));
 });
 exports.FilterButtonMenuItem.propTypes = {
     filter: prop_types_1.default.element.isRequired,

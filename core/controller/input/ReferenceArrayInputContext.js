@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceArrayInputContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context which provides access to the useReferenceArrayInput features.
  *

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ReactElement, ReactNode, HtmlHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
 import { FormWithRedirectProps, MutationMode, Record, RedirectionSideEffect, OnSuccess, OnFailure } from '../../core';
@@ -108,4 +109,4 @@ export interface TabbedFormProps extends Omit<FormWithRedirectProps, 'render'>, 
     variant?: 'standard' | 'outlined' | 'filled';
     warnWhenUnsavedChanges?: boolean;
 }
-export declare const findTabsWithErrors: (children: any, errors: any) => any[];
+export declare const findTabsWithErrors: (children: any, errors: any) => React.ReactChild | React.ReactFragment | React.ReactPortal;

@@ -1,17 +1,6 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var useQuery_1 = require("./useQuery");
+const useQuery_1 = require("./useQuery");
 /**
  * Fetch the data provider and pass the result to a child function
  *
@@ -61,14 +50,8 @@ var useQuery_1 = require("./useQuery");
  *     </Query>
  * );
  */
-var Query = function (_a) {
-    var children = _a.children, type = _a.type, resource = _a.resource, payload = _a.payload, 
-    // Provides an undefined onSuccess just so the key `onSuccess` is defined
-    // This is used to detect options in useDataProvider
-    _b = _a.options, 
-    // Provides an undefined onSuccess just so the key `onSuccess` is defined
-    // This is used to detect options in useDataProvider
-    options = _b === void 0 ? { onSuccess: undefined } : _b;
-    return children((0, useQuery_1.useQuery)({ type: type, resource: resource, payload: payload }, __assign(__assign({}, options), { withDeclarativeSideEffectsSupport: true })));
-};
+const Query = ({ children, type, resource, payload, 
+// Provides an undefined onSuccess just so the key `onSuccess` is defined
+// This is used to detect options in useDataProvider
+options = { onSuccess: undefined }, }) => children((0, useQuery_1.useQuery)({ type, resource, payload }, Object.assign(Object.assign({}, options), { withDeclarativeSideEffectsSupport: true })));
 exports.default = Query;

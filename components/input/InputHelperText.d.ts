@@ -5,5 +5,5 @@ export interface InputHelperTextProps {
     error?: ValidationErrorMessage;
     touched: boolean;
 }
-declare const InputHelperText: (props: InputHelperTextProps) => JSX.Element | null;
+declare const InputHelperText: (props: InputHelperTextProps) => JSX.Element;
 export default InputHelperText;

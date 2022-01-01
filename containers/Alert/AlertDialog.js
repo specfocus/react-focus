@@ -1,46 +1,40 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
         }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+    return t;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var Button_1 = __importDefault(require("@mui/material/Button"));
-var Dialog_1 = __importDefault(require("@mui/material/Dialog"));
-var DialogActions_1 = __importDefault(require("@mui/material/DialogActions"));
-var DialogContent_1 = __importDefault(require("@mui/material/DialogContent"));
-var DialogContentText_1 = __importDefault(require("@mui/material/DialogContentText"));
-var DialogTitle_1 = __importDefault(require("@mui/material/DialogTitle"));
-var Slide_1 = __importDefault(require("@mui/material/Slide"));
-var Transition = react_1.default.forwardRef(function Transition(props, ref) {
-    return react_1.default.createElement(Slide_1.default, __assign({ direction: "up", ref: ref }, props));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = __importDefault(require("react"));
+const Button_1 = __importDefault(require("@mui/material/Button"));
+const Dialog_1 = __importDefault(require("@mui/material/Dialog"));
+const DialogActions_1 = __importDefault(require("@mui/material/DialogActions"));
+const DialogContent_1 = __importDefault(require("@mui/material/DialogContent"));
+const DialogContentText_1 = __importDefault(require("@mui/material/DialogContentText"));
+const DialogTitle_1 = __importDefault(require("@mui/material/DialogTitle"));
+const Slide_1 = __importDefault(require("@mui/material/Slide"));
+const Transition = react_1.default.forwardRef(function Transition(_a, ref) {
+    var { children } = _a, props = __rest(_a, ["children"]);
+    return (0, jsx_runtime_1.jsx)(Slide_1.default, Object.assign({ direction: "up", ref: ref }, props, { children: (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: "children" }, void 0) }), void 0);
 });
 function AlertDialogSlide() {
-    var _a = react_1.default.useState(false), open = _a[0], setOpen = _a[1];
-    var handleClickOpen = function () {
+    const [open, setOpen] = react_1.default.useState(false);
+    const handleClickOpen = () => {
         setOpen(true);
     };
-    var handleClose = function () {
+    const handleClose = () => {
         setOpen(false);
     };
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement(Button_1.default, { variant: "outlined", color: "primary", onClick: handleClickOpen }, "Slide in alert dialog"),
-        react_1.default.createElement(Dialog_1.default, { open: open, TransitionComponent: Transition, keepMounted: true, onClose: handleClose, "aria-labelledby": "alert-dialog-slide-title", "aria-describedby": "alert-dialog-slide-description" },
-            react_1.default.createElement(DialogTitle_1.default, { id: "alert-dialog-slide-title" }, "Use Google's location service?"),
-            react_1.default.createElement(DialogContent_1.default, null,
-                react_1.default.createElement(DialogContentText_1.default, { id: "alert-dialog-slide-description" }, "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.")),
-            react_1.default.createElement(DialogActions_1.default, null,
-                react_1.default.createElement(Button_1.default, { onClick: handleClose, color: "primary" }, "Disagree"),
-                react_1.default.createElement(Button_1.default, { onClick: handleClose, color: "primary" }, "Agree")))));
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ variant: "outlined", color: "primary", onClick: handleClickOpen }, { children: "Slide in alert dialog" }), void 0), (0, jsx_runtime_1.jsxs)(Dialog_1.default, Object.assign({ open: open, TransitionComponent: Transition, keepMounted: true, onClose: handleClose, "aria-labelledby": "alert-dialog-slide-title", "aria-describedby": "alert-dialog-slide-description" }, { children: [(0, jsx_runtime_1.jsx)(DialogTitle_1.default, Object.assign({ id: "alert-dialog-slide-title" }, { children: "Use Google's location service?" }), void 0), (0, jsx_runtime_1.jsx)(DialogContent_1.default, { children: (0, jsx_runtime_1.jsx)(DialogContentText_1.default, Object.assign({ id: "alert-dialog-slide-description" }, { children: "Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running." }), void 0) }, void 0), (0, jsx_runtime_1.jsxs)(DialogActions_1.default, { children: [(0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ onClick: handleClose, color: "primary" }, { children: "Disagree" }), void 0), (0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ onClick: handleClose, color: "primary" }, { children: "Agree" }), void 0)] }, void 0)] }), void 0)] }, void 0));
 }
 exports.default = AlertDialogSlide;

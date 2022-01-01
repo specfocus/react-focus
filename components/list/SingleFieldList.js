@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,38 +14,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var LinearProgress_1 = __importDefault(require("@mui/material/LinearProgress"));
-var core_1 = require("../../core");
-var Link_1 = __importDefault(require("../Link"));
-var PREFIX = 'RaSingleFieldList';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
-    link: "".concat(PREFIX, "-link"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const LinearProgress_1 = __importDefault(require("@mui/material/LinearProgress"));
+const core_1 = require("../../core");
+const Link_1 = __importDefault(require("../Link"));
+const PREFIX = 'RaSingleFieldList';
+const classes = {
+    root: `${PREFIX}-root`,
+    link: `${PREFIX}-link`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.root)] = {
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginTop: -theme.spacing(1),
-            marginBottom: -theme.spacing(1),
-        },
-        _b["& .".concat(classes.link)] = {},
-        _b);
-});
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`& .${classes.root}`]: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginTop: -theme.spacing(1),
+        marginBottom: -theme.spacing(1),
+    },
+    [`& .${classes.link}`]: {},
+}));
 // useful to prevent click bubbling in a datagrid with rowClick
-var stopPropagation = function (e) { return e.stopPropagation(); };
+const stopPropagation = e => e.stopPropagation();
 // Our handleClick does nothing as we wrap the children inside a Link but it is
 // required by ChipField, which uses a Chip from material-ui.
 // The material-ui Chip requires an onClick handler to behave like a clickable element.
-var handleClick = function () { };
+const handleClick = () => { };
 /**
  * Iterator component to be used to display a list of entities, using a single field
  *
@@ -108,35 +74,34 @@ var handleClick = function () { };
  *     </SingleFieldList>
  * </ReferenceManyField>
  */
-var SingleFieldList = function (props) {
-    var className = props.className, children = props.children, _a = props.linkType, linkType = _a === void 0 ? 'edit' : _a, _b = props.component, component = _b === void 0 ? Root : _b, rest = __rest(props, ["className", "children", "linkType", "component"]);
-    var _c = (0, core_1.useListContext)(props), ids = _c.ids, data = _c.data, loaded = _c.loaded, basePath = _c.basePath;
-    var resource = (0, core_1.useResourceContext)(props);
-    var Component = component;
+const SingleFieldList = (props) => {
+    const { className, children, linkType = 'edit', component = Root } = props, rest = __rest(props, ["className", "children", "linkType", "component"]);
+    const { ids, data, loaded, basePath } = (0, core_1.useListContext)(props);
+    const resource = (0, core_1.useResourceContext)(props);
+    const Component = component;
     if (loaded === false) {
-        return React.createElement(LinearProgress_1.default, null);
+        return (0, jsx_runtime_1.jsx)(LinearProgress_1.default, {}, void 0);
     }
-    return (React.createElement(Component, __assign({ className: (0, classnames_1.default)(classes.root, className) }, (0, core_1.sanitizeListRestProps)(rest)), ids.map(function (id) {
-        var resourceLinkPath = !linkType
-            ? false
-            : (0, core_1.linkToRecord)(basePath, id, linkType);
-        if (resourceLinkPath) {
-            return (React.createElement(core_1.RecordContextProvider, { value: data[id], key: id },
-                React.createElement(Link_1.default, { className: classes.link, key: id, to: resourceLinkPath, onClick: stopPropagation }, (0, react_1.cloneElement)(react_1.Children.only(children), {
+    return ((0, jsx_runtime_1.jsx)(Component, Object.assign({ className: (0, classnames_1.default)(classes.root, className) }, (0, core_1.sanitizeListRestProps)(rest), { children: ids.map(id => {
+            const resourceLinkPath = !linkType
+                ? false
+                : (0, core_1.linkToRecord)(basePath, id, linkType);
+            if (resourceLinkPath) {
+                return ((0, jsx_runtime_1.jsx)(core_1.RecordContextProvider, Object.assign({ value: data[id] }, { children: (0, jsx_runtime_1.jsx)(Link_1.default, Object.assign({ className: classes.link, to: resourceLinkPath, onClick: stopPropagation }, { children: (0, react_1.cloneElement)(react_1.Children.only(children), {
+                            record: data[id],
+                            resource,
+                            basePath,
+                            // Workaround to force ChipField to be clickable
+                            onClick: handleClick,
+                        }) }), id) }), id));
+            }
+            return ((0, jsx_runtime_1.jsx)(core_1.RecordContextProvider, Object.assign({ value: data[id] }, { children: (0, react_1.cloneElement)(react_1.Children.only(children), {
+                    key: id,
                     record: data[id],
-                    resource: resource,
-                    basePath: basePath,
-                    // Workaround to force ChipField to be clickable
-                    onClick: handleClick,
-                }))));
-        }
-        return (React.createElement(core_1.RecordContextProvider, { value: data[id], key: id }, (0, react_1.cloneElement)(react_1.Children.only(children), {
-            key: id,
-            record: data[id],
-            resource: resource,
-            basePath: basePath,
-        })));
-    })));
+                    resource,
+                    basePath,
+                }) }), id));
+        }) }), void 0));
 };
 SingleFieldList.propTypes = {
     basePath: prop_types_1.default.string,

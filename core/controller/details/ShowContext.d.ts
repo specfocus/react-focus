@@ -7,7 +7,7 @@ import { ShowControllerProps } from './useShowController';
  *
  * @example
  *
- * import { useShowController, ShowContextProvider } from '../../core';
+ * import { useShowController, ShowContextProvider } from '../../../core';
  *
  * const Show = props => {
  *     const controllerProps = useShowController(props);

@@ -39,4 +39,4 @@ export interface UserLogoutAction {
  * @param redirectTo Path to direct to after logout
  * @return {{type: string, payload: {redirectTo: string}, meta: {auth: boolean}}}
  */
-export declare const userLogout: (redirectTo?: string | undefined) => UserLogoutAction;
+export declare const userLogout: (redirectTo?: string) => UserLogoutAction;

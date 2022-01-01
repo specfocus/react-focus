@@ -8,4 +8,4 @@ exports.types = [
     'UI Design',
     'Website design',
 ];
-exports.typeChoices = exports.types.map(function (type) { return ({ id: type, name: type }); });
+exports.typeChoices = exports.types.map(type => ({ id: type, name: type }));

@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("../core");
-var defaultDataProvider = function () { return Promise.resolve(); };
-defaultDataProvider.create = function () { return Promise.resolve(null); };
-defaultDataProvider.delete = function () { return Promise.resolve(null); };
-defaultDataProvider.deleteMany = function () { return Promise.resolve(null); };
-defaultDataProvider.getList = function () { return Promise.resolve(null); };
-defaultDataProvider.getMany = function () { return Promise.resolve(null); };
-defaultDataProvider.getManyReference = function () { return Promise.resolve(null); };
-defaultDataProvider.getOne = function () { return Promise.resolve(null); };
-defaultDataProvider.update = function () { return Promise.resolve(null); };
-defaultDataProvider.updateMany = function () { return Promise.resolve(null); };
-var fetchMap = {
+const core_1 = require("../../core");
+const defaultDataProvider = () => Promise.resolve();
+defaultDataProvider.create = () => Promise.resolve(null);
+defaultDataProvider.delete = () => Promise.resolve(null);
+defaultDataProvider.deleteMany = () => Promise.resolve(null);
+defaultDataProvider.getList = () => Promise.resolve(null);
+defaultDataProvider.getMany = () => Promise.resolve(null);
+defaultDataProvider.getManyReference = () => Promise.resolve(null);
+defaultDataProvider.getOne = () => Promise.resolve(null);
+defaultDataProvider.update = () => Promise.resolve(null);
+defaultDataProvider.updateMany = () => Promise.resolve(null);
+const fetchMap = {
     create: core_1.CREATE,
     delete: core_1.DELETE,
     deleteMany: core_1.DELETE_MANY,
@@ -31,18 +31,18 @@ var fetchMap = {
  *
  * @returns {Object} A dataProvider that ../../app can use
  */
-var convertLegacyDataProvider = function (legacyDataProvider) {
-    var proxy = new Proxy(defaultDataProvider, {
-        get: function (_, name) {
-            return function (resource, params) {
+const convertLegacyDataProvider = (legacyDataProvider) => {
+    const proxy = new Proxy(defaultDataProvider, {
+        get(_, name) {
+            return (resource, params) => {
                 if (Object.keys(fetchMap).includes(name.toString())) {
-                    var fetchType = fetchMap[name.toString()];
+                    const fetchType = fetchMap[name.toString()];
                     return legacyDataProvider(fetchType, resource, params);
                 }
                 return legacyDataProvider(name.toString(), resource, params);
             };
         },
-        apply: function (_, __, args) {
+        apply(_, __, args) {
             return legacyDataProvider.apply(legacyDataProvider, args);
         },
     });

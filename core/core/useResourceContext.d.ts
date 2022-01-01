@@ -33,4 +33,4 @@ import { ResourceContextValue } from './ResourceContext';
  */
 export declare const useResourceContext: <ResourceInformationsType extends Partial<{
     resource: string;
-}>>(props?: ResourceInformationsType | undefined) => ResourceContextValue;
+}>>(props?: ResourceInformationsType) => ResourceContextValue;

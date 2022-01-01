@@ -1,87 +1,59 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatagridHeader = void 0;
-var material_1 = require("@mui/material");
-var classnames_1 = __importDefault(require("classnames"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-var DatagridHeaderCell_1 = __importDefault(require("./DatagridHeaderCell"));
-var useDatagridStyles_1 = require("./useDatagridStyles");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const classnames_1 = __importDefault(require("classnames"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+const DatagridHeaderCell_1 = __importDefault(require("./DatagridHeaderCell"));
+const useDatagridStyles_1 = require("./useDatagridStyles");
 /**
  * The default Datagrid Header component.
  *
  * Renders select all checkbox as well as column header buttons used for sorting.
  */
-var DatagridHeader = function (props) {
-    var children = props.children, className = props.className, _a = props.hasExpand, hasExpand = _a === void 0 ? false : _a, _b = props.hasBulkActions, hasBulkActions = _b === void 0 ? false : _b, isRowSelectable = props.isRowSelectable;
-    var resource = (0, core_1.useResourceContext)(props);
-    var translate = (0, core_1.useTranslate)();
-    var _c = (0, core_1.useListContext)(props), currentSort = _c.currentSort, data = _c.data, ids = _c.ids, onSelect = _c.onSelect, selectedIds = _c.selectedIds, setSort = _c.setSort;
-    var updateSortCallback = (0, react_1.useCallback)(function (event) {
+const DatagridHeader = (props) => {
+    const { children, className, hasExpand = false, hasBulkActions = false, isRowSelectable, } = props;
+    const resource = (0, core_1.useResourceContext)(props);
+    const translate = (0, core_1.useTranslate)();
+    const { currentSort, data, ids, onSelect, selectedIds, setSort, } = (0, core_1.useListContext)(props);
+    const updateSortCallback = (0, react_1.useCallback)(event => {
         event.stopPropagation();
-        var newField = event.currentTarget.dataset.field;
-        var newOrder = currentSort.field === newField
+        const newField = event.currentTarget.dataset.field;
+        const newOrder = currentSort.field === newField
             ? currentSort.order === 'ASC'
                 ? 'DESC'
                 : 'ASC'
             : event.currentTarget.dataset.order;
         setSort(newField, newOrder);
     }, [currentSort.field, currentSort.order, setSort]);
-    var updateSort = setSort ? updateSortCallback : null;
-    var handleSelectAll = (0, react_1.useCallback)(function (event) {
+    const updateSort = setSort ? updateSortCallback : null;
+    const handleSelectAll = (0, react_1.useCallback)(event => {
         if (event.target.checked) {
-            var all = ids.concat(selectedIds.filter(function (id) { return !ids.includes(id); }));
+            const all = ids.concat(selectedIds.filter(id => !ids.includes(id)));
             onSelect(isRowSelectable
-                ? all.filter(function (id) { return isRowSelectable(data[id]); })
+                ? all.filter(id => isRowSelectable(data[id]))
                 : all);
         }
         else {
             onSelect([]);
         }
     }, [data, ids, onSelect, isRowSelectable, selectedIds]);
-    var selectableIds = isRowSelectable
-        ? ids.filter(function (id) { return isRowSelectable(data[id]); })
+    const selectableIds = isRowSelectable
+        ? ids.filter(id => isRowSelectable(data[id]))
         : ids;
-    return (React.createElement(material_1.TableHead, { className: (0, classnames_1.default)(className, useDatagridStyles_1.DatagridClasses.thead) },
-        React.createElement(material_1.TableRow, { className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.row, useDatagridStyles_1.DatagridClasses.headerRow) },
-            hasExpand && (React.createElement(material_1.TableCell, { padding: "none", className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.headerCell, useDatagridStyles_1.DatagridClasses.expandHeader) })),
-            hasBulkActions && selectedIds && (React.createElement(material_1.TableCell, { padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.headerCell },
-                React.createElement(material_1.Checkbox, { "aria-label": translate('ra.action.select_all', {
-                        _: 'Select all',
-                    }), className: "select-all", color: "primary", checked: selectedIds.length > 0 &&
-                        selectableIds.length > 0 &&
-                        selectableIds.every(function (id) {
-                            return selectedIds.includes(id);
-                        }), onChange: handleSelectAll }))),
-            react_1.Children.map(children, function (field, index) {
-                return (0, react_1.isValidElement)(field) ? (React.createElement(DatagridHeaderCell_1.default, { className: useDatagridStyles_1.DatagridClasses.headerCell, currentSort: currentSort, field: field, isSorting: currentSort.field ===
+    return ((0, jsx_runtime_1.jsx)(material_1.TableHead, Object.assign({ className: (0, classnames_1.default)(className, useDatagridStyles_1.DatagridClasses.thead) }, { children: (0, jsx_runtime_1.jsxs)(material_1.TableRow, Object.assign({ className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.row, useDatagridStyles_1.DatagridClasses.headerRow) }, { children: [hasExpand && ((0, jsx_runtime_1.jsx)(material_1.TableCell, { padding: "none", className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.headerCell, useDatagridStyles_1.DatagridClasses.expandHeader) }, void 0)), hasBulkActions && selectedIds && ((0, jsx_runtime_1.jsx)(material_1.TableCell, Object.assign({ padding: "checkbox", className: useDatagridStyles_1.DatagridClasses.headerCell }, { children: (0, jsx_runtime_1.jsx)(material_1.Checkbox, { "aria-label": translate('ra.action.select_all', {
+                            _: 'Select all',
+                        }), className: "select-all", color: "primary", checked: selectedIds.length > 0 &&
+                            selectableIds.length > 0 &&
+                            selectableIds.every(id => selectedIds.includes(id)), onChange: handleSelectAll }, void 0) }), void 0)), react_1.Children.map(children, (field, index) => (0, react_1.isValidElement)(field) ? ((0, jsx_runtime_1.jsx)(DatagridHeaderCell_1.default, { className: useDatagridStyles_1.DatagridClasses.headerCell, currentSort: currentSort, field: field, isSorting: currentSort.field ===
                         (field.props.sortBy ||
-                            field.props.source), key: field.props.source || index, resource: resource, updateSort: updateSort })) : null;
-            }))));
+                            field.props.source), resource: resource, updateSort: updateSort }, field.props.source || index)) : null)] }), void 0) }), void 0));
 };
 exports.DatagridHeader = DatagridHeader;
 exports.DatagridHeader.propTypes = {

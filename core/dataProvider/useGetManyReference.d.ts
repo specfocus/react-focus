@@ -53,10 +53,10 @@ interface UseGetManyReferenceOptions {
  *     )}</ul>;
  * };
  */
-declare const useGetManyReference: (resource: string, target: string, id: Identifier, pagination: PaginationPayload, sort: SortPayload, filter: object, referencingResource: string, options?: UseGetManyReferenceOptions | undefined) => {
+declare const useGetManyReference: (resource: string, target: string, id: Identifier, pagination: PaginationPayload, sort: SortPayload, filter: object, referencingResource: string, options?: UseGetManyReferenceOptions) => {
     data: any;
     ids: any;
-    total: number | undefined;
+    total: number;
     error: any;
     loading: boolean;
     loaded: boolean;

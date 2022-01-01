@@ -4,10 +4,10 @@ declare class InferredElement {
     private type?;
     private props?;
     private children?;
-    constructor(type?: InferredType | undefined, props?: any, children?: any);
-    getElement(props?: {}): import("react").DetailedReactHTMLElement<import("react").InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined;
+    constructor(type?: InferredType, props?: any, children?: any);
+    getElement(props?: {}): import("react").ReactElement<{}, string | import("react").JSXElementConstructor<any>>;
     getProps(): any;
     isDefined(): boolean;
-    getRepresentation(): string | undefined;
+    getRepresentation(): string;
 }
 export default InferredElement;

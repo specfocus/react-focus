@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var TranslationContext_1 = require("./TranslationContext");
+const react_1 = require("react");
+const TranslationContext_1 = require("./TranslationContext");
 /**
  * Get the current locale from the TranslationContext
  *
@@ -20,8 +20,8 @@ var TranslationContext_1 = require("./TranslationContext");
  *     return <span>{availableLanguages[locale]}</span>;
  * }
  */
-var useLocale = function () {
-    var locale = (0, react_1.useContext)(TranslationContext_1.TranslationContext).locale;
+const useLocale = () => {
+    const { locale } = (0, react_1.useContext)(TranslationContext_1.TranslationContext);
     return locale;
 };
 exports.default = useLocale;

@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useTranslatable = void 0;
-var react_1 = require("react");
-var core_1 = require("../core");
-var util_1 = require("../util");
-var useLocale_1 = __importDefault(require("./useLocale"));
-var useTranslate_1 = __importDefault(require("./useTranslate"));
+const react_1 = require("react");
+const core_1 = require("../../core");
+const util_1 = require("../util");
+const useLocale_1 = __importDefault(require("./useLocale"));
+const useTranslate_1 = __importDefault(require("./useTranslate"));
 /**
  * Hook supplying the logic to translate a field value in multiple languages.
  *
@@ -24,28 +24,25 @@ var useTranslate_1 = __importDefault(require("./useTranslate"));
  * - getSource: A function which returns the source for the given field
  * - selectLocale: A function which set the selected locale
  */
-var useTranslatable = function (options) {
-    var localeFromUI = (0, useLocale_1.default)();
-    var _a = options.defaultLocale, defaultLocale = _a === void 0 ? localeFromUI : _a, locales = options.locales;
-    var _b = (0, react_1.useState)(defaultLocale), selectedLocale = _b[0], setSelectedLocale = _b[1];
-    var resource = (0, core_1.useResourceContext)({});
-    var translate = (0, useTranslate_1.default)();
-    var context = (0, react_1.useMemo)(function () { return ({
-        getSource: function (source, locale) {
-            if (locale === void 0) { locale = selectedLocale; }
-            return "".concat(source, ".").concat(locale);
-        },
-        getLabel: function (source, label) {
-            return translate.apply(void 0, (0, util_1.getFieldLabelTranslationArgs)({
-                source: source,
-                resource: resource,
-                label: label,
+const useTranslatable = (options) => {
+    const localeFromUI = (0, useLocale_1.default)();
+    const { defaultLocale = localeFromUI, locales } = options;
+    const [selectedLocale, setSelectedLocale] = (0, react_1.useState)(defaultLocale);
+    const resource = (0, core_1.useResourceContext)({});
+    const translate = (0, useTranslate_1.default)();
+    const context = (0, react_1.useMemo)(() => ({
+        getSource: (source, locale = selectedLocale) => `${source}.${locale}`,
+        getLabel: (source, label) => {
+            return translate(...(0, util_1.getFieldLabelTranslationArgs)({
+                source,
+                resource,
+                label,
             }));
         },
-        locales: locales,
-        selectedLocale: selectedLocale,
+        locales,
+        selectedLocale,
         selectLocale: setSelectedLocale,
-    }); }, [locales, resource, selectedLocale, translate]);
+    }), [locales, resource, selectedLocale, translate]);
     return context;
 };
 exports.useTranslatable = useTranslatable;

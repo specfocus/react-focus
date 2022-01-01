@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var defaults_1 = __importDefault(require("lodash/defaults"));
-var ListContext_1 = __importDefault(require("./ListContext"));
+const react_1 = require("react");
+const defaults_1 = __importDefault(require("lodash/defaults"));
+const ListContext_1 = __importDefault(require("./ListContext"));
 /**
  * Hook to read the list controller props from the ListContext.
  *
@@ -94,13 +94,11 @@ var ListContext_1 = __importDefault(require("./ListContext"));
  *     );
  * }
  */
-var useListContext = function (props) {
-    var context = (0, react_1.useContext)(ListContext_1.default);
+const useListContext = (props) => {
+    const context = (0, react_1.useContext)(ListContext_1.default);
     // Props take precedence over the context
     // @ts-ignore
-    return (0, react_1.useMemo)(function () {
-        return (0, defaults_1.default)({}, props != null ? extractListContextProps(props) : {}, context);
-    }, [context, props]);
+    return (0, react_1.useMemo)(() => (0, defaults_1.default)({}, props != null ? extractListContextProps(props) : {}, context), [context, props]);
 };
 exports.default = useListContext;
 /**
@@ -110,33 +108,30 @@ exports.default = useListContext;
  *
  * @returns {ListControllerProps} List controller props
  */
-var extractListContextProps = function (_a) {
-    var basePath = _a.basePath, currentSort = _a.currentSort, data = _a.data, defaultTitle = _a.defaultTitle, displayedFilters = _a.displayedFilters, filterValues = _a.filterValues, hasCreate = _a.hasCreate, hideFilter = _a.hideFilter, ids = _a.ids, loaded = _a.loaded, loading = _a.loading, onSelect = _a.onSelect, onToggleItem = _a.onToggleItem, onUnselectItems = _a.onUnselectItems, page = _a.page, perPage = _a.perPage, refetch = _a.refetch, resource = _a.resource, selectedIds = _a.selectedIds, setFilters = _a.setFilters, setPage = _a.setPage, setPerPage = _a.setPerPage, setSort = _a.setSort, showFilter = _a.showFilter, total = _a.total;
-    return ({
-        basePath: basePath,
-        currentSort: currentSort,
-        data: data,
-        defaultTitle: defaultTitle,
-        displayedFilters: displayedFilters,
-        filterValues: filterValues,
-        hasCreate: hasCreate,
-        hideFilter: hideFilter,
-        ids: ids,
-        loaded: loaded,
-        loading: loading,
-        onSelect: onSelect,
-        onToggleItem: onToggleItem,
-        onUnselectItems: onUnselectItems,
-        page: page,
-        perPage: perPage,
-        refetch: refetch,
-        resource: resource,
-        selectedIds: selectedIds,
-        setFilters: setFilters,
-        setPage: setPage,
-        setPerPage: setPerPage,
-        setSort: setSort,
-        showFilter: showFilter,
-        total: total,
-    });
-};
+const extractListContextProps = ({ basePath, currentSort, data, defaultTitle, displayedFilters, filterValues, hasCreate, hideFilter, ids, loaded, loading, onSelect, onToggleItem, onUnselectItems, page, perPage, refetch, resource, selectedIds, setFilters, setPage, setPerPage, setSort, showFilter, total, }) => ({
+    basePath,
+    currentSort,
+    data,
+    defaultTitle,
+    displayedFilters,
+    filterValues,
+    hasCreate,
+    hideFilter,
+    ids,
+    loaded,
+    loading,
+    onSelect,
+    onToggleItem,
+    onUnselectItems,
+    page,
+    perPage,
+    refetch,
+    resource,
+    selectedIds,
+    setFilters,
+    setPage,
+    setPerPage,
+    setSort,
+    showFilter,
+    total,
+});

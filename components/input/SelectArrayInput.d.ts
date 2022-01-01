@@ -59,7 +59,7 @@ import { SupportCreateSuggestionOptions } from './useSupportCreateSuggestion';
 declare const SelectArrayInput: {
     (props: SelectArrayInputProps): JSX.Element;
     propTypes: {
-        choices: PropTypes.Requireable<(object | null | undefined)[]>;
+        choices: PropTypes.Requireable<object[]>;
         className: PropTypes.Requireable<string>;
         children: PropTypes.Requireable<PropTypes.ReactNodeLike>;
         label: PropTypes.Requireable<string | boolean>;

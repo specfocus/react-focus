@@ -5,7 +5,7 @@ import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { Record } from '../../../core';
 import { DisableRemoveFunction } from './SimpleFormIteratorItem';
 export declare const SimpleFormIterator: {
-    (props: SimpleFormIteratorProps): JSX.Element | null;
+    (props: SimpleFormIteratorProps): JSX.Element;
     defaultProps: {
         disableAdd: boolean;
         disableRemove: boolean;

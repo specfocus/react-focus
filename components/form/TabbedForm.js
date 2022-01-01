@@ -1,54 +1,15 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findTabsWithErrors = exports.TabbedForm = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var get_1 = __importDefault(require("lodash/get"));
-var TabbedFormView_1 = require("./TabbedFormView");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const get_1 = __importDefault(require("lodash/get"));
+const TabbedFormView_1 = require("./TabbedFormView");
 /**
  * Form layout where inputs are divided by tab, one input per line.
  *
@@ -116,7 +77,7 @@ var TabbedFormView_1 = require("./TabbedFormView");
  *
  * @param {Props} props
  */
-var TabbedForm = function (props) { return (React.createElement(core_1.FormWithRedirect, __assign({}, props, { render: function (formProps) { return React.createElement(TabbedFormView_1.TabbedFormView, __assign({}, formProps)); } }))); };
+const TabbedForm = (props) => ((0, jsx_runtime_1.jsx)(core_1.FormWithRedirect, Object.assign({}, props, { render: formProps => (0, jsx_runtime_1.jsx)(TabbedFormView_1.TabbedFormView, Object.assign({}, formProps), void 0) }), void 0));
 exports.TabbedForm = TabbedForm;
 exports.TabbedForm.propTypes = {
     children: prop_types_1.default.node,
@@ -136,17 +97,15 @@ exports.TabbedForm.propTypes = {
     validate: prop_types_1.default.func,
     sanitizeEmptyValues: prop_types_1.default.bool,
 };
-var findTabsWithErrors = function (children, errors) {
+const findTabsWithErrors = (children, errors) => {
     console.warn('Deprecated. FormTab now wrap their content inside a FormGroupContextProvider. If you implemented custom forms with tabs, please use the FormGroupContextProvider. See https://marmelab.com/../../app/CreateEdit.html#grouping-inputs');
-    return react_1.Children.toArray(children).reduce(function (acc, child) {
+    return react_1.Children.toArray(children).reduce((acc, child) => {
         if (!(0, react_1.isValidElement)(child)) {
             return acc;
         }
-        var inputs = react_1.Children.toArray(child.props.children);
-        if (inputs.some(function (input) {
-            return (0, react_1.isValidElement)(input) && (0, get_1.default)(errors, input.props.source);
-        })) {
-            return __spreadArray(__spreadArray([], acc, true), [child.props.label], false);
+        const inputs = react_1.Children.toArray(child.props.children);
+        if (inputs.some(input => (0, react_1.isValidElement)(input) && (0, get_1.default)(errors, input.props.source))) {
+            return [...acc, child.props.label];
         }
         return acc;
     }, []);

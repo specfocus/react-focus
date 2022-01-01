@@ -45,7 +45,7 @@ import { MutationOptions, Mutation } from './useMutation';
  *     return <button disabled={loading} onClick={deleteMany}>Delete selected posts</button>;
  * };
  */
-declare const useDeleteMany: (resource?: string | undefined, ids?: Identifier[] | undefined, options?: MutationOptions | undefined) => UseDeleteManyHookValue;
+declare const useDeleteMany: (resource?: string, ids?: Identifier[], options?: MutationOptions) => UseDeleteManyHookValue;
 declare type UseDeleteManyHookValue = [
     (resource?: string | Partial<Mutation> | Event, ids?: Identifier[] | Partial<MutationOptions>, options?: MutationOptions) => void | Promise<any>,
     {

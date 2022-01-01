@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useGetPermissions_1 = __importDefault(require("./useGetPermissions"));
-var hooks_1 = require("../util/hooks");
-var emptyParams = {};
+const react_1 = require("react");
+const useGetPermissions_1 = __importDefault(require("./useGetPermissions"));
+const hooks_1 = require("../util/hooks");
+const emptyParams = {};
 /**
  * Hook for getting user permissions
  *
@@ -37,23 +37,22 @@ var emptyParams = {};
  *         }
  *     };
  */
-var usePermissions = function (params) {
-    if (params === void 0) { params = emptyParams; }
-    var _a = (0, hooks_1.useSafeSetState)({
+const usePermissions = (params = emptyParams) => {
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
         loading: true,
         loaded: false,
-    }), state = _a[0], setState = _a[1];
-    var getPermissions = (0, useGetPermissions_1.default)();
-    (0, react_1.useEffect)(function () {
+    });
+    const getPermissions = (0, useGetPermissions_1.default)();
+    (0, react_1.useEffect)(() => {
         getPermissions(params)
-            .then(function (permissions) {
-            setState({ loading: false, loaded: true, permissions: permissions });
+            .then(permissions => {
+            setState({ loading: false, loaded: true, permissions });
         })
-            .catch(function (error) {
+            .catch(error => {
             setState({
                 loading: false,
                 loaded: true,
-                error: error,
+                error,
             });
         });
     }, [getPermissions, params, setState]);

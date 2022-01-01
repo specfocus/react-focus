@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var fetchActions_1 = require("../actions/fetchActions");
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const fetchActions_1 = require("../actions/fetchActions");
 /**
  * Update the loading count, which starts or stops the loading indicator.
  *
@@ -23,13 +23,13 @@ var fetchActions_1 = require("../actions/fetchActions");
  *      return <span>Foo</span>;
  * }
  */
-exports.default = (function () {
-    var dispatch = (0, react_redux_1.useDispatch)();
-    var startLoading = (0, react_1.useCallback)(function () {
+exports.default = () => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const startLoading = (0, react_1.useCallback)(() => {
         dispatch((0, fetchActions_1.fetchStart)());
     }, [dispatch]);
-    var stopLoading = (0, react_1.useCallback)(function () {
+    const stopLoading = (0, react_1.useCallback)(() => {
         dispatch((0, fetchActions_1.fetchEnd)());
     }, [dispatch]);
-    return { startLoading: startLoading, stopLoading: stopLoading };
-});
+    return { startLoading, stopLoading };
+};

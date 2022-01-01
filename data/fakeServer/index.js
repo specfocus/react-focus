@@ -19,11 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = (function (type) {
+exports.default = (type) => {
     switch (type) {
         case 'graphql':
-            return Promise.resolve().then(function () { return __importStar(require('./graphql')); }).then(function (factory) { return factory.default(); });
+            return Promise.resolve().then(() => __importStar(require('./graphql'))).then(factory => factory.default());
         default:
-            return Promise.resolve().then(function () { return __importStar(require('./rest')); }).then(function (factory) { return factory.default(); });
+            return Promise.resolve().then(() => __importStar(require('./rest'))).then(factory => factory.default());
     }
-});
+};

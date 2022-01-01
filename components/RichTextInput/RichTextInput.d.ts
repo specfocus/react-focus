@@ -1,7 +1,6 @@
 import { FunctionComponent, ComponentProps } from 'react';
 import Quill, { QuillOptionsStatic } from 'quill';
 import { InputHelperText } from '..';
-import { PropTypes as MuiPropTypes } from '@mui/material';
 export interface RichTextInputProps {
     label?: string | false;
     options?: QuillOptionsStatic;
@@ -16,7 +15,7 @@ export interface RichTextInputProps {
     record?: Record<any, any>;
     resource?: string;
     variant?: string;
-    margin?: MuiPropTypes.Margin;
+    margin?: any;
     [key: string]: any;
 }
 declare const RichTextInput: FunctionComponent<RichTextInputProps>;

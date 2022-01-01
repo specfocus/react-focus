@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useReference = void 0;
-var dataProvider_1 = require("../dataProvider");
+const dataProvider_1 = require("../dataProvider");
 /**
  * @typedef ReferenceProps
  * @type {Object}
@@ -28,17 +28,16 @@ var dataProvider_1 = require("../dataProvider");
  *
  * @returns {ReferenceProps} The reference record
  */
-var useReference = function (_a) {
-    var reference = _a.reference, id = _a.id;
-    var _b = (0, dataProvider_1.useGetMany)(reference, [
+const useReference = ({ reference, id }) => {
+    const { data, error, loading, loaded, refetch } = (0, dataProvider_1.useGetMany)(reference, [
         id,
-    ]), data = _b.data, error = _b.error, loading = _b.loading, loaded = _b.loaded, refetch = _b.refetch;
+    ]);
     return {
         referenceRecord: error ? undefined : data[0],
-        refetch: refetch,
-        error: error,
-        loading: loading,
-        loaded: loaded,
+        refetch,
+        error,
+        loading,
+        loaded,
     };
 };
 exports.useReference = useReference;

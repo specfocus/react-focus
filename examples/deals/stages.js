@@ -17,8 +17,8 @@ exports.stageNames = {
     lost: 'Lost',
     delayed: 'Delayed',
 };
-exports.stageChoices = exports.stages.map(function (type) { return ({
+exports.stageChoices = exports.stages.map(type => ({
     id: type,
     /* @ts-ignore */
     name: exports.stageNames[type],
-}); });
+}));

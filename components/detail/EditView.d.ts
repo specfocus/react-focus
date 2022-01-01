@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { EditControllerProps } from '../../core';
 import { EditProps } from '../types';
 export declare const EditView: {
-    (props: EditViewProps): JSX.Element | null;
+    (props: EditViewProps): JSX.Element;
     propTypes: {
         actions: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         aside: PropTypes.Requireable<PropTypes.ReactElementLike>;
         basePath: PropTypes.Requireable<string>;
         children: PropTypes.Requireable<PropTypes.ReactElementLike>;
         className: PropTypes.Requireable<string>;
-        component: (props: any, propName: any, componentName: any) => Error | undefined;
+        component: (props: any, propName: any, componentName: any) => Error;
         defaultTitle: PropTypes.Requireable<any>;
         hasList: PropTypes.Requireable<boolean>;
         hasShow: PropTypes.Requireable<boolean>;

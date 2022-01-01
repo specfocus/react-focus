@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_redux_1 = require("react-redux");
-var useIsAutomaticRefreshEnabled = function () {
-    var automaticRefreshEnabled = (0, react_redux_1.useSelector)(function (state) { return state.admin.ui.automaticRefreshEnabled; });
+const react_redux_1 = require("react-redux");
+const useIsAutomaticRefreshEnabled = () => {
+    const automaticRefreshEnabled = (0, react_redux_1.useSelector)(state => state.admin.ui.automaticRefreshEnabled);
     return automaticRefreshEnabled;
 };
 exports.default = useIsAutomaticRefreshEnabled;

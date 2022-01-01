@@ -22,10 +22,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useAuthProvider_1 = __importStar(require("./useAuthProvider"));
-var useLogout_1 = __importDefault(require("./useLogout"));
-var useNotify_1 = __importDefault(require("../sideEffect/useNotify"));
+const react_1 = require("react");
+const useAuthProvider_1 = __importStar(require("./useAuthProvider"));
+const useLogout_1 = __importDefault(require("./useLogout"));
+const useNotify_1 = __importDefault(require("../sideEffect/useNotify"));
 /**
  * Get a callback for calling the authProvider.checkAuth() method.
  * In case of rejection, redirects to the login page, displays a notification,
@@ -62,36 +62,28 @@ var useNotify_1 = __importDefault(require("../sideEffect/useNotify"));
  *     return authenticated ? <Bar /> : <BarNotAuthenticated />;
  * } // tip: use useAuthState() hook instead
  */
-var useCheckAuth = function () {
-    var authProvider = (0, useAuthProvider_1.default)();
-    var notify = (0, useNotify_1.default)();
-    var logout = (0, useLogout_1.default)();
-    var checkAuth = (0, react_1.useCallback)(function (params, logoutOnFailure, redirectTo, disableNotification) {
-        if (params === void 0) { params = {}; }
-        if (logoutOnFailure === void 0) { logoutOnFailure = true; }
-        if (redirectTo === void 0) { redirectTo = useAuthProvider_1.defaultAuthParams.loginUrl; }
-        if (disableNotification === void 0) { disableNotification = false; }
-        return authProvider.checkAuth(params).catch(function (error) {
-            if (logoutOnFailure) {
-                logout({}, error && error.redirectTo
-                    ? error.redirectTo
-                    : redirectTo);
-                var shouldSkipNotify = disableNotification ||
-                    (error && error.message === false);
-                !shouldSkipNotify &&
-                    notify(getErrorMessage(error, 'ra.auth.auth_check_error'), 'warning');
-            }
-            throw error;
-        });
-    }, [authProvider, logout, notify]);
+const useCheckAuth = () => {
+    const authProvider = (0, useAuthProvider_1.default)();
+    const notify = (0, useNotify_1.default)();
+    const logout = (0, useLogout_1.default)();
+    const checkAuth = (0, react_1.useCallback)((params = {}, logoutOnFailure = true, redirectTo = useAuthProvider_1.defaultAuthParams.loginUrl, disableNotification = false) => authProvider.checkAuth(params).catch(error => {
+        if (logoutOnFailure) {
+            logout({}, error && error.redirectTo
+                ? error.redirectTo
+                : redirectTo);
+            const shouldSkipNotify = disableNotification ||
+                (error && error.message === false);
+            !shouldSkipNotify &&
+                notify(getErrorMessage(error, 'ra.auth.auth_check_error'), 'warning');
+        }
+        throw error;
+    }), [authProvider, logout, notify]);
     return authProvider ? checkAuth : checkAuthWithoutAuthProvider;
 };
-var checkAuthWithoutAuthProvider = function () { return Promise.resolve(); };
-var getErrorMessage = function (error, defaultMessage) {
-    return typeof error === 'string'
-        ? error
-        : typeof error === 'undefined' || !error.message
-            ? defaultMessage
-            : error.message;
-};
+const checkAuthWithoutAuthProvider = () => Promise.resolve();
+const getErrorMessage = (error, defaultMessage) => typeof error === 'string'
+    ? error
+    : typeof error === 'undefined' || !error.message
+        ? defaultMessage
+        : error.message;
 exports.default = useCheckAuth;

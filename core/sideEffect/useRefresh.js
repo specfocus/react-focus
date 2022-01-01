@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var uiActions_1 = require("../actions/uiActions");
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const uiActions_1 = require("../actions/uiActions");
 /**
  * Hook for Refresh Side Effect
  *
@@ -21,9 +21,9 @@ var uiActions_1 = require("../actions/uiActions");
  * // hard refresh
  * refresh(true)
  */
-var useRefresh = function () {
-    var dispatch = (0, react_redux_1.useDispatch)();
-    return (0, react_1.useCallback)(function (hard) {
+const useRefresh = () => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    return (0, react_1.useCallback)((hard) => {
         dispatch((0, uiActions_1.refreshView)(hard));
     }, [dispatch]);
 };

@@ -1,5 +1,6 @@
 export interface AppUser {
 }
-export declare const APP_USER = "appUser";
-export declare const appUser: import("recoil").RecoilState<AppUser>;
-export declare const useAppTheme: () => AppUser;
+export declare const atomUser: import("recoil").RecoilState<AppUser>;
+export declare const useSetUserState: () => import("recoil").SetterOrUpdater<AppUser>;
+export declare const useUserState: () => [AppUser, import("recoil").SetterOrUpdater<AppUser>];
+export declare const useUserValue: () => AppUser;

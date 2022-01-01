@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var dataProvider_1 = require("../../dataProvider");
-var actions_1 = require("../../actions");
-var sideEffect_1 = require("../../sideEffect");
-var core_1 = require("../../core");
+const react_1 = require("react");
+const dataProvider_1 = require("../../dataProvider");
+const actions_1 = require("../../actions");
+const sideEffect_1 = require("../../sideEffect");
+const core_1 = require("../../../core");
 /**
  * Prepare a set of callbacks for a delete button guarded by confirmation dialog
  *
@@ -57,27 +57,27 @@ var core_1 = require("../../core");
  *     );
  * };
  */
-var useDeleteWithConfirmController = function (props) {
-    var record = props.record, redirectTo = props.redirect, basePath = props.basePath, mutationMode = props.mutationMode, onClick = props.onClick, onSuccess = props.onSuccess, onFailure = props.onFailure;
-    var resource = (0, core_1.useResourceContext)(props);
-    var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
-    var notify = (0, sideEffect_1.useNotify)();
-    var redirect = (0, sideEffect_1.useRedirect)();
-    var refresh = (0, sideEffect_1.useRefresh)();
-    var _b = (0, dataProvider_1.useDelete)(resource, null, null, {
+const useDeleteWithConfirmController = (props) => {
+    const { record, redirect: redirectTo, basePath, mutationMode, onClick, onSuccess, onFailure, } = props;
+    const resource = (0, core_1.useResourceContext)(props);
+    const [open, setOpen] = (0, react_1.useState)(false);
+    const notify = (0, sideEffect_1.useNotify)();
+    const redirect = (0, sideEffect_1.useRedirect)();
+    const refresh = (0, sideEffect_1.useRefresh)();
+    const [deleteOne, { loading }] = (0, dataProvider_1.useDelete)(resource, null, null, {
         action: actions_1.CRUD_DELETE,
-        onSuccess: function (response) {
+        onSuccess: response => {
             setOpen(false);
             if (onSuccess === undefined) {
                 notify('ra.notification.deleted', 'info', { smart_count: 1 }, mutationMode === 'undoable');
-                redirect(redirectTo, basePath || "/".concat(resource));
+                redirect(redirectTo, basePath || `/${resource}`);
                 refresh();
             }
             else {
                 onSuccess(response);
             }
         },
-        onFailure: function (error) {
+        onFailure: error => {
             setOpen(false);
             if (onFailure === undefined) {
                 notify(typeof error === 'string'
@@ -95,17 +95,17 @@ var useDeleteWithConfirmController = function (props) {
                 onFailure(error);
             }
         },
-        mutationMode: mutationMode,
-    }), deleteOne = _b[0], loading = _b[1].loading;
-    var handleDialogOpen = function (e) {
+        mutationMode,
+    });
+    const handleDialogOpen = e => {
         setOpen(true);
         e.stopPropagation();
     };
-    var handleDialogClose = function (e) {
+    const handleDialogClose = e => {
         setOpen(false);
         e.stopPropagation();
     };
-    var handleDelete = (0, react_1.useCallback)(function (event) {
+    const handleDelete = (0, react_1.useCallback)(event => {
         event.stopPropagation();
         deleteOne({
             payload: { id: record.id, previousData: record },
@@ -114,6 +114,6 @@ var useDeleteWithConfirmController = function (props) {
             onClick(event);
         }
     }, [deleteOne, onClick, record]);
-    return { open: open, loading: loading, handleDialogOpen: handleDialogOpen, handleDialogClose: handleDialogClose, handleDelete: handleDelete };
+    return { open, loading, handleDialogOpen, handleDialogClose, handleDelete };
 };
 exports.default = useDeleteWithConfirmController;

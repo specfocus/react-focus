@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,34 +14,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var GetApp_1 = __importDefault(require("@mui/icons-material/GetApp"));
-var core_1 = require("../../core");
-var Button_1 = __importDefault(require("./Button"));
-var ExportButton = function (props) {
-    var _a = props.maxResults, maxResults = _a === void 0 ? 1000 : _a, onClick = props.onClick, _b = props.label, label = _b === void 0 ? 'ra.action.export' : _b, _c = props.icon, icon = _c === void 0 ? defaultIcon : _c, customExporter = props.exporter, sort = props.sort, // deprecated, to be removed in v4
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const GetApp_1 = __importDefault(require("@mui/icons-material/GetApp"));
+const core_1 = require("../../core");
+const Button_1 = __importDefault(require("./Button"));
+const ExportButton = (props) => {
+    const { maxResults = 1000, onClick, label = 'ra.action.export', icon = defaultIcon, exporter: customExporter, sort } = props, // deprecated, to be removed in v4
     rest = __rest(props, ["maxResults", "onClick", "label", "icon", "exporter", "sort"]);
-    var _d = (0, core_1.useListContext)(props), filter = _d.filter, filterValues = _d.filterValues, currentSort = _d.currentSort, exporterFromContext = _d.exporter, total = _d.total;
-    var resource = (0, core_1.useResourceContext)(props);
-    var exporter = customExporter || exporterFromContext;
-    var dataProvider = (0, core_1.useDataProvider)();
-    var notify = (0, core_1.useNotify)();
-    var handleClick = (0, react_1.useCallback)(function (event) {
+    const { filter, filterValues, currentSort, exporter: exporterFromContext, total, } = (0, core_1.useListContext)(props);
+    const resource = (0, core_1.useResourceContext)(props);
+    const exporter = customExporter || exporterFromContext;
+    const dataProvider = (0, core_1.useDataProvider)();
+    const notify = (0, core_1.useNotify)();
+    const handleClick = (0, react_1.useCallback)(event => {
         dataProvider
             .getList(resource, {
             sort: currentSort || sort,
             filter: filter
-                ? __assign(__assign({}, filterValues), filter) : filterValues,
+                ? Object.assign(Object.assign({}, filterValues), filter) : filterValues,
             pagination: { page: 1, perPage: maxResults },
         })
-            .then(function (_a) {
-            var data = _a.data;
-            return exporter &&
-                exporter(data, (0, core_1.fetchRelatedRecords)(dataProvider), dataProvider, resource);
-        })
-            .catch(function (error) {
+            .then(({ data }) => exporter &&
+            exporter(data, (0, core_1.fetchRelatedRecords)(dataProvider), dataProvider, resource))
+            .catch(error => {
             console.error(error);
             notify('ra.notification.http_error', 'warning');
         });
@@ -90,11 +57,11 @@ var ExportButton = function (props) {
         resource,
         sort,
     ]);
-    return (React.createElement(Button_1.default, __assign({ onClick: handleClick, label: label, disabled: total === 0 }, sanitizeRestProps(rest)), icon));
+    return ((0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ onClick: handleClick, label: label, disabled: total === 0 }, sanitizeRestProps(rest), { children: icon }), void 0));
 };
-var defaultIcon = React.createElement(GetApp_1.default, null);
-var sanitizeRestProps = function (_a) {
-    var basePath = _a.basePath, filterValues = _a.filterValues, resource = _a.resource, rest = __rest(_a, ["basePath", "filterValues", "resource"]);
+const defaultIcon = (0, jsx_runtime_1.jsx)(GetApp_1.default, {}, void 0);
+const sanitizeRestProps = (_a) => {
+    var { basePath, filterValues, resource } = _a, rest = __rest(_a, ["basePath", "filterValues", "resource"]);
     return rest;
 };
 ExportButton.propTypes = {

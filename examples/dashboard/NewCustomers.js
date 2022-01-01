@@ -1,61 +1,38 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var material_1 = require("@mui/material");
-var PersonAdd_1 = __importDefault(require("@mui/icons-material/PersonAdd"));
-var react_router_dom_1 = require("react-router-dom");
-var app_1 = require("../../app");
-var date_fns_1 = require("date-fns");
-var CardWithIcon_1 = __importDefault(require("./CardWithIcon"));
-var PREFIX = 'NewCustomers';
-var classes = {
-    link: "".concat(PREFIX, "-link"),
-    linkContent: "".concat(PREFIX, "-linkContent"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const material_1 = require("@mui/material");
+const PersonAdd_1 = __importDefault(require("@mui/icons-material/PersonAdd"));
+const react_router_dom_1 = require("react-router-dom");
+const app_1 = require("../../app");
+const date_fns_1 = require("date-fns");
+const CardWithIcon_1 = __importDefault(require("./CardWithIcon"));
+const PREFIX = 'NewCustomers';
+const classes = {
+    link: `${PREFIX}-link`,
+    linkContent: `${PREFIX}-linkContent`,
 };
-var StyledCardWithIcon = (0, styles_1.styled)(CardWithIcon_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.link)] = {
-            borderRadius: 0,
-        },
-        _b["& .".concat(classes.linkContent)] = {
-            color: theme.palette.primary.main,
-        },
-        _b);
-});
-var NewCustomers = function () {
-    var translate = (0, app_1.useTranslate)();
-    var aMonthAgo = (0, date_fns_1.subDays)(new Date(), 30);
+const StyledCardWithIcon = (0, styles_1.styled)(CardWithIcon_1.default)(({ theme }) => ({
+    [`& .${classes.link}`]: {
+        borderRadius: 0,
+    },
+    [`& .${classes.linkContent}`]: {
+        color: theme.palette.primary.main,
+    },
+}));
+const NewCustomers = () => {
+    const translate = (0, app_1.useTranslate)();
+    const aMonthAgo = (0, date_fns_1.subDays)(new Date(), 30);
     aMonthAgo.setDate(aMonthAgo.getDate() - 30);
     aMonthAgo.setHours(0);
     aMonthAgo.setMinutes(0);
     aMonthAgo.setSeconds(0);
     aMonthAgo.setMilliseconds(0);
-    var _a = (0, app_1.useQueryWithStore)({
+    const { loaded, data: visitors } = (0, app_1.useQueryWithStore)({
         type: 'getList',
         resource: 'customers',
         payload: {
@@ -66,19 +43,12 @@ var NewCustomers = function () {
             sort: { field: 'first_seen', order: 'DESC' },
             pagination: { page: 1, perPage: 100 },
         },
-    }), loaded = _a.loaded, visitors = _a.data;
+    });
     if (!loaded)
         return null;
-    var nb = visitors ? visitors.reduce(function (nb) { return ++nb; }, 0) : 0;
-    return (React.createElement(StyledCardWithIcon, { to: "/customers", icon: PersonAdd_1.default, title: translate('pos.dashboard.new_customers'), subtitle: nb },
-        React.createElement(material_1.List, null, visitors
-            ? visitors.map(function (record) { return (React.createElement(material_1.ListItem, { button: true, to: "/customers/".concat(record.id), component: react_router_dom_1.Link, key: record.id },
-                React.createElement(material_1.ListItemAvatar, null,
-                    React.createElement(material_1.Avatar, { src: "".concat(record.avatar, "?size=32x32") })),
-                React.createElement(material_1.ListItemText, { primary: "".concat(record.first_name, " ").concat(record.last_name) }))); })
-            : null),
-        React.createElement(material_1.Box, { flexGrow: 1 }, "\u00A0"),
-        React.createElement(material_1.Button, { className: classes.link, component: react_router_dom_1.Link, to: "/customers", size: "small", color: "primary" },
-            React.createElement(material_1.Box, { p: 1, className: classes.linkContent }, translate('pos.dashboard.all_customers')))));
+    const nb = visitors ? visitors.reduce((nb) => ++nb, 0) : 0;
+    return ((0, jsx_runtime_1.jsxs)(StyledCardWithIcon, Object.assign({ to: "/customers", icon: PersonAdd_1.default, title: translate('pos.dashboard.new_customers'), subtitle: nb }, { children: [(0, jsx_runtime_1.jsx)(material_1.List, { children: visitors
+                    ? visitors.map((record) => ((0, jsx_runtime_1.jsxs)(material_1.ListItem, Object.assign({ button: true, to: `/customers/${record.id}`, component: react_router_dom_1.Link }, { children: [(0, jsx_runtime_1.jsx)(material_1.ListItemAvatar, { children: (0, jsx_runtime_1.jsx)(material_1.Avatar, { src: `${record.avatar}?size=32x32` }, void 0) }, void 0), (0, jsx_runtime_1.jsx)(material_1.ListItemText, { primary: `${record.first_name} ${record.last_name}` }, void 0)] }), record.id)))
+                    : null }, void 0), (0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ flexGrow: 1 }, { children: "\u00A0" }), void 0), (0, jsx_runtime_1.jsx)(material_1.Button, Object.assign({ className: classes.link, component: react_router_dom_1.Link, to: "/customers", size: "small", color: "primary" }, { children: (0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ p: 1, className: classes.linkContent }, { children: translate('pos.dashboard.all_customers') }), void 0) }), void 0)] }), void 0));
 };
 exports.default = NewCustomers;

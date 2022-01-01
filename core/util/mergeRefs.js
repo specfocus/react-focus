@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.mergeRefs = void 0;
 // https://github.com/gregberge/react-merge-refs
 function mergeRefs(refs) {
-    return function (value) {
-        refs.forEach(function (ref) {
+    return value => {
+        refs.forEach(ref => {
             if (typeof ref === 'function') {
                 ref(value);
             }

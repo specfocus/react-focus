@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,25 +14,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../core");
-var material_1 = require("@mui/material");
-var Visibility_1 = __importDefault(require("@mui/icons-material/Visibility"));
-var VisibilityOff_1 = __importDefault(require("@mui/icons-material/VisibilityOff"));
-var TextInput_1 = __importDefault(require("./TextInput"));
-var PasswordInput = function (props) {
-    var _a = props.initiallyVisible, initiallyVisible = _a === void 0 ? false : _a, rest = __rest(props, ["initiallyVisible"]);
-    var _b = (0, react_1.useState)(initiallyVisible), visible = _b[0], setVisible = _b[1];
-    var translate = (0, core_1.useTranslate)();
-    var handleClick = function () {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const core_1 = require("../../core");
+const material_1 = require("@mui/material");
+const Visibility_1 = __importDefault(require("@mui/icons-material/Visibility"));
+const VisibilityOff_1 = __importDefault(require("@mui/icons-material/VisibilityOff"));
+const TextInput_1 = __importDefault(require("./TextInput"));
+const PasswordInput = (props) => {
+    const { initiallyVisible = false } = props, rest = __rest(props, ["initiallyVisible"]);
+    const [visible, setVisible] = (0, react_1.useState)(initiallyVisible);
+    const translate = (0, core_1.useTranslate)();
+    const handleClick = () => {
         setVisible(!visible);
     };
-    return (React.createElement(TextInput_1.default, __assign({}, rest, { type: visible ? 'text' : 'password', InputProps: {
-            endAdornment: (React.createElement(material_1.InputAdornment, { position: "end" },
-                React.createElement(material_1.IconButton, { "aria-label": translate(visible
+    return ((0, jsx_runtime_1.jsx)(TextInput_1.default, Object.assign({}, rest, { type: visible ? 'text' : 'password', InputProps: {
+            endAdornment: ((0, jsx_runtime_1.jsx)(material_1.InputAdornment, Object.assign({ position: "end" }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ "aria-label": translate(visible
                         ? 'ra.input.password.toggle_visible'
-                        : 'ra.input.password.toggle_hidden'), onClick: handleClick, size: "large" }, visible ? React.createElement(Visibility_1.default, null) : React.createElement(VisibilityOff_1.default, null)))),
-        } })));
+                        : 'ra.input.password.toggle_hidden'), onClick: handleClick, size: "large" }, { children: visible ? (0, jsx_runtime_1.jsx)(Visibility_1.default, {}, void 0) : (0, jsx_runtime_1.jsx)(VisibilityOff_1.default, {}, void 0) }), void 0) }), void 0)),
+        } }), void 0));
 };
 exports.default = PasswordInput;

@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var ListFilterContext_1 = __importDefault(require("./ListFilterContext"));
+const react_1 = require("react");
+const ListFilterContext_1 = __importDefault(require("./ListFilterContext"));
 /**
  * Hook to read the list controller props from the ListContext.
  *
@@ -23,8 +23,8 @@ var ListFilterContext_1 = __importDefault(require("./ListFilterContext"));
  *
  * @see useListController for how it is filled
  */
-var useListFilterContext = function (props) {
-    var context = (0, react_1.useContext)(ListFilterContext_1.default);
+const useListFilterContext = (props) => {
+    const context = (0, react_1.useContext)(ListFilterContext_1.default);
     if (!context.hideFilter) {
         /**
          * The element isn't inside a <ListFilterContext.Provider>

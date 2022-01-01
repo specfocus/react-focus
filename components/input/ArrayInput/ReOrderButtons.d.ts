@@ -1,4 +1,4 @@
 /// <reference types="react" />
 export declare const ReOrderButtons: ({ className }: {
-    className?: string | undefined;
+    className?: string;
 }) => JSX.Element;

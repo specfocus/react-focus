@@ -1,11 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useAppTheme = exports.appUser = exports.APP_USER = void 0;
-var recoil_1 = require("recoil");
-exports.APP_USER = 'appUser';
-exports.appUser = (0, recoil_1.atom)({
-    key: exports.APP_USER,
+exports.useUserValue = exports.useUserState = exports.useSetUserState = exports.atomUser = void 0;
+const recoil_1 = require("recoil");
+exports.atomUser = (0, recoil_1.atom)({
+    key: 'atomUser',
     default: {}, // default value (aka initial value)
 });
-var useAppTheme = function () { return (0, recoil_1.useRecoilValue)(exports.appUser); };
-exports.useAppTheme = useAppTheme;
+const useSetUserState = () => (0, recoil_1.useSetRecoilState)(exports.atomUser);
+exports.useSetUserState = useSetUserState;
+const useUserState = () => (0, recoil_1.useRecoilState)(exports.atomUser);
+exports.useUserState = useUserState;
+const useUserValue = () => (0, recoil_1.useRecoilValue)(exports.atomUser);
+exports.useUserValue = useUserValue;

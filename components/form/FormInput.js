@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,37 +33,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var Labeled_1 = __importDefault(require("../input/Labeled"));
-var PREFIX = 'RaFormInput';
-var classes = {
-    input: "".concat(PREFIX, "-input"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const Labeled_1 = __importDefault(require("../input/Labeled"));
+const PREFIX = 'RaFormInput';
+const classes = {
+    input: `${PREFIX}-input`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.input)] = { width: theme.spacing(32) },
-        _b);
-});
-var sanitizeRestProps = function (_a) {
-    var basePath = _a.basePath, record = _a.record, rest = __rest(_a, ["basePath", "record"]);
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`& .${classes.input}`]: { width: theme.spacing(32) },
+}));
+const sanitizeRestProps = (_a) => {
+    var { basePath, record } = _a, rest = __rest(_a, ["basePath", "record"]);
     return rest;
 };
-var FormInput = function (props) {
-    var _a, _b;
-    var input = props.input, rest = __rest(props, ["input"]);
-    var _c = input
+const FormInput = (props) => {
+    const { input } = props, rest = __rest(props, ["input"]);
+    const _a = input
         ? input.props
-        : { id: undefined, className: undefined }, id = _c.id, className = _c.className, inputProps = __rest(_c, ["id", "className"]);
-    return input ? (React.createElement(Root, { className: (0, classnames_1.default)('ra-input', "ra-input-".concat(input.props.source), input.props.formClassName) }, input.props.addLabel ? (React.createElement(Labeled_1.default, __assign({ id: id || input.props.source }, inputProps, sanitizeRestProps(rest)), React.cloneElement(input, __assign(__assign({ className: (0, classnames_1.default)((_a = {},
-            _a[classes.input] = !input.props.fullWidth,
-            _a), className), id: input.props.id || input.props.source }, rest), inputProps)))) : (React.cloneElement(input, __assign(__assign({ className: (0, classnames_1.default)((_b = {},
-            _b[classes.input] = !input.props.fullWidth,
-            _b), className), id: input.props.id || input.props.source }, rest), inputProps))))) : null;
+        : { id: undefined, className: undefined }, { id, className } = _a, inputProps = __rest(_a, ["id", "className"]);
+    return input ? ((0, jsx_runtime_1.jsx)(Root, Object.assign({ className: (0, classnames_1.default)('ra-input', `ra-input-${input.props.source}`, input.props.formClassName) }, { children: input.props.addLabel ? ((0, jsx_runtime_1.jsx)(Labeled_1.default, Object.assign({ id: id || input.props.source }, inputProps, sanitizeRestProps(rest), { children: React.cloneElement(input, Object.assign(Object.assign({ className: (0, classnames_1.default)({
+                    [classes.input]: !input.props.fullWidth,
+                }, className), id: input.props.id || input.props.source }, rest), inputProps)) }), void 0)) : (React.cloneElement(input, Object.assign(Object.assign({ className: (0, classnames_1.default)({
+                [classes.input]: !input.props.fullWidth,
+            }, className), id: input.props.id || input.props.source }, rest), inputProps))) }), void 0)) : null;
 };
 FormInput.propTypes = {
     classes: prop_types_1.default.object,

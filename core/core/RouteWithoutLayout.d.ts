@@ -11,8 +11,8 @@
  * import Register from './Register';
  *
  * export default [
- *     <Route exact path="/foo" component={Foo} />,
- *     <RouteWithoutLayout exact path="/register" component={Register} />,
+ *     <Route path="/foo" component={Foo} />,
+ *     <RouteWithoutLayout path="/register" component={Register} />,
  * ];
  *
  * // in src/App.js

@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useGetMainList = void 0;
-var react_1 = require("react");
-var get_1 = __importDefault(require("lodash/get"));
-var useQueryWithStore_1 = require("./useQueryWithStore");
-var defaultIds = [];
-var defaultData = {};
+const react_1 = require("react");
+const get_1 = __importDefault(require("lodash/get"));
+const useQueryWithStore_1 = require("./useQueryWithStore");
+const defaultIds = [];
+const defaultData = {};
 /**
  * Call the dataProvider.getList() method and return the resolved result
  * as well as the loading state.
@@ -50,20 +50,20 @@ var defaultData = {};
  *     )}</ul>;
  * };
  */
-var useGetMainList = function (resource, pagination, sort, filter, options) {
-    var requestSignature = JSON.stringify({ pagination: pagination, sort: sort, filter: filter });
-    var memo = (0, react_1.useRef)({});
-    var _a = (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getList', resource: resource, payload: { pagination: pagination, sort: sort, filter: filter } }, options, 
+const useGetMainList = (resource, pagination, sort, filter, options) => {
+    const requestSignature = JSON.stringify({ pagination, sort, filter });
+    const memo = (0, react_1.useRef)({});
+    const { data: { finalIds, finalTotal, allRecords }, error, loading, loaded, refetch, } = (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getList', resource, payload: { pagination, sort, filter } }, options, 
     // ids and data selector
-    function (state) {
-        var ids = (0, get_1.default)(state.admin.resources, [
+    (state) => {
+        const ids = (0, get_1.default)(state.admin.resources, [
             resource,
             'list',
             'cachedRequests',
             requestSignature,
             'ids',
         ]); // default value undefined
-        var total = (0, get_1.default)(state.admin.resources, [
+        const total = (0, get_1.default)(state.admin.resources, [
             resource,
             'list',
             'cachedRequests',
@@ -74,57 +74,55 @@ var useGetMainList = function (resource, pagination, sort, filter, options) {
         // the cached requests is empty. To avoid rendering an empty list
         // at that moment, we override the ids and total with the latest
         // loaded ones.
-        var mainIds = (0, get_1.default)(state.admin.resources, [
+        const mainIds = (0, get_1.default)(state.admin.resources, [
             resource,
             'list',
             'ids',
         ]); // default value [] (see list.ids reducer)
         // Since the total can be empty during the loading phase
         // We need to override that total with the latest loaded one
-        var mainTotal = (0, get_1.default)(state.admin.resources, [
+        const mainTotal = (0, get_1.default)(state.admin.resources, [
             resource,
             'list',
             'total',
         ]); // default value null (see list.total reducer)
         // Is [] for a page that was never loaded
-        var finalIds = typeof ids === 'undefined' ? mainIds : ids;
+        const finalIds = typeof ids === 'undefined' ? mainIds : ids;
         // Is null for a page that was never loaded.
-        var finalTotal = typeof total === 'undefined' ? mainTotal : total;
-        var allRecords = (0, get_1.default)(state.admin.resources, [resource, 'data'], defaultData);
+        const finalTotal = typeof total === 'undefined' ? mainTotal : total;
+        const allRecords = (0, get_1.default)(state.admin.resources, [resource, 'data'], defaultData);
         // poor man's useMemo inside a hook using a ref
         if (memo.current.finalIds !== finalIds ||
             memo.current.finalTotal !== finalTotal ||
             memo.current.allRecords !== allRecords) {
-            var result = {
-                finalIds: finalIds,
-                finalTotal: finalTotal,
-                allRecords: allRecords,
+            const result = {
+                finalIds,
+                finalTotal,
+                allRecords,
             };
-            memo.current = { finalIds: finalIds, finalTotal: finalTotal, allRecords: allRecords, result: result };
+            memo.current = { finalIds, finalTotal, allRecords, result };
         }
         return memo.current.result;
-    }, function () { return null; }, isDataLoaded), _b = _a.data, finalIds = _b.finalIds, finalTotal = _b.finalTotal, allRecords = _b.allRecords, error = _a.error, loading = _a.loading, loaded = _a.loaded, refetch = _a.refetch;
-    var data = (0, react_1.useMemo)(function () {
-        return typeof finalIds === 'undefined'
-            ? defaultData
-            : finalIds
-                .map(function (id) { return allRecords[id]; })
-                .reduce(function (acc, record) {
-                if (!record)
-                    return acc;
-                acc[record.id] = record;
+    }, () => null, isDataLoaded);
+    const data = (0, react_1.useMemo)(() => typeof finalIds === 'undefined'
+        ? defaultData
+        : finalIds
+            .map(id => allRecords[id])
+            .reduce((acc, record) => {
+            if (!record)
                 return acc;
-            }, {});
-    }, [finalIds, allRecords]);
+            acc[record.id] = record;
+            return acc;
+        }, {}), [finalIds, allRecords]);
     return {
-        data: data,
+        data,
         ids: typeof finalIds === 'undefined' ? defaultIds : finalIds,
         total: finalTotal,
-        error: error,
-        loading: loading,
-        loaded: loaded,
-        refetch: refetch,
+        error,
+        loading,
+        loaded,
+        refetch,
     };
 };
 exports.useGetMainList = useGetMainList;
-var isDataLoaded = function (data) { return data.finalTotal != null; }; // null or undefined
+const isDataLoaded = (data) => data.finalTotal != null; // null or undefined

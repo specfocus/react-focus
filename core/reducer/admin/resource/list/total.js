@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var dataActions_1 = require("../../../../actions/dataActions");
-var core_1 = require("../../../../core");
-var totalReducer = function (previousState, action) {
-    if (previousState === void 0) { previousState = null; }
+const dataActions_1 = require("../../../../actions/dataActions");
+const core_1 = require("../../../../core");
+const totalReducer = (previousState = null, action) => {
     if (action.type === dataActions_1.CRUD_GET_LIST_SUCCESS) {
         return action.payload.total;
     }

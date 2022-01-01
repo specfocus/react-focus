@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePickSortContext = void 0;
-var react_1 = require("react");
-var pick_1 = __importDefault(require("lodash/pick"));
+const react_1 = require("react");
+const pick_1 = __importDefault(require("lodash/pick"));
 /**
  * Context to store the sort part of the useListController() result.
  *
@@ -38,16 +38,14 @@ var pick_1 = __importDefault(require("lodash/pick"));
  *     );
  * };
  */
-var ListSortContext = (0, react_1.createContext)({
+const ListSortContext = (0, react_1.createContext)({
     currentSort: null,
     setSort: null,
     resource: null,
 });
-var usePickSortContext = function (context) {
-    return (0, react_1.useMemo)(function () { return (0, pick_1.default)(context, ['currentSort', 'setSort', 'resource']); }, 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [context.currentSort, context.setSort]);
-};
+const usePickSortContext = (context) => (0, react_1.useMemo)(() => (0, pick_1.default)(context, ['currentSort', 'setSort', 'resource']), 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+[context.currentSort, context.setSort]);
 exports.usePickSortContext = usePickSortContext;
 ListSortContext.displayName = 'ListSortContext';
 exports.default = ListSortContext;

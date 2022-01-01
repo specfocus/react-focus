@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,11 +15,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useQuery = void 0;
-var react_1 = require("react");
-var hooks_1 = require("../util/hooks");
-var useDataProvider_1 = __importDefault(require("./useDataProvider"));
-var useDataProviderWithDeclarativeSideEffects_1 = __importDefault(require("./useDataProviderWithDeclarativeSideEffects"));
-var useVersion_1 = __importDefault(require("../controller/useVersion"));
+const react_1 = require("react");
+const hooks_1 = require("../util/hooks");
+const useDataProvider_1 = __importDefault(require("./useDataProvider"));
+const useDataProviderWithDeclarativeSideEffects_1 = __importDefault(require("./useDataProviderWithDeclarativeSideEffects"));
+const useVersion_1 = __importDefault(require("../controller/useVersion"));
 /**
  * Call the data provider on mount
  *
@@ -94,64 +83,62 @@ var useVersion_1 = __importDefault(require("../controller/useVersion"));
  *     );
  * };
  */
-var useQuery = function (query, options) {
-    if (options === void 0) { options = { onSuccess: undefined }; }
-    var type = query.type, resource = query.resource, payload = query.payload;
-    var withDeclarativeSideEffectsSupport = options.withDeclarativeSideEffectsSupport, otherOptions = __rest(options, ["withDeclarativeSideEffectsSupport"]);
-    var version = (0, useVersion_1.default)(); // used to allow force reload
+const useQuery = (query, options = { onSuccess: undefined }) => {
+    const { type, resource, payload } = query;
+    const { withDeclarativeSideEffectsSupport } = options, otherOptions = __rest(options, ["withDeclarativeSideEffectsSupport"]);
+    const version = (0, useVersion_1.default)(); // used to allow force reload
     // used to force a refetch without relying on version
     // which might trigger other queries as well
-    var _a = (0, react_1.useState)(0), innerVersion = _a[0], setInnerVersion = _a[1];
-    var refetch = (0, react_1.useCallback)(function () {
-        setInnerVersion(function (prevInnerVersion) { return prevInnerVersion + 1; });
+    const [innerVersion, setInnerVersion] = (0, react_1.useState)(0);
+    const refetch = (0, react_1.useCallback)(() => {
+        setInnerVersion(prevInnerVersion => prevInnerVersion + 1);
     }, []);
-    var requestSignature = JSON.stringify({
-        query: query,
+    const requestSignature = JSON.stringify({
+        query,
         options: otherOptions,
-        version: version,
-        innerVersion: innerVersion,
+        version,
+        innerVersion,
     });
-    var _b = (0, hooks_1.useSafeSetState)({
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
         data: undefined,
         error: null,
         total: null,
         loading: true,
         loaded: false,
-        refetch: refetch,
-    }), state = _b[0], setState = _b[1];
-    var dataProvider = (0, useDataProvider_1.default)();
-    var dataProviderWithDeclarativeSideEffects = (0, useDataProviderWithDeclarativeSideEffects_1.default)();
+        refetch,
+    });
+    const dataProvider = (0, useDataProvider_1.default)();
+    const dataProviderWithDeclarativeSideEffects = (0, useDataProviderWithDeclarativeSideEffects_1.default)();
     /* eslint-disable react-hooks/exhaustive-deps */
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         /**
          * Support legacy side effects, e.g. { onSuccess: { refresh: true, unSelectAll: true }}
          *
          * @deprecated to be removed in 4.0
          */
-        var finalDataProvider = withDeclarativeSideEffectsSupport
+        const finalDataProvider = withDeclarativeSideEffectsSupport
             ? dataProviderWithDeclarativeSideEffects
             : dataProvider;
-        setState(function (prevState) { return (__assign(__assign({}, prevState), { loading: true })); });
+        setState(prevState => (Object.assign(Object.assign({}, prevState), { loading: true })));
         finalDataProvider[type]
             .apply(finalDataProvider, typeof resource !== 'undefined'
             ? [resource, payload, otherOptions]
             : [payload, otherOptions])
-            .then(function (_a) {
-            var data = _a.data, total = _a.total;
+            .then(({ data, total }) => {
             setState({
-                data: data,
-                total: total,
+                data,
+                total,
                 loading: false,
                 loaded: true,
-                refetch: refetch,
+                refetch,
             });
         })
-            .catch(function (error) {
+            .catch(error => {
             setState({
-                error: error,
+                error,
                 loading: false,
                 loaded: false,
-                refetch: refetch,
+                refetch,
             });
         });
     }, [

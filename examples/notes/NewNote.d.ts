@@ -1,5 +1,5 @@
 /// <reference types="react" />
 export declare const NewNote: ({ showStatus, reference, }: {
-    showStatus?: boolean | undefined;
+    showStatus?: boolean;
     reference: 'contacts' | 'deals';
-}) => JSX.Element | null;
+}) => JSX.Element;

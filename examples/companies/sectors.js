@@ -13,4 +13,4 @@ exports.sectors = [
     'Materials',
     'Real Estate',
     'Utilities',
-].map(function (sector) { return ({ id: sector, name: sector }); });
+].map(sector => ({ id: sector, name: sector }));

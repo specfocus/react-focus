@@ -1,32 +1,21 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sanitizeListRestProps = exports.getListControllerProps = exports.injectedProps = void 0;
-var react_1 = require("react");
-var checkMinimumRequiredProps_1 = require("./checkMinimumRequiredProps");
-var useListParams_1 = __importDefault(require("./useListParams"));
-var useRecordSelection_1 = __importDefault(require("./useRecordSelection"));
-var useTranslate_1 = __importDefault(require("../i18n/useTranslate"));
-var useNotify_1 = __importDefault(require("../sideEffect/useNotify"));
-var useGetMainList_1 = require("../dataProvider/useGetMainList");
-var queryReducer_1 = require("../reducer/admin/resource/list/queryReducer");
-var actions_1 = require("../actions");
-var defaultExporter_1 = __importDefault(require("../export/defaultExporter"));
-var core_1 = require("../core");
-var defaultSort = {
+const react_1 = require("react");
+const checkMinimumRequiredProps_1 = require("./checkMinimumRequiredProps");
+const useListParams_1 = __importDefault(require("./useListParams"));
+const useRecordSelection_1 = __importDefault(require("./useRecordSelection"));
+const useTranslate_1 = __importDefault(require("../i18n/useTranslate"));
+const useNotify_1 = __importDefault(require("../sideEffect/useNotify"));
+const useGetMainList_1 = require("../dataProvider/useGetMainList");
+const queryReducer_1 = require("../reducer/admin/resource/list/queryReducer");
+const actions_1 = require("../actions");
+const defaultExporter_1 = __importDefault(require("../export/defaultExporter"));
+const core_1 = require("../../core");
+const defaultSort = {
     field: 'id',
     order: queryReducer_1.SORT_ASC,
 };
@@ -47,50 +36,48 @@ var defaultSort = {
  *     return <ListView {...controllerProps} {...props} />;
  * }
  */
-var useListController = function (props) {
+const useListController = (props) => {
     (0, checkMinimumRequiredProps_1.useCheckMinimumRequiredProps)('List', ['basePath'], props);
-    var basePath = props.basePath, _a = props.exporter, exporter = _a === void 0 ? defaultExporter_1.default : _a, filterDefaultValues = props.filterDefaultValues, hasCreate = props.hasCreate, _b = props.sort, sort = _b === void 0 ? defaultSort : _b, _c = props.perPage, perPage = _c === void 0 ? 10 : _c, filter = props.filter, _d = props.debounce, debounce = _d === void 0 ? 500 : _d, syncWithLocation = props.syncWithLocation;
-    var resource = (0, core_1.useResourceContext)(props);
+    const { basePath, exporter = defaultExporter_1.default, filterDefaultValues, hasCreate, sort = defaultSort, perPage = 10, filter, debounce = 500, syncWithLocation, } = props;
+    const resource = (0, core_1.useResourceContext)(props);
     if (!resource) {
-        throw new Error("<List> was called outside of a ResourceContext and without a resource prop. You must set the resource prop.");
+        throw new Error(`<List> was called outside of a ResourceContext and without a resource prop. You must set the resource prop.`);
     }
     if (filter && (0, react_1.isValidElement)(filter)) {
         throw new Error('<List> received a React element as `filter` props. If you intended to set the list filter elements, use the `filters` (with an s) prop instead. The `filter` prop is internal and should not be set by the developer.');
     }
-    var translate = (0, useTranslate_1.default)();
-    var notify = (0, useNotify_1.default)();
-    var _e = (0, useListParams_1.default)({
-        resource: resource,
-        filterDefaultValues: filterDefaultValues,
-        sort: sort,
-        perPage: perPage,
-        debounce: debounce,
-        syncWithLocation: syncWithLocation,
-    }), query = _e[0], queryModifiers = _e[1];
-    var _f = (0, useRecordSelection_1.default)(resource), selectedIds = _f[0], selectionModifiers = _f[1];
+    const translate = (0, useTranslate_1.default)();
+    const notify = (0, useNotify_1.default)();
+    const [query, queryModifiers] = (0, useListParams_1.default)({
+        resource,
+        filterDefaultValues,
+        sort,
+        perPage,
+        debounce,
+        syncWithLocation,
+    });
+    const [selectedIds, selectionModifiers] = (0, useRecordSelection_1.default)(resource);
     /**
      * We want the list of ids to be always available for optimistic rendering,
      * and therefore we need a custom action (CRUD_GET_LIST) that will be used.
      */
-    var _g = (0, useGetMainList_1.useGetMainList)(resource, {
+    const { ids, data, total, error, loading, loaded, refetch, } = (0, useGetMainList_1.useGetMainList)(resource, {
         page: query.page,
         perPage: query.perPage,
-    }, { field: query.sort, order: query.order }, __assign(__assign({}, query.filter), filter), {
+    }, { field: query.sort, order: query.order }, Object.assign(Object.assign({}, query.filter), filter), {
         action: actions_1.CRUD_GET_LIST,
-        onFailure: function (error) {
-            return notify(typeof error === 'string'
+        onFailure: error => notify(typeof error === 'string'
+            ? error
+            : error.message || 'ra.notification.http_error', 'warning', {
+            _: typeof error === 'string'
                 ? error
-                : error.message || 'ra.notification.http_error', 'warning', {
-                _: typeof error === 'string'
-                    ? error
-                    : error && error.message
-                        ? error.message
-                        : undefined,
-            });
-        },
-    }), ids = _g.ids, data = _g.data, total = _g.total, error = _g.error, loading = _g.loading, loaded = _g.loaded, refetch = _g.refetch;
-    var totalPages = Math.ceil(total / query.perPage) || 1;
-    (0, react_1.useEffect)(function () {
+                : error && error.message
+                    ? error.message
+                    : undefined,
+        }),
+    });
+    const totalPages = Math.ceil(total / query.perPage) || 1;
+    (0, react_1.useEffect)(() => {
         if (query.page <= 0 ||
             (!loading && query.page > 1 && ids.length === 0)) {
             // Query for a page that doesn't exist, set page to 1
@@ -102,37 +89,37 @@ var useListController = function (props) {
             queryModifiers.setPage(totalPages);
         }
     }, [loading, query.page, ids, queryModifiers, total, totalPages]);
-    var currentSort = (0, react_1.useMemo)(function () { return ({
+    const currentSort = (0, react_1.useMemo)(() => ({
         field: query.sort,
         order: query.order,
-    }); }, [query.sort, query.order]);
-    var getResourceLabel = (0, core_1.useGetResourceLabel)();
-    var defaultTitle = translate('ra.page.list', {
+    }), [query.sort, query.order]);
+    const getResourceLabel = (0, core_1.useGetResourceLabel)();
+    const defaultTitle = translate('ra.page.list', {
         name: getResourceLabel(resource, 2),
     });
     return {
-        basePath: basePath,
-        currentSort: currentSort,
-        data: data,
-        defaultTitle: defaultTitle,
+        basePath,
+        currentSort,
+        data,
+        defaultTitle,
         displayedFilters: query.displayedFilters,
-        error: error,
-        exporter: exporter,
-        filter: filter,
+        error,
+        exporter,
+        filter,
         filterValues: query.filterValues,
-        hasCreate: hasCreate,
+        hasCreate,
         hideFilter: queryModifiers.hideFilter,
-        ids: ids,
+        ids,
         loaded: loaded || ids.length > 0,
-        loading: loading,
+        loading,
         onSelect: selectionModifiers.select,
         onToggleItem: selectionModifiers.toggle,
         onUnselectItems: selectionModifiers.clearSelection,
         page: query.page,
         perPage: query.perPage,
-        refetch: refetch,
-        resource: resource,
-        selectedIds: selectedIds,
+        refetch,
+        resource,
+        selectedIds,
         setFilters: queryModifiers.setFilters,
         setPage: queryModifiers.setPage,
         setPerPage: queryModifiers.setPerPage,
@@ -178,25 +165,15 @@ exports.injectedProps = [
  * to be passed to the List children need
  * This is an implementation of pick()
  */
-var getListControllerProps = function (props) {
-    return exports.injectedProps.reduce(function (acc, key) {
-        var _a;
-        return (__assign(__assign({}, acc), (_a = {}, _a[key] = props[key], _a)));
-    }, {});
-};
+const getListControllerProps = props => exports.injectedProps.reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: props[key] })), {});
 exports.getListControllerProps = getListControllerProps;
 /**
  * Select the props not injected by the useListController hook
  * to be used inside the List children to sanitize props injected by List
  * This is an implementation of omit()
  */
-var sanitizeListRestProps = function (props) {
-    return Object.keys(props)
-        .filter(function (propName) { return !exports.injectedProps.includes(propName); })
-        .reduce(function (acc, key) {
-        var _a;
-        return (__assign(__assign({}, acc), (_a = {}, _a[key] = props[key], _a)));
-    }, {});
-};
+const sanitizeListRestProps = props => Object.keys(props)
+    .filter(propName => !exports.injectedProps.includes(propName))
+    .reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: props[key] })), {});
 exports.sanitizeListRestProps = sanitizeListRestProps;
 exports.default = useListController;

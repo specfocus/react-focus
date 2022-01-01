@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 declare const UserMenu: {
-    (props: UserMenuProps): JSX.Element | null;
+    (props: UserMenuProps): JSX.Element;
     propTypes: {
         children: PropTypes.Requireable<PropTypes.ReactNodeLike>;
         classes: PropTypes.Requireable<object>;

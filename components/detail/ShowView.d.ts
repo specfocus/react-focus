@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ShowControllerProps } from '../../core';
 import { ShowProps } from '../types';
 export declare const ShowView: {
-    (props: ShowViewProps): JSX.Element | null;
+    (props: ShowViewProps): JSX.Element;
     propTypes: {
         actions: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         aside: PropTypes.Requireable<PropTypes.ReactElementLike>;

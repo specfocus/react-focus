@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -30,24 +19,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPossibleReferences = exports.getReferenceResource = exports.getResources = exports.getPossibleReferenceValues = exports.getNotification = void 0;
-var redux_1 = require("redux");
-var connected_react_router_1 = require("connected-react-router");
-var admin_1 = __importStar(require("./admin"));
+exports.getPossibleReferences = exports.getReferenceResource = exports.getResources = exports.getPossibleReferenceValues = exports.firstNotification = void 0;
+const redux_1 = require("redux");
+const connected_react_router_1 = require("connected-react-router");
+const admin_1 = __importStar(require("./admin"));
 var notifications_1 = require("./admin/notifications");
-Object.defineProperty(exports, "getNotification", { enumerable: true, get: function () { return notifications_1.getNotification; } });
-exports.default = (function (customReducers, history) {
-    return (0, redux_1.combineReducers)(__assign({ admin: admin_1.default, router: (0, connected_react_router_1.connectRouter)(history) }, customReducers));
-});
-var getPossibleReferenceValues = function (state, props) {
-    return (0, admin_1.getPossibleReferenceValues)(state.admin, props);
-};
+Object.defineProperty(exports, "firstNotification", { enumerable: true, get: function () { return notifications_1.firstNotification; } });
+exports.default = (customReducers, history) => (0, redux_1.combineReducers)(Object.assign({ admin: admin_1.default, router: (0, connected_react_router_1.connectRouter)(history) }, customReducers));
+const getPossibleReferenceValues = (state, props) => (0, admin_1.getPossibleReferenceValues)(state.admin, props);
 exports.getPossibleReferenceValues = getPossibleReferenceValues;
-var getResources = function (state) { return (0, admin_1.getResources)(state.admin); };
+const getResources = state => (0, admin_1.getResources)(state.admin);
 exports.getResources = getResources;
-var getReferenceResource = function (state, props) {
-    return (0, admin_1.getReferenceResource)(state.admin, props);
-};
+const getReferenceResource = (state, props) => (0, admin_1.getReferenceResource)(state.admin, props);
 exports.getReferenceResource = getReferenceResource;
 var admin_2 = require("./admin");
 Object.defineProperty(exports, "getPossibleReferences", { enumerable: true, get: function () { return admin_2.getPossibleReferences; } });

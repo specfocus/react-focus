@@ -23,14 +23,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPossibleReferences = exports.getReferenceResource = exports.getResources = exports.getPossibleReferenceValues = void 0;
-var redux_1 = require("redux");
-var resource_1 = __importStar(require("./resource"));
-var loading_1 = __importDefault(require("./loading"));
-var notifications_1 = __importDefault(require("./notifications"));
-var references_1 = __importStar(require("./references"));
-var ui_1 = __importDefault(require("./ui"));
-var customQueries_1 = __importDefault(require("./customQueries"));
-var defaultReducer = function () { return null; };
+const redux_1 = require("redux");
+const resource_1 = __importStar(require("./resource"));
+const loading_1 = __importDefault(require("./loading"));
+const notifications_1 = __importDefault(require("./notifications"));
+const references_1 = __importStar(require("./references"));
+const ui_1 = __importDefault(require("./ui"));
+const customQueries_1 = __importDefault(require("./customQueries"));
+const defaultReducer = () => null;
 exports.default = (0, redux_1.combineReducers)({
     /**
      * ts-jest does some aggressive module mocking when unit testing reducers individually.
@@ -46,13 +46,11 @@ exports.default = (0, redux_1.combineReducers)({
     references: references_1.default || defaultReducer,
     ui: ui_1.default || defaultReducer,
 });
-var getPossibleReferenceValues = function (state, props) {
-    return (0, references_1.getPossibleReferenceValues)(state.references, props);
-};
+const getPossibleReferenceValues = (state, props) => (0, references_1.getPossibleReferenceValues)(state.references, props);
 exports.getPossibleReferenceValues = getPossibleReferenceValues;
-var getResources = function (state) { return (0, resource_1.getResources)(state.resources); };
+const getResources = state => (0, resource_1.getResources)(state.resources);
 exports.getResources = getResources;
-var getReferenceResource = function (state, props) {
+const getReferenceResource = (state, props) => {
     return (0, resource_1.getReferenceResource)(state.resources, props);
 };
 exports.getReferenceResource = getReferenceResource;

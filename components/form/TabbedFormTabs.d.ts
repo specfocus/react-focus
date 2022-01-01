@@ -7,7 +7,7 @@ declare const TabbedFormTabs: {
         children: PropTypes.Requireable<PropTypes.ReactNodeLike>;
         classes: PropTypes.Requireable<object>;
         url: PropTypes.Requireable<string>;
-        tabsWithErrors: PropTypes.Requireable<(string | null | undefined)[]>;
+        tabsWithErrors: PropTypes.Requireable<string[]>;
     };
 };
 export declare const getTabFullPath: (tab: ReactElement, index: number, baseUrl: string) => string;

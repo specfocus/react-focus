@@ -1,15 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useAppSidebar = exports.appSidebar = exports.APP_SIDEBAR = void 0;
-var recoil_1 = require("recoil");
-var sidebar_1 = __importDefault(require("../sidebar"));
+const recoil_1 = require("recoil");
 exports.APP_SIDEBAR = 'appSidebar2';
 exports.appSidebar = (0, recoil_1.atom)({
     key: exports.APP_SIDEBAR,
-    default: sidebar_1.default, // default value (aka initial value)
+    default: {
+        drawerOpen: true,
+        drawerWidth: 240,
+        lists: []
+    }
 });
-var useAppSidebar = function () { return (0, recoil_1.useRecoilValue)(exports.appSidebar); };
+const useAppSidebar = () => (0, recoil_1.useRecoilValue)(exports.appSidebar);
 exports.useAppSidebar = useAppSidebar;

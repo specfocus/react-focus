@@ -9,4 +9,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *
  * escapePath('/foo(bar)') => 'foo\(bar\)'
  */
-exports.default = (function (url) { return url.replace(/(\(|\))/g, '\\$1'); });
+exports.default = url => url.replace(/(\(|\))/g, '\\$1');

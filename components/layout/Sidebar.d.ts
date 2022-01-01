@@ -6,7 +6,7 @@ export declare const CLOSED_DRAWER_WIDTH = 55;
 declare const Sidebar: {
     (props: SidebarProps): JSX.Element;
     propTypes: {
-        children: PropTypes.Validator<string | number | boolean | {} | PropTypes.ReactElementLike | PropTypes.ReactNodeArray>;
+        children: PropTypes.Validator<PropTypes.ReactNodeLike>;
     };
 };
 export interface SidebarProps extends DrawerProps {

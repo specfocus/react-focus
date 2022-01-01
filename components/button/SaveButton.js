@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,36 +14,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Button_1 = __importDefault(require("@mui/material/Button"));
-var CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
-var Save_1 = __importDefault(require("@mui/icons-material/Save"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var Button_2 = require("./Button");
-var PREFIX = 'RaSaveButton';
-var classes = {
-    button: "".concat(PREFIX, "-button"),
-    leftIcon: "".concat(PREFIX, "-leftIcon"),
-    icon: "".concat(PREFIX, "-icon"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Button_1 = __importDefault(require("@mui/material/Button"));
+const CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
+const Save_1 = __importDefault(require("@mui/icons-material/Save"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const Button_2 = require("./Button");
+const PREFIX = 'RaSaveButton';
+const classes = {
+    button: `${PREFIX}-button`,
+    leftIcon: `${PREFIX}-leftIcon`,
+    icon: `${PREFIX}-icon`,
 };
-var StyledButton = (0, styles_1.styled)(Button_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.button)] = {
-            position: 'relative',
-        },
-        _b["& .".concat(classes.leftIcon)] = {
-            marginRight: theme.spacing(1),
-        },
-        _b["& .".concat(classes.icon)] = {
-            fontSize: 18,
-        },
-        _b);
-});
+const StyledButton = (0, styles_1.styled)(Button_1.default)(({ theme }) => ({
+    [`&.${classes.button}`]: {
+        position: 'relative',
+    },
+    [`& .${classes.leftIcon}`]: {
+        marginRight: theme.spacing(1),
+    },
+    [`& .${classes.icon}`]: {
+        fontSize: 18,
+    },
+}));
 /**
  * Submit button for resource forms (Edit and Create).
  *
@@ -111,13 +78,13 @@ var StyledButton = (0, styles_1.styled)(Button_1.default)(function (_a) {
  *     return <SaveButton {...props} onSuccess={onSuccess} />;
  * }
  */
-var SaveButton = function (props) {
-    var className = props.className, invalid = props.invalid, _a = props.label, label = _a === void 0 ? 'ra.action.save' : _a, disabled = props.disabled, redirect = props.redirect, saving = props.saving, submitOnEnter = props.submitOnEnter, _b = props.variant, variant = _b === void 0 ? 'contained' : _b, _c = props.icon, icon = _c === void 0 ? defaultIcon : _c, onClick = props.onClick, handleSubmitWithRedirect = props.handleSubmitWithRedirect, onSave = props.onSave, onSuccess = props.onSuccess, onFailure = props.onFailure, transform = props.transform, rest = __rest(props, ["className", "invalid", "label", "disabled", "redirect", "saving", "submitOnEnter", "variant", "icon", "onClick", "handleSubmitWithRedirect", "onSave", "onSuccess", "onFailure", "transform"]);
-    var notify = (0, core_1.useNotify)();
-    var translate = (0, core_1.useTranslate)();
-    var formContext = (0, core_1.useFormContext)();
-    var _d = (0, core_1.useSaveContext)(props), setOnSuccess = _d.setOnSuccess, setOnFailure = _d.setOnFailure, setTransform = _d.setTransform;
-    var handleClick = function (event) {
+const SaveButton = (props) => {
+    const { className, invalid, label = 'ra.action.save', disabled, redirect, saving, submitOnEnter, variant = 'contained', icon = defaultIcon, onClick, handleSubmitWithRedirect, onSave, onSuccess, onFailure, transform } = props, rest = __rest(props, ["className", "invalid", "label", "disabled", "redirect", "saving", "submitOnEnter", "variant", "icon", "onClick", "handleSubmitWithRedirect", "onSave", "onSuccess", "onFailure", "transform"]);
+    const notify = (0, core_1.useNotify)();
+    const translate = (0, core_1.useTranslate)();
+    const formContext = (0, core_1.useFormContext)();
+    const { setOnSuccess, setOnFailure, setTransform } = (0, core_1.useSaveContext)(props);
+    const handleClick = event => {
         // deprecated: use onSuccess and transform instead of onSave
         if (typeof onSave === 'function') {
             if (process.env.NODE_ENV !== 'production') {
@@ -167,18 +134,16 @@ var SaveButton = function (props) {
             onClick(event);
         }
     };
-    var type = submitOnEnter ? 'submit' : 'button';
-    var displayedLabel = label && translate(label, { _: label });
-    return (react_1.default.createElement(StyledButton, __assign({ className: (0, classnames_1.default)(classes.button, className), variant: variant, type: type, onClick: handleClick, 
+    const type = submitOnEnter ? 'submit' : 'button';
+    const displayedLabel = label && translate(label, { _: label });
+    return ((0, jsx_runtime_1.jsxs)(StyledButton, Object.assign({ className: (0, classnames_1.default)(classes.button, className), variant: variant, type: type, onClick: handleClick, 
         // TODO: find a way to display the loading state (LoadingButton from mui Lab?)
         // This is because the "default" color does not exist anymore
-        color: "primary", "aria-label": displayedLabel, disabled: disabled }, (0, Button_2.sanitizeButtonRestProps)(rest)),
-        saving ? (react_1.default.createElement(CircularProgress_1.default, { size: 18, thickness: 2, className: classes.leftIcon })) : ((0, react_1.cloneElement)(icon, {
-            className: (0, classnames_1.default)(classes.leftIcon, classes.icon),
-        })),
-        displayedLabel));
+        color: "primary", "aria-label": displayedLabel, disabled: disabled }, (0, Button_2.sanitizeButtonRestProps)(rest), { children: [saving ? ((0, jsx_runtime_1.jsx)(CircularProgress_1.default, { size: 18, thickness: 2, className: classes.leftIcon }, void 0)) : ((0, react_1.cloneElement)(icon, {
+                className: (0, classnames_1.default)(classes.leftIcon, classes.icon),
+            })), displayedLabel] }), void 0));
 };
-var defaultIcon = react_1.default.createElement(Save_1.default, null);
+const defaultIcon = (0, jsx_runtime_1.jsx)(Save_1.default, {}, void 0);
 SaveButton.propTypes = {
     className: prop_types_1.default.string,
     classes: prop_types_1.default.object,

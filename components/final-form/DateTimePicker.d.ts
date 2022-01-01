@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { DateTimePickerProps as MuiDateTimePickerProps } from '@mui/lab/DatePicker';
+import { DateTimePickerProps as MuiDateTimePickerProps } from '@mui/lab/DateTimePicker';
 import { FieldProps } from 'react-final-form';
 import { ShowErrorFunc } from './ErrorMessage';
 export interface DateTimePickerProps extends Partial<Omit<MuiDateTimePickerProps, 'onChange'>> {

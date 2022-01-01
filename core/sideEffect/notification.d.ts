@@ -4,4 +4,4 @@ export interface NotificationSideEffect {
     level: NotificationType;
     messageArgs?: object;
 }
-export default function (): Generator<any, void, unknown>;
+export default function (): Generator<import("redux-saga/effects").ForkEffect<never>, void, unknown>;

@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,34 +15,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CloneButton = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var Queue_1 = __importDefault(require("@mui/icons-material/Queue"));
-var react_router_dom_1 = require("react-router-dom");
-var query_string_1 = require("query-string");
-var core_1 = require("../../core");
-var Button_1 = __importDefault(require("./Button"));
-var CloneButton = function (props) {
-    var _a = props.basePath, basePath = _a === void 0 ? '' : _a, _b = props.label, label = _b === void 0 ? 'ra.action.clone' : _b, _c = props.scrollToTop, scrollToTop = _c === void 0 ? true : _c, record = props.record, _d = props.icon, icon = _d === void 0 ? defaultIcon : _d, rest = __rest(props, ["basePath", "label", "scrollToTop", "record", "icon"]);
-    var resource = (0, core_1.useResourceContext)();
-    var pathname = basePath ? "".concat(basePath, "/create") : "/".concat(resource, "/create");
-    return (React.createElement(Button_1.default, __assign({ component: react_router_dom_1.Link, to: record
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Queue_1 = __importDefault(require("@mui/icons-material/Queue"));
+const react_router_dom_1 = require("react-router-dom");
+const query_string_1 = require("query-string");
+const core_1 = require("../../core");
+const Button_1 = __importDefault(require("./Button"));
+const CloneButton = (props) => {
+    const { basePath = '', label = 'ra.action.clone', scrollToTop = true, record, icon = defaultIcon } = props, rest = __rest(props, ["basePath", "label", "scrollToTop", "record", "icon"]);
+    const resource = (0, core_1.useResourceContext)();
+    const pathname = basePath ? `${basePath}/create` : `/${resource}/create`;
+    return ((0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ component: react_router_dom_1.Link, 
+        // @ts-ignore
+        to: record
             ? {
-                pathname: pathname,
+                pathname,
                 search: (0, query_string_1.stringify)({
                     source: JSON.stringify(omitId(record)),
-                }),
-                state: { _scrollToTop: scrollToTop },
+                })
             }
-            : pathname, label: label, onClick: stopPropagation }, rest), icon));
+            : pathname, label: label, state: { _scrollToTop: scrollToTop }, onClick: stopPropagation }, rest, { children: icon }), void 0));
 };
 exports.CloneButton = CloneButton;
-var defaultIcon = React.createElement(Queue_1.default, null);
+const defaultIcon = (0, jsx_runtime_1.jsx)(Queue_1.default, {}, void 0);
 // useful to prevent click bubbling in a datagrid with rowClick
-var stopPropagation = function (e) { return e.stopPropagation(); };
-var omitId = function (_a) {
-    var id = _a.id, rest = __rest(_a, ["id"]);
+const stopPropagation = e => e.stopPropagation();
+const omitId = (_a) => {
+    var { id } = _a, rest = __rest(_a, ["id"]);
     return rest;
 };
 exports.CloneButton.propTypes = {

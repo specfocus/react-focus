@@ -1,90 +1,32 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var Card_1 = __importDefault(require("@mui/material/Card"));
-var CardContent_1 = __importDefault(require("@mui/material/CardContent"));
-var Grid_1 = __importDefault(require("@mui/material/Grid"));
-var Typography_1 = __importDefault(require("@mui/material/Typography"));
-var app_1 = require("../../app");
-var Basket_1 = __importDefault(require("../orders/Basket"));
-var PREFIX = 'InvoiceShow';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
-    spacer: "".concat(PREFIX, "-spacer"),
-    invoices: "".concat(PREFIX, "-invoices"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const Card_1 = __importDefault(require("@mui/material/Card"));
+const CardContent_1 = __importDefault(require("@mui/material/CardContent"));
+const Grid_1 = __importDefault(require("@mui/material/Grid"));
+const Typography_1 = __importDefault(require("@mui/material/Typography"));
+const app_1 = require("app");
+const Basket_1 = __importDefault(require("../orders/Basket"));
+const PREFIX = 'InvoiceShow';
+const classes = {
+    root: `${PREFIX}-root`,
+    spacer: `${PREFIX}-spacer`,
+    invoices: `${PREFIX}-invoices`,
 };
-var StyledCard = (0, styles_1.styled)(Card_1.default)((_a = {},
-    _a["&.".concat(classes.root)] = { width: 600, margin: 'auto' },
-    _a["& .".concat(classes.spacer)] = { height: 20 },
-    _a["& .".concat(classes.invoices)] = { margin: '10px 0' },
-    _a));
-var CustomerField = function (_a) {
-    var record = _a.record;
-    return record ? (React.createElement(Typography_1.default, null,
-        record.first_name,
-        " ",
-        record.last_name,
-        React.createElement("br", null),
-        record.address,
-        React.createElement("br", null),
-        record.city,
-        ", ",
-        record.zipcode)) : null;
-};
-var InvoiceShow = function (props) {
-    var record = (0, app_1.useShowController)(props).record;
+const StyledCard = (0, styles_1.styled)(Card_1.default)({
+    [`&.${classes.root}`]: { width: 600, margin: 'auto' },
+    [`& .${classes.spacer}`]: { height: 20 },
+    [`& .${classes.invoices}`]: { margin: '10px 0' },
+});
+const CustomerField = ({ record }) => record ? ((0, jsx_runtime_1.jsxs)(Typography_1.default, { children: [record.first_name, " ", record.last_name, (0, jsx_runtime_1.jsx)("br", {}, void 0), record.address, (0, jsx_runtime_1.jsx)("br", {}, void 0), record.city, ", ", record.zipcode] }, void 0)) : null;
+const InvoiceShow = (props) => {
+    const { record } = (0, app_1.useShowController)(props);
     if (!record)
         return null;
-    return (React.createElement(StyledCard, { className: classes.root },
-        React.createElement(CardContent_1.default, null,
-            React.createElement(Grid_1.default, { container: true, spacing: 2 },
-                React.createElement(Grid_1.default, { item: true, xs: 6 },
-                    React.createElement(Typography_1.default, { variant: "h6", gutterBottom: true }, "Posters Galore")),
-                React.createElement(Grid_1.default, { item: true, xs: 6 },
-                    React.createElement(Typography_1.default, { variant: "h6", gutterBottom: true, align: "right" },
-                        "Invoice ",
-                        record.id))),
-            React.createElement(Grid_1.default, { container: true, spacing: 2 },
-                React.createElement(Grid_1.default, { item: true, xs: 12, container: true, alignContent: "flex-end" },
-                    React.createElement(app_1.ReferenceField, { resource: "invoices", reference: "customers", source: "customer_id", basePath: "/invoices", record: record, link: false },
-                        React.createElement(CustomerField, null)))),
-            React.createElement("div", { className: classes.spacer }, "\u00A0"),
-            React.createElement(Grid_1.default, { container: true, spacing: 2 },
-                React.createElement(Grid_1.default, { item: true, xs: 6 },
-                    React.createElement(Typography_1.default, { variant: "h6", gutterBottom: true, align: "center" },
-                        "Date",
-                        ' '),
-                    React.createElement(Typography_1.default, { gutterBottom: true, align: "center" }, new Date(record.date).toLocaleDateString())),
-                React.createElement(Grid_1.default, { item: true, xs: 5 },
-                    React.createElement(Typography_1.default, { variant: "h6", gutterBottom: true, align: "center" }, "Order"),
-                    React.createElement(app_1.ReferenceField, { resource: "invoices", reference: "commands", source: "command_id", basePath: "/invoices", record: record, link: false },
-                        React.createElement(app_1.TextField, { source: "reference", align: "center", component: "p", gutterBottom: true })))),
-            React.createElement("div", { className: classes.invoices },
-                React.createElement(app_1.ReferenceField, { resource: "invoices", reference: "commands", source: "command_id", basePath: "/invoices", record: record, link: false },
-                    React.createElement(Basket_1.default, null))))));
+    return ((0, jsx_runtime_1.jsx)(StyledCard, Object.assign({ className: classes.root }, { children: (0, jsx_runtime_1.jsxs)(CardContent_1.default, { children: [(0, jsx_runtime_1.jsxs)(Grid_1.default, Object.assign({ container: true, spacing: 2 }, { children: [(0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ item: true, xs: 6 }, { children: (0, jsx_runtime_1.jsx)(Typography_1.default, Object.assign({ variant: "h6", gutterBottom: true }, { children: "Posters Galore" }), void 0) }), void 0), (0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ item: true, xs: 6 }, { children: (0, jsx_runtime_1.jsxs)(Typography_1.default, Object.assign({ variant: "h6", gutterBottom: true, align: "right" }, { children: ["Invoice ", record.id] }), void 0) }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ container: true, spacing: 2 }, { children: (0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ item: true, xs: 12, container: true, alignContent: "flex-end" }, { children: (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ resource: "invoices", reference: "customers", source: "customer_id", basePath: "/invoices", record: record, link: false }, { children: (0, jsx_runtime_1.jsx)(CustomerField, {}, void 0) }), void 0) }), void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.spacer }, { children: "\u00A0" }), void 0), (0, jsx_runtime_1.jsxs)(Grid_1.default, Object.assign({ container: true, spacing: 2 }, { children: [(0, jsx_runtime_1.jsxs)(Grid_1.default, Object.assign({ item: true, xs: 6 }, { children: [(0, jsx_runtime_1.jsxs)(Typography_1.default, Object.assign({ variant: "h6", gutterBottom: true, align: "center" }, { children: ["Date", ' '] }), void 0), (0, jsx_runtime_1.jsx)(Typography_1.default, Object.assign({ gutterBottom: true, align: "center" }, { children: new Date(record.date).toLocaleDateString() }), void 0)] }), void 0), (0, jsx_runtime_1.jsxs)(Grid_1.default, Object.assign({ item: true, xs: 5 }, { children: [(0, jsx_runtime_1.jsx)(Typography_1.default, Object.assign({ variant: "h6", gutterBottom: true, align: "center" }, { children: "Order" }), void 0), (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ resource: "invoices", reference: "commands", source: "command_id", basePath: "/invoices", record: record, link: false }, { children: (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "reference", align: "center", component: "p", gutterBottom: true }, void 0) }), void 0)] }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.invoices }, { children: (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ resource: "invoices", reference: "commands", source: "command_id", basePath: "/invoices", record: record, link: false }, { children: (0, jsx_runtime_1.jsx)(Basket_1.default, {}, void 0) }), void 0) }), void 0)] }, void 0) }), void 0));
 };
 exports.default = InvoiceShow;

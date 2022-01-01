@@ -5,6 +5,5 @@ declare const notificationsReducer: Reducer<State>;
 export default notificationsReducer;
 /**
  * Returns the first available notification to show
- * @param {Object} state - Redux state
  */
-export declare const getNotification: import("recoil").RecoilValueReadOnly<never>;
+export declare const firstNotification: import("recoil").RecoilValueReadOnly<any>;

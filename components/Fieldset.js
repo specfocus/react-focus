@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var styles_1 = require("@mui/styles");
-var react_1 = __importDefault(require("react"));
-var translation_1 = require("../utilities/translation");
-var Paper_1 = __importDefault(require("./Paper"));
-var TranslatedTypography_1 = __importDefault(require("./TranslatedTypography"));
-var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/styles");
+const translation_1 = require("../utilities/translation");
+const Paper_1 = __importDefault(require("./Paper"));
+const TranslatedTypography_1 = __importDefault(require("./TranslatedTypography"));
+const useStyles = (0, styles_1.makeStyles)((theme) => ({
     subtitle: {
         fontSize: 14,
         // padding: 6px 12px;
@@ -50,13 +39,11 @@ var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         // letter-spacing: 0.02857em;
         textTransform: 'uppercase'
     },
-}); });
+}));
 function Fieldset(_a) {
-    var children = _a.children, subtitle = _a.subtitle, otherProps = __rest(_a, ["children", "subtitle"]);
-    var classes = useStyles();
-    var i18nKey = (0, translation_1.formattedKey)(subtitle);
-    return (react_1.default.createElement(Paper_1.default, __assign({}, otherProps),
-        subtitle && (react_1.default.createElement(TranslatedTypography_1.default, { i18nKey: i18nKey, className: classes.subtitle, color: "textSecondary", gutterBottom: true }, subtitle)),
-        children));
+    var { children, subtitle } = _a, otherProps = __rest(_a, ["children", "subtitle"]);
+    const classes = useStyles();
+    const i18nKey = (0, translation_1.formattedKey)(subtitle);
+    return ((0, jsx_runtime_1.jsxs)(Paper_1.default, Object.assign({}, otherProps, { children: [subtitle && ((0, jsx_runtime_1.jsx)(TranslatedTypography_1.default, Object.assign({ i18nKey: i18nKey, className: classes.subtitle, color: "textSecondary", gutterBottom: true }, { children: subtitle }), void 0)), children] }), void 0));
 }
 exports.default = Fieldset;

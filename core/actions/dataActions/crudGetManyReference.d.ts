@@ -1,5 +1,5 @@
 import { Identifier, Record, PaginationPayload, SortPayload } from '../../types';
-import { GET_MANY_REFERENCE } from '../../core';
+import { GET_MANY_REFERENCE } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect } from '../../sideEffect';
 export declare const crudGetManyReference: (reference: string, target: string, id: Identifier, relatedTo: string, pagination: PaginationPayload, sort: SortPayload, filter: object, source: string) => CrudGetManyReferenceAction;

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Contact } from '../../data/db/types';
+import { Contact } from '../db/types';
 export declare const TagsList: ({ record }: {
     record: Contact;
-}) => JSX.Element | null;
+}) => JSX.Element;

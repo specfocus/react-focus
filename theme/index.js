@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.lightTheme = exports.darkTheme = void 0;
-var styles_1 = require("@mui/material/styles");
-var dark_1 = __importDefault(require("./dark"));
-var light_1 = __importDefault(require("./light"));
+const styles_1 = require("@mui/material/styles");
+const dark_1 = __importDefault(require("./dark"));
+const light_1 = __importDefault(require("./light"));
 exports.darkTheme = (0, styles_1.createTheme)(dark_1.default);
 exports.lightTheme = (0, styles_1.createTheme)(light_1.default);

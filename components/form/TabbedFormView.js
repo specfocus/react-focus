@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,97 +34,91 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TabbedFormView = exports.TabbedFormClasses = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var react_router_dom_1 = require("react-router-dom");
-var material_1 = require("@mui/material");
-var styles_1 = require("@mui/material/styles");
-var core_1 = require("../../core");
-var Toolbar_1 = __importDefault(require("./Toolbar"));
-var TabbedFormTabs_1 = __importStar(require("./TabbedFormTabs"));
-var PREFIX = 'RaTabbedForm';
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const react_router_dom_1 = require("react-router-dom");
+const material_1 = require("@mui/material");
+const styles_1 = require("@mui/material/styles");
+const core_1 = require("../../core");
+const Toolbar_1 = __importDefault(require("./Toolbar"));
+const TabbedFormTabs_1 = __importStar(require("./TabbedFormTabs"));
+const PREFIX = 'RaTabbedForm';
 exports.TabbedFormClasses = {
-    errorTabButton: "".concat(PREFIX, "-errorTabButton"),
-    content: "".concat(PREFIX, "-content"),
+    errorTabButton: `${PREFIX}-errorTabButton`,
+    content: `${PREFIX}-content`,
 };
-var Root = (0, styles_1.styled)('form')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(exports.TabbedFormClasses.errorTabButton)] = {
-            color: theme.palette.error.main,
-        },
-        _b["&.".concat(exports.TabbedFormClasses.content)] = {
-            paddingTop: theme.spacing(1),
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
-        },
-        _b);
-});
-var TabbedFormView = function (props) {
-    var basePath = props.basePath, children = props.children, className = props.className, handleSubmit = props.handleSubmit, handleSubmitWithRedirect = props.handleSubmitWithRedirect, invalid = props.invalid, mutationMode = props.mutationMode, pristine = props.pristine, record = props.record, defaultRedirect = props.redirect, resource = props.resource, saving = props.saving, submitOnEnter = props.submitOnEnter, _a = props.syncWithLocation, syncWithLocation = _a === void 0 ? true : _a, tabs = props.tabs, toolbar = props.toolbar, undoable = props.undoable, variant = props.variant, margin = props.margin, validating = props.validating, rest = __rest(props, ["basePath", "children", "className", "handleSubmit", "handleSubmitWithRedirect", "invalid", "mutationMode", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "syncWithLocation", "tabs", "toolbar", "undoable", "variant", "margin", "validating"]);
-    var match = (0, react_router_dom_1.useRouteMatch)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var url = match ? match.url : location.pathname;
-    var _b = (0, react_1.useState)(0), tabValue = _b[0], setTabValue = _b[1];
-    var handleTabChange = function (event, value) {
+const Root = (0, styles_1.styled)('form')(({ theme }) => ({
+    [`&.${exports.TabbedFormClasses.errorTabButton}`]: {
+        color: theme.palette.error.main,
+    },
+    [`&.${exports.TabbedFormClasses.content}`]: {
+        paddingTop: theme.spacing(1),
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+    },
+}));
+const TabbedFormView = (props) => {
+    const { basePath, children, className, handleSubmit, handleSubmitWithRedirect, invalid, mutationMode, pristine, record, redirect: defaultRedirect, resource, saving, submitOnEnter, syncWithLocation = true, tabs, toolbar, undoable, variant, margin, validating } = props, rest = __rest(props, ["basePath", "children", "className", "handleSubmit", "handleSubmitWithRedirect", "invalid", "mutationMode", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "syncWithLocation", "tabs", "toolbar", "undoable", "variant", "margin", "validating"]);
+    // TODO: logic may be broken after migration to react-router 6
+    const location = (0, react_router_dom_1.useLocation)();
+    const match = (0, react_router_dom_1.useMatch)(location.pathname);
+    const url = match ? match.pathname : location.pathname;
+    const [tabValue, setTabValue] = (0, react_1.useState)(0);
+    const handleTabChange = (event, value) => {
         if (!syncWithLocation) {
             setTabValue(value);
         }
     };
-    return (React.createElement(Root, __assign({ className: (0, classnames_1.default)('tabbed-form', className) }, sanitizeRestProps(rest)),
-        (0, react_1.cloneElement)(tabs, {
-            classes: exports.TabbedFormClasses,
-            url: url,
-            syncWithLocation: syncWithLocation,
-            onChange: handleTabChange,
-            value: tabValue,
-        }, children),
-        React.createElement(material_1.Divider, null),
-        React.createElement("div", { className: exports.TabbedFormClasses.content }, react_1.Children.map(children, function (tab, index) {
-            if (!tab) {
-                return;
-            }
-            var tabPath = (0, TabbedFormTabs_1.getTabFullPath)(tab, index, url);
-            return (React.createElement(react_router_dom_1.Route, { exact: true, path: (0, core_1.escapePath)(tabPath) }, function (routeProps) {
-                return (0, react_1.isValidElement)(tab)
-                    ? React.cloneElement(tab, {
-                        intent: 'content',
-                        classes: exports.TabbedFormClasses,
-                        resource: resource,
-                        record: record,
-                        basePath: basePath,
-                        hidden: syncWithLocation
-                            ? !routeProps.match
-                            : tabValue !== index,
-                        variant: tab.props.variant || variant,
-                        margin: tab.props.margin || margin,
-                        value: syncWithLocation
-                            ? tabPath
-                            : index,
-                    })
-                    : null;
-            }));
-        })),
-        toolbar &&
-            React.cloneElement(toolbar, {
-                basePath: basePath,
-                className: 'toolbar',
-                handleSubmitWithRedirect: handleSubmitWithRedirect,
-                handleSubmit: handleSubmit,
-                invalid: invalid,
-                mutationMode: mutationMode,
-                pristine: pristine,
-                record: record,
-                redirect: defaultRedirect,
-                resource: resource,
-                saving: saving,
-                submitOnEnter: submitOnEnter,
-                validating: validating,
-                undoable: undoable,
-            })));
+    return ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: (0, classnames_1.default)('tabbed-form', className) }, sanitizeRestProps(rest), { children: [(0, react_1.cloneElement)(
+            // @ts-ignore
+            tabs, {
+                classes: exports.TabbedFormClasses,
+                url,
+                syncWithLocation,
+                onChange: handleTabChange,
+                value: tabValue,
+            }, children), (0, jsx_runtime_1.jsx)(material_1.Divider, {}, void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: exports.TabbedFormClasses.content }, { children: react_1.Children.map(children, (tab, index) => {
+                    if (!tab) {
+                        return;
+                    }
+                    const tabPath = (0, TabbedFormTabs_1.getTabFullPath)(tab, index, url);
+                    return ((0, jsx_runtime_1.jsx)(react_router_dom_1.Route, Object.assign({ path: (0, core_1.escapePath)(tabPath) }, { children: routeProps => (0, react_1.isValidElement)(tab)
+                            ? React.cloneElement(tab, {
+                                intent: 'content',
+                                classes: exports.TabbedFormClasses,
+                                resource,
+                                record,
+                                basePath,
+                                hidden: syncWithLocation
+                                    ? !routeProps.match
+                                    : tabValue !== index,
+                                variant: tab.props.variant || variant,
+                                margin: tab.props.margin || margin,
+                                value: syncWithLocation
+                                    ? tabPath
+                                    : index,
+                            })
+                            : null }), void 0));
+                }) }), void 0), toolbar &&
+                React.cloneElement(toolbar, {
+                    basePath,
+                    className: 'toolbar',
+                    handleSubmitWithRedirect,
+                    handleSubmit,
+                    invalid,
+                    mutationMode,
+                    pristine,
+                    record,
+                    redirect: defaultRedirect,
+                    resource,
+                    saving,
+                    submitOnEnter,
+                    validating,
+                    undoable,
+                })] }), void 0));
 };
 exports.TabbedFormView = TabbedFormView;
 exports.TabbedFormView.propTypes = {
@@ -171,10 +154,10 @@ exports.TabbedFormView.propTypes = {
 };
 exports.TabbedFormView.defaultProps = {
     submitOnEnter: true,
-    tabs: React.createElement(TabbedFormTabs_1.default, null),
-    toolbar: React.createElement(Toolbar_1.default, null),
+    tabs: (0, jsx_runtime_1.jsx)(TabbedFormTabs_1.default, {}, void 0),
+    toolbar: (0, jsx_runtime_1.jsx)(Toolbar_1.default, {}, void 0),
 };
-var sanitizeRestProps = function (_a) {
-    var active = _a.active, dirty = _a.dirty, dirtyFields = _a.dirtyFields, dirtyFieldsSinceLastSubmit = _a.dirtyFieldsSinceLastSubmit, dirtySinceLastSubmit = _a.dirtySinceLastSubmit, error = _a.error, errors = _a.errors, form = _a.form, hasSubmitErrors = _a.hasSubmitErrors, hasValidationErrors = _a.hasValidationErrors, initialValues = _a.initialValues, _b = _a.modified, modified = _b === void 0 ? null : _b, modifiedSinceLastSubmit = _a.modifiedSinceLastSubmit, _c = _a.save, save = _c === void 0 ? null : _c, submitError = _a.submitError, submitErrors = _a.submitErrors, submitFailed = _a.submitFailed, submitSucceeded = _a.submitSucceeded, submitting = _a.submitting, _d = _a.touched, touched = _d === void 0 ? null : _d, valid = _a.valid, values = _a.values, _e = _a.visited, visited = _e === void 0 ? null : _e, _f = _a.__versions, __versions = _f === void 0 ? null : _f, props = __rest(_a, ["active", "dirty", "dirtyFields", "dirtyFieldsSinceLastSubmit", "dirtySinceLastSubmit", "error", "errors", "form", "hasSubmitErrors", "hasValidationErrors", "initialValues", "modified", "modifiedSinceLastSubmit", "save", "submitError", "submitErrors", "submitFailed", "submitSucceeded", "submitting", "touched", "valid", "values", "visited", "__versions"]);
+const sanitizeRestProps = (_a) => {
+    var { active, dirty, dirtyFields, dirtyFieldsSinceLastSubmit, dirtySinceLastSubmit, error, errors, form, hasSubmitErrors, hasValidationErrors, initialValues, modified = null, modifiedSinceLastSubmit, save = null, submitError, submitErrors, submitFailed, submitSucceeded, submitting, touched = null, valid, values, visited = null, __versions = null } = _a, props = __rest(_a, ["active", "dirty", "dirtyFields", "dirtyFieldsSinceLastSubmit", "dirtySinceLastSubmit", "error", "errors", "form", "hasSubmitErrors", "hasValidationErrors", "initialValues", "modified", "modifiedSinceLastSubmit", "save", "submitError", "submitErrors", "submitFailed", "submitSucceeded", "submitting", "touched", "valid", "values", "visited", "__versions"]);
     return props;
 };

@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,51 +14,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_final_form_1 = require("react-final-form");
-var material_1 = require("@mui/material");
-var core_1 = require("../../core");
-var PREFIX = 'RaLoginForm';
-var classes = {
-    form: "".concat(PREFIX, "-form"),
-    input: "".concat(PREFIX, "-input"),
-    button: "".concat(PREFIX, "-button"),
-    icon: "".concat(PREFIX, "-icon"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_final_form_1 = require("react-final-form");
+const material_1 = require("@mui/material");
+const core_1 = require("../../core");
+const PREFIX = 'RaLoginForm';
+const classes = {
+    form: `${PREFIX}-form`,
+    input: `${PREFIX}-input`,
+    button: `${PREFIX}-button`,
+    icon: `${PREFIX}-icon`,
 };
-var Root = (0, styles_1.styled)('form')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.form)] = {
-            padding: '0 1em 1em 1em',
-        },
-        _b["& .".concat(classes.input)] = {
-            marginTop: '1em',
-        },
-        _b["& .".concat(classes.button)] = {
-            width: '100%',
-        },
-        _b["& .".concat(classes.icon)] = {
-            marginRight: theme.spacing(1),
-        },
-        _b);
-});
-var Input = function (_a) {
-    var _b = _a.meta, touched = _b.touched, error = _b.error, // eslint-disable-line react/prop-types
-    inputProps = _a.input, // eslint-disable-line react/prop-types
+const Root = (0, styles_1.styled)('form')(({ theme }) => ({
+    [`& .${classes.form}`]: {
+        padding: '0 1em 1em 1em',
+    },
+    [`& .${classes.input}`]: {
+        marginTop: '1em',
+    },
+    [`& .${classes.button}`]: {
+        width: '100%',
+    },
+    [`& .${classes.icon}`]: {
+        marginRight: theme.spacing(1),
+    },
+}));
+const Input = (_a) => {
+    var { meta: { touched, error }, // eslint-disable-line react/prop-types
+    input: inputProps } = _a, // eslint-disable-line react/prop-types
     props = __rest(_a, ["meta", "input"]);
-    return (React.createElement(material_1.TextField, __assign({ error: !!(touched && error), helperText: touched && error }, inputProps, props, { fullWidth: true })));
+    return ((0, jsx_runtime_1.jsx)(material_1.TextField, Object.assign({ error: !!(touched && error), helperText: touched && error }, inputProps, props, { fullWidth: true }), void 0));
 };
-var LoginForm = function (props) {
-    var redirectTo = props.redirectTo;
-    var _a = (0, core_1.useSafeSetState)(false), loading = _a[0], setLoading = _a[1];
-    var login = (0, core_1.useLogin)();
-    var translate = (0, core_1.useTranslate)();
-    var notify = (0, core_1.useNotify)();
-    var validate = function (values) {
-        var errors = { username: undefined, password: undefined };
+const LoginForm = (props) => {
+    const { redirectTo } = props;
+    const [loading, setLoading] = (0, core_1.useSafeSetState)(false);
+    const login = (0, core_1.useLogin)();
+    const translate = (0, core_1.useTranslate)();
+    const notify = (0, core_1.useNotify)();
+    const validate = (values) => {
+        const errors = { username: undefined, password: undefined };
         if (!values.username) {
             errors.username = translate('ra.validation.required');
         }
@@ -97,13 +63,13 @@ var LoginForm = function (props) {
         }
         return errors;
     };
-    var submit = function (values) {
+    const submit = values => {
         setLoading(true);
         login(values, redirectTo)
-            .then(function () {
+            .then(() => {
             setLoading(false);
         })
-            .catch(function (error) {
+            .catch(error => {
             setLoading(false);
             notify(typeof error === 'string'
                 ? error
@@ -118,19 +84,7 @@ var LoginForm = function (props) {
             });
         });
     };
-    return (React.createElement(react_final_form_1.Form, { onSubmit: submit, validate: validate, render: function (_a) {
-            var handleSubmit = _a.handleSubmit;
-            return (React.createElement(Root, { onSubmit: handleSubmit, noValidate: true },
-                React.createElement("div", { className: classes.form },
-                    React.createElement("div", { className: classes.input },
-                        React.createElement(react_final_form_1.Field, { autoFocus: true, id: "username", name: "username", component: Input, label: translate('ra.auth.username'), disabled: loading })),
-                    React.createElement("div", { className: classes.input },
-                        React.createElement(react_final_form_1.Field, { id: "password", name: "password", component: Input, label: translate('ra.auth.password'), type: "password", disabled: loading, autoComplete: "current-password" }))),
-                React.createElement(material_1.CardActions, null,
-                    React.createElement(material_1.Button, { variant: "contained", type: "submit", color: "primary", disabled: loading, className: classes.button },
-                        loading && (React.createElement(material_1.CircularProgress, { className: classes.icon, size: 18, thickness: 2 })),
-                        translate('ra.auth.sign_in')))));
-        } }));
+    return ((0, jsx_runtime_1.jsx)(react_final_form_1.Form, { onSubmit: submit, validate: validate, render: ({ handleSubmit }) => ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ onSubmit: handleSubmit, noValidate: true }, { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.form }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.input }, { children: (0, jsx_runtime_1.jsx)(react_final_form_1.Field, { autoFocus: true, id: "username", name: "username", component: Input, label: translate('ra.auth.username'), disabled: loading }, void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.input }, { children: (0, jsx_runtime_1.jsx)(react_final_form_1.Field, { id: "password", name: "password", component: Input, label: translate('ra.auth.password'), type: "password", disabled: loading, autoComplete: "current-password" }, void 0) }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(material_1.CardActions, { children: (0, jsx_runtime_1.jsxs)(material_1.Button, Object.assign({ variant: "contained", type: "submit", color: "primary", disabled: loading, className: classes.button }, { children: [loading && ((0, jsx_runtime_1.jsx)(material_1.CircularProgress, { className: classes.icon, size: 18, thickness: 2 }, void 0)), translate('ra.auth.sign_in')] }), void 0) }, void 0)] }), void 0)) }, void 0));
 };
 LoginForm.propTypes = {
     redirectTo: prop_types_1.default.string,

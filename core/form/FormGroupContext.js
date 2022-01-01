@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormGroupContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context allowing inputs to register to a specific group.
  * This enables other components in the group to access group properties such as its

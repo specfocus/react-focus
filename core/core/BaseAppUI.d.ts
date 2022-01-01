@@ -1,9 +1,9 @@
 import { ComponentType } from 'react';
-import { TitleComponent, LoginComponent, LayoutComponent, AdminChildren, CatchAllComponent, CustomRoutes, DashboardComponent, LoadingComponent } from '../types';
+import { TitleComponent, LoginComponent, LayoutComponent, ResourceChildren, CatchAllComponent, CustomRoutes, DashboardComponent, LoadingComponent } from '../types';
 export declare type ChildrenFunction = () => ComponentType[];
 export interface AppUIProps {
     catchAll?: CatchAllComponent;
-    children?: AdminChildren;
+    children?: ResourceChildren;
     customRoutes?: CustomRoutes;
     dashboard?: DashboardComponent;
     disableTelemetry?: boolean;

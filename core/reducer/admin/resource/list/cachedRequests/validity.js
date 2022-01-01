@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("../../../../../core");
-var initialState = null;
-var validityReducer = function (previousState, _a) {
-    if (previousState === void 0) { previousState = initialState; }
-    var payload = _a.payload, meta = _a.meta;
+const core_1 = require("../../../../../core");
+const initialState = null;
+const validityReducer = (previousState = initialState, { payload, meta }) => {
     switch (meta.fetchResponse) {
         case core_1.GET_LIST: {
             if (payload.validUntil) {

@@ -8,5 +8,5 @@ interface FinalAutoFormProps<FormValues = Record<string, any>, InitialFormValues
     form: FieldSchema;
     schema: any;
 }
-export default function FinalAutoForm({ children, form: fuckyou, initialValues, schema, ...props }: FinalAutoFormProps): JSX.Element;
+export default function FinalAutoForm({ children, form: form_, initialValues, schema, ...props }: FinalAutoFormProps): JSX.Element;
 export {};

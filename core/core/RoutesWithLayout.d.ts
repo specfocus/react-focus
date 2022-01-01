@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { AdminChildren, CustomRoutes, CatchAllComponent, TitleComponent, DashboardComponent } from '../types';
+import { ResourceChildren, CustomRoutes, CatchAllComponent, TitleComponent, DashboardComponent } from '../types';
 export interface RoutesWithLayoutProps {
     catchAll: CatchAllComponent;
-    children: AdminChildren;
+    children: ResourceChildren;
     customRoutes?: CustomRoutes;
     dashboard?: DashboardComponent;
     title?: TitleComponent;

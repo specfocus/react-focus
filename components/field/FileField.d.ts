@@ -35,7 +35,7 @@ declare const FileField: {
         className: PropTypes.Requireable<string>;
         cellClassName: PropTypes.Requireable<string>;
         headerClassName: PropTypes.Requireable<string>;
-        textAlign: PropTypes.Requireable<"center" | "inherit" | "justify" | "left" | "right" | undefined>;
+        textAlign: PropTypes.Requireable<"center" | "inherit" | "justify" | "left" | "right">;
         emptyText: PropTypes.Requireable<string>;
     };
 };

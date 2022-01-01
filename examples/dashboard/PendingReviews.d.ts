@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Customer, Review } from '../types';
+import { Customer, Review } from '../db/types';
 interface Props {
     reviews?: Review[];
     customers?: {

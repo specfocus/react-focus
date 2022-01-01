@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fieldPropTypes = void 0;
-var prop_types_1 = __importDefault(require("prop-types"));
+const prop_types_1 = __importDefault(require("prop-types"));
 exports.fieldPropTypes = {
     addLabel: prop_types_1.default.bool,
     sortBy: prop_types_1.default.string,

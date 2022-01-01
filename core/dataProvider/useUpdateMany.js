@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useMutation_1 = __importDefault(require("./useMutation"));
+const react_1 = require("react");
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the dataProvider.updateMany() method, the result
  * of the call (the list of updated record ids), and the loading state.
@@ -51,16 +51,16 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  *     return <button disabled={loading} onClick={updateMany}>Reset views</button>;
  * };
  */
-var useUpdateMany = function (resource, ids, data, options) {
-    var _a = (0, useMutation_1.default)({ type: 'updateMany', resource: resource, payload: { ids: ids, data: data } }, options), mutate = _a[0], state = _a[1];
-    var updateMany = (0, react_1.useCallback)(function (resource, ids, data, options) {
+const useUpdateMany = (resource, ids, data, options) => {
+    const [mutate, state] = (0, useMutation_1.default)({ type: 'updateMany', resource, payload: { ids, data } }, options);
+    const updateMany = (0, react_1.useCallback)((resource, ids, data, options) => {
         if (typeof resource === 'string') {
-            var query = {
+            const query = {
                 type: 'updateMany',
-                resource: resource,
+                resource,
                 payload: {
                     ids: ids,
-                    data: data,
+                    data,
                 },
             };
             return mutate(query, options);

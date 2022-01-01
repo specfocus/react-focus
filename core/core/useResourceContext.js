@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useResourceContext = void 0;
-var react_1 = require("react");
-var ResourceContext_1 = require("./ResourceContext");
+const react_1 = require("react");
+const ResourceContext_1 = require("./ResourceContext");
 /**
  * Hook to read the resource from the ResourceContext.
  *
@@ -35,8 +35,8 @@ var ResourceContext_1 = require("./ResourceContext");
  *
  * @returns {ResourceContextValue} The resource name, e.g. 'posts'
  */
-var useResourceContext = function (props) {
-    var context = (0, react_1.useContext)(ResourceContext_1.ResourceContext);
+const useResourceContext = (props) => {
+    const context = (0, react_1.useContext)(ResourceContext_1.ResourceContext);
     return (props && props.resource) || context;
 };
 exports.useResourceContext = useResourceContext;

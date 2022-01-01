@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,54 +33,49 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var material_1 = require("@mui/material");
-var classnames_1 = __importDefault(require("classnames"));
-var button_1 = require("../button");
-var PREFIX = 'RaToolbar';
-var classes = {
-    toolbar: "".concat(PREFIX, "-toolbar"),
-    desktopToolbar: "".concat(PREFIX, "-desktopToolbar"),
-    mobileToolbar: "".concat(PREFIX, "-mobileToolbar"),
-    defaultToolbar: "".concat(PREFIX, "-defaultToolbar"),
-    spacer: "".concat(PREFIX, "-spacer"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const styles_1 = require("@mui/material/styles");
+const classnames_1 = __importDefault(require("classnames"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const button_1 = require("../button");
+const PREFIX = 'RaToolbar';
+const classes = {
+    toolbar: `${PREFIX}-toolbar`,
+    desktopToolbar: `${PREFIX}-desktopToolbar`,
+    mobileToolbar: `${PREFIX}-mobileToolbar`,
+    defaultToolbar: `${PREFIX}-defaultToolbar`,
+    spacer: `${PREFIX}-spacer`,
 };
-var StyledToolbar = (0, styles_1.styled)(material_1.Toolbar)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.toolbar)] = {
-            backgroundColor: theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-        },
-        _b["&.".concat(classes.desktopToolbar)] = {
-            marginTop: theme.spacing(2),
-        },
-        _b["&.".concat(classes.mobileToolbar)] = {
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            padding: '16px',
-            width: '100%',
-            boxSizing: 'border-box',
-            flexShrink: 0,
-            zIndex: 2,
-        },
-        _b["&.".concat(classes.defaultToolbar)] = {
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'space-between',
-        },
-        _b);
-});
-var valueOrDefault = function (value, defaultValue) {
-    return typeof value === 'undefined' ? defaultValue : value;
-};
+const StyledToolbar = (0, styles_1.styled)(material_1.Toolbar)(({ theme }) => ({
+    [`&.${classes.toolbar}`]: {
+        backgroundColor: theme.palette.mode === 'light'
+            ? theme.palette.grey[100]
+            : theme.palette.grey[900],
+    },
+    [`&.${classes.desktopToolbar}`]: {
+        marginTop: theme.spacing(2),
+    },
+    [`&.${classes.mobileToolbar}`]: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: '16px',
+        width: '100%',
+        boxSizing: 'border-box',
+        flexShrink: 0,
+        zIndex: 2,
+    },
+    [`&.${classes.defaultToolbar}`]: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'space-between',
+    },
+}));
+const valueOrDefault = (value, defaultValue) => typeof value === 'undefined' ? defaultValue : value;
 /**
  * The Toolbar displayed at the bottom of forms.
  *
@@ -129,35 +113,32 @@ var valueOrDefault = function (value, defaultValue) {
  * @prop {string} width Apply to the mobile or desktop classes depending on its value. Pass `xs` to display the mobile version.
  *
  */
-var Toolbar = function (props) {
-    var _a;
-    var alwaysEnableSaveButton = props.alwaysEnableSaveButton, basePath = props.basePath, children = props.children, className = props.className, handleSubmit = props.handleSubmit, handleSubmitWithRedirect = props.handleSubmitWithRedirect, invalid = props.invalid, pristine = props.pristine, record = props.record, redirect = props.redirect, resource = props.resource, saving = props.saving, submitOnEnter = props.submitOnEnter, undoable = props.undoable, mutationMode = props.mutationMode, validating = props.validating, rest = __rest(props, ["alwaysEnableSaveButton", "basePath", "children", "className", "handleSubmit", "handleSubmitWithRedirect", "invalid", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "undoable", "mutationMode", "validating"]);
-    var isXs = (0, material_1.useMediaQuery)(function (theme) { return theme.breakpoints.down('sm'); });
+const Toolbar = props => {
+    const { alwaysEnableSaveButton, basePath, children, className, handleSubmit, handleSubmitWithRedirect, invalid, pristine, record, redirect, resource, saving, submitOnEnter, undoable, mutationMode, validating } = props, rest = __rest(props, ["alwaysEnableSaveButton", "basePath", "children", "className", "handleSubmit", "handleSubmitWithRedirect", "invalid", "pristine", "record", "redirect", "resource", "saving", "submitOnEnter", "undoable", "mutationMode", "validating"]);
+    const isXs = (0, material_1.useMediaQuery)((theme) => theme.breakpoints.down('sm'));
     // Use form pristine and validating to enable or disable the save button
     // if alwaysEnableSaveButton is undefined
-    var disabled = !valueOrDefault(alwaysEnableSaveButton, !pristine && !validating);
-    return (React.createElement(StyledToolbar, __assign({ className: (0, classnames_1.default)(classes.toolbar, (_a = {},
-            _a[classes.mobileToolbar] = isXs,
-            _a[classes.desktopToolbar] = !isXs,
-            _a), className), role: "toolbar" }, rest), react_1.Children.count(children) === 0 ? (React.createElement("div", { className: classes.defaultToolbar },
-        React.createElement(button_1.SaveButton, { handleSubmitWithRedirect: handleSubmitWithRedirect || handleSubmit, disabled: disabled, invalid: invalid, redirect: redirect, saving: saving || validating, submitOnEnter: submitOnEnter }),
-        record && typeof record.id !== 'undefined' && (React.createElement(button_1.DeleteButton, { basePath: basePath, record: record, resource: resource, undoable: undoable, mutationMode: mutationMode })))) : (react_1.Children.map(children, function (button) {
-        return button && (0, react_1.isValidElement)(button)
+    const disabled = !valueOrDefault(alwaysEnableSaveButton, !pristine && !validating);
+    return ((0, jsx_runtime_1.jsx)(StyledToolbar, Object.assign({ className: (0, classnames_1.default)(classes.toolbar, {
+            [classes.mobileToolbar]: isXs,
+            [classes.desktopToolbar]: !isXs,
+        }, className), role: "toolbar" }, rest, { children: react_1.Children.count(children) === 0 ? ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.defaultToolbar }, { children: [(0, jsx_runtime_1.jsx)(button_1.SaveButton, { handleSubmitWithRedirect: handleSubmitWithRedirect || handleSubmit, disabled: disabled, invalid: invalid, redirect: redirect, saving: saving || validating, submitOnEnter: submitOnEnter }, void 0), record && typeof record.id !== 'undefined' && ((0, jsx_runtime_1.jsx)(button_1.DeleteButton, { basePath: basePath, record: record, resource: resource, undoable: undoable, mutationMode: mutationMode }, void 0))] }), void 0)) : (
+        // @ts-ignore
+        react_1.Children.map(children, (button) => button && (0, react_1.isValidElement)(button)
             ? React.cloneElement(button, {
                 basePath: valueOrDefault(button.props.basePath, basePath),
                 handleSubmit: valueOrDefault(button.props.handleSubmit, handleSubmit),
                 handleSubmitWithRedirect: valueOrDefault(button.props.handleSubmitWithRedirect, handleSubmitWithRedirect),
                 onSave: button.props.onSave,
-                invalid: invalid,
-                pristine: pristine,
+                invalid,
+                pristine,
                 record: valueOrDefault(button.props.record, record),
                 resource: valueOrDefault(button.props.resource, resource),
-                saving: saving,
+                saving,
                 submitOnEnter: valueOrDefault(button.props.submitOnEnter, submitOnEnter),
                 undoable: valueOrDefault(button.props.undoable, undoable),
             })
-            : null;
-    }))));
+            : null)) }), void 0));
 };
 Toolbar.propTypes = {
     basePath: prop_types_1.default.string,

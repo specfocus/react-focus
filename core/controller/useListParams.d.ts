@@ -91,7 +91,7 @@ export declare const parseQueryFromLocation: ({ search }: {
  *
  * @param {Object} params
  */
-export declare const hasCustomParams: (params: ListParams) => any;
+export declare const hasCustomParams: (params: ListParams) => boolean;
 /**
  * Merge list params from 3 different sources:
  *   - the query string
@@ -105,5 +105,5 @@ export declare const getQuery: ({ queryFromLocation, params, filterDefaultValues
     sort: any;
     perPage: any;
 }) => ListParams;
-export declare const getNumberOrDefault: (possibleNumber: string | number | undefined, defaultValue: number) => number | undefined;
+export declare const getNumberOrDefault: (possibleNumber: string | number | undefined, defaultValue: number) => number;
 export default useListParams;

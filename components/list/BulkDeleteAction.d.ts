@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
  *@deprecated use BulkDeleteButton instead
  */
 declare const BulkDeleteAction: {
-    (props: any): null;
+    (props: any): any;
     propTypes: {
         basePath: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string>;

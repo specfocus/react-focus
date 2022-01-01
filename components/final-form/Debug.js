@@ -1,15 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Debug = void 0;
-var react_final_form_1 = require("react-final-form");
-var react_1 = __importDefault(require("react"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_final_form_1 = require("react-final-form");
 function Debug() {
-    return (react_1.default.createElement(react_final_form_1.FormSpy, { subscription: { values: true } }, function (_a) {
-        var values = _a.values;
-        return react_1.default.createElement("pre", null, JSON.stringify(values, undefined, 2));
-    }));
+    return ((0, jsx_runtime_1.jsx)(react_final_form_1.FormSpy, Object.assign({ subscription: { values: true } }, { children: ({ values }) => (0, jsx_runtime_1.jsx)("pre", { children: JSON.stringify(values, undefined, 2) }, void 0) }), void 0));
 }
 exports.Debug = Debug;

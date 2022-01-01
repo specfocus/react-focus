@@ -26,7 +26,7 @@ declare const Confirm: {
         confirmColor: PropTypes.Requireable<string>;
         ConfirmIcon: PropTypes.Requireable<PropTypes.ReactComponentLike>;
         CancelIcon: PropTypes.Requireable<PropTypes.ReactComponentLike>;
-        content: PropTypes.Validator<string | number | boolean | {} | PropTypes.ReactElementLike | PropTypes.ReactNodeArray>;
+        content: PropTypes.Validator<PropTypes.ReactNodeLike>;
         isOpen: PropTypes.Requireable<boolean>;
         loading: PropTypes.Requireable<boolean>;
         onClose: PropTypes.Validator<(...args: any[]) => any>;

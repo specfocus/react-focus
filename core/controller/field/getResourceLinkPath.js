@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var get_1 = __importDefault(require("lodash/get"));
-var util_1 = require("../../util");
+const get_1 = __importDefault(require("lodash/get"));
+const util_1 = require("../../util");
 /**
  * Get the link toward the referenced resource
  *
@@ -32,16 +32,15 @@ var util_1 = require("../../util");
  *
  * @returns {string | false} The link to the reference record
  */
-var getResourceLinkPath = function (_a) {
-    var resource = _a.resource, source = _a.source, reference = _a.reference, _b = _a.link, link = _b === void 0 ? 'edit' : _b, _c = _a.record, record = _c === void 0 ? { id: '' } : _c, _d = _a.basePath, basePath = _d === void 0 ? '' : _d, linkType = _a.linkType;
+const getResourceLinkPath = ({ resource, source, reference, link = 'edit', record = { id: '' }, basePath = '', linkType, }) => {
     if (linkType !== undefined) {
         console.warn("The 'linkType' prop is deprecated and should be named to 'link' in <ReferenceField />");
     }
-    var sourceId = (0, get_1.default)(record, source);
-    var rootPath = basePath
+    const sourceId = (0, get_1.default)(record, source);
+    const rootPath = basePath
         ? basePath.replace(resource, reference)
-        : "/".concat(reference);
-    var linkTo = linkType !== undefined ? linkType : link;
+        : `/${reference}`;
+    const linkTo = linkType !== undefined ? linkType : link;
     // Backward compatibility: keep linkType but with warning
     return !linkTo
         ? false

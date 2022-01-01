@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { FieldProps } from '../../app';
-import { Order } from '../types';
+import { Order } from '../db/types';
 declare const NbItemsField: {
     ({ record }: FieldProps<Order>): JSX.Element;
     defaultProps: {

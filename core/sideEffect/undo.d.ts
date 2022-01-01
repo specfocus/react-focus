@@ -2,7 +2,7 @@ export declare function handleUndoRace(undoableAction: {
     payload: {
         action: any;
     };
-}): Generator<any, void, {
+}): Generator<import("redux-saga/effects").PutEffect<any> | import("redux-saga/effects").RaceEffect<import("redux-saga/effects").TakeEffect>, void, {
     complete: any;
 }>;
-export default function watchUndoable(): Generator<any, void, unknown>;
+export default function watchUndoable(): Generator<import("redux-saga/effects").ForkEffect<never>, void, unknown>;

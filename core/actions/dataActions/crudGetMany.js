@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CRUD_GET_MANY_SUCCESS = exports.CRUD_GET_MANY_FAILURE = exports.CRUD_GET_MANY_LOADING = exports.CRUD_GET_MANY = exports.crudGetMany = void 0;
-var core_1 = require("../../core");
-var crudGetMany = function (resource, ids) { return ({
+const core_1 = require("../../../core");
+const crudGetMany = (resource, ids) => ({
     type: exports.CRUD_GET_MANY,
-    payload: { ids: ids },
+    payload: { ids },
     meta: {
-        resource: resource,
+        resource,
         fetch: core_1.GET_MANY,
         onFailure: {
             notification: {
@@ -15,7 +15,7 @@ var crudGetMany = function (resource, ids) { return ({
             },
         },
     },
-}); };
+});
 exports.crudGetMany = crudGetMany;
 exports.CRUD_GET_MANY = 'CRUD_GET_MANY';
 exports.CRUD_GET_MANY_LOADING = 'CRUD_GET_MANY_LOADING';

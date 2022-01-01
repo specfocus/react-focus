@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,15 +15,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DateField = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var get_1 = __importDefault(require("lodash/get"));
-var material_1 = require("@mui/material");
-var core_1 = require("../../core");
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var types_1 = require("./types");
-var toLocaleStringSupportsLocales = (function () {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const get_1 = __importDefault(require("lodash/get"));
+const material_1 = require("@mui/material");
+const core_1 = require("../../core");
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const types_1 = require("./types");
+const toLocaleStringSupportsLocales = (() => {
     // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
     try {
         new Date().toLocaleString('i');
@@ -87,30 +57,30 @@ var toLocaleStringSupportsLocales = (function () {
  * // renders the record { id: 1234, new Date('2012-11-07') } as
  * <span>mercredi 7 novembre 2012</span>
  */
-exports.DateField = (0, react_1.memo)(function (props) {
-    var className = props.className, emptyText = props.emptyText, locales = props.locales, options = props.options, _a = props.showTime, showTime = _a === void 0 ? false : _a, source = props.source, rest = __rest(props, ["className", "emptyText", "locales", "options", "showTime", "source"]);
-    var record = (0, core_1.useRecordContext)(props);
+exports.DateField = (0, react_1.memo)(props => {
+    const { className, emptyText, locales, options, showTime = false, source } = props, rest = __rest(props, ["className", "emptyText", "locales", "options", "showTime", "source"]);
+    const record = (0, core_1.useRecordContext)(props);
     if (!record) {
         return null;
     }
-    var value = (0, get_1.default)(record, source);
+    const value = (0, get_1.default)(record, source);
     if (value == null || value === '') {
-        return emptyText ? (React.createElement(material_1.Typography, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), emptyText)) : null;
+        return emptyText ? ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: emptyText }), void 0)) : null;
     }
-    var date = value instanceof Date ? value : new Date(value);
-    var dateString = showTime
+    const date = value instanceof Date ? value : new Date(value);
+    const dateString = showTime
         ? toLocaleStringSupportsLocales
             ? date.toLocaleString(locales, options)
             : date.toLocaleString()
         : toLocaleStringSupportsLocales
             ? date.toLocaleDateString(locales, options)
             : date.toLocaleDateString();
-    return (React.createElement(material_1.Typography, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), dateString));
+    return ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: dateString }), void 0));
 });
 exports.DateField.defaultProps = {
     addLabel: true,
 };
-exports.DateField.propTypes = __assign(__assign(__assign({}, material_1.Typography.propTypes), types_1.fieldPropTypes), { locales: prop_types_1.default.oneOfType([
+exports.DateField.propTypes = Object.assign(Object.assign(Object.assign({}, material_1.Typography.propTypes), types_1.fieldPropTypes), { locales: prop_types_1.default.oneOfType([
         prop_types_1.default.string,
         prop_types_1.default.arrayOf(prop_types_1.default.string),
     ]), options: prop_types_1.default.object, showTime: prop_types_1.default.bool });

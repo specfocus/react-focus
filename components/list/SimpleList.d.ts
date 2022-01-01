@@ -37,7 +37,7 @@ import { Record, RecordMap, Identifier } from '../../core';
  * );
  */
 declare const SimpleList: {
-    <RecordType extends Record = Record>(props: SimpleListProps<RecordType>): JSX.Element | null;
+    <RecordType extends Record = Record>(props: SimpleListProps<RecordType>): JSX.Element;
     propTypes: {
         className: PropTypes.Requireable<string>;
         leftAvatar: PropTypes.Requireable<(...args: any[]) => any>;

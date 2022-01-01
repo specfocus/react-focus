@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,50 +15,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteWithUndoButton = void 0;
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var styles_2 = require("@mui/material/styles");
-var Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var Button_1 = __importDefault(require("./Button"));
-var PREFIX = 'RaDeleteWithUndoButton';
-var classes = {
-    deleteButton: "".concat(PREFIX, "-deleteButton"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const styles_2 = require("@mui/material/styles");
+const Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const Button_1 = __importDefault(require("./Button"));
+const PREFIX = 'RaDeleteWithUndoButton';
+const classes = {
+    deleteButton: `${PREFIX}-deleteButton`,
 };
-var StyledButton = (0, styles_1.styled)(Button_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.deleteButton)] = {
-            color: theme.palette.error.main,
-            '&:hover': {
-                backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
-                // Reset on mouse devices
-                '@media (hover: none)': {
-                    backgroundColor: 'transparent',
-                },
+const StyledButton = (0, styles_1.styled)(Button_1.default)(({ theme }) => ({
+    [`&.${classes.deleteButton}`]: {
+        color: theme.palette.error.main,
+        '&:hover': {
+            backgroundColor: (0, styles_2.alpha)(theme.palette.error.main, 0.12),
+            // Reset on mouse devices
+            '@media (hover: none)': {
+                backgroundColor: 'transparent',
             },
         },
-        _b);
-});
-var DeleteWithUndoButton = function (props) {
-    var _a = props.label, label = _a === void 0 ? 'ra.action.delete' : _a, classesOverride = props.classes, className = props.className, _b = props.icon, icon = _b === void 0 ? defaultIcon : _b, onClick = props.onClick, record = props.record, basePath = props.basePath, _c = props.redirect, redirect = _c === void 0 ? 'list' : _c, onSuccess = props.onSuccess, onFailure = props.onFailure, rest = __rest(props, ["label", "classes", "className", "icon", "onClick", "record", "basePath", "redirect", "onSuccess", "onFailure"]);
-    var resource = (0, core_1.useResourceContext)(props);
-    var _d = (0, core_1.useDeleteWithUndoController)({
-        record: record,
-        resource: resource,
-        basePath: basePath,
-        redirect: redirect,
-        onClick: onClick,
-        onSuccess: onSuccess,
-        onFailure: onFailure,
-    }), loading = _d.loading, handleDelete = _d.handleDelete;
-    return (React.createElement(StyledButton, __assign({ onClick: handleDelete, disabled: loading, label: label, className: (0, classnames_1.default)('ra-delete-button', classes.deleteButton, className), key: "button" }, rest), icon));
+    },
+}));
+const DeleteWithUndoButton = (props) => {
+    const { label = 'ra.action.delete', classes: classesOverride, className, icon = defaultIcon, onClick, record, basePath, redirect = 'list', onSuccess, onFailure } = props, rest = __rest(props, ["label", "classes", "className", "icon", "onClick", "record", "basePath", "redirect", "onSuccess", "onFailure"]);
+    const resource = (0, core_1.useResourceContext)(props);
+    const { loading, handleDelete } = (0, core_1.useDeleteWithUndoController)({
+        record,
+        resource,
+        basePath,
+        redirect,
+        onClick,
+        onSuccess,
+        onFailure,
+    });
+    return ((0, jsx_runtime_1.jsx)(StyledButton, Object.assign({ onClick: handleDelete, disabled: loading, label: label, className: (0, classnames_1.default)('ra-delete-button', classes.deleteButton, className) }, rest, { children: icon }), "button"));
 };
 exports.DeleteWithUndoButton = DeleteWithUndoButton;
-var defaultIcon = React.createElement(Delete_1.default, null);
+const defaultIcon = (0, jsx_runtime_1.jsx)(Delete_1.default, {}, void 0);
 exports.DeleteWithUndoButton.propTypes = {
     basePath: prop_types_1.default.string,
     classes: prop_types_1.default.object,

@@ -1,76 +1,45 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var Card_1 = __importDefault(require("@mui/material/Card"));
-var CardHeader_1 = __importDefault(require("@mui/material/CardHeader"));
-var List_1 = __importDefault(require("@mui/material/List"));
-var ListItem_1 = __importDefault(require("@mui/material/ListItem"));
-var ListItemSecondaryAction_1 = __importDefault(require("@mui/material/ListItemSecondaryAction"));
-var ListItemAvatar_1 = __importDefault(require("@mui/material/ListItemAvatar"));
-var ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
-var Avatar_1 = __importDefault(require("@mui/material/Avatar"));
-var react_router_dom_1 = require("react-router-dom");
-var app_1 = require("../../app");
-var PREFIX = 'PendingOrders';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
-    cost: "".concat(PREFIX, "-cost"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const Card_1 = __importDefault(require("@mui/material/Card"));
+const CardHeader_1 = __importDefault(require("@mui/material/CardHeader"));
+const List_1 = __importDefault(require("@mui/material/List"));
+const ListItem_1 = __importDefault(require("@mui/material/ListItem"));
+const ListItemSecondaryAction_1 = __importDefault(require("@mui/material/ListItemSecondaryAction"));
+const ListItemAvatar_1 = __importDefault(require("@mui/material/ListItemAvatar"));
+const ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
+const Avatar_1 = __importDefault(require("@mui/material/Avatar"));
+const react_router_dom_1 = require("react-router-dom");
+const app_1 = require("../../app");
+const PREFIX = 'PendingOrders';
+const classes = {
+    root: `${PREFIX}-root`,
+    cost: `${PREFIX}-cost`,
 };
-var StyledCard = (0, styles_1.styled)(Card_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.root)] = {
-            flex: 1,
-        },
-        _b["& .".concat(classes.cost)] = {
-            marginRight: '1em',
-            color: theme.palette.text.primary,
-        },
-        _b);
-});
-var PendingOrders = function (props) {
-    var _a = props.orders, orders = _a === void 0 ? [] : _a, _b = props.customers, customers = _b === void 0 ? {} : _b;
-    var translate = (0, app_1.useTranslate)();
-    return (React.createElement(StyledCard, { className: classes.root },
-        React.createElement(CardHeader_1.default, { title: translate('pos.dashboard.pending_orders') }),
-        React.createElement(List_1.default, { dense: true }, orders.map(function (record) { return (React.createElement(ListItem_1.default, { key: record.id, button: true, component: react_router_dom_1.Link, to: "/commands/".concat(record.id) },
-            React.createElement(ListItemAvatar_1.default, null, customers[record.customer_id] ? (React.createElement(Avatar_1.default, { src: "".concat(customers[record.customer_id].avatar, "?size=32x32") })) : (React.createElement(Avatar_1.default, null))),
-            React.createElement(ListItemText_1.default, { primary: new Date(record.date).toLocaleString('en-GB'), secondary: translate('pos.dashboard.order.items', {
-                    smart_count: record.basket.length,
-                    nb_items: record.basket.length,
-                    customer_name: customers[record.customer_id]
-                        ? "".concat(customers[record.customer_id]
-                            .first_name, " ").concat(customers[record.customer_id]
-                            .last_name)
-                        : '',
-                }) }),
-            React.createElement(ListItemSecondaryAction_1.default, null,
-                React.createElement("span", { className: classes.cost },
-                    record.total,
-                    "$")))); }))));
+const StyledCard = (0, styles_1.styled)(Card_1.default)(({ theme }) => ({
+    [`&.${classes.root}`]: {
+        flex: 1,
+    },
+    [`& .${classes.cost}`]: {
+        marginRight: '1em',
+        color: theme.palette.text.primary,
+    },
+}));
+const PendingOrders = (props) => {
+    const { orders = [], customers = {} } = props;
+    const translate = (0, app_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsxs)(StyledCard, Object.assign({ className: classes.root }, { children: [(0, jsx_runtime_1.jsx)(CardHeader_1.default, { title: translate('pos.dashboard.pending_orders') }, void 0), (0, jsx_runtime_1.jsx)(List_1.default, Object.assign({ dense: true }, { children: orders.map(record => ((0, jsx_runtime_1.jsxs)(ListItem_1.default, Object.assign({ button: true, component: react_router_dom_1.Link, to: `/commands/${record.id}` }, { children: [(0, jsx_runtime_1.jsx)(ListItemAvatar_1.default, { children: customers[record.customer_id] ? ((0, jsx_runtime_1.jsx)(Avatar_1.default, { src: `${customers[record.customer_id].avatar}?size=32x32` }, void 0)) : ((0, jsx_runtime_1.jsx)(Avatar_1.default, {}, void 0)) }, void 0), (0, jsx_runtime_1.jsx)(ListItemText_1.default, { primary: new Date(record.date).toLocaleString('en-GB'), secondary: translate('pos.dashboard.order.items', {
+                                smart_count: record.basket.length,
+                                nb_items: record.basket.length,
+                                customer_name: customers[record.customer_id]
+                                    ? `${customers[record.customer_id]
+                                        .first_name} ${customers[record.customer_id]
+                                        .last_name}`
+                                    : '',
+                            }) }, void 0), (0, jsx_runtime_1.jsx)(ListItemSecondaryAction_1.default, { children: (0, jsx_runtime_1.jsxs)("span", Object.assign({ className: classes.cost }, { children: [record.total, "$"] }), void 0) }, void 0)] }), record.id))) }), void 0)] }), void 0));
 };
 exports.default = PendingOrders;

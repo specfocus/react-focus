@@ -1,28 +1,17 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRecord = exports.removeRecords = exports.addOneRecord = exports.addRecords = exports.addRecordsAndRemoveOutdated = exports.hideFetchedAt = void 0;
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var actions_1 = require("../../../actions");
-var core_1 = require("../../../core");
-var getFetchedAt_1 = __importDefault(require("../../../util/getFetchedAt"));
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const actions_1 = require("../../../actions");
+const core_1 = require("../../../core");
+const getFetchedAt_1 = __importDefault(require("../../../util/getFetchedAt"));
 /**
  * Make the fetchedAt property non enumerable
  */
-var hideFetchedAt = function (records) {
+const hideFetchedAt = (records) => {
     Object.defineProperty(records, 'fetchedAt', {
         enumerable: false,
         configurable: false,
@@ -38,103 +27,72 @@ exports.hideFetchedAt = hideFetchedAt;
  * The cached data is displayed before fetching, and stale data is removed
  * only once fresh data is fetched.
  */
-var addRecordsAndRemoveOutdated = function (newRecords, oldRecords) {
-    if (newRecords === void 0) { newRecords = []; }
-    var newRecordsById = {};
-    newRecords.forEach(function (record) { return (newRecordsById[record.id] = record); });
-    var newFetchedAt = (0, getFetchedAt_1.default)(newRecords.map(function (_a) {
-        var id = _a.id;
-        return id;
-    }), oldRecords.fetchedAt);
-    var records = { fetchedAt: newFetchedAt };
-    Object.keys(newFetchedAt).forEach(function (id) {
-        return (records[id] = newRecordsById[id]
-            ? (0, isEqual_1.default)(newRecordsById[id], oldRecords[id])
-                ? oldRecords[id] // do not change the record to avoid a redraw
-                : newRecordsById[id]
-            : oldRecords[id]);
-    });
+const addRecordsAndRemoveOutdated = (newRecords = [], oldRecords) => {
+    const newRecordsById = {};
+    newRecords.forEach(record => (newRecordsById[record.id] = record));
+    const newFetchedAt = (0, getFetchedAt_1.default)(newRecords.map(({ id }) => id), oldRecords.fetchedAt);
+    const records = { fetchedAt: newFetchedAt };
+    Object.keys(newFetchedAt).forEach(id => (records[id] = newRecordsById[id]
+        ? (0, isEqual_1.default)(newRecordsById[id], oldRecords[id])
+            ? oldRecords[id] // do not change the record to avoid a redraw
+            : newRecordsById[id]
+        : oldRecords[id]));
     return (0, exports.hideFetchedAt)(records);
 };
 exports.addRecordsAndRemoveOutdated = addRecordsAndRemoveOutdated;
 /**
  * Add new records to the pool, without touching the other ones.
  */
-var addRecords = function (newRecords, oldRecords) {
-    if (newRecords === void 0) { newRecords = []; }
-    var newRecordsById = __assign({}, oldRecords);
-    newRecords.forEach(function (record) {
+const addRecords = (newRecords = [], oldRecords) => {
+    const newRecordsById = Object.assign({}, oldRecords);
+    newRecords.forEach(record => {
         newRecordsById[record.id] = (0, isEqual_1.default)(record, oldRecords[record.id])
             ? oldRecords[record.id]
             : record;
     });
-    var updatedFetchedAt = (0, getFetchedAt_1.default)(newRecords.map(function (_a) {
-        var id = _a.id;
-        return id;
-    }), oldRecords.fetchedAt);
+    const updatedFetchedAt = (0, getFetchedAt_1.default)(newRecords.map(({ id }) => id), oldRecords.fetchedAt);
     Object.defineProperty(newRecordsById, 'fetchedAt', {
-        value: __assign(__assign({}, oldRecords.fetchedAt), updatedFetchedAt),
+        value: Object.assign(Object.assign({}, oldRecords.fetchedAt), updatedFetchedAt),
         enumerable: false,
     });
     return newRecordsById;
 };
 exports.addRecords = addRecords;
-var addOneRecord = function (newRecord, oldRecords, date) {
-    var _a, _b;
-    if (date === void 0) { date = new Date(); }
-    var newRecordsById = __assign(__assign({}, oldRecords), (_a = {}, _a[newRecord.id] = (0, isEqual_1.default)(newRecord, oldRecords[newRecord.id])
-        ? oldRecords[newRecord.id] // do not change the record to avoid a redraw
-        : newRecord, _a));
+const addOneRecord = (newRecord, oldRecords, date = new Date()) => {
+    const newRecordsById = Object.assign(Object.assign({}, oldRecords), { [newRecord.id]: (0, isEqual_1.default)(newRecord, oldRecords[newRecord.id])
+            ? oldRecords[newRecord.id] // do not change the record to avoid a redraw
+            : newRecord });
     return Object.defineProperty(newRecordsById, 'fetchedAt', {
-        value: __assign(__assign({}, oldRecords.fetchedAt), (_b = {}, _b[newRecord.id] = date, _b)),
+        value: Object.assign(Object.assign({}, oldRecords.fetchedAt), { [newRecord.id]: date }),
         enumerable: false,
     });
 };
 exports.addOneRecord = addOneRecord;
-var includesNotStrict = function (items, element) {
-    return items.some(function (item) { return item == element; });
-}; // eslint-disable-line eqeqeq
+const includesNotStrict = (items, element) => items.some((item) => item == element); // eslint-disable-line eqeqeq
 /**
  * Remove records from the pool
  */
-var removeRecords = function (removedRecordIds, oldRecords) {
-    if (removedRecordIds === void 0) { removedRecordIds = []; }
-    var records = Object.entries(oldRecords)
-        .filter(function (_a) {
-        var key = _a[0];
-        return !includesNotStrict(removedRecordIds, key);
-    })
-        .reduce(function (obj, _a) {
-        var _b;
-        var key = _a[0], val = _a[1];
-        return (__assign(__assign({}, obj), (_b = {}, _b[key] = val, _b)));
-    }, {
+const removeRecords = (removedRecordIds = [], oldRecords) => {
+    const records = Object.entries(oldRecords)
+        .filter(([key]) => !includesNotStrict(removedRecordIds, key))
+        .reduce((obj, [key, val]) => (Object.assign(Object.assign({}, obj), { [key]: val })), {
         fetchedAt: {}, // TypeScript warns later if this is not defined
     });
     records.fetchedAt = Object.entries(oldRecords.fetchedAt)
-        .filter(function (_a) {
-        var key = _a[0];
-        return !includesNotStrict(removedRecordIds, key);
-    })
-        .reduce(function (obj, _a) {
-        var _b;
-        var key = _a[0], val = _a[1];
-        return (__assign(__assign({}, obj), (_b = {}, _b[key] = val, _b)));
-    }, {});
+        .filter(([key]) => !includesNotStrict(removedRecordIds, key))
+        .reduce((obj, [key, val]) => (Object.assign(Object.assign({}, obj), { [key]: val })), {});
     return (0, exports.hideFetchedAt)(records);
 };
 exports.removeRecords = removeRecords;
-var initialState = (0, exports.hideFetchedAt)({ fetchedAt: {} });
-var dataReducer = function (previousState, _a) {
-    if (previousState === void 0) { previousState = initialState; }
-    var payload = _a.payload, meta = _a.meta;
+const initialState = (0, exports.hideFetchedAt)({ fetchedAt: {} });
+const dataReducer = (previousState = initialState, { payload, meta }) => {
     if (meta && meta.optimistic) {
         if (meta.fetch === core_1.UPDATE) {
-            var updatedRecord = __assign(__assign({}, previousState[payload.id]), payload.data);
+            const updatedRecord = Object.assign(Object.assign({}, previousState[payload.id]), payload.data);
             return (0, exports.addOneRecord)(updatedRecord, previousState);
         }
         if (meta.fetch === core_1.UPDATE_MANY) {
-            var updatedRecords = payload.ids.map(function (id) { return (__assign(__assign({}, previousState[id]), payload.data)); });
+            const updatedRecords = payload.ids.map((id) => (Object.assign(Object.assign({}, previousState[id]), payload.data)));
             return (0, exports.addRecordsAndRemoveOutdated)(updatedRecords, previousState);
         }
         if (meta.fetch === core_1.DELETE) {
@@ -161,6 +119,6 @@ var dataReducer = function (previousState, _a) {
             return previousState;
     }
 };
-var getRecord = function (state, id) { return state[id]; };
+const getRecord = (state, id) => state[id];
 exports.getRecord = getRecord;
 exports.default = dataReducer;

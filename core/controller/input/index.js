@@ -14,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceInputController = exports.ReferenceArrayInputController = exports.getStatusForArrayInput = exports.getSelectedReferencesStatus = exports.getStatusForInput = void 0;
-var ReferenceArrayInputController_1 = __importDefault(require("./ReferenceArrayInputController"));
+const ReferenceArrayInputController_1 = __importDefault(require("./ReferenceArrayInputController"));
 exports.ReferenceArrayInputController = ReferenceArrayInputController_1.default;
-var ReferenceInputController_1 = __importDefault(require("./ReferenceInputController"));
+const ReferenceInputController_1 = __importDefault(require("./ReferenceInputController"));
 exports.ReferenceInputController = ReferenceInputController_1.default;
-var referenceDataStatus_1 = require("./referenceDataStatus");
+const referenceDataStatus_1 = require("./referenceDataStatus");
 Object.defineProperty(exports, "getStatusForInput", { enumerable: true, get: function () { return referenceDataStatus_1.getStatusForInput; } });
 Object.defineProperty(exports, "getSelectedReferencesStatus", { enumerable: true, get: function () { return referenceDataStatus_1.getSelectedReferencesStatus; } });
 Object.defineProperty(exports, "getStatusForArrayInput", { enumerable: true, get: function () { return referenceDataStatus_1.getStatusForArrayInput; } });

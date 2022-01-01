@@ -1,5 +1,5 @@
 import { Identifier, Record } from '../../types';
-import { UPDATE } from '../../core';
+import { UPDATE } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, RedirectionSideEffect, RefreshSideEffect } from '../../sideEffect';
 export declare const crudUpdate: (resource: string, id: Identifier, data: any, previousData: any, basePath: string, redirectTo?: RedirectionSideEffect, refresh?: RefreshSideEffect) => CrudUpdateAction;

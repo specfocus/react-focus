@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { Order } from '../types';
+import { Order } from '../db/types';
 declare const OrderChart: (props: {
-    orders?: Order[] | undefined;
-}) => JSX.Element | null;
+    orders?: Order[];
+}) => JSX.Element;
 export default OrderChart;

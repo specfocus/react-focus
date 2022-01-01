@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,12 +34,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceManyFieldView = exports.ReferenceManyField = void 0;
-var react_1 = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var react_redux_1 = require("react-redux");
-var types_1 = require("./types");
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = __importStar(require("react"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const react_redux_1 = require("react-redux");
+const types_1 = require("./types");
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
 /**
  * Render related records to the current one.
  *
@@ -97,31 +87,29 @@ var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps
  *    ...
  * </ReferenceManyField>
  */
-var ReferenceManyField = function (props) {
-    var basePath = props.basePath, children = props.children, filter = props.filter, _a = props.page, page = _a === void 0 ? 1 : _a, perPage = props.perPage, reference = props.reference, resource = props.resource, sort = props.sort, source = props.source, target = props.target;
-    var record = (0, core_1.useRecordContext)(props);
+const ReferenceManyField = props => {
+    const { basePath, children, filter, page = 1, perPage, reference, resource, sort, source, target, } = props;
+    const record = (0, core_1.useRecordContext)(props);
     if (react_1.default.Children.count(children) !== 1) {
         throw new Error('<ReferenceManyField> only accepts a single child (like <Datagrid>)');
     }
-    var isReferenceDeclared = (0, react_redux_1.useSelector)(function (state) { return typeof state.admin.resources[props.reference] !== 'undefined'; });
+    const isReferenceDeclared = (0, react_redux_1.useSelector)(state => typeof state.admin.resources[props.reference] !== 'undefined');
     if (!isReferenceDeclared) {
-        throw new Error("You must declare a <Resource name=\"".concat(props.reference, "\"> in order to use a <ReferenceManyField reference=\"").concat(props.reference, "\">"));
+        throw new Error(`You must declare a <Resource name="${props.reference}"> in order to use a <ReferenceManyField reference="${props.reference}">`);
     }
-    var controllerProps = (0, core_1.useReferenceManyFieldController)({
-        basePath: basePath,
-        filter: filter,
-        page: page,
-        perPage: perPage,
-        record: record,
-        reference: reference,
-        resource: resource,
-        sort: sort,
-        source: source,
-        target: target,
+    const controllerProps = (0, core_1.useReferenceManyFieldController)({
+        basePath,
+        filter,
+        page,
+        perPage,
+        record,
+        reference,
+        resource,
+        sort,
+        source,
+        target,
     });
-    return (react_1.default.createElement(core_1.ResourceContextProvider, { value: reference },
-        react_1.default.createElement(core_1.ListContextProvider, { value: controllerProps },
-            react_1.default.createElement(exports.ReferenceManyFieldView, __assign({}, props, controllerProps)))));
+    return ((0, jsx_runtime_1.jsx)(core_1.ResourceContextProvider, Object.assign({ value: reference }, { children: (0, jsx_runtime_1.jsx)(core_1.ListContextProvider, Object.assign({ value: controllerProps }, { children: (0, jsx_runtime_1.jsx)(exports.ReferenceManyFieldView, Object.assign({}, props, controllerProps), void 0) }), void 0) }), void 0));
 };
 exports.ReferenceManyField = ReferenceManyField;
 exports.ReferenceManyField.propTypes = {
@@ -151,13 +139,11 @@ exports.ReferenceManyField.defaultProps = {
     source: 'id',
     addLabel: true,
 };
-var ReferenceManyFieldView = function (props) {
-    var basePath = props.basePath, children = props.children, pagination = props.pagination, reference = props.reference, rest = __rest(props, ["basePath", "children", "pagination", "reference"]);
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        (0, react_1.cloneElement)(react_1.Children.only(children), __assign(__assign({}, (0, sanitizeFieldRestProps_1.default)(rest)), { basePath: basePath, resource: reference })),
-        pagination &&
-            props.total !== undefined &&
-            (0, react_1.cloneElement)(pagination)));
+const ReferenceManyFieldView = props => {
+    const { basePath, children, pagination, reference } = props, rest = __rest(props, ["basePath", "children", "pagination", "reference"]);
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, react_1.cloneElement)(react_1.Children.only(children), Object.assign(Object.assign({}, (0, sanitizeFieldRestProps_1.default)(rest)), { basePath, resource: reference })), pagination &&
+                props.total !== undefined &&
+                (0, react_1.cloneElement)(pagination)] }, void 0));
 };
 exports.ReferenceManyFieldView = ReferenceManyFieldView;
 exports.ReferenceManyFieldView.propTypes = {

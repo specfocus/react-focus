@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EditContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context to store the result of the useEditController() hook.
  *
@@ -9,7 +9,7 @@ var react_1 = require("react");
  *
  * @example
  *
- * import { useEditController, EditContextProvider } from '../../core';
+ * import { useEditController, EditContextProvider } from '../../../core';
  *
  * const Edit = props => {
  *     const controllerProps = useEditController(props);

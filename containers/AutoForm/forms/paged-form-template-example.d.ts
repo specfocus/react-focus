@@ -32,46 +32,46 @@ export const data: ({
     }[];
 })[])[];
 export const validationSchema: (Yup.ObjectSchema<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>, Record<string, any>, import("yup/lib/object").TypeOfShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>>, import("yup/lib/object").AssertsShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>>> | Yup.ObjectSchema<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    email: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>, Record<string, any>, import("yup/lib/object").TypeOfShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    email: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>>, import("yup/lib/object").AssertsShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    email: import("yup/lib/string").RequiredStringSchema<string | undefined, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date | null | undefined, Record<string, any>>;
+    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
 }>>>)[];
 export const initialValues: ({
     username: string;
     password: string;
-    date: null;
+    date: any;
     email?: undefined;
     time?: undefined;
     checkbox?: undefined;
     radio?: undefined;
 } | {
     email: string;
-    time: null;
+    time: any;
     username?: undefined;
     password?: undefined;
     date?: undefined;
     checkbox?: undefined;
     radio?: undefined;
 } | {
-    checkbox: null;
-    radio: null;
+    checkbox: any;
+    radio: any;
     username?: undefined;
     password?: undefined;
     date?: undefined;

@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = (function (basePath, id, linkType) {
-    if (linkType === void 0) { linkType = 'edit'; }
-    var link = "".concat(basePath, "/").concat(encodeURIComponent(id));
+exports.default = (basePath, id, linkType = 'edit') => {
+    const link = `${basePath}/${encodeURIComponent(id)}`;
     if (linkType === 'show') {
-        return "".concat(link, "/show");
+        return `${link}/show`;
     }
     return link;
-});
+};

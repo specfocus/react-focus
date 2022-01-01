@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context to store the result of the useListController() hook.
  *
@@ -54,7 +54,7 @@ var react_1 = require("react");
  *     );
  * };
  */
-var ListContext = (0, react_1.createContext)({
+const ListContext = (0, react_1.createContext)({
     basePath: null,
     currentSort: null,
     data: null,

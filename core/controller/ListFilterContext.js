@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePickFilterContext = void 0;
-var react_1 = require("react");
-var pick_1 = __importDefault(require("lodash/pick"));
+const react_1 = require("react");
+const pick_1 = __importDefault(require("lodash/pick"));
 /**
  * Context to store the filter part of the useListController() result.
  *
@@ -41,7 +41,7 @@ var pick_1 = __importDefault(require("lodash/pick"));
  *     );
  * };
  */
-var ListFilterContext = (0, react_1.createContext)({
+const ListFilterContext = (0, react_1.createContext)({
     displayedFilters: null,
     filterValues: null,
     hideFilter: null,
@@ -49,26 +49,22 @@ var ListFilterContext = (0, react_1.createContext)({
     showFilter: null,
     resource: null,
 });
-var usePickFilterContext = function (context) {
-    return (0, react_1.useMemo)(function () {
-        return (0, pick_1.default)(context, [
-            'displayedFilters',
-            'filterValues',
-            'hideFilter',
-            'setFilters',
-            'showFilter',
-            'resource',
-        ]);
-    }, 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-        context.displayedFilters,
-        context.filterValues,
-        context.hideFilter,
-        context.setFilters,
-        context.showFilter,
-    ]);
-};
+const usePickFilterContext = (context) => (0, react_1.useMemo)(() => (0, pick_1.default)(context, [
+    'displayedFilters',
+    'filterValues',
+    'hideFilter',
+    'setFilters',
+    'showFilter',
+    'resource',
+]), 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+[
+    context.displayedFilters,
+    context.filterValues,
+    context.hideFilter,
+    context.setFilters,
+    context.showFilter,
+]);
 exports.usePickFilterContext = usePickFilterContext;
 ListFilterContext.displayName = 'ListFilterContext';
 exports.default = ListFilterContext;

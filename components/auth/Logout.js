@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,51 +33,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var material_1 = require("@mui/material");
-var PowerSettingsNew_1 = __importDefault(require("@mui/icons-material/PowerSettingsNew"));
-var classnames_1 = __importDefault(require("classnames"));
-var core_1 = require("../../core");
-var PREFIX = 'RaLogout';
-var classes = {
-    menuItem: "".concat(PREFIX, "-menuItem"),
-    icon: "".concat(PREFIX, "-icon"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const material_1 = require("@mui/material");
+const PowerSettingsNew_1 = __importDefault(require("@mui/icons-material/PowerSettingsNew"));
+const classnames_1 = __importDefault(require("classnames"));
+const core_1 = require("../../core");
+const PREFIX = 'RaLogout';
+const classes = {
+    menuItem: `${PREFIX}-menuItem`,
+    icon: `${PREFIX}-icon`,
 };
-var StyledMenuItem = (0, styles_1.styled)(material_1.MenuItem)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.menuItem)] = {
-            color: theme.palette.text.secondary,
-        },
-        _b["& .".concat(classes.icon)] = { minWidth: theme.spacing(5) },
-        _b);
-});
+const StyledMenuItem = (0, styles_1.styled)(material_1.MenuItem)(({ theme }) => ({
+    [`&.${classes.menuItem}`]: {
+        color: theme.palette.text.secondary,
+    },
+    [`& .${classes.icon}`]: { minWidth: theme.spacing(5) },
+}));
 /**
  * Logout button component, to be passed to the Admin component
  *
  * Used for the Logout Menu item in the sidebar
  */
-var LogoutWithRef = React.forwardRef(function Logout(props, ref) {
-    var className = props.className, classesOverride = props.classes, redirectTo = props.redirectTo, icon = props.icon, rest = __rest(props, ["className", "classes", "redirectTo", "icon"]);
-    var isXSmall = (0, material_1.useMediaQuery)(function (theme) {
-        return theme.breakpoints.down('sm');
-    });
-    var translate = (0, core_1.useTranslate)();
-    var logout = (0, core_1.useLogout)();
+const LogoutWithRef = React.forwardRef(function Logout(props, ref) {
+    const { className, classes: classesOverride, redirectTo, icon } = props, rest = __rest(props, ["className", "classes", "redirectTo", "icon"]);
+    const isXSmall = (0, material_1.useMediaQuery)((theme) => theme.breakpoints.down('sm'));
+    const translate = (0, core_1.useTranslate)();
+    const logout = (0, core_1.useLogout)();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    var handleClick = (0, react_1.useCallback)(function () { return logout(null, redirectTo, false); }, [
+    const handleClick = (0, react_1.useCallback)(() => logout(null, redirectTo, false), [
         redirectTo,
         logout,
     ]);
-    return (React.createElement(StyledMenuItem, __assign({ className: (0, classnames_1.default)('logout', classes.menuItem, className), onClick: handleClick, ref: ref, 
+    return ((0, jsx_runtime_1.jsxs)(StyledMenuItem, Object.assign({ className: (0, classnames_1.default)('logout', classes.menuItem, className), onClick: handleClick, ref: ref, 
         // @ts-ignore
-        component: isXSmall ? 'span' : 'li' }, rest),
-        React.createElement(material_1.ListItemIcon, { className: classes.icon }, icon ? icon : React.createElement(PowerSettingsNew_1.default, null)),
-        translate('ra.auth.logout')));
+        component: isXSmall ? 'span' : 'li' }, rest, { children: [(0, jsx_runtime_1.jsx)(material_1.ListItemIcon, Object.assign({ className: classes.icon }, { children: icon ? icon : (0, jsx_runtime_1.jsx)(PowerSettingsNew_1.default, {}, void 0) }), void 0), translate('ra.auth.logout')] }), void 0));
 });
 LogoutWithRef.propTypes = {
     className: prop_types_1.default.string,

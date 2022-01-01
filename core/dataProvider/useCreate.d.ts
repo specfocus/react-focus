@@ -46,7 +46,7 @@ import { MutationOptions, Mutation } from './useMutation';
  *     return <button disabled={loading} onClick={create}>Like</button>;
  * };
  */
-declare const useCreate: <RecordType extends Record = Record>(resource?: string | undefined, data?: Partial<RecordType> | undefined, options?: MutationOptions | undefined) => UseCreateHookValue<RecordType>;
+declare const useCreate: <RecordType extends Record = Record>(resource?: string, data?: Partial<RecordType>, options?: MutationOptions) => UseCreateHookValue<RecordType>;
 declare type UseCreateHookValue<RecordType extends Record = Record> = [
     (resource?: string | Partial<Mutation> | Event, data?: Partial<RecordType>, options?: MutationOptions) => void | Promise<any>,
     {

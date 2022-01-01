@@ -1,26 +1,15 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var get_1 = __importDefault(require("lodash/get"));
-var react_1 = require("react");
-var crudGetManyReference_1 = require("../actions/dataActions/crudGetManyReference");
-var useQueryWithStore_1 = require("./useQueryWithStore");
-var oneToMany_1 = require("../reducer/admin/references/oneToMany");
-var defaultIds = [];
-var defaultData = {};
+const get_1 = __importDefault(require("lodash/get"));
+const react_1 = require("react");
+const crudGetManyReference_1 = require("../actions/dataActions/crudGetManyReference");
+const useQueryWithStore_1 = require("./useQueryWithStore");
+const oneToMany_1 = require("../reducer/admin/references/oneToMany");
+const defaultIds = [];
+const defaultData = {};
 /**
  * Call the dataProvider.getManyReference() method and return the resolved result
  * as well as the loading state.
@@ -69,39 +58,37 @@ var defaultData = {};
  *     )}</ul>;
  * };
  */
-var useGetManyReference = function (resource, target, id, pagination, sort, filter, referencingResource, options) {
-    var relatedTo = (0, react_1.useMemo)(function () { return (0, oneToMany_1.nameRelatedTo)(resource, id, referencingResource, target, filter); }, [filter, resource, id, referencingResource, target]);
-    var _a = (0, useQueryWithStore_1.useQueryWithStore)({
+const useGetManyReference = (resource, target, id, pagination, sort, filter, referencingResource, options) => {
+    const relatedTo = (0, react_1.useMemo)(() => (0, oneToMany_1.nameRelatedTo)(resource, id, referencingResource, target, filter), [filter, resource, id, referencingResource, target]);
+    const { data: { ids, allRecords }, total, error, loading, loaded, refetch, } = (0, useQueryWithStore_1.useQueryWithStore)({
         type: 'getManyReference',
         resource: resource,
-        payload: { target: target, id: id, pagination: pagination, sort: sort, filter: filter },
-    }, __assign(__assign({}, options), { relatedTo: relatedTo, action: crudGetManyReference_1.CRUD_GET_MANY_REFERENCE }), 
+        payload: { target, id, pagination, sort, filter },
+    }, Object.assign(Object.assign({}, options), { relatedTo, action: crudGetManyReference_1.CRUD_GET_MANY_REFERENCE }), 
     // ids and data selector
-    function (state) { return ({
+    (state) => ({
         ids: (0, oneToMany_1.getIds)(state, relatedTo),
         allRecords: (0, get_1.default)(state.admin.resources, [resource, 'data'], defaultData),
-    }); }, function (state) { return (0, oneToMany_1.getTotal)(state, relatedTo); }, isDataLoaded), _b = _a.data, ids = _b.ids, allRecords = _b.allRecords, total = _a.total, error = _a.error, loading = _a.loading, loaded = _a.loaded, refetch = _a.refetch;
-    var data = (0, react_1.useMemo)(function () {
-        return ids == null
-            ? defaultData
-            : ids
-                .map(function (id) { return allRecords[id]; })
-                .reduce(function (acc, record) {
-                if (!record)
-                    return acc;
-                acc[record.id] = record;
+    }), (state) => (0, oneToMany_1.getTotal)(state, relatedTo), isDataLoaded);
+    const data = (0, react_1.useMemo)(() => ids == null
+        ? defaultData
+        : ids
+            .map(id => allRecords[id])
+            .reduce((acc, record) => {
+            if (!record)
                 return acc;
-            }, {});
-    }, [ids, allRecords]);
+            acc[record.id] = record;
+            return acc;
+        }, {}), [ids, allRecords]);
     return {
-        data: data,
+        data,
         ids: ids || defaultIds,
-        total: total,
-        error: error,
-        loading: loading,
-        loaded: loaded,
-        refetch: refetch,
+        total,
+        error,
+        loading,
+        loaded,
+        refetch,
     };
 };
-var isDataLoaded = function (data) { return data.ids != null; };
+const isDataLoaded = (data) => data.ids != null;
 exports.default = useGetManyReference;

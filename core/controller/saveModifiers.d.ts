@@ -22,11 +22,11 @@ export declare const SideEffectContextProvider: ({ children, value }: {
  * } = useSaveModifiers({ onSuccess, onFailure, transform });
  */
 export declare const useSaveModifiers: ({ onSuccess, onFailure, transform, }: SideEffectContextOptions) => {
-    onSuccessRef: React.MutableRefObject<OnSuccess | undefined>;
+    onSuccessRef: React.MutableRefObject<OnSuccess>;
     setOnSuccess: SetOnSuccess;
-    onFailureRef: React.MutableRefObject<OnFailure | undefined>;
+    onFailureRef: React.MutableRefObject<OnFailure>;
     setOnFailure: SetOnFailure;
-    transformRef: React.MutableRefObject<TransformData | undefined>;
+    transformRef: React.MutableRefObject<TransformData>;
     setTransform: SetTransformData;
 };
 export declare type SetOnSuccess = (onSuccess: OnSuccess) => void;

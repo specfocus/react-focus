@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var dataProvider_1 = require("../../dataProvider");
-var actions_1 = require("../../actions");
-var sideEffect_1 = require("../../sideEffect");
-var core_1 = require("../../core");
+const react_1 = require("react");
+const dataProvider_1 = require("../../dataProvider");
+const actions_1 = require("../../actions");
+const sideEffect_1 = require("../../sideEffect");
+const core_1 = require("../../../core");
 /**
  * Prepare callback for a Delete button with undo support
  *
@@ -42,24 +42,24 @@ var core_1 = require("../../core");
  *     );
  * };
  */
-var useDeleteWithUndoController = function (props) {
-    var record = props.record, basePath = props.basePath, _a = props.redirect, redirectTo = _a === void 0 ? 'list' : _a, onClick = props.onClick, onSuccess = props.onSuccess, onFailure = props.onFailure;
-    var resource = (0, core_1.useResourceContext)(props);
-    var notify = (0, sideEffect_1.useNotify)();
-    var redirect = (0, sideEffect_1.useRedirect)();
-    var refresh = (0, sideEffect_1.useRefresh)();
-    var _b = (0, dataProvider_1.useDelete)(resource, null, null, {
+const useDeleteWithUndoController = (props) => {
+    const { record, basePath, redirect: redirectTo = 'list', onClick, onSuccess, onFailure, } = props;
+    const resource = (0, core_1.useResourceContext)(props);
+    const notify = (0, sideEffect_1.useNotify)();
+    const redirect = (0, sideEffect_1.useRedirect)();
+    const refresh = (0, sideEffect_1.useRefresh)();
+    const [deleteOne, { loading }] = (0, dataProvider_1.useDelete)(resource, null, null, {
         action: actions_1.CRUD_DELETE,
         onSuccess: onSuccess !== undefined
             ? onSuccess
-            : function () {
+            : () => {
                 notify('ra.notification.deleted', 'info', { smart_count: 1 }, true);
-                redirect(redirectTo, basePath || "/".concat(resource));
+                redirect(redirectTo, basePath || `/${resource}`);
                 refresh();
             },
         onFailure: onFailure !== undefined
             ? onFailure
-            : function (error) {
+            : error => {
                 notify(typeof error === 'string'
                     ? error
                     : error.message || 'ra.notification.http_error', 'warning', {
@@ -72,8 +72,8 @@ var useDeleteWithUndoController = function (props) {
                 refresh();
             },
         mutationMode: 'undoable',
-    }), deleteOne = _b[0], loading = _b[1].loading;
-    var handleDelete = (0, react_1.useCallback)(function (event) {
+    });
+    const handleDelete = (0, react_1.useCallback)(event => {
         event.stopPropagation();
         deleteOne({
             payload: { id: record.id, previousData: record },
@@ -82,6 +82,6 @@ var useDeleteWithUndoController = function (props) {
             onClick(event);
         }
     }, [deleteOne, onClick, record]);
-    return { loading: loading, handleDelete: handleDelete };
+    return { loading, handleDelete };
 };
 exports.default = useDeleteWithUndoController;

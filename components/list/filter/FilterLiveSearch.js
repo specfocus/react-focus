@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Search_1 = __importDefault(require("@mui/icons-material/Search"));
-var material_1 = require("@mui/material");
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var react_final_form_1 = require("react-final-form");
-var core_1 = require("../../../core");
-var TextInput_1 = __importDefault(require("../../input/TextInput"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const Search_1 = __importDefault(require("@mui/icons-material/Search"));
+const material_1 = require("@mui/material");
+const react_1 = require("react");
+const react_final_form_1 = require("react-final-form");
+const core_1 = require("../../../core");
+const TextInput_1 = __importDefault(require("../../input/TextInput"));
 /**
  * Form and search input for doing a full-text search filter.
  *
@@ -66,30 +36,25 @@ var TextInput_1 = __importDefault(require("../../input/TextInput"));
  *     </Card>
  * );
  */
-var FilterLiveSearch = function (props) {
-    var _a = props.source, source = _a === void 0 ? 'q' : _a, rest = __rest(props, ["source"]);
-    var _b = (0, core_1.useListFilterContext)(), filterValues = _b.filterValues, setFilters = _b.setFilters;
-    var translate = (0, core_1.useTranslate)();
-    var onSearchChange = function (event) {
-        var _a;
+const FilterLiveSearch = (props) => {
+    const { source = 'q' } = props, rest = __rest(props, ["source"]);
+    const { filterValues, setFilters } = (0, core_1.useListFilterContext)();
+    const translate = (0, core_1.useTranslate)();
+    const onSearchChange = (event) => {
         if (event.target) {
-            setFilters(__assign(__assign({}, filterValues), (_a = {}, _a[source] = event.target.value, _a)), null);
+            setFilters(Object.assign(Object.assign({}, filterValues), { [source]: event.target.value }), null);
         }
         else {
-            var _b = filterValues, _c = source, _1 = _b[_c], filters = __rest(_b, [typeof _c === "symbol" ? _c : _c + ""]);
+            const _a = filterValues, _b = source, _ = _a[_b], filters = __rest(_a, [typeof _b === "symbol" ? _b : _b + ""]);
             setFilters(filters, null);
         }
     };
-    var initialValues = (0, react_1.useMemo)(function () {
-        var _a;
-        return (_a = {},
-            _a[source] = filterValues[source],
-            _a);
-    }, [filterValues, source]);
-    var onSubmit = function () { return undefined; };
-    return (React.createElement(react_final_form_1.Form, { initialValues: initialValues, onSubmit: onSubmit }, function () { return (React.createElement(TextInput_1.default, __assign({ resettable: true, helperText: false, source: source, label: translate('ra.action.search'), InputProps: {
-            endAdornment: (React.createElement(material_1.InputAdornment, { position: "end" },
-                React.createElement(Search_1.default, { color: "disabled" }))),
-        }, onChange: onSearchChange }, rest))); }));
+    const initialValues = (0, react_1.useMemo)(() => ({
+        [source]: filterValues[source],
+    }), [filterValues, source]);
+    const onSubmit = () => undefined;
+    return ((0, jsx_runtime_1.jsx)(react_final_form_1.Form, Object.assign({ initialValues: initialValues, onSubmit: onSubmit }, { children: () => ((0, jsx_runtime_1.jsx)(TextInput_1.default, Object.assign({ resettable: true, helperText: false, source: source, label: translate('ra.action.search'), InputProps: {
+                endAdornment: ((0, jsx_runtime_1.jsx)(material_1.InputAdornment, Object.assign({ position: "end" }, { children: (0, jsx_runtime_1.jsx)(Search_1.default, { color: "disabled" }, void 0) }), void 0)),
+            }, onChange: onSearchChange }, rest), void 0)) }), void 0));
 };
 exports.default = (0, react_1.memo)(FilterLiveSearch);

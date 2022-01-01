@@ -11,7 +11,7 @@ export declare const ListView: {
         bulkActionButtons: PropTypes.Requireable<boolean | PropTypes.ReactElementLike>;
         children: PropTypes.Requireable<PropTypes.ReactElementLike>;
         className: PropTypes.Requireable<string>;
-        component: (props: any, propName: any, componentName: any) => Error | undefined;
+        component: (props: any, propName: any, componentName: any) => Error;
         currentSort: PropTypes.Requireable<PropTypes.InferProps<{
             field: PropTypes.Validator<string>;
             order: PropTypes.Validator<string>;
@@ -21,7 +21,7 @@ export declare const ListView: {
         displayedFilters: PropTypes.Requireable<object>;
         exporter: PropTypes.Requireable<boolean | ((...args: any[]) => any)>;
         filterDefaultValues: PropTypes.Requireable<object>;
-        filters: PropTypes.Requireable<PropTypes.ReactElementLike | (PropTypes.ReactElementLike | null | undefined)[]>;
+        filters: PropTypes.Requireable<PropTypes.ReactElementLike | PropTypes.ReactElementLike[]>;
         filterValues: PropTypes.Requireable<object>;
         hasCreate: PropTypes.Requireable<boolean>;
         hideFilter: PropTypes.Requireable<(...args: any[]) => any>;

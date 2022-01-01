@@ -1,32 +1,32 @@
 declare const _default: {
     create: () => Promise<{
-        data: null;
+        data: any;
     }>;
     delete: () => Promise<{
-        data: null;
+        data: any;
     }>;
     deleteMany: () => Promise<{
-        data: never[];
+        data: any[];
     }>;
     getList: () => Promise<{
-        data: never[];
+        data: any[];
         total: number;
     }>;
     getMany: () => Promise<{
-        data: never[];
+        data: any[];
     }>;
     getManyReference: () => Promise<{
-        data: never[];
+        data: any[];
         total: number;
     }>;
     getOne: () => Promise<{
-        data: null;
+        data: any;
     }>;
     update: () => Promise<{
-        data: null;
+        data: any;
     }>;
     updateMany: () => Promise<{
-        data: never[];
+        data: any[];
     }>;
 };
 export default _default;

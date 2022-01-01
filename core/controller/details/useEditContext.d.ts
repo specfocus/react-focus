@@ -17,4 +17,4 @@ import { EditControllerProps } from './useEditController';
  * @see useEditController for how it is filled
  *
  */
-export declare const useEditContext: <RecordType extends Record = Record>(props?: Partial<EditControllerProps<RecordType>> | undefined) => Partial<EditControllerProps<RecordType>>;
+export declare const useEditContext: <RecordType extends Record = Record>(props?: Partial<EditControllerProps<RecordType>>) => Partial<EditControllerProps<RecordType>>;

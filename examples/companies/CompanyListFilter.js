@@ -1,46 +1,21 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompanyListFilter = void 0;
-/* eslint-disable import/no-anonymous-default-export */
-var React = __importStar(require("react"));
-var app_1 = require("../../app");
-var material_1 = require("@mui/material");
-var Business_1 = __importDefault(require("@mui/icons-material/Business"));
-var LocalShipping_1 = __importDefault(require("@mui/icons-material/LocalShipping"));
-var SupervisorAccount_1 = __importDefault(require("@mui/icons-material/SupervisorAccount"));
-var sizes_1 = require("./sizes");
-var sectors_1 = require("./sectors");
-var CompanyListFilter = function () {
-    var identity = (0, app_1.useGetIdentity)().identity;
-    return (React.createElement(material_1.Box, { width: "15em", order: "-1", marginRight: "1em" },
-        React.createElement(app_1.FilterLiveSearch, null),
-        React.createElement(app_1.FilterList, { label: "Size", icon: React.createElement(Business_1.default, null) }, sizes_1.sizes.map(function (size) { return (React.createElement(app_1.FilterListItem, { key: size.id, label: size.name, value: { size: size.id } })); })),
-        React.createElement(app_1.FilterList, { label: "Sector", icon: React.createElement(LocalShipping_1.default, null) }, sectors_1.sectors.map(function (sector) { return (React.createElement(app_1.FilterListItem, { key: sector.id, label: sector.name, value: { sector: sector.id } })); })),
-        React.createElement(app_1.FilterList, { label: "Account manager", icon: React.createElement(SupervisorAccount_1.default, null) },
-            React.createElement(app_1.FilterListItem, { label: "Me", value: {
-                    sales_id: identity && identity.id,
-                } }))));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const app_1 = require("../../app");
+const material_1 = require("@mui/material");
+const Business_1 = __importDefault(require("@mui/icons-material/Business"));
+const LocalShipping_1 = __importDefault(require("@mui/icons-material/LocalShipping"));
+const SupervisorAccount_1 = __importDefault(require("@mui/icons-material/SupervisorAccount"));
+const sizes_1 = require("./sizes");
+const sectors_1 = require("./sectors");
+const CompanyListFilter = () => {
+    const { identity } = (0, app_1.useGetIdentity)();
+    return ((0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ width: "15em", order: "-1", marginRight: "1em" }, { children: [(0, jsx_runtime_1.jsx)(app_1.FilterLiveSearch, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.FilterList, Object.assign({ label: "Size", icon: (0, jsx_runtime_1.jsx)(Business_1.default, {}, void 0) }, { children: sizes_1.sizes.map(size => ((0, jsx_runtime_1.jsx)(app_1.FilterListItem, { label: size.name, value: { size: size.id } }, size.id))) }), void 0), (0, jsx_runtime_1.jsx)(app_1.FilterList, Object.assign({ label: "Sector", icon: (0, jsx_runtime_1.jsx)(LocalShipping_1.default, {}, void 0) }, { children: sectors_1.sectors.map(sector => ((0, jsx_runtime_1.jsx)(app_1.FilterListItem, { label: sector.name, value: { sector: sector.id } }, sector.id))) }), void 0), (0, jsx_runtime_1.jsx)(app_1.FilterList, Object.assign({ label: "Account manager", icon: (0, jsx_runtime_1.jsx)(SupervisorAccount_1.default, {}, void 0) }, { children: (0, jsx_runtime_1.jsx)(app_1.FilterListItem, { label: "Me", value: {
+                        sales_id: identity && identity.id,
+                    } }, void 0) }), void 0)] }), void 0));
 };
 exports.CompanyListFilter = CompanyListFilter;

@@ -13,17 +13,12 @@ exports.getRelatedIds = void 0;
  *         }))
  *     );
  */
-var fetchRelatedRecords = function (dataProvider) { return function (data, field, resource) {
-    return dataProvider
-        .getMany(resource, { ids: (0, exports.getRelatedIds)(data, field) })
-        .then(function (_a) {
-        var data = _a.data;
-        return data.reduce(function (acc, post) {
-            acc[post.id] = post;
-            return acc;
-        }, {});
-    });
-}; };
+const fetchRelatedRecords = (dataProvider) => (data, field, resource) => dataProvider
+    .getMany(resource, { ids: (0, exports.getRelatedIds)(data, field) })
+    .then(({ data }) => data.reduce((acc, post) => {
+    acc[post.id] = post;
+    return acc;
+}, {}));
 /**
  * Extracts, aggregates and deduplicates the ids of related records
  *
@@ -46,11 +41,9 @@ var fetchRelatedRecords = function (dataProvider) { return function (data, field
  * @param {Object[]} records An array of records
  * @param {string} field the identifier of the record field to use
  */
-var getRelatedIds = function (records, field) {
-    return Array.from(new Set(records
-        .filter(function (record) { return record[field] != null; })
-        .map(function (record) { return record[field]; })
-        .reduce(function (ids, value) { return ids.concat(value); }, [])));
-};
+const getRelatedIds = (records, field) => Array.from(new Set(records
+    .filter(record => record[field] != null)
+    .map(record => record[field])
+    .reduce((ids, value) => ids.concat(value), [])));
 exports.getRelatedIds = getRelatedIds;
 exports.default = fetchRelatedRecords;

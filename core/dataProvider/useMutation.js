@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var merge_1 = __importDefault(require("lodash/merge"));
-var hooks_1 = require("../util/hooks");
-var useDataProvider_1 = __importDefault(require("./useDataProvider"));
-var useDataProviderWithDeclarativeSideEffects_1 = __importDefault(require("./useDataProviderWithDeclarativeSideEffects"));
+const react_1 = require("react");
+const merge_1 = __importDefault(require("lodash/merge"));
+const hooks_1 = require("../util/hooks");
+const useDataProvider_1 = __importDefault(require("./useDataProvider"));
+const useDataProviderWithDeclarativeSideEffects_1 = __importDefault(require("./useDataProviderWithDeclarativeSideEffects"));
 /**
  * Get a callback to fetch the data provider through Redux, usually for mutations.
  *
@@ -147,42 +136,42 @@ var useDataProviderWithDeclarativeSideEffects_1 = __importDefault(require("./use
  *     return <Button label="Reset stock" onClick={handleClick} disabled={loading} />;
  * };
  */
-var useMutation = function (query, options) {
-    var _a = (0, hooks_1.useSafeSetState)({
+const useMutation = (query, options) => {
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
         data: null,
         error: null,
         total: null,
         loading: false,
         loaded: false,
-    }), state = _a[0], setState = _a[1];
-    var dataProvider = (0, useDataProvider_1.default)();
-    var dataProviderWithDeclarativeSideEffects = (0, useDataProviderWithDeclarativeSideEffects_1.default)();
+    });
+    const dataProvider = (0, useDataProvider_1.default)();
+    const dataProviderWithDeclarativeSideEffects = (0, useDataProviderWithDeclarativeSideEffects_1.default)();
     /* eslint-disable react-hooks/exhaustive-deps */
-    var mutate = (0, react_1.useCallback)(function (callTimeQuery, callTimeOptions) {
-        var finalDataProvider = hasDeclarativeSideEffectsSupport(options, callTimeOptions)
+    const mutate = (0, react_1.useCallback)((callTimeQuery, callTimeOptions) => {
+        const finalDataProvider = hasDeclarativeSideEffectsSupport(options, callTimeOptions)
             ? dataProviderWithDeclarativeSideEffects
             : dataProvider;
-        var params = mergeDefinitionAndCallTimeParameters(query, callTimeQuery, options, callTimeOptions);
-        setState(function (prevState) { return (__assign(__assign({}, prevState), { loading: true })); });
-        var returnPromise = params.options.returnPromise;
-        var promise = finalDataProvider[params.type]
+        const params = mergeDefinitionAndCallTimeParameters(query, callTimeQuery, options, callTimeOptions);
+        setState(prevState => (Object.assign(Object.assign({}, prevState), { loading: true })));
+        const returnPromise = params.options.returnPromise;
+        const promise = finalDataProvider[params.type]
             .apply(finalDataProvider, typeof params.resource !== 'undefined'
             ? [params.resource, params.payload, params.options]
             : [params.payload, params.options])
-            .then(function (response) {
-            var data = response.data, total = response.total;
+            .then(response => {
+            const { data, total } = response;
             setState({
-                data: data,
+                data,
                 error: null,
                 loaded: true,
                 loading: false,
-                total: total,
+                total,
             });
             if (returnPromise) {
                 return response;
             }
         })
-            .catch(function (errorFromResponse) {
+            .catch(errorFromResponse => {
             setState({
                 data: null,
                 error: errorFromResponse,
@@ -199,7 +188,7 @@ var useMutation = function (query, options) {
         }
     }, [
         // deep equality, see https://github.com/facebook/react/issues/14476#issuecomment-471199055
-        JSON.stringify({ query: query, options: options }),
+        JSON.stringify({ query, options }),
         dataProvider,
         dataProviderWithDeclarativeSideEffects,
         setState,
@@ -241,7 +230,7 @@ var useMutation = function (query, options) {
  *
  * @return { type, resource, payload, options } The merged parameters
  */
-var mergeDefinitionAndCallTimeParameters = function (query, callTimeQuery, options, callTimeOptions) {
+const mergeDefinitionAndCallTimeParameters = (query, callTimeQuery, options, callTimeOptions) => {
     if (!query && (!callTimeQuery || callTimeQuery instanceof Event)) {
         throw new Error('Missing query either at definition or at call time');
     }
@@ -270,17 +259,17 @@ var mergeDefinitionAndCallTimeParameters = function (query, callTimeQuery, optio
         options: sanitizeOptions(callTimeOptions),
     };
 };
-var hasDeclarativeSideEffectsSupport = function (options, callTimeOptions) {
+const hasDeclarativeSideEffectsSupport = (options, callTimeOptions) => {
     if (!options && !callTimeOptions)
         return false;
     if (callTimeOptions && callTimeOptions.withDeclarativeSideEffectsSupport)
         return true;
     return options && options.withDeclarativeSideEffectsSupport;
 };
-var sanitizeOptions = function (args) {
+const sanitizeOptions = (args) => {
     if (!args)
         return { onSuccess: undefined };
-    var withDeclarativeSideEffectsSupport = args.withDeclarativeSideEffectsSupport, options = __rest(args, ["withDeclarativeSideEffectsSupport"]);
-    return __assign({ onSuccess: undefined }, options);
+    const { withDeclarativeSideEffectsSupport } = args, options = __rest(args, ["withDeclarativeSideEffectsSupport"]);
+    return Object.assign({ onSuccess: undefined }, options);
 };
 exports.default = useMutation;

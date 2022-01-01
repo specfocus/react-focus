@@ -1,2 +1,2 @@
 /// <reference types="react" />
-export declare const DealsChart: () => JSX.Element | null;
+export declare const DealsChart: () => JSX.Element;

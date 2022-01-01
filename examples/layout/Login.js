@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,85 +14,82 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_final_form_1 = require("react-final-form");
-var react_router_dom_1 = require("react-router-dom");
-var material_1 = require("@mui/material");
-var styles_2 = require("@mui/material/styles");
-var Lock_1 = __importDefault(require("@mui/icons-material/Lock"));
-var app_1 = require("../../app");
-var themes_1 = require("./themes");
-var PREFIX = 'LoginWithTheme';
-var classes = {
-    main: "".concat(PREFIX, "-main"),
-    card: "".concat(PREFIX, "-card"),
-    avatar: "".concat(PREFIX, "-avatar"),
-    icon: "".concat(PREFIX, "-icon"),
-    hint: "".concat(PREFIX, "-hint"),
-    form: "".concat(PREFIX, "-form"),
-    input: "".concat(PREFIX, "-input"),
-    actions: "".concat(PREFIX, "-actions"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_final_form_1 = require("react-final-form");
+const react_router_dom_1 = require("react-router-dom");
+const material_1 = require("@mui/material");
+const styles_2 = require("@mui/material/styles");
+const Lock_1 = __importDefault(require("@mui/icons-material/Lock"));
+const app_1 = require("../../app");
+const themes_1 = require("./themes");
+const PREFIX = 'LoginWithTheme';
+const classes = {
+    main: `${PREFIX}-main`,
+    card: `${PREFIX}-card`,
+    avatar: `${PREFIX}-avatar`,
+    icon: `${PREFIX}-icon`,
+    hint: `${PREFIX}-hint`,
+    form: `${PREFIX}-form`,
+    input: `${PREFIX}-input`,
+    actions: `${PREFIX}-actions`,
 };
-var StyledForm = (0, styles_1.styled)('form')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.main)] = {
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            background: 'url(https://source.unsplash.com/random/1600x900)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-        },
-        _b["& .".concat(classes.card)] = {
-            minWidth: 300,
-            marginTop: '6em',
-        },
-        _b["& .".concat(classes.avatar)] = {
-            margin: '1em',
-            display: 'flex',
-            justifyContent: 'center',
-        },
-        _b["& .".concat(classes.icon)] = {
-            backgroundColor: theme.palette.secondary.main,
-        },
-        _b["& .".concat(classes.hint)] = {
-            marginTop: '1em',
-            display: 'flex',
-            justifyContent: 'center',
-            color: theme.palette.grey[500],
-        },
-        _b["& .".concat(classes.form)] = {
-            padding: '0 1em 1em 1em',
-        },
-        _b["& .".concat(classes.input)] = {
-            marginTop: '1em',
-        },
-        _b["& .".concat(classes.actions)] = {
-            padding: '0 1em 1em 1em',
-        },
-        _b);
-});
-var renderInput = function (_a) {
-    var _b = _a.meta, _c = _b === void 0 ? { touched: false, error: undefined } : _b, touched = _c.touched, error = _c.error, inputProps = __rest(_a.input, []), props = __rest(_a, ["meta", "input"]);
-    return (React.createElement(material_1.TextField, __assign({ error: !!(touched && error), helperText: touched && error }, inputProps, props, { fullWidth: true })));
+const StyledForm = (0, styles_1.styled)('form')(({ theme }) => ({
+    [`& .${classes.main}`]: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        background: 'url(https://source.unsplash.com/random/1600x900)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    },
+    [`& .${classes.card}`]: {
+        minWidth: 300,
+        marginTop: '6em',
+    },
+    [`& .${classes.avatar}`]: {
+        margin: '1em',
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    [`& .${classes.icon}`]: {
+        backgroundColor: theme.palette.secondary.main,
+    },
+    [`& .${classes.hint}`]: {
+        marginTop: '1em',
+        display: 'flex',
+        justifyContent: 'center',
+        color: theme.palette.grey[500],
+    },
+    [`& .${classes.form}`]: {
+        padding: '0 1em 1em 1em',
+    },
+    [`& .${classes.input}`]: {
+        marginTop: '1em',
+    },
+    [`& .${classes.actions}`]: {
+        padding: '0 1em 1em 1em',
+    },
+}));
+const renderInput = (_a) => {
+    var { meta: { touched, error } = { touched: false, error: undefined } } = _a, inputProps = __rest(_a.input, []), props = __rest(_a, ["meta", "input"]);
+    return ((0, jsx_runtime_1.jsx)(material_1.TextField, Object.assign({ error: !!(touched && error), helperText: touched && error }, inputProps, props, { fullWidth: true }), void 0));
 };
-var Form = (0, react_final_form_1.withTypes)().Form;
-var Login = function () {
-    var _a = (0, react_1.useState)(false), loading = _a[0], setLoading = _a[1];
-    var translate = (0, app_1.useTranslate)();
-    var notify = (0, app_1.useNotify)();
-    var login = (0, app_1.useLogin)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var handleSubmit = function (auth) {
+const { Form } = (0, react_final_form_1.withTypes)();
+const Login = () => {
+    const [loading, setLoading] = (0, react_1.useState)(false);
+    const translate = (0, app_1.useTranslate)();
+    const notify = (0, app_1.useNotify)();
+    const login = (0, app_1.useLogin)();
+    const location = (0, react_router_dom_1.useLocation /*<{ nextPathname: string } | null>*/)();
+    const state = location.state;
+    const handleSubmit = (auth) => {
         setLoading(true);
-        login(auth, location.state ? location.state.nextPathname : '/').catch(function (error) {
+        login(auth, state ? state.nextPathname : '/').catch((error) => {
             setLoading(false);
             notify(typeof error === 'string'
                 ? error
@@ -137,8 +104,8 @@ var Login = function () {
             });
         });
     };
-    var validate = function (values) {
-        var errors = {};
+    const validate = (values) => {
+        const errors = {};
         if (!values.username) {
             errors.username = translate('ra.validation.required');
         }
@@ -147,30 +114,11 @@ var Login = function () {
         }
         return errors;
     };
-    return (React.createElement(Form, { onSubmit: handleSubmit, validate: validate, render: function (_a) {
-            var handleSubmit = _a.handleSubmit;
-            return (React.createElement(StyledForm, { onSubmit: handleSubmit, noValidate: true },
-                React.createElement("div", { className: classes.main },
-                    React.createElement(material_1.Card, { className: classes.card },
-                        React.createElement("div", { className: classes.avatar },
-                            React.createElement(material_1.Avatar, { className: classes.icon },
-                                React.createElement(Lock_1.default, null))),
-                        React.createElement("div", { className: classes.hint }, "Hint: demo / demo"),
-                        React.createElement("div", { className: classes.form },
-                            React.createElement("div", { className: classes.input },
-                                React.createElement(react_final_form_1.Field, { autoFocus: true, name: "username", 
-                                    // @ts-ignore
-                                    component: renderInput, label: translate('ra.auth.username'), disabled: loading })),
-                            React.createElement("div", { className: classes.input },
-                                React.createElement(react_final_form_1.Field, { name: "password", 
-                                    // @ts-ignore
-                                    component: renderInput, label: translate('ra.auth.password'), type: "password", disabled: loading }))),
-                        React.createElement(material_1.CardActions, { className: classes.actions },
-                            React.createElement(material_1.Button, { variant: "contained", type: "submit", color: "primary", disabled: loading, fullWidth: true },
-                                loading && (React.createElement(material_1.CircularProgress, { size: 25, thickness: 2 })),
-                                translate('ra.auth.sign_in')))),
-                    React.createElement(app_1.Notification, null))));
-        } }));
+    return ((0, jsx_runtime_1.jsx)(Form, { onSubmit: handleSubmit, validate: validate, render: ({ handleSubmit }) => ((0, jsx_runtime_1.jsx)(StyledForm, Object.assign({ onSubmit: handleSubmit, noValidate: true }, { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.main }, { children: [(0, jsx_runtime_1.jsxs)(material_1.Card, Object.assign({ className: classes.card }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.avatar }, { children: (0, jsx_runtime_1.jsx)(material_1.Avatar, Object.assign({ className: classes.icon }, { children: (0, jsx_runtime_1.jsx)(Lock_1.default, {}, void 0) }), void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.hint }, { children: "Hint: demo / demo" }), void 0), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.form }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.input }, { children: (0, jsx_runtime_1.jsx)(react_final_form_1.Field, { autoFocus: true, name: "username", 
+                                            // @ts-ignore
+                                            component: renderInput, label: translate('ra.auth.username'), disabled: loading }, void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.input }, { children: (0, jsx_runtime_1.jsx)(react_final_form_1.Field, { name: "password", 
+                                            // @ts-ignore
+                                            component: renderInput, label: translate('ra.auth.password'), type: "password", disabled: loading }, void 0) }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(material_1.CardActions, Object.assign({ className: classes.actions }, { children: (0, jsx_runtime_1.jsxs)(material_1.Button, Object.assign({ variant: "contained", type: "submit", color: "primary", disabled: loading, fullWidth: true }, { children: [loading && ((0, jsx_runtime_1.jsx)(material_1.CircularProgress, { size: 25, thickness: 2 }, void 0)), translate('ra.auth.sign_in')] }), void 0) }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(app_1.Notification, {}, void 0)] }), void 0) }), void 0)) }, void 0));
 };
 Login.propTypes = {
     authProvider: prop_types_1.default.func,
@@ -178,6 +126,5 @@ Login.propTypes = {
 };
 // We need to put the ThemeProvider decoration in another component
 // the right theme
-var LoginWithTheme = function (props) { return (React.createElement(styles_2.ThemeProvider, { theme: (0, styles_2.createTheme)(themes_1.lightTheme) },
-    React.createElement(Login, __assign({}, props)))); };
+const LoginWithTheme = (props) => ((0, jsx_runtime_1.jsx)(styles_2.ThemeProvider, Object.assign({ theme: (0, styles_2.createTheme)(themes_1.lightTheme) }, { children: (0, jsx_runtime_1.jsx)(Login, Object.assign({}, props), void 0) }), void 0));
 exports.default = LoginWithTheme;

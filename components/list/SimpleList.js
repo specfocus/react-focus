@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -43,23 +13,22 @@ var __rest = (this && this.__rest) || function (s, e) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var material_1 = require("@mui/material");
-var react_router_dom_1 = require("react-router-dom");
-var core_1 = require("../../core");
-var SimpleListLoading_1 = __importDefault(require("./SimpleListLoading"));
-var PREFIX = 'RaSimpleList';
-var classes = {
-    tertiary: "".concat(PREFIX, "-tertiary"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const material_1 = require("@mui/material");
+const react_router_dom_1 = require("react-router-dom");
+const core_1 = require("../../core");
+const SimpleListLoading_1 = __importDefault(require("./SimpleListLoading"));
+const PREFIX = 'RaSimpleList';
+const classes = {
+    tertiary: `${PREFIX}-tertiary`,
 };
-var Root = (0, styles_1.styled)(material_1.List)((_a = {},
-    _a["& .".concat(classes.tertiary)] = { float: 'right', opacity: 0.541176 },
-    _a));
+const Root = (0, styles_1.styled)(material_1.List)({
+    [`& .${classes.tertiary}`]: { float: 'right', opacity: 0.541176 },
+});
 /**
  * The <SimpleList> component renders a list of records as a material-ui <List>.
  * It is usually used as a child of ../../app's <List> and <ReferenceManyField> components.
@@ -94,41 +63,31 @@ var Root = (0, styles_1.styled)(material_1.List)((_a = {},
  *     </List>
  * );
  */
-var SimpleList = function (props) {
-    var className = props.className, hasBulkActions = props.hasBulkActions, leftAvatar = props.leftAvatar, leftIcon = props.leftIcon, _a = props.linkType, linkType = _a === void 0 ? 'edit' : _a, primaryText = props.primaryText, rightAvatar = props.rightAvatar, rightIcon = props.rightIcon, secondaryText = props.secondaryText, tertiaryText = props.tertiaryText, rowStyle = props.rowStyle, rest = __rest(props, ["className", "hasBulkActions", "leftAvatar", "leftIcon", "linkType", "primaryText", "rightAvatar", "rightIcon", "secondaryText", "tertiaryText", "rowStyle"]);
-    var _b = (0, core_1.useListContext)(props), basePath = _b.basePath, data = _b.data, ids = _b.ids, loaded = _b.loaded, total = _b.total;
+const SimpleList = (props) => {
+    const { className, hasBulkActions, leftAvatar, leftIcon, linkType = 'edit', primaryText, rightAvatar, rightIcon, secondaryText, tertiaryText, rowStyle } = props, rest = __rest(props, ["className", "hasBulkActions", "leftAvatar", "leftIcon", "linkType", "primaryText", "rightAvatar", "rightIcon", "secondaryText", "tertiaryText", "rowStyle"]);
+    const { basePath, data, ids, loaded, total } = (0, core_1.useListContext)(props);
     if (loaded === false) {
-        return (React.createElement(SimpleListLoading_1.default, { className: className, hasLeftAvatarOrIcon: !!leftIcon || !!leftAvatar, hasRightAvatarOrIcon: !!rightIcon || !!rightAvatar, hasSecondaryText: !!secondaryText, hasTertiaryText: !!tertiaryText }));
+        return ((0, jsx_runtime_1.jsx)(SimpleListLoading_1.default, { className: className, hasLeftAvatarOrIcon: !!leftIcon || !!leftAvatar, hasRightAvatarOrIcon: !!rightIcon || !!rightAvatar, hasSecondaryText: !!secondaryText, hasTertiaryText: !!tertiaryText }, void 0));
     }
-    var renderAvatar = function (id, avatarCallback) {
-        var avatarValue = avatarCallback(data[id], id);
+    const renderAvatar = (id, avatarCallback) => {
+        const avatarValue = avatarCallback(data[id], id);
         if (typeof avatarValue === 'string' &&
             (avatarValue.startsWith('http') || avatarValue.startsWith('data:'))) {
-            return React.createElement(material_1.Avatar, { src: avatarValue });
+            return (0, jsx_runtime_1.jsx)(material_1.Avatar, { src: avatarValue }, void 0);
         }
         else {
-            return React.createElement(material_1.Avatar, null, avatarValue);
+            return (0, jsx_runtime_1.jsx)(material_1.Avatar, { children: avatarValue }, void 0);
         }
     };
-    return total > 0 ? (React.createElement(Root, __assign({ className: className }, (0, core_1.sanitizeListRestProps)(rest)), ids.map(function (id, rowIndex) { return (React.createElement(core_1.RecordContextProvider, { key: id, value: data[id] },
-        React.createElement(material_1.ListItem, null,
-            React.createElement(LinkOrNot, { linkType: linkType, basePath: basePath, id: id, record: data[id], style: rowStyle
-                    ? rowStyle(data[id], rowIndex)
-                    : undefined },
-                leftIcon && (React.createElement(material_1.ListItemIcon, null, leftIcon(data[id], id))),
-                leftAvatar && (React.createElement(material_1.ListItemAvatar, null, renderAvatar(id, leftAvatar))),
-                React.createElement(material_1.ListItemText, { primary: React.createElement("div", null,
-                        (0, react_1.isValidElement)(primaryText)
-                            ? primaryText
-                            : primaryText(data[id], id),
-                        !!tertiaryText &&
-                            ((0, react_1.isValidElement)(tertiaryText) ? (tertiaryText) : (React.createElement("span", { className: classes.tertiary }, tertiaryText(data[id], id))))), secondary: !!secondaryText &&
-                        ((0, react_1.isValidElement)(secondaryText)
-                            ? secondaryText
-                            : secondaryText(data[id], id)) }),
-                (rightAvatar || rightIcon) && (React.createElement(material_1.ListItemSecondaryAction, null,
-                    rightAvatar && (React.createElement(material_1.Avatar, null, renderAvatar(id, rightAvatar))),
-                    rightIcon && (React.createElement(material_1.ListItemIcon, null, rightIcon(data[id], id))))))))); }))) : null;
+    return total > 0 ? ((0, jsx_runtime_1.jsx)(Root, Object.assign({ className: className }, (0, core_1.sanitizeListRestProps)(rest), { children: ids.map((id, rowIndex) => ((0, jsx_runtime_1.jsx)(core_1.RecordContextProvider, Object.assign({ value: data[id] }, { children: (0, jsx_runtime_1.jsx)(material_1.ListItem, { children: (0, jsx_runtime_1.jsxs)(LinkOrNot, Object.assign({ linkType: linkType, basePath: basePath, id: id, record: data[id], style: rowStyle
+                        ? rowStyle(data[id], rowIndex)
+                        : undefined }, { children: [leftIcon && ((0, jsx_runtime_1.jsx)(material_1.ListItemIcon, { children: leftIcon(data[id], id) }, void 0)), leftAvatar && ((0, jsx_runtime_1.jsx)(material_1.ListItemAvatar, { children: renderAvatar(id, leftAvatar) }, void 0)), (0, jsx_runtime_1.jsx)(material_1.ListItemText, { primary: (0, jsx_runtime_1.jsxs)("div", { children: [(0, react_1.isValidElement)(primaryText)
+                                        ? primaryText
+                                        : primaryText(data[id], id), !!tertiaryText &&
+                                        ((0, react_1.isValidElement)(tertiaryText) ? (tertiaryText) : ((0, jsx_runtime_1.jsx)("span", Object.assign({ className: classes.tertiary }, { children: tertiaryText(data[id], id) }), void 0)))] }, void 0), secondary: !!secondaryText &&
+                                ((0, react_1.isValidElement)(secondaryText)
+                                    ? secondaryText
+                                    : secondaryText(data[id], id)) }, void 0), (rightAvatar || rightIcon) && ((0, jsx_runtime_1.jsxs)(material_1.ListItemSecondaryAction, { children: [rightAvatar && ((0, jsx_runtime_1.jsx)(material_1.Avatar, { children: renderAvatar(id, rightAvatar) }, void 0)), rightIcon && ((0, jsx_runtime_1.jsx)(material_1.ListItemIcon, { children: rightIcon(data[id], id) }, void 0))] }, void 0))] }), void 0) }, void 0) }), id))) }), void 0)) : null;
 };
 SimpleList.propTypes = {
     className: prop_types_1.default.string,
@@ -146,19 +105,19 @@ SimpleList.propTypes = {
     tertiaryText: prop_types_1.default.oneOfType([prop_types_1.default.func, prop_types_1.default.element]),
     rowStyle: prop_types_1.default.func,
 };
-var LinkOrNot = function (props) {
-    var classesOverride = props.classes, linkType = props.linkType, basePath = props.basePath, id = props.id, children = props.children, record = props.record, rest = __rest(props, ["classes", "linkType", "basePath", "id", "children", "record"]);
-    var link = typeof linkType === 'function' ? linkType(record, id) : linkType;
+const LinkOrNot = (props) => {
+    const { classes: classesOverride, linkType, basePath, id, children, record } = props, rest = __rest(props, ["classes", "linkType", "basePath", "id", "children", "record"]);
+    const link = typeof linkType === 'function' ? linkType(record, id) : linkType;
     return link === 'edit' || link === true ? (
     // @ts-ignore
-    React.createElement(material_1.ListItemButton, __assign({ component: react_router_dom_1.Link, to: (0, core_1.linkToRecord)(basePath, id) }, rest), children)) : link === 'show' ? (
+    (0, jsx_runtime_1.jsx)(material_1.ListItemButton, Object.assign({ component: react_router_dom_1.Link, to: (0, core_1.linkToRecord)(basePath, id) }, rest, { children: children }), void 0)) : link === 'show' ? (
     // @ts-ignore
-    React.createElement(material_1.ListItemButton, __assign({ component: react_router_dom_1.Link, to: "".concat((0, core_1.linkToRecord)(basePath, id), "/show") }, rest), children)) : link !== false ? (
+    (0, jsx_runtime_1.jsx)(material_1.ListItemButton, Object.assign({ component: react_router_dom_1.Link, to: `${(0, core_1.linkToRecord)(basePath, id)}/show` }, rest, { children: children }), void 0)) : link !== false ? (
     // @ts-ignore
-    React.createElement(material_1.ListItemButton, __assign({ component: react_router_dom_1.Link, to: link }, rest), children)) : (React.createElement(material_1.ListItemText
+    (0, jsx_runtime_1.jsx)(material_1.ListItemButton, Object.assign({ component: react_router_dom_1.Link, to: link }, rest, { children: children }), void 0)) : ((0, jsx_runtime_1.jsx)(material_1.ListItemText
     // @ts-ignore
-    , __assign({ 
+    , Object.assign({ 
         // @ts-ignore
-        component: "div" }, rest), children));
+        component: "div" }, rest, { children: children }), void 0));
 };
 exports.default = SimpleList;

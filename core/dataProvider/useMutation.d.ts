@@ -117,7 +117,7 @@ import { DeclarativeSideEffect } from './useDeclarativeSideEffects';
  *     return <Button label="Reset stock" onClick={handleClick} disabled={loading} />;
  * };
  */
-declare const useMutation: (query?: Mutation | undefined, options?: MutationOptions | undefined) => UseMutationValue;
+declare const useMutation: (query?: Mutation, options?: MutationOptions) => UseMutationValue;
 export interface Mutation {
     type: string;
     resource?: string;

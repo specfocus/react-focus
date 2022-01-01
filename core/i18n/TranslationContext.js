@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TranslationContext = void 0;
-var react_1 = require("react");
-var TranslationContext = (0, react_1.createContext)({
+const react_1 = require("react");
+const TranslationContext = (0, react_1.createContext)({
     locale: 'en',
-    setLocale: function () { },
+    setLocale: () => { },
     i18nProvider: {
-        translate: function (x) { return x; },
-        changeLocale: function () { return Promise.resolve(); },
-        getLocale: function () { return 'en'; },
+        translate: x => x,
+        changeLocale: () => Promise.resolve(),
+        getLocale: () => 'en',
     },
 });
 exports.TranslationContext = TranslationContext;

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useEditContext = void 0;
-var react_1 = require("react");
-var defaults_1 = __importDefault(require("lodash/defaults"));
-var EditContext_1 = require("./EditContext");
+const react_1 = require("react");
+const defaults_1 = __importDefault(require("lodash/defaults"));
+const EditContext_1 = require("./EditContext");
 /**
  * Hook to read the edit controller props from the CreateContext.
  *
@@ -24,14 +24,12 @@ var EditContext_1 = require("./EditContext");
  * @see useEditController for how it is filled
  *
  */
-var useEditContext = function (props) {
+const useEditContext = (props) => {
     // Can't find a way to specify the RecordType when EditContext is declared
     // @ts-ignore
-    var context = (0, react_1.useContext)(EditContext_1.EditContext);
+    const context = (0, react_1.useContext)(EditContext_1.EditContext);
     // Props take precedence over the context
-    return (0, react_1.useMemo)(function () {
-        return (0, defaults_1.default)({}, props != null ? extractEditContextProps(props) : {}, context);
-    }, [context, props]);
+    return (0, react_1.useMemo)(() => (0, defaults_1.default)({}, props != null ? extractEditContextProps(props) : {}, context), [context, props]);
 };
 exports.useEditContext = useEditContext;
 /**
@@ -41,28 +39,25 @@ exports.useEditContext = useEditContext;
  *
  * @returns {EditControllerProps} edit controller props
  */
-var extractEditContextProps = function (_a) {
-    var basePath = _a.basePath, data = _a.data, record = _a.record, defaultTitle = _a.defaultTitle, onFailureRef = _a.onFailureRef, onSuccessRef = _a.onSuccessRef, transformRef = _a.transformRef, loaded = _a.loaded, loading = _a.loading, redirect = _a.redirect, setOnFailure = _a.setOnFailure, setOnSuccess = _a.setOnSuccess, setTransform = _a.setTransform, resource = _a.resource, save = _a.save, saving = _a.saving, successMessage = _a.successMessage, version = _a.version;
-    return ({
-        basePath: basePath,
-        // Necessary for actions (EditActions) which expect a data prop containing the record
-        // @deprecated - to be removed in 4.0d
-        data: record || data,
-        record: record || data,
-        defaultTitle: defaultTitle,
-        onFailureRef: onFailureRef,
-        onSuccessRef: onSuccessRef,
-        transformRef: transformRef,
-        loaded: loaded,
-        loading: loading,
-        redirect: redirect,
-        setOnFailure: setOnFailure,
-        setOnSuccess: setOnSuccess,
-        setTransform: setTransform,
-        resource: resource,
-        save: save,
-        saving: saving,
-        successMessage: successMessage,
-        version: version,
-    });
-};
+const extractEditContextProps = ({ basePath, data, record, defaultTitle, onFailureRef, onSuccessRef, transformRef, loaded, loading, redirect, setOnFailure, setOnSuccess, setTransform, resource, save, saving, successMessage, version, }) => ({
+    basePath,
+    // Necessary for actions (EditActions) which expect a data prop containing the record
+    // @deprecated - to be removed in 4.0d
+    data: record || data,
+    record: record || data,
+    defaultTitle,
+    onFailureRef,
+    onSuccessRef,
+    transformRef,
+    loaded,
+    loading,
+    redirect,
+    setOnFailure,
+    setOnSuccess,
+    setTransform,
+    resource,
+    save,
+    saving,
+    successMessage,
+    version,
+});

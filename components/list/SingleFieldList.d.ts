@@ -41,7 +41,7 @@ declare const SingleFieldList: {
         children: PropTypes.Validator<PropTypes.ReactElementLike>;
         classes: PropTypes.Requireable<object>;
         className: PropTypes.Requireable<string>;
-        component: (props: any, propName: any, componentName: any) => Error | undefined;
+        component: (props: any, propName: any, componentName: any) => Error;
         data: PropTypes.Requireable<any>;
         ids: PropTypes.Requireable<any[]>;
         linkType: PropTypes.Requireable<string | boolean>;

@@ -18,5 +18,5 @@ export declare type RedirectionSideEffect = string | boolean | RedirectToFunctio
  * // redirect to the result of a function
  * redirect((redirectTo, basePath, id, data) => ...)
  */
-declare const useRedirect: () => (redirectTo: RedirectionSideEffect, basePath?: string, id?: Identifier | undefined, data?: Partial<Record> | undefined, state?: object) => void;
+declare const useRedirect: () => (redirectTo: RedirectionSideEffect, basePath?: string, id?: Identifier, data?: Partial<Record>, state?: object) => void;
 export default useRedirect;

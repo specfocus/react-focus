@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,12 +34,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceArrayInputView = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
-var ReferenceError_1 = __importDefault(require("./ReferenceError"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
+const ReferenceError_1 = __importDefault(require("./ReferenceError"));
 /**
  * An Input component for fields containing a list of references to another resource.
  * Useful for 'hasMany' relationship.
@@ -129,23 +119,24 @@ var ReferenceError_1 = __importDefault(require("./ReferenceError"));
  *     <SelectArrayInput optionText="name" />
  * </ReferenceArrayInput>
  */
-var ReferenceArrayInput = function (_a) {
-    var children = _a.children, idOverride = _a.id, onBlur = _a.onBlur, onChange = _a.onChange, onFocus = _a.onFocus, validate = _a.validate, parse = _a.parse, format = _a.format, props = __rest(_a, ["children", "id", "onBlur", "onChange", "onFocus", "validate", "parse", "format"]);
+const ReferenceArrayInput = (_a) => {
+    var { children, id: idOverride, onBlur, onChange, onFocus, validate, parse, format } = _a, props = __rest(_a, ["children", "id", "onBlur", "onChange", "onFocus", "validate", "parse", "format"]);
     if (React.Children.count(children) !== 1) {
         throw new Error('<ReferenceArrayInput> only accepts a single child (like <Datagrid>)');
     }
-    var _b = (0, core_1.useInput)(__assign({ id: idOverride, onBlur: onBlur, onChange: onChange, onFocus: onFocus, source: props.source, validate: validate, parse: parse, format: format }, props)), id = _b.id, input = _b.input, isRequired = _b.isRequired, meta = _b.meta;
-    var controllerProps = (0, core_1.useReferenceArrayInputController)(__assign(__assign({}, props), { input: input }));
-    var listContext = (0, react_1.useMemo)(function () { return (__assign(__assign({}, controllerProps), { 
+    const { id, input, isRequired, meta } = (0, core_1.useInput)(Object.assign({ id: idOverride, onBlur,
+        onChange,
+        onFocus, source: props.source, validate,
+        parse,
+        format }, props));
+    const controllerProps = (0, core_1.useReferenceArrayInputController)(Object.assign(Object.assign({}, props), { input }));
+    const listContext = (0, react_1.useMemo)(() => (Object.assign(Object.assign({}, controllerProps), { 
         // ReferenceArrayInput.setSort had a different signature than the one from ListContext.
         // In order to not break backward compatibility, we added this temporary setSortForList in the
         // ReferenceArrayInputContext
-        setSort: controllerProps.setSortForList })); }, [controllerProps]);
-    var translate = (0, core_1.useTranslate)();
-    return (React.createElement(core_1.ResourceContextProvider, { value: props.reference },
-        React.createElement(core_1.ReferenceArrayInputContextProvider, { value: controllerProps },
-            React.createElement(core_1.ListContextProvider, { value: listContext },
-                React.createElement(exports.ReferenceArrayInputView, __assign({ id: id, input: input, isRequired: isRequired, meta: meta, translate: translate, children: children }, props, { choices: controllerProps.choices, loaded: controllerProps.loaded, loading: controllerProps.loading, setFilter: controllerProps.setFilter, setPagination: controllerProps.setPagination, setSort: controllerProps.setSort }))))));
+        setSort: controllerProps.setSortForList })), [controllerProps]);
+    const translate = (0, core_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsx)(core_1.ResourceContextProvider, Object.assign({ value: props.reference }, { children: (0, jsx_runtime_1.jsx)(core_1.ReferenceArrayInputContextProvider, Object.assign({ value: controllerProps }, { children: (0, jsx_runtime_1.jsx)(core_1.ListContextProvider, Object.assign({ value: listContext }, { children: (0, jsx_runtime_1.jsx)(exports.ReferenceArrayInputView, Object.assign({ id: id, input: input, isRequired: isRequired, meta: meta, translate: translate, children: children }, props, { choices: controllerProps.choices, loaded: controllerProps.loaded, loading: controllerProps.loading, setFilter: controllerProps.setFilter, setPagination: controllerProps.setPagination, setSort: controllerProps.setSort }), void 0) }), void 0) }), void 0) }), void 0));
 };
 ReferenceArrayInput.propTypes = {
     allowEmpty: prop_types_1.default.bool,
@@ -166,27 +157,36 @@ ReferenceArrayInput.propTypes = {
 };
 ReferenceArrayInput.defaultProps = {
     filter: {},
-    filterToQuery: function (searchText) { return (searchText ? { q: searchText } : {}); },
+    filterToQuery: searchText => (searchText ? { q: searchText } : {}),
     perPage: 25,
     sort: { field: 'id', order: 'DESC' },
 };
-var sanitizeRestProps = function (_a) {
-    var basePath = _a.basePath, crudGetMany = _a.crudGetMany, crudGetMatching = _a.crudGetMatching, filterToQuery = _a.filterToQuery, perPage = _a.perPage, reference = _a.reference, referenceSource = _a.referenceSource, resource = _a.resource, rest = __rest(_a, ["basePath", "crudGetMany", "crudGetMatching", "filterToQuery", "perPage", "reference", "referenceSource", "resource"]);
+const sanitizeRestProps = (_a) => {
+    var { basePath, crudGetMany, crudGetMatching, filterToQuery, perPage, reference, referenceSource, resource } = _a, rest = __rest(_a, ["basePath", "crudGetMany", "crudGetMatching", "filterToQuery", "perPage", "reference", "referenceSource", "resource"]);
     return (0, sanitizeInputRestProps_1.default)(rest);
 };
-var ReferenceArrayInputView = function (_a) {
-    var allowEmpty = _a.allowEmpty, basePath = _a.basePath, children = _a.children, choices = _a.choices, className = _a.className, error = _a.error, input = _a.input, loaded = _a.loaded, loading = _a.loading, isRequired = _a.isRequired, label = _a.label, meta = _a.meta, onChange = _a.onChange, options = _a.options, reference = _a.reference, resource = _a.resource, setFilter = _a.setFilter, setPagination = _a.setPagination, setSort = _a.setSort, source = _a.source, translate = _a.translate, warning = _a.warning, rest = __rest(_a, ["allowEmpty", "basePath", "children", "choices", "className", "error", "input", "loaded", "loading", "isRequired", "label", "meta", "onChange", "options", "reference", "resource", "setFilter", "setPagination", "setSort", "source", "translate", "warning"]);
-    var translatedLabel = translate.apply(void 0, (0, core_1.getFieldLabelTranslationArgs)({
-        label: label,
-        resource: resource,
-        source: source,
+const ReferenceArrayInputView = (_a) => {
+    var { allowEmpty, basePath, children, choices, className, error, input, loaded, loading, isRequired, label, meta, onChange, options, reference, resource, setFilter, setPagination, setSort, source, translate, warning } = _a, rest = __rest(_a, ["allowEmpty", "basePath", "children", "choices", "className", "error", "input", "loaded", "loading", "isRequired", "label", "meta", "onChange", "options", "reference", "resource", "setFilter", "setPagination", "setSort", "source", "translate", "warning"]);
+    const translatedLabel = translate(...(0, core_1.getFieldLabelTranslationArgs)({
+        label,
+        resource,
+        source,
     }));
     if (error) {
-        return React.createElement(ReferenceError_1.default, { label: translatedLabel, error: error });
+        return (0, jsx_runtime_1.jsx)(ReferenceError_1.default, { label: translatedLabel, error: error }, void 0);
     }
-    return React.cloneElement(children, __assign(__assign({ allowEmpty: allowEmpty, basePath: basePath
+    return React.cloneElement(children, Object.assign(Object.assign({ allowEmpty, basePath: basePath
             ? basePath.replace(resource, reference)
-            : "/".concat(reference), choices: choices, className: className, error: error, input: input, isRequired: isRequired, label: translatedLabel, loaded: loaded, loading: loading, meta: __assign(__assign({}, meta), { helperText: warning || false }), onChange: onChange, options: options, resource: reference, setFilter: setFilter, setPagination: setPagination, setSort: setSort, source: source, translateChoice: false, limitChoicesToValue: true }, sanitizeRestProps(rest)), children.props));
+            : `/${reference}`, choices,
+        className,
+        error,
+        input,
+        isRequired, label: translatedLabel, loaded,
+        loading, meta: Object.assign(Object.assign({}, meta), { helperText: warning || false }), onChange,
+        options, resource: reference, setFilter,
+        setPagination,
+        setSort,
+        source, translateChoice: false, limitChoicesToValue: true }, sanitizeRestProps(rest)), children.props));
 };
 exports.ReferenceArrayInputView = ReferenceArrayInputView;
 exports.ReferenceArrayInputView.propTypes = {

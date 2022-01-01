@@ -1,27 +1,8 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var material_1 = require("@mui/material");
-var React = __importStar(require("react"));
-var core_1 = require("../../../core");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const core_1 = require("../../../core");
 /**
  * Header and container for a list of filter list items
  *
@@ -59,13 +40,9 @@ var core_1 = require("../../../core");
  *     </Card>
  * );
  */
-var FilterList = function (props) {
-    var label = props.label, icon = props.icon, children = props.children;
-    var translate = (0, core_1.useTranslate)();
-    return (React.createElement(React.Fragment, null,
-        React.createElement(material_1.Box, { mt: 2, display: "flex", alignItems: "center" },
-            React.createElement(material_1.Box, { mr: 1 }, icon),
-            React.createElement(material_1.Typography, { variant: "overline" }, translate(label))),
-        React.createElement(material_1.List, { dense: true, disablePadding: true }, children)));
+const FilterList = (props) => {
+    const { label, icon, children } = props;
+    const translate = (0, core_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ mt: 2, display: "flex", alignItems: "center" }, { children: [(0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ mr: 1 }, { children: icon }), void 0), (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "overline" }, { children: translate(label) }), void 0)] }), void 0), (0, jsx_runtime_1.jsx)(material_1.List, Object.assign({ dense: true, disablePadding: true }, { children: children }), void 0)] }, void 0));
 };
 exports.default = FilterList;

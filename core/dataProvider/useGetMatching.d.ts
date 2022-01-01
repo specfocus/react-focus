@@ -57,7 +57,7 @@ interface UseGetMatchingOptions {
  *     )}</ul>;
  * };
  */
-declare const useGetMatching: (resource: string, pagination: PaginationPayload, sort: SortPayload, filter: object, source: string, referencingResource: string, options?: UseGetMatchingOptions | undefined) => UseGetMatchingResult;
+declare const useGetMatching: (resource: string, pagination: PaginationPayload, sort: SortPayload, filter: object, source: string, referencingResource: string, options?: UseGetMatchingOptions) => UseGetMatchingResult;
 interface UseGetMatchingResult {
     data: Record[];
     ids: Identifier[];

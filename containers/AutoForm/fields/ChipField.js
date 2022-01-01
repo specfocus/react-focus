@@ -1,12 +1,8 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var ChipField = function (_a) {
-    var data = _a.data, name = _a.name;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const ChipField = ({ data, name }) => {
     console.log('ARRAY field', name);
-    return (react_1.default.createElement("ul", null, (data || []).map(function (item) { return (react_1.default.createElement("li", null, JSON.stringify(item))); })));
+    return ((0, jsx_runtime_1.jsx)("ul", { children: (data || []).map((item) => ((0, jsx_runtime_1.jsx)("li", { children: JSON.stringify(item) }, void 0))) }, void 0));
 };
 exports.default = ChipField;

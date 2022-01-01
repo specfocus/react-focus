@@ -1,35 +1,24 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultSort = void 0;
-var react_1 = require("react");
-var queryReducer_1 = require("../reducer/admin/resource/list/queryReducer");
-var sortReducer = function (state, action) {
+const react_1 = require("react");
+const queryReducer_1 = require("../reducer/admin/resource/list/queryReducer");
+const sortReducer = (state, action) => {
     switch (action.type) {
         case 'SET_SORT':
             return action.payload.sort;
         case 'SET_SORT_FIELD': {
-            var field = action.payload.field;
-            var order = state.field === field
+            const { field } = action.payload;
+            const order = state.field === field
                 ? state.order === queryReducer_1.SORT_ASC
                     ? queryReducer_1.SORT_DESC
                     : queryReducer_1.SORT_ASC
                 : queryReducer_1.SORT_ASC;
-            return { field: field, order: order };
+            return { field, order };
         }
         case 'SET_SORT_ORDER': {
-            var order = action.payload.order;
-            return __assign(__assign({}, state), { order: order });
+            const { order } = action.payload;
+            return Object.assign(Object.assign({}, state), { order });
         }
         default:
             return state;
@@ -84,11 +73,10 @@ exports.defaultSort = { field: 'id', order: 'DESC' };
  * @param {string} initialSort.order The initial sort order
  * @returns {SortProps} The sort props
  */
-var useSortState = function (initialSort) {
-    if (initialSort === void 0) { initialSort = exports.defaultSort; }
-    var _a = (0, react_1.useReducer)(sortReducer, initialSort), sort = _a[0], dispatch = _a[1];
-    var isFirstRender = (0, react_1.useRef)(true);
-    (0, react_1.useEffect)(function () {
+const useSortState = (initialSort = exports.defaultSort) => {
+    const [sort, dispatch] = (0, react_1.useReducer)(sortReducer, initialSort);
+    const isFirstRender = (0, react_1.useRef)(true);
+    (0, react_1.useEffect)(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;
@@ -96,16 +84,10 @@ var useSortState = function (initialSort) {
         dispatch({ type: 'SET_SORT', payload: { sort: initialSort } });
     }, [initialSort.field, initialSort.order]); // eslint-disable-line react-hooks/exhaustive-deps
     return {
-        setSort: (0, react_1.useCallback)(function (sort) {
-            return dispatch({ type: 'SET_SORT', payload: { sort: sort } });
-        }, [dispatch]),
-        setSortField: (0, react_1.useCallback)(function (field) {
-            return dispatch({ type: 'SET_SORT_FIELD', payload: { field: field } });
-        }, [dispatch]),
-        setSortOrder: (0, react_1.useCallback)(function (order) {
-            return dispatch({ type: 'SET_SORT_ORDER', payload: { order: order } });
-        }, [dispatch]),
-        sort: sort,
+        setSort: (0, react_1.useCallback)((sort) => dispatch({ type: 'SET_SORT', payload: { sort } }), [dispatch]),
+        setSortField: (0, react_1.useCallback)((field) => dispatch({ type: 'SET_SORT_FIELD', payload: { field } }), [dispatch]),
+        setSortOrder: (0, react_1.useCallback)((order) => dispatch({ type: 'SET_SORT_ORDER', payload: { order } }), [dispatch]),
+        sort,
     };
 };
 exports.default = useSortState;

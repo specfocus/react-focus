@@ -1,2 +1,2 @@
-declare const useIsAutomaticRefreshEnabled: () => any;
+declare const useIsAutomaticRefreshEnabled: () => unknown;
 export default useIsAutomaticRefreshEnabled;

@@ -3,14 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var useGetPermissions_1 = __importDefault(require("./useGetPermissions"));
-var hooks_1 = require("../util/hooks");
-var emptyParams = {};
+const react_1 = require("react");
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const useGetPermissions_1 = __importDefault(require("./useGetPermissions"));
+const hooks_1 = require("../util/hooks");
+const emptyParams = {};
 // keep a cache of already fetched permissions to initialize state for new
 // components and avoid a useless rerender if the permissions haven't changed
-var alreadyFetchedPermissions = { '{}': undefined };
+const alreadyFetchedPermissions = { '{}': undefined };
 /**
  * Hook for getting user permissions without the loading state.
  *
@@ -42,30 +42,29 @@ var alreadyFetchedPermissions = { '{}': undefined };
  *     const PostDetail = props => {
  *         const { permissions } = usePermissionsOptimized();
  *         if (permissions !== 'editor') {
- *             return <Redirect to={`posts/${props.id}/show`} />
+ *             return <Navigate to={`posts/${props.id}/show`} />
  *         } else {
  *             return <PostEdit {...props} />
  *         }
  *     };
  */
-var usePermissionsOptimized = function (params) {
-    if (params === void 0) { params = emptyParams; }
-    var key = JSON.stringify(params);
-    var _a = (0, hooks_1.useSafeSetState)({
+const usePermissionsOptimized = (params = emptyParams) => {
+    const key = JSON.stringify(params);
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
         permissions: alreadyFetchedPermissions[key],
-    }), state = _a[0], setState = _a[1];
-    var getPermissions = (0, useGetPermissions_1.default)();
-    (0, react_1.useEffect)(function () {
+    });
+    const getPermissions = (0, useGetPermissions_1.default)();
+    (0, react_1.useEffect)(() => {
         getPermissions(params)
-            .then(function (permissions) {
+            .then(permissions => {
             if (!(0, isEqual_1.default)(permissions, state.permissions)) {
                 alreadyFetchedPermissions[key] = permissions;
-                setState({ permissions: permissions });
+                setState({ permissions });
             }
         })
-            .catch(function (error) {
+            .catch(error => {
             setState({
-                error: error,
+                error,
             });
         });
     }, [getPermissions, key]); // eslint-disable-line react-hooks/exhaustive-deps

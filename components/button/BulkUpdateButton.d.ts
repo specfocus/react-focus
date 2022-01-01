@@ -38,7 +38,7 @@ declare const BulkUpdateButton: {
     };
     defaultProps: {
         mutationMode: string;
-        data: never[];
+        data: any[];
     };
 };
 interface Props {

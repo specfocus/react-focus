@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { FieldProps } from '../../app';
-import { Customer } from '../types';
+import { Customer } from '../db/types';
 declare const SegmentsField: {
-    ({ record }: FieldProps<Customer>): JSX.Element | null;
+    ({ record }: FieldProps<Customer>): JSX.Element;
     defaultProps: {
         addLabel: boolean;
         source: string;

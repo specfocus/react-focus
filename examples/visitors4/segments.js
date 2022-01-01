@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var segments = [
+const segments = [
     'compulsive',
     'collector',
     'ordered_once',
@@ -11,7 +11,7 @@ var segments = [
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-exports.default = segments.map(function (segment) { return ({
+exports.default = segments.map(segment => ({
     id: segment,
     name: capitalizeFirstLetter(segment),
-}); });
+}));

@@ -40,7 +40,7 @@ import { ButtonProps } from './Button';
  * };
  */
 export declare const DeleteButton: {
-    (props: DeleteButtonProps): JSX.Element | null;
+    (props: DeleteButtonProps): JSX.Element;
     propTypes: {
         basePath: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string>;

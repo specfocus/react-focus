@@ -46,7 +46,7 @@ import { MutationOptions, Mutation } from './useMutation';
  *     return <button disabled={loading} onClick={updateMany}>Reset views</button>;
  * };
  */
-declare const useUpdateMany: <RecordType extends Record = Record>(resource?: string | undefined, ids?: Identifier[] | undefined, data?: Partial<RecordType> | undefined, options?: MutationOptions | undefined) => UseUpdateManyHookValue<RecordType>;
+declare const useUpdateMany: <RecordType extends Record = Record>(resource?: string, ids?: Identifier[], data?: Partial<RecordType>, options?: MutationOptions) => UseUpdateManyHookValue<RecordType>;
 declare type UseUpdateManyHookValue<RecordType extends Record = Record> = [
     (resource?: string | Partial<Mutation> | Event, ids?: Identifier[] | Partial<MutationOptions>, data?: Partial<RecordType>, options?: MutationOptions) => void | Promise<any>,
     {

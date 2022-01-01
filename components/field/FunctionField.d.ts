@@ -13,7 +13,7 @@ import { PublicFieldProps, InjectedFieldProps } from './types';
  * />
  */
 declare const FunctionField: {
-    <RecordType extends Record = Record>(props: FunctionFieldProps<RecordType>): JSX.Element | null;
+    <RecordType extends Record = Record>(props: FunctionFieldProps<RecordType>): JSX.Element;
     defaultProps: {
         addLabel: boolean;
     };

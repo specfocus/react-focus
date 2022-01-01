@@ -4,5 +4,5 @@ export declare const ACTION_TYPE = "action";
 export declare type ActionType = typeof ACTION_TYPE;
 export interface ActionSchema<T = SimpleObject> extends BaseSchema {
     payload: T;
-    type: ActionType | string;
+    type: ActionType;
 }

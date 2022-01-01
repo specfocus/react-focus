@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMutationMode = void 0;
-var getMutationMode = function (mutationMode, undoable) {
+const getMutationMode = (mutationMode, undoable) => {
     if (mutationMode) {
         return mutationMode;
     }

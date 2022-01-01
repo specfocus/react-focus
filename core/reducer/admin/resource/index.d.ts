@@ -6,7 +6,7 @@ declare type ActionTypes = RegisterResourceAction | UnregisterResourceAction | R
         resource?: string;
     };
 };
-declare const _default: (previousState: {} | undefined, action: ActionTypes) => {};
+declare const _default: (previousState: {}, action: ActionTypes) => {};
 export default _default;
 export declare const getResources: (state: any) => any[];
 export declare const getReferenceResource: (state: any, props: any) => any;

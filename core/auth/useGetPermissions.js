@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useAuthProvider_1 = __importDefault(require("./useAuthProvider"));
-var getPermissionsWithoutProvider = function () { return Promise.resolve([]); };
+const react_1 = require("react");
+const useAuthProvider_1 = __importDefault(require("./useAuthProvider"));
+const getPermissionsWithoutProvider = () => Promise.resolve([]);
 /**
  * Get a callback for calling the authProvider.getPermissions() method.
  *
@@ -37,12 +37,9 @@ var getPermissionsWithoutProvider = function () { return Promise.resolve([]); };
  *     );
  * }
  */
-var useGetPermissions = function () {
-    var authProvider = (0, useAuthProvider_1.default)();
-    var getPermissions = (0, react_1.useCallback)(function (params) {
-        if (params === void 0) { params = {}; }
-        return authProvider.getPermissions(params);
-    }, [authProvider]);
+const useGetPermissions = () => {
+    const authProvider = (0, useAuthProvider_1.default)();
+    const getPermissions = (0, react_1.useCallback)((params = {}) => authProvider.getPermissions(params), [authProvider]);
     return authProvider ? getPermissions : getPermissionsWithoutProvider;
 };
 exports.default = useGetPermissions;

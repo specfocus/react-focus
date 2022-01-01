@@ -13,7 +13,7 @@ import { PaginationPayload, Record, SortPayload } from '../../types';
  *     )
  * }
  */
-export declare const ReferenceArrayInputContext: import("react").Context<undefined>;
+export declare const ReferenceArrayInputContext: import("react").Context<any>;
 export interface ReferenceArrayInputContextValue {
     choices: Record[];
     error?: any;

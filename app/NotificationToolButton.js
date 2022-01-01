@@ -4,17 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationToolButton = void 0;
-var Badge_1 = __importDefault(require("@mui/material/Badge"));
-var IconButton_1 = __importDefault(require("@mui/material/IconButton"));
-var Notifications_1 = __importDefault(require("@mui/icons-material/Notifications"));
-var react_1 = __importDefault(require("react"));
-var TranslatedTooltip_1 = __importDefault(require("../components/TranslatedTooltip"));
-var NotificationToolButton = function () { return (react_1.default.createElement(TranslatedTooltip_1.default, { title: "Notifications" },
-    react_1.default.createElement(IconButton_1.default, { color: "inherit" },
-        react_1.default.createElement(Badge_1.default, { badgeContent: 4, color: "secondary" },
-            react_1.default.createElement(Notifications_1.default, null))))); };
+const jsx_runtime_1 = require("react/jsx-runtime");
+const Badge_1 = __importDefault(require("@mui/material/Badge"));
+const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
+const Notifications_1 = __importDefault(require("@mui/icons-material/Notifications"));
+const TranslatedTooltip_1 = __importDefault(require("../components/TranslatedTooltip"));
+const NotificationToolButton = () => ((0, jsx_runtime_1.jsx)(TranslatedTooltip_1.default, Object.assign({ title: "Notifications" }, { children: (0, jsx_runtime_1.jsx)(IconButton_1.default, Object.assign({ color: "inherit" }, { children: (0, jsx_runtime_1.jsx)(Badge_1.default, Object.assign({ badgeContent: 4, color: "secondary" }, { children: (0, jsx_runtime_1.jsx)(Notifications_1.default, {}, void 0) }), void 0) }), void 0) }), void 0));
 exports.NotificationToolButton = NotificationToolButton;
 function default_1() {
-    return (react_1.default.createElement(exports.NotificationToolButton, null));
+    return ((0, jsx_runtime_1.jsx)(exports.NotificationToolButton, {}, void 0));
 }
 exports.default = default_1;

@@ -17,4 +17,4 @@ import { ShowControllerProps } from './useShowController';
  * @see useShowController for how it is filled
  *
  */
-export declare const useShowContext: <RecordType extends Record = Record>(props?: Partial<ShowControllerProps<RecordType>> | undefined) => Partial<ShowControllerProps<RecordType>>;
+export declare const useShowContext: <RecordType extends Record = Record>(props?: Partial<ShowControllerProps<RecordType>>) => Partial<ShowControllerProps<RecordType>>;

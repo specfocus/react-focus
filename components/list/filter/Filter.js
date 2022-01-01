@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,15 +33,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var core_1 = require("../../../core");
-var FilterButton_1 = __importDefault(require("./FilterButton"));
-var FilterForm_1 = __importDefault(require("./FilterForm"));
-var PREFIX = 'RaFilter';
-var classes = {
-    button: "".concat(PREFIX, "-button"),
-    form: "".concat(PREFIX, "-form"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const prop_types_1 = __importDefault(require("prop-types"));
+const React = __importStar(require("react"));
+const core_1 = require("../../../core");
+const FilterButton_1 = __importDefault(require("./FilterButton"));
+const FilterForm_1 = __importDefault(require("./FilterForm"));
+const PREFIX = 'RaFilter';
+const classes = {
+    button: `${PREFIX}-button`,
+    form: `${PREFIX}-form`,
 };
 /**
  * Filter button/form combo
@@ -73,15 +63,15 @@ var classes = {
  * );
  *
  */
-var Filter = function (props) {
-    var _a = (0, core_1.useListContext)(props), resource = _a.resource, showFilter = _a.showFilter, hideFilter = _a.hideFilter, setFilters = _a.setFilters, displayedFilters = _a.displayedFilters, filterValues = _a.filterValues;
-    var renderButton = function () {
-        var context = props.context, children = props.children, variant = props.variant, rest = __rest(props, ["context", "children", "variant"]);
-        return (React.createElement(FilterButton_1.default, __assign({ className: classes.button, resource: resource, filters: React.Children.toArray(children), showFilter: showFilter, displayedFilters: displayedFilters, filterValues: filterValues }, (0, core_1.sanitizeListRestProps)(rest))));
+const Filter = (props) => {
+    const { resource, showFilter, hideFilter, setFilters, displayedFilters, filterValues, } = (0, core_1.useListContext)(props);
+    const renderButton = () => {
+        const { context, children, variant } = props, rest = __rest(props, ["context", "children", "variant"]);
+        return ((0, jsx_runtime_1.jsx)(FilterButton_1.default, Object.assign({ className: classes.button, resource: resource, filters: React.Children.toArray(children), showFilter: showFilter, displayedFilters: displayedFilters, filterValues: filterValues }, (0, core_1.sanitizeListRestProps)(rest)), void 0));
     };
-    var renderForm = function () {
-        var context = props.context, children = props.children, rest = __rest(props, ["context", "children"]);
-        return (React.createElement(FilterForm_1.default, __assign({ className: classes.form, resource: resource, filters: React.Children.toArray(children), hideFilter: hideFilter, displayedFilters: displayedFilters, initialValues: filterValues, setFilters: setFilters }, (0, core_1.sanitizeListRestProps)(rest))));
+    const renderForm = () => {
+        const { context, children } = props, rest = __rest(props, ["context", "children"]);
+        return ((0, jsx_runtime_1.jsx)(FilterForm_1.default, Object.assign({ className: classes.form, resource: resource, filters: React.Children.toArray(children), hideFilter: hideFilter, displayedFilters: displayedFilters, initialValues: filterValues, setFilters: setFilters }, (0, core_1.sanitizeListRestProps)(rest)), void 0));
     };
     return props.context === 'button' ? renderButton() : renderForm();
 };

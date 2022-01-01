@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,20 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ListItem_1 = __importDefault(require("@mui/material/ListItem"));
-var ListItemIcon_1 = __importDefault(require("@mui/material/ListItemIcon"));
-var ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
-var react_1 = __importDefault(require("react"));
-var react_router_dom_1 = require("react-router-dom");
-var react_i18next_1 = require("react-i18next");
-var translation_1 = require("../utilities/translation");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const ListItem_1 = __importDefault(require("@mui/material/ListItem"));
+const ListItemIcon_1 = __importDefault(require("@mui/material/ListItemIcon"));
+const ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
+const react_router_dom_1 = require("react-router-dom");
+const react_i18next_1 = require("react-i18next");
+const translation_1 = require("../utilities/translation");
 function TranslatedListItemLink(_a) {
-    var icon = _a.icon, primary = _a.primary, secondary = _a.secondary, to = _a.to, otherProps = __rest(_a, ["icon", "primary", "secondary", "to"]);
-    var t = (0, react_i18next_1.useTranslation)().t;
-    var primaryText = (0, translation_1.translate)(primary, t);
-    var secondaryText = (0, translation_1.translate)(secondary, t);
-    return (react_1.default.createElement(ListItem_1.default, __assign({ component: react_router_dom_1.Link, to: to }, otherProps),
-        react_1.default.createElement(ListItemIcon_1.default, null, icon),
-        react_1.default.createElement(ListItemText_1.default, { primary: primaryText, secondary: secondaryText })));
+    var { icon, primary, secondary, to } = _a, otherProps = __rest(_a, ["icon", "primary", "secondary", "to"]);
+    const { t } = (0, react_i18next_1.useTranslation)();
+    const primaryText = (0, translation_1.translate)(primary, t);
+    const secondaryText = (0, translation_1.translate)(secondary, t);
+    const CustomLink = (props) => (0, jsx_runtime_1.jsx)(react_router_dom_1.Link, Object.assign({ to: to }, props), void 0);
+    return ((0, jsx_runtime_1.jsxs)(ListItem_1.default, Object.assign({ component: CustomLink }, otherProps, { children: [(0, jsx_runtime_1.jsx)(ListItemIcon_1.default, { children: icon }, void 0), (0, jsx_runtime_1.jsx)(ListItemText_1.default, { primary: primaryText, secondary: secondaryText }, void 0)] }), void 0));
 }
 exports.default = TranslatedListItemLink;

@@ -1,30 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var recoil_1 = require("recoil");
-var recoil_devtools_1 = require("recoil-devtools");
-var recoil_devtools_logger_1 = require("recoil-devtools-logger");
-var a = (0, recoil_1.atom)({
-    key: 'a',
-    default: 1
-});
-var b = (0, recoil_1.selector)({
-    key: 'b',
-    get: function () { return 1; }
-});
-var c = (0, recoil_1.atom)({
-    key: 'c',
-    default: 1
-});
-var values = [a, b, c];
-var Root = function (_a) {
-    var children = _a.children, values = _a.values;
-    return (react_1.default.createElement(recoil_1.RecoilRoot, null,
-        react_1.default.createElement(recoil_devtools_1.RecoilDevtools, { values: values },
-            react_1.default.createElement(recoil_devtools_logger_1.RecoilLogger, null)),
-        children));
-};
-exports.default = Root;
+exports.Debug = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const recoil_devtools_1 = require("recoil-devtools");
+const recoil_devtools_logger_1 = require("recoil-devtools-logger");
+__exportStar(require("recoil"), exports);
+const Debug = ({ values }) => ((0, jsx_runtime_1.jsx)(recoil_devtools_1.RecoilDevtools, Object.assign({ values: values }, { children: (0, jsx_runtime_1.jsx)(recoil_devtools_logger_1.RecoilLogger, {}, void 0) }), void 0));
+exports.Debug = Debug;

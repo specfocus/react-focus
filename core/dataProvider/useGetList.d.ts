@@ -41,10 +41,10 @@ import { Refetch } from './useQueryWithStore';
  *     )}</ul>;
  * };
  */
-declare const useGetList: <RecordType extends Record = Record>(resource: string, pagination?: PaginationPayload, sort?: SortPayload, filter?: object, options?: UseDataProviderOptions | undefined) => {
+declare const useGetList: <RecordType extends Record = Record>(resource: string, pagination?: PaginationPayload, sort?: SortPayload, filter?: object, options?: UseDataProviderOptions) => {
     data: RecordMap<RecordType>;
     ids: Identifier[];
-    total?: number | undefined;
+    total?: number;
     error?: any;
     loading: boolean;
     loaded: boolean;

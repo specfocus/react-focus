@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,32 +15,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TabbedShowLayout = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var styles_1 = require("@mui/material/styles");
-var material_1 = require("@mui/material");
-var react_router_dom_1 = require("react-router-dom");
-var react_router_dom_2 = require("react-router-dom");
-var core_1 = require("../../core");
-var TabbedShowLayoutTabs_1 = require("./TabbedShowLayoutTabs");
-var PREFIX = 'RaTabbedShowLayout';
-var classes = {
-    content: "".concat(PREFIX, "-content"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const styles_1 = require("@mui/material/styles");
+const material_1 = require("@mui/material");
+const react_router_dom_1 = require("react-router-dom");
+const react_router_dom_2 = require("react-router-dom");
+const core_1 = require("../../core");
+const TabbedShowLayoutTabs_1 = require("./TabbedShowLayoutTabs");
+const PREFIX = 'RaTabbedShowLayout';
+const classes = {
+    content: `${PREFIX}-content`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.content)] = {
-            paddingTop: theme.spacing(1),
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
-        },
-        _b);
-});
-var sanitizeRestProps = function (_a) {
-    var children = _a.children, className = _a.className, record = _a.record, resource = _a.resource, basePath = _a.basePath, version = _a.version, initialValues = _a.initialValues, staticContext = _a.staticContext, translate = _a.translate, tabs = _a.tabs, rest = __rest(_a, ["children", "className", "record", "resource", "basePath", "version", "initialValues", "staticContext", "translate", "tabs"]);
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`& .${classes.content}`]: {
+        paddingTop: theme.spacing(1),
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+    },
+}));
+const sanitizeRestProps = (_a) => {
+    var { children, className, record, resource, basePath, version, initialValues, staticContext, translate, tabs } = _a, rest = __rest(_a, ["children", "className", "record", "resource", "basePath", "version", "initialValues", "staticContext", "translate", "tabs"]);
     return rest;
 };
 /**
@@ -112,38 +78,31 @@ var sanitizeRestProps = function (_a) {
  *     );
  *     export default App;
  */
-var TabbedShowLayout = function (props) {
-    var basePath = props.basePath, children = props.children, className = props.className, record = props.record, resource = props.resource, _a = props.syncWithLocation, syncWithLocation = _a === void 0 ? true : _a, tabs = props.tabs, value = props.value, version = props.version, rest = __rest(props, ["basePath", "children", "className", "record", "resource", "syncWithLocation", "tabs", "value", "version"]);
-    var match = (0, react_router_dom_2.useRouteMatch)();
-    var nonNullChildren = react_1.Children.toArray(children).filter(function (child) { return child !== null; });
-    var _b = (0, react_1.useState)(0), tabValue = _b[0], setTabValue = _b[1];
-    var handleTabChange = function (event, value) {
+const TabbedShowLayout = (props) => {
+    const { basePath, children, className, record, resource, syncWithLocation = true, tabs, value, version } = props, rest = __rest(props, ["basePath", "children", "className", "record", "resource", "syncWithLocation", "tabs", "value", "version"]);
+    const match = (0, react_router_dom_2.useMatch)('');
+    const nonNullChildren = react_1.Children.toArray(children).filter(child => child !== null);
+    const [tabValue, setTabValue] = (0, react_1.useState)(0);
+    const handleTabChange = (event, value) => {
         if (!syncWithLocation) {
             setTabValue(value);
         }
     };
-    return (React.createElement(Root, __assign({ className: className, key: version }, sanitizeRestProps(rest)),
-        (0, react_1.cloneElement)(tabs, {
-            syncWithLocation: syncWithLocation,
-            onChange: handleTabChange,
-            value: tabValue,
-        }, nonNullChildren),
-        React.createElement(material_1.Divider, null),
-        React.createElement("div", { className: classes.content }, react_1.Children.map(nonNullChildren, function (tab, index) {
-            return tab && (0, react_1.isValidElement)(tab) ? (syncWithLocation ? (React.createElement(react_router_dom_1.Route, { exact: true, path: (0, core_1.escapePath)((0, TabbedShowLayoutTabs_1.getTabFullPath)(tab, index, match.url)), render: function () {
-                    return (0, react_1.cloneElement)(tab, {
+    return ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: className }, sanitizeRestProps(rest), { children: [(0, react_1.cloneElement)(tabs, {
+                syncWithLocation,
+                onChange: handleTabChange,
+                value: tabValue,
+            }, nonNullChildren), (0, jsx_runtime_1.jsx)(material_1.Divider, {}, void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.content }, { children: react_1.Children.map(nonNullChildren, (tab, index) => tab && (0, react_1.isValidElement)(tab) ? (syncWithLocation ? ((0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: (0, core_1.escapePath)((0, TabbedShowLayoutTabs_1.getTabFullPath)(tab, index, match === null || match === void 0 ? void 0 : match.pathname)), element: () => (0, react_1.cloneElement)(tab, {
                         context: 'content',
-                        resource: resource,
-                        record: record,
-                        basePath: basePath,
-                    });
-                } })) : tabValue === index ? ((0, react_1.cloneElement)(tab, {
-                context: 'content',
-                resource: resource,
-                record: record,
-                basePath: basePath,
-            })) : null) : null;
-        }))));
+                        resource,
+                        record,
+                        basePath,
+                    }) }, void 0)) : tabValue === index ? ((0, react_1.cloneElement)(tab, {
+                    context: 'content',
+                    resource,
+                    record,
+                    basePath,
+                })) : null) : null) }), void 0)] }), version));
 };
 exports.TabbedShowLayout = TabbedShowLayout;
 exports.TabbedShowLayout.propTypes = {
@@ -160,5 +119,5 @@ exports.TabbedShowLayout.propTypes = {
     version: prop_types_1.default.number,
 };
 exports.TabbedShowLayout.defaultProps = {
-    tabs: React.createElement(TabbedShowLayoutTabs_1.TabbedShowLayoutTabs, null),
+    tabs: (0, jsx_runtime_1.jsx)(TabbedShowLayoutTabs_1.TabbedShowLayoutTabs, {}, void 0),
 };

@@ -1,18 +1,7 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var query_string_1 = require("query-string");
-var core_1 = require("../core");
+const query_string_1 = require("query-string");
+const core_1 = require("../core");
 /**
  * Maps ../../app queries to a json-server powered REST API
  *
@@ -45,110 +34,67 @@ var core_1 = require("../core");
  *
  * export default App;
  */
-exports.default = (function (apiUrl, httpClient) {
-    if (httpClient === void 0) { httpClient = core_1.fetchUtils.fetchJson; }
-    return ({
-        getList: function (resource, params) {
-            var _a = params.pagination, page = _a.page, perPage = _a.perPage;
-            var _b = params.sort, field = _b.field, order = _b.order;
-            var query = __assign(__assign({}, core_1.fetchUtils.flattenObject(params.filter)), { _sort: field, _order: order, _start: (page - 1) * perPage, _end: page * perPage });
-            var url = "".concat(apiUrl, "/").concat(resource, "?").concat((0, query_string_1.stringify)(query));
-            return httpClient(url).then(function (_a) {
-                var headers = _a.headers, json = _a.json;
-                if (!headers.has('x-total-count')) {
-                    throw new Error('The X-Total-Count header is missing in the HTTP Response. The jsonServer Data Provider expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare X-Total-Count in the Access-Control-Expose-Headers header?');
-                }
-                return {
-                    data: json,
-                    total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
-                };
-            });
-        },
-        getOne: function (resource, params) {
-            return httpClient("".concat(apiUrl, "/").concat(resource, "/").concat(params.id)).then(function (_a) {
-                var json = _a.json;
-                return ({
-                    data: json,
-                });
-            });
-        },
-        getMany: function (resource, params) {
-            var query = {
-                id: params.ids,
+exports.default = (apiUrl, httpClient = core_1.fetchUtils.fetchJson) => ({
+    getList: (resource, params) => {
+        const { page, perPage } = params.pagination;
+        const { field, order } = params.sort;
+        const query = Object.assign(Object.assign({}, core_1.fetchUtils.flattenObject(params.filter)), { _sort: field, _order: order, _start: (page - 1) * perPage, _end: page * perPage });
+        const url = `${apiUrl}/${resource}?${(0, query_string_1.stringify)(query)}`;
+        return httpClient(url).then(({ headers, json }) => {
+            if (!headers.has('x-total-count')) {
+                throw new Error('The X-Total-Count header is missing in the HTTP Response. The jsonServer Data Provider expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare X-Total-Count in the Access-Control-Expose-Headers header?');
+            }
+            return {
+                data: json,
+                total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
             };
-            var url = "".concat(apiUrl, "/").concat(resource, "?").concat((0, query_string_1.stringify)(query));
-            return httpClient(url).then(function (_a) {
-                var json = _a.json;
-                return ({ data: json });
-            });
-        },
-        getManyReference: function (resource, params) {
-            var _a;
-            var _b = params.pagination, page = _b.page, perPage = _b.perPage;
-            var _c = params.sort, field = _c.field, order = _c.order;
-            var query = __assign(__assign({}, core_1.fetchUtils.flattenObject(params.filter)), (_a = {}, _a[params.target] = params.id, _a._sort = field, _a._order = order, _a._start = (page - 1) * perPage, _a._end = page * perPage, _a));
-            var url = "".concat(apiUrl, "/").concat(resource, "?").concat((0, query_string_1.stringify)(query));
-            return httpClient(url).then(function (_a) {
-                var headers = _a.headers, json = _a.json;
-                if (!headers.has('x-total-count')) {
-                    throw new Error('The X-Total-Count header is missing in the HTTP Response. The jsonServer Data Provider expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare X-Total-Count in the Access-Control-Expose-Headers header?');
-                }
-                return {
-                    data: json,
-                    total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
-                };
-            });
-        },
-        update: function (resource, params) {
-            return httpClient("".concat(apiUrl, "/").concat(resource, "/").concat(params.id), {
-                method: 'PUT',
-                body: JSON.stringify(params.data),
-            }).then(function (_a) {
-                var json = _a.json;
-                return ({ data: json });
-            });
-        },
-        // json-server doesn't handle filters on UPDATE route, so we fallback to calling UPDATE n times instead
-        updateMany: function (resource, params) {
-            return Promise.all(params.ids.map(function (id) {
-                return httpClient("".concat(apiUrl, "/").concat(resource, "/").concat(id), {
-                    method: 'PUT',
-                    body: JSON.stringify(params.data),
-                });
-            })).then(function (responses) { return ({ data: responses.map(function (_a) {
-                    var json = _a.json;
-                    return json.id;
-                }) }); });
-        },
-        create: function (resource, params) {
-            return httpClient("".concat(apiUrl, "/").concat(resource), {
-                method: 'POST',
-                body: JSON.stringify(params.data),
-            }).then(function (_a) {
-                var json = _a.json;
-                return ({
-                    data: __assign(__assign({}, params.data), { id: json.id }),
-                });
-            });
-        },
-        delete: function (resource, params) {
-            return httpClient("".concat(apiUrl, "/").concat(resource, "/").concat(params.id), {
-                method: 'DELETE',
-            }).then(function (_a) {
-                var json = _a.json;
-                return ({ data: json });
-            });
-        },
-        // json-server doesn't handle filters on DELETE route, so we fallback to calling DELETE n times instead
-        deleteMany: function (resource, params) {
-            return Promise.all(params.ids.map(function (id) {
-                return httpClient("".concat(apiUrl, "/").concat(resource, "/").concat(id), {
-                    method: 'DELETE',
-                });
-            })).then(function (responses) { return ({ data: responses.map(function (_a) {
-                    var json = _a.json;
-                    return json.id;
-                }) }); });
-        },
-    });
+        });
+    },
+    getOne: (resource, params) => httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
+        data: json,
+    })),
+    getMany: (resource, params) => {
+        const query = {
+            id: params.ids,
+        };
+        const url = `${apiUrl}/${resource}?${(0, query_string_1.stringify)(query)}`;
+        return httpClient(url).then(({ json }) => ({ data: json }));
+    },
+    getManyReference: (resource, params) => {
+        const { page, perPage } = params.pagination;
+        const { field, order } = params.sort;
+        const query = Object.assign(Object.assign({}, core_1.fetchUtils.flattenObject(params.filter)), { [params.target]: params.id, _sort: field, _order: order, _start: (page - 1) * perPage, _end: page * perPage });
+        const url = `${apiUrl}/${resource}?${(0, query_string_1.stringify)(query)}`;
+        return httpClient(url).then(({ headers, json }) => {
+            if (!headers.has('x-total-count')) {
+                throw new Error('The X-Total-Count header is missing in the HTTP Response. The jsonServer Data Provider expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare X-Total-Count in the Access-Control-Expose-Headers header?');
+            }
+            return {
+                data: json,
+                total: parseInt(headers.get('x-total-count').split('/').pop(), 10),
+            };
+        });
+    },
+    update: (resource, params) => httpClient(`${apiUrl}/${resource}/${params.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(params.data),
+    }).then(({ json }) => ({ data: json })),
+    // json-server doesn't handle filters on UPDATE route, so we fallback to calling UPDATE n times instead
+    updateMany: (resource, params) => Promise.all(params.ids.map(id => httpClient(`${apiUrl}/${resource}/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(params.data),
+    }))).then(responses => ({ data: responses.map(({ json }) => json.id) })),
+    create: (resource, params) => httpClient(`${apiUrl}/${resource}`, {
+        method: 'POST',
+        body: JSON.stringify(params.data),
+    }).then(({ json }) => ({
+        data: Object.assign(Object.assign({}, params.data), { id: json.id }),
+    })),
+    delete: (resource, params) => httpClient(`${apiUrl}/${resource}/${params.id}`, {
+        method: 'DELETE',
+    }).then(({ json }) => ({ data: json })),
+    // json-server doesn't handle filters on DELETE route, so we fallback to calling DELETE n times instead
+    deleteMany: (resource, params) => Promise.all(params.ids.map(id => httpClient(`${apiUrl}/${resource}/${id}`, {
+        method: 'DELETE',
+    }))).then(responses => ({ data: responses.map(({ json }) => json.id) })),
 });

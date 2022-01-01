@@ -5,8 +5,8 @@ import { DefaultNamespace, TFunction } from 'react-i18next';
 import { BaseDomain } from '../../lib/BaseDomain';
 import { BaseSchema } from '../../lib/BaseSchema';
 import { ObjectSchema, SimpleObject, SimpleType } from '../../lib/ObjectSchema';
+import { Schema } from '../../lib/Schema';
 import { ActionPayload } from './fields/ActionField';
-import { FieldSchema } from './FieldSchema';
 export interface FieldText {
     helperText?: string;
     label: string;
@@ -30,7 +30,7 @@ export interface FieldProps<S extends BaseSchema = BaseSchema, D extends BaseDom
     schema: S;
     t: TFunction<DefaultNamespace>;
     value?: SimpleType;
-    values: Record<string, SimpleType>;
+    values?: Record<string, SimpleType>;
     variant?: string;
 }
 export declare type Dependency = string | Record<string, boolean | number | number[] | string | string[]>;
@@ -52,12 +52,12 @@ export interface FieldsetContext {
 export interface FieldsetProps {
     name?: string;
     context: FieldsetContext;
-    schema: ObjectSchema<SimpleObject, FieldSchema>;
+    schema: ObjectSchema<SimpleObject>;
 }
 declare const useFieldset: ({ context, name: fieldset, schema: { fields } }: FieldsetProps) => {
-    api: any;
+    api: FormApi<Record<string, any>, Partial<Record<string, any>>>;
     hidden: boolean;
-    getFieldProps: <S extends any>(key: string, schema: S) => FieldProps<S, BaseDomain>;
+    getFieldProps: <S extends Schema>(key: string, schema: S) => FieldProps<S, BaseDomain>;
     t: TFunction<"translation", undefined>;
 };
 export default useFieldset;

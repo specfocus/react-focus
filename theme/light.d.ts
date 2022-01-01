@@ -1,2 +1,3 @@
-declare const lightThemeOptions: import("./default").AppThemeOptions;
+import { ThemeOptions } from '@mui/material/styles';
+declare const lightThemeOptions: ThemeOptions;
 export default lightThemeOptions;

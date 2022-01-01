@@ -1,6 +1,5 @@
 /// <reference types="react" />
 import { Schema } from '../../../lib/Schema';
-import { FieldSchema } from '../FieldSchema';
 import { FieldProps } from '../useFieldset';
-declare const SimpleField: (props: FieldProps<Schema<FieldSchema>>) => JSX.Element | null;
+declare const SimpleField: (props: FieldProps<Schema>) => JSX.Element;
 export default SimpleField;

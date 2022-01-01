@@ -1,38 +1,19 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var inflection_1 = __importDefault(require("inflection"));
-var getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
-var InferredElement_1 = __importDefault(require("./InferredElement"));
-var assertions_1 = require("./assertions");
-var DefaultComponent = function () { return React.createElement("span", null, ";"); };
-var defaultType = {
+const jsx_runtime_1 = require("react/jsx-runtime");
+const inflection_1 = __importDefault(require("inflection"));
+const getValuesFromRecords_1 = __importDefault(require("./getValuesFromRecords"));
+const InferredElement_1 = __importDefault(require("./InferredElement"));
+const assertions_1 = require("./assertions");
+const DefaultComponent = () => (0, jsx_runtime_1.jsx)("span", { children: ";" }, void 0);
+const defaultType = {
     type: DefaultComponent,
-    representation: function () { return '<DefaultComponent />'; },
+    representation: () => '<DefaultComponent />',
 };
-var defaultTypes = {
+const defaultTypes = {
     array: defaultType,
     boolean: defaultType,
     date: defaultType,
@@ -45,7 +26,7 @@ var defaultTypes = {
     string: defaultType,
     url: defaultType,
 };
-var hasType = function (type, types) { return typeof types[type] !== 'undefined'; };
+const hasType = (type, types) => typeof types[type] !== 'undefined';
 /**
  * Guesses an element based on an array of values
  *
@@ -84,44 +65,42 @@ var hasType = function (type, types) { return typeof types[type] !== 'undefined'
  *
  * @return InferredElement
  */
-var inferElementFromValues = function (name, values, types) {
-    if (values === void 0) { values = []; }
-    if (types === void 0) { types = defaultTypes; }
+const inferElementFromValues = (name, values = [], types = defaultTypes) => {
     if (name === 'id' && hasType('id', types)) {
         return new InferredElement_1.default(types.id, { source: name });
     }
     if (name.substr(name.length - 3) === '_id' && hasType('reference', types)) {
-        var reference = inflection_1.default.pluralize(name.substr(0, name.length - 3));
+        const reference = inflection_1.default.pluralize(name.substr(0, name.length - 3));
         return (types.reference &&
             new InferredElement_1.default(types.reference, {
                 source: name,
-                reference: reference,
+                reference,
             }, new InferredElement_1.default(types.referenceChild)));
     }
     if (name.substr(name.length - 2) === 'Id' && hasType('reference', types)) {
-        var reference = inflection_1.default.pluralize(name.substr(0, name.length - 2));
+        const reference = inflection_1.default.pluralize(name.substr(0, name.length - 2));
         return (types.reference &&
             new InferredElement_1.default(types.reference, {
                 source: name,
-                reference: reference,
+                reference,
             }, new InferredElement_1.default(types.referenceChild)));
     }
     if (name.substr(name.length - 4) === '_ids' &&
         hasType('referenceArray', types)) {
-        var reference = inflection_1.default.pluralize(name.substr(0, name.length - 4));
+        const reference = inflection_1.default.pluralize(name.substr(0, name.length - 4));
         return (types.referenceArray &&
             new InferredElement_1.default(types.referenceArray, {
                 source: name,
-                reference: reference,
+                reference,
             }, new InferredElement_1.default(types.referenceArrayChild)));
     }
     if (name.substr(name.length - 3) === 'Ids' &&
         hasType('referenceArray', types)) {
-        var reference = inflection_1.default.pluralize(name.substr(0, name.length - 3));
+        const reference = inflection_1.default.pluralize(name.substr(0, name.length - 3));
         return (types.referenceArray &&
             new InferredElement_1.default(types.referenceArray, {
                 source: name,
-                reference: reference,
+                reference,
             }, new InferredElement_1.default(types.referenceArrayChild)));
     }
     if (values.length === 0) {
@@ -130,14 +109,12 @@ var inferElementFromValues = function (name, values, types) {
     }
     if ((0, assertions_1.valuesAreArray)(values)) {
         if ((0, assertions_1.isObject)(values[0][0]) && hasType('array', types)) {
-            var leafValues_1 = (0, getValuesFromRecords_1.default)(values.reduce(function (acc, vals) { return acc.concat(vals); }, []));
+            const leafValues = (0, getValuesFromRecords_1.default)(values.reduce((acc, vals) => acc.concat(vals), []));
             // FIXME bad visual representation
             return (types.array &&
                 new InferredElement_1.default(types.array, {
                     source: name,
-                }, Object.keys(leafValues_1).map(function (leafName) {
-                    return inferElementFromValues(leafName, leafValues_1[leafName], types);
-                })));
+                }, Object.keys(leafValues).map(leafName => inferElementFromValues(leafName, leafValues[leafName], types))));
         }
         // FIXME introspect further
         return new InferredElement_1.default(types.string, { source: name });
@@ -170,9 +147,9 @@ var inferElementFromValues = function (name, values, types) {
     if ((0, assertions_1.valuesAreObject)(values)) {
         // we need to go deeper
         // Arbitrarily, choose the first prop of the first object
-        var propName_1 = Object.keys(values[0]).shift();
-        var leafValues = values.map(function (v) { return v[propName_1]; });
-        return inferElementFromValues("".concat(name, ".").concat(propName_1), leafValues, types);
+        const propName = Object.keys(values[0]).shift();
+        const leafValues = values.map(v => v[propName]);
+        return inferElementFromValues(`${name}.${propName}`, leafValues, types);
     }
     return new InferredElement_1.default(types.string, { source: name });
 };

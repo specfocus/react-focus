@@ -17,4 +17,4 @@ import { CreateControllerProps } from './useCreateController';
  * @see useCreateController for how it is filled
  *
  */
-export declare const useCreateContext: <RecordType extends Omit<Record, "id"> = Omit<Record, "id">>(props?: Partial<CreateControllerProps<RecordType>> | undefined) => Partial<CreateControllerProps<RecordType>>;
+export declare const useCreateContext: <RecordType extends Omit<Record, "id"> = Omit<Record, "id">>(props?: Partial<CreateControllerProps<RecordType>>) => Partial<CreateControllerProps<RecordType>>;

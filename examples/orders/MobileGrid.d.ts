@@ -6,10 +6,10 @@ interface MobileGridProps {
     basePath?: string;
 }
 declare const MobileGrid: {
-    (props: MobileGridProps): JSX.Element | null;
+    (props: MobileGridProps): JSX.Element;
     defaultProps: {
         data: {};
-        ids: never[];
+        ids: any[];
     };
 };
 export default MobileGrid;

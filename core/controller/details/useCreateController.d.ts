@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 import { Location } from 'history';
-import { match as Match } from 'react-router-dom';
+import { matchPath } from 'react-router-dom';
 import { RedirectionSideEffect } from '../../sideEffect';
 import { SetOnSuccess, SetOnFailure, TransformData, SetTransformData } from '../saveModifiers';
 import { Record, OnSuccess, OnFailure } from '../../types';
@@ -11,7 +11,7 @@ export interface CreateProps<RecordType extends Omit<Record, 'id'> = Record> {
     hasList?: boolean;
     hasShow?: boolean;
     location?: Location;
-    match?: Match;
+    match?: typeof matchPath;
     record?: Partial<RecordType>;
     resource?: string;
     onSuccess?: OnSuccess;

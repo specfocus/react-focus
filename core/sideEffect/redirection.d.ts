@@ -1,3 +1,4 @@
+/// <reference types="connected-react-router" />
 import { Identifier } from '../types';
 declare type RedirectToFunction = (basePath: string, id: Identifier, data: any) => string;
 export declare type RedirectionSideEffect = string | boolean | RedirectToFunction;
@@ -23,6 +24,6 @@ interface ActionWithSideEffect {
 /**
  * Redirection Side Effects
  */
-export declare function handleRedirection({ payload, requestPayload, meta: { basePath, redirectTo }, }: ActionWithSideEffect): Generator<any, void, unknown>;
-export default function (): Generator<any, void, unknown>;
+export declare function handleRedirection({ payload, requestPayload, meta: { basePath, redirectTo }, }: ActionWithSideEffect): Generator<import("redux-saga/effects").PutEffect<import("connected-react-router").CallHistoryMethodAction<[any]>> | import("redux-saga/effects").PutEffect<import("../actions/uiActions").RefreshViewAction>, void, unknown>;
+export default function (): Generator<import("redux-saga/effects").ForkEffect<never>, void, unknown>;
 export {};

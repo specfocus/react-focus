@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,21 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var get_1 = __importDefault(require("lodash/get"));
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var material_1 = require("@mui/material");
-var core_1 = require("../../core");
-var types_1 = require("./types");
-var UrlField = (0, react_1.memo)(function (props) {
-    var className = props.className, emptyText = props.emptyText, source = props.source, rest = __rest(props, ["className", "emptyText", "source"]);
-    var record = (0, core_1.useRecordContext)(props);
-    var value = (0, get_1.default)(record, source);
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const get_1 = __importDefault(require("lodash/get"));
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const material_1 = require("@mui/material");
+const core_1 = require("../../core");
+const types_1 = require("./types");
+const UrlField = (0, react_1.memo)(props => {
+    const { className, emptyText, source } = props, rest = __rest(props, ["className", "emptyText", "source"]);
+    const record = (0, core_1.useRecordContext)(props);
+    const value = (0, get_1.default)(record, source);
     if (value == null) {
-        return (React.createElement(material_1.Typography, __assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest)), emptyText));
+        return ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", className: className }, (0, sanitizeFieldRestProps_1.default)(rest), { children: emptyText }), void 0));
     }
-    return (React.createElement(material_1.Link, __assign({ className: className, href: value, variant: "body2" }, (0, sanitizeFieldRestProps_1.default)(rest)), value));
+    return ((0, jsx_runtime_1.jsx)(material_1.Link, Object.assign({ className: className, href: value, variant: "body2" }, (0, sanitizeFieldRestProps_1.default)(rest), { children: value }), void 0));
 });
 UrlField.defaultProps = {
     addLabel: true,

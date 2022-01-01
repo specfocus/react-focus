@@ -16,7 +16,7 @@ export interface RefreshViewAction {
         hard: boolean;
     };
 }
-export declare const refreshView: (hard?: boolean | undefined) => RefreshViewAction;
+export declare const refreshView: (hard?: boolean) => RefreshViewAction;
 export declare const SET_AUTOMATIC_REFRESH = "SET_AUTOMATIC_REFRESH";
 export interface SetAutomaticRefreshAction {
     readonly type: typeof SET_AUTOMATIC_REFRESH;

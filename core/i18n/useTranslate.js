@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var TranslationContext_1 = require("./TranslationContext");
+const react_1 = require("react");
+const TranslationContext_1 = require("./TranslationContext");
 /**
  * Translate a string using the current locale and the translations from the i18nProvider
  *
@@ -21,15 +21,13 @@ var TranslationContext_1 = require("./TranslationContext");
  *     return <MenuItem>{translate('settings')}</MenuItem>;
  * }
  */
-var useTranslate = function () {
-    var _a = (0, react_1.useContext)(TranslationContext_1.TranslationContext), i18nProvider = _a.i18nProvider, locale = _a.locale;
-    var translate = (0, react_1.useCallback)(function (key, options) {
-        return i18nProvider.translate(key, options);
-    }, 
+const useTranslate = () => {
+    const { i18nProvider, locale } = (0, react_1.useContext)(TranslationContext_1.TranslationContext);
+    const translate = (0, react_1.useCallback)((key, options) => i18nProvider.translate(key, options), 
     // update the hook each time the locale changes
     [i18nProvider, locale] // eslint-disable-line react-hooks/exhaustive-deps
     );
     return i18nProvider ? translate : identity;
 };
-var identity = function (key) { return key; };
+const identity = key => key;
 exports.default = useTranslate;

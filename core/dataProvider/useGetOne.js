@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var get_1 = __importDefault(require("lodash/get"));
-var useQueryWithStore_1 = require("./useQueryWithStore");
+const get_1 = __importDefault(require("lodash/get"));
+const useQueryWithStore_1 = require("./useQueryWithStore");
 /**
  * Call the dataProvider.getOne() method and return the resolved value
  * as well as the loading state.
@@ -38,16 +38,14 @@ var useQueryWithStore_1 = require("./useQueryWithStore");
  *     return <div>User {data.username}</div>;
  * };
  */
-var useGetOne = function (resource, id, options) {
-    return (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getOne', resource: resource, payload: { id: id } }, options, function (state) {
-        if (
-        // resources are registered
-        Object.keys(state.admin.resources).length > 0 &&
-            // no registered resource matching the query
-            !state.admin.resources[resource]) {
-            throw new Error("No <Resource> defined for \"".concat(resource, "\". useGetOne() relies on the Redux store, so it cannot work if you don't include a <Resource>."));
-        }
-        return (0, get_1.default)(state, ['admin', 'resources', resource, 'data', id]);
-    });
-};
+const useGetOne = (resource, id, options) => (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getOne', resource, payload: { id } }, options, (state) => {
+    if (
+    // resources are registered
+    Object.keys(state.admin.resources).length > 0 &&
+        // no registered resource matching the query
+        !state.admin.resources[resource]) {
+        throw new Error(`No <Resource> defined for "${resource}". useGetOne() relies on the Redux store, so it cannot work if you don't include a <Resource>.`);
+    }
+    return (0, get_1.default)(state, ['admin', 'resources', resource, 'data', id]);
+});
 exports.default = useGetOne;

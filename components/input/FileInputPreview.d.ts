@@ -16,7 +16,7 @@ declare const FileInputPreview: {
         onRemove: PropTypes.Validator<(...args: any[]) => any>;
     };
     defaultProps: {
-        file: undefined;
+        file: any;
     };
 };
 export default FileInputPreview;

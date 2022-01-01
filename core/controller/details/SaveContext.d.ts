@@ -31,6 +31,6 @@ export declare const SaveContextProvider: ({ children, value }: {
  *     saving
  * } = useSaveContext();
  */
-export declare const useSaveContext: <PropsType extends SaveContextValue = SaveContextValue>(props?: PropsType | undefined) => SaveContextValue;
+export declare const useSaveContext: <PropsType extends SaveContextValue = SaveContextValue>(props?: PropsType) => SaveContextValue;
 export declare const usePickSaveContext: <ContextType extends SaveContextValue = SaveContextValue>(context: ContextType) => SaveContextValue;
 export {};

@@ -1,6 +1,6 @@
-import { FC, ReactNode } from 'react';
 import { ToolbarProps as MuiToolbarProps } from '@mui/material';
-import { Record, RedirectionSideEffect, MutationMode } from '../../core';
+import { MutationMode, Record, RedirectionSideEffect } from '../../core';
+import { FC, ReactNode } from 'react';
 import { FormRenderProps } from 'react-final-form';
 /**
  * The Toolbar displayed at the bottom of forms.

@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,9 +15,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceFieldController = void 0;
-var get_1 = __importDefault(require("lodash/get"));
-var getResourceLinkPath_1 = __importDefault(require("./getResourceLinkPath"));
-var useReference_1 = __importDefault(require("../useReference"));
+const get_1 = __importDefault(require("lodash/get"));
+const getResourceLinkPath_1 = __importDefault(require("./getResourceLinkPath"));
+const useReference_1 = __importDefault(require("../useReference"));
 /**
  * Fetch reference record, and delegate rendering to child component.
  *
@@ -58,10 +47,10 @@ var useReference_1 = __importDefault(require("../useReference"));
  *     <TextField source="name" />
  * </ReferenceField>
  */
-var ReferenceFieldController = function (props) {
-    var children = props.children, record = props.record, source = props.source, rest = __rest(props, ["children", "record", "source"]);
-    var id = (0, get_1.default)(record, source);
-    return children(__assign(__assign({}, (0, useReference_1.default)(__assign(__assign({}, rest), { id: id }))), { resourceLinkPath: (0, getResourceLinkPath_1.default)(__assign(__assign({}, rest), { record: record, source: source })) }));
+const ReferenceFieldController = (props) => {
+    const { children, record, source } = props, rest = __rest(props, ["children", "record", "source"]);
+    const id = (0, get_1.default)(record, source);
+    return children(Object.assign(Object.assign({}, (0, useReference_1.default)(Object.assign(Object.assign({}, rest), { id }))), { resourceLinkPath: (0, getResourceLinkPath_1.default)(Object.assign(Object.assign({}, rest), { record, source })) }));
 };
 exports.ReferenceFieldController = ReferenceFieldController;
 exports.default = exports.ReferenceFieldController;

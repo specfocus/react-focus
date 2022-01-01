@@ -1,44 +1,24 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_dom_1 = __importDefault(require("react-dom"));
-var react_redux_1 = require("react-redux");
-var reselect_1 = require("reselect");
-var debounce_1 = __importDefault(require("lodash/debounce"));
-var union_1 = __importDefault(require("lodash/union"));
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var get_1 = __importDefault(require("lodash/get"));
-var crudGetMany_1 = require("../actions/dataActions/crudGetMany");
-var hooks_1 = require("../util/hooks");
-var useDataProvider_1 = __importDefault(require("./useDataProvider"));
-var react_2 = require("react");
-var controller_1 = require("../controller");
-var queriesToCall = {};
-var dataProvider;
-var DataProviderOptions = { action: crudGetMany_1.CRUD_GET_MANY };
+const react_1 = require("react");
+const react_dom_1 = __importDefault(require("react-dom"));
+const react_redux_1 = require("react-redux");
+const reselect_1 = require("reselect");
+const debounce_1 = __importDefault(require("lodash/debounce"));
+const union_1 = __importDefault(require("lodash/union"));
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const get_1 = __importDefault(require("lodash/get"));
+const crudGetMany_1 = require("../actions/dataActions/crudGetMany");
+const hooks_1 = require("../util/hooks");
+const useDataProvider_1 = __importDefault(require("./useDataProvider"));
+const react_2 = require("react");
+const controller_1 = require("../controller");
+let queriesToCall = {};
+let dataProvider;
+const DataProviderOptions = { action: crudGetMany_1.CRUD_GET_MANY };
 /**
  * Call the dataProvider.getMany() method and return the resolved result
  * as well as the loading state.
@@ -87,33 +67,30 @@ var DataProviderOptions = { action: crudGetMany_1.CRUD_GET_MANY };
  *      );
  * };
  */
-var useGetMany = function (resource, ids, options) {
-    if (options === void 0) { options = { enabled: true }; }
+const useGetMany = (resource, ids, options = { enabled: true }) => {
     // we can't use useQueryWithStore here because we're aggregating queries first
     // therefore part of the useQueryWithStore logic will have to be repeated below
-    var selectMany = (0, react_1.useMemo)(makeGetManySelector, []);
-    var data = (0, react_redux_1.useSelector)(function (state) {
-        return selectMany(state, resource, ids);
-    });
-    var version = (0, controller_1.useVersion)(); // used to allow force reload
+    const selectMany = (0, react_1.useMemo)(makeGetManySelector, []);
+    const data = (0, react_redux_1.useSelector)((state) => selectMany(state, resource, ids));
+    const version = (0, controller_1.useVersion)(); // used to allow force reload
     // used to force a refetch without relying on version
     // which might trigger other queries as well
-    var _a = (0, hooks_1.useSafeSetState)(0), innerVersion = _a[0], setInnerVersion = _a[1];
-    var refetch = (0, react_1.useCallback)(function () {
-        setInnerVersion(function (prevInnerVersion) { return prevInnerVersion + 1; });
+    const [innerVersion, setInnerVersion] = (0, hooks_1.useSafeSetState)(0);
+    const refetch = (0, react_1.useCallback)(() => {
+        setInnerVersion(prevInnerVersion => prevInnerVersion + 1);
     }, [setInnerVersion]);
-    var _b = (0, hooks_1.useSafeSetState)({
-        data: data,
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
+        data,
         error: null,
         loading: ids.length !== 0,
         loaded: data.length !== 0 && !data.includes(undefined),
-        refetch: refetch,
-    }), state = _b[0], setState = _b[1];
+        refetch,
+    });
     if (!(0, isEqual_1.default)(state.data, data)) {
-        setState(__assign(__assign({}, state), { data: data }));
+        setState(Object.assign(Object.assign({}, state), { data }));
     }
     dataProvider = (0, useDataProvider_1.default)(); // not the best way to pass the dataProvider to a function outside the hook, but I couldn't find a better one
-    (0, react_2.useEffect)(function () {
+    (0, react_2.useEffect)(() => {
         if (options.enabled === false) {
             return;
         }
@@ -135,8 +112,8 @@ var useGetMany = function (resource, ids, options) {
          * }
          */
         queriesToCall[resource] = queriesToCall[resource].concat({
-            ids: ids,
-            setState: setState,
+            ids,
+            setState,
             onSuccess: options && options.onSuccess,
             onFailure: options && options.onFailure,
         });
@@ -145,11 +122,11 @@ var useGetMany = function (resource, ids, options) {
     /* eslint-disable react-hooks/exhaustive-deps */
     [
         JSON.stringify({
-            resource: resource,
-            ids: ids,
-            options: options,
-            version: version,
-            innerVersion: innerVersion,
+            resource,
+            ids,
+            options,
+            version,
+            innerVersion,
         }),
         dataProvider,
     ]
@@ -162,40 +139,30 @@ var useGetMany = function (resource, ids, options) {
  *
  * @see https://react-redux.js.org/next/api/hooks#using-memoizing-selectors
  */
-var makeGetManySelector = function () {
-    return (0, reselect_1.createSelector)([
-        function (state, resource) {
-            return (0, get_1.default)(state, ['admin', 'resources', resource, 'data']);
-        },
-        function (_, __, ids) { return ids; },
-    ], function (resourceData, ids) {
-        return resourceData
-            ? ids.map(function (id) { return resourceData[id]; })
-            : ids.map(function (id) { return undefined; });
-    });
-};
+const makeGetManySelector = () => (0, reselect_1.createSelector)([
+    (state, resource) => (0, get_1.default)(state, ['admin', 'resources', resource, 'data']),
+    (_, __, ids) => ids,
+], (resourceData, ids) => resourceData
+    ? ids.map(id => resourceData[id])
+    : ids.map(id => undefined));
 /**
  * Call the dataProvider once per resource
  */
-var callQueries = (0, debounce_1.default)(function () {
-    var resources = Object.keys(queriesToCall);
-    resources.forEach(function (resource) {
-        var queries = __spreadArray([], queriesToCall[resource], true); // cloning to avoid side effects
+const callQueries = (0, debounce_1.default)(() => {
+    const resources = Object.keys(queriesToCall);
+    resources.forEach(resource => {
+        const queries = [...queriesToCall[resource]]; // cloning to avoid side effects
         /**
          * Extract ids from queries, aggregate and deduplicate them
          *
          * @example from [[1, 2], [2, null, 3], [4, null]] to [1, 2, 3, 4]
          */
-        var accumulatedIds = queries
-            .reduce(function (acc, _a) {
-            var ids = _a.ids;
-            return (0, union_1.default)(acc, ids);
-        }, []) // concat + unique
-            .filter(function (v) { return v != null && v !== ''; }); // remove null values
+        const accumulatedIds = queries
+            .reduce((acc, { ids }) => (0, union_1.default)(acc, ids), []) // concat + unique
+            .filter(v => v != null && v !== ''); // remove null values
         if (accumulatedIds.length === 0) {
             // no need to call the data provider if all the ids are null
-            queries.forEach(function (_a) {
-                var ids = _a.ids, setState = _a.setState, onSuccess = _a.onSuccess;
+            queries.forEach(({ ids, setState, onSuccess }) => {
                 setState({
                     data: emptyArray,
                     loading: false,
@@ -209,33 +176,22 @@ var callQueries = (0, debounce_1.default)(function () {
         }
         dataProvider
             .getMany(resource, { ids: accumulatedIds }, DataProviderOptions)
-            .then(function (response) {
-            // Forces batching, see https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973
-            return react_dom_1.default.unstable_batchedUpdates(function () {
-                return queries.forEach(function (_a) {
-                    var ids = _a.ids, setState = _a.setState, onSuccess = _a.onSuccess;
-                    setState(function (prevState) { return (__assign(__assign({}, prevState), { error: null, loading: false, loaded: true })); });
-                    if (onSuccess) {
-                        var subData = ids.map(function (id) {
-                            return response.data.find(function (datum) { return datum.id == id; });
-                        } // eslint-disable-line eqeqeq
-                        );
-                        onSuccess({ data: subData });
-                    }
-                });
-            });
-        })
-            .catch(function (error) {
-            return react_dom_1.default.unstable_batchedUpdates(function () {
-                return queries.forEach(function (_a) {
-                    var setState = _a.setState, onFailure = _a.onFailure;
-                    setState({ error: error, loading: false, loaded: false });
-                    onFailure && onFailure(error);
-                });
-            });
-        });
+            .then(response => 
+        // Forces batching, see https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973
+        react_dom_1.default.unstable_batchedUpdates(() => queries.forEach(({ ids, setState, onSuccess }) => {
+            setState(prevState => (Object.assign(Object.assign({}, prevState), { error: null, loading: false, loaded: true })));
+            if (onSuccess) {
+                const subData = ids.map(id => response.data.find(datum => datum.id == id) // eslint-disable-line eqeqeq
+                );
+                onSuccess({ data: subData });
+            }
+        })))
+            .catch(error => react_dom_1.default.unstable_batchedUpdates(() => queries.forEach(({ setState, onFailure }) => {
+            setState({ error, loading: false, loaded: false });
+            onFailure && onFailure(error);
+        })));
         delete queriesToCall[resource];
     });
 });
-var emptyArray = [];
+const emptyArray = [];
 exports.default = useGetMany;

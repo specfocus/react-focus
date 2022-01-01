@@ -1,6 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var defaultThemeOptions = {
+/*
+export interface AppComponents extends Components {
+    Sidebar?: {
+        width?: number;
+        closedWidth?: number;
+    };
+}
+
+export interface AppThemeOptions extends Omit<ThemeOptions, 'components'> {
+    components: AppComponents;
+}
+*/
+const defaultThemeOptions = {
     palette: {
         primary: {
             light: '#053974',
@@ -64,10 +76,6 @@ var defaultThemeOptions = {
                     },
                 },
             }
-        },
-        Sidebar: {
-            width: 240,
-            closedWidth: 55,
         }
     }
 };

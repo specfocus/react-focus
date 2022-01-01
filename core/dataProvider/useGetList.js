@@ -3,14 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var get_1 = __importDefault(require("lodash/get"));
-var useQueryWithStore_1 = require("./useQueryWithStore");
-var defaultPagination = { page: 1, perPage: 25 };
-var defaultSort = { field: 'id', order: 'DESC' };
-var defaultFilter = {};
-var defaultIds = [];
-var defaultData = {};
+const react_1 = require("react");
+const get_1 = __importDefault(require("lodash/get"));
+const useQueryWithStore_1 = require("./useQueryWithStore");
+const defaultPagination = { page: 1, perPage: 25 };
+const defaultSort = { field: 'id', order: 'DESC' };
+const defaultFilter = {};
+const defaultIds = [];
+const defaultData = {};
 /**
  * Call the dataProvider.getList() method and return the resolved result
  * as well as the loading state.
@@ -52,48 +52,41 @@ var defaultData = {};
  *     )}</ul>;
  * };
  */
-var useGetList = function (resource, pagination, sort, filter, options) {
-    if (pagination === void 0) { pagination = defaultPagination; }
-    if (sort === void 0) { sort = defaultSort; }
-    if (filter === void 0) { filter = defaultFilter; }
-    var requestSignature = JSON.stringify({ pagination: pagination, sort: sort, filter: filter });
-    var _a = (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getList', resource: resource, payload: { pagination: pagination, sort: sort, filter: filter } }, options, 
+const useGetList = (resource, pagination = defaultPagination, sort = defaultSort, filter = defaultFilter, options) => {
+    const requestSignature = JSON.stringify({ pagination, sort, filter });
+    const { data: { ids, allRecords }, total, error, loading, loaded, refetch, } = (0, useQueryWithStore_1.useQueryWithStore)({ type: 'getList', resource, payload: { pagination, sort, filter } }, options, 
     // ids and data selector
-    function (state) { return ({
+    (state) => ({
         ids: (0, get_1.default)(state.admin.resources, [resource, 'list', 'cachedRequests', requestSignature, 'ids'], null),
         allRecords: (0, get_1.default)(state.admin.resources, [resource, 'data'], defaultData),
-    }); }, 
+    }), 
     // total selector (may return undefined)
-    function (state) {
-        return (0, get_1.default)(state.admin.resources, [
-            resource,
-            'list',
-            'cachedRequests',
-            requestSignature,
-            'total',
-        ]);
-    }, isDataLoaded), _b = _a.data, ids = _b.ids, allRecords = _b.allRecords, total = _a.total, error = _a.error, loading = _a.loading, loaded = _a.loaded, refetch = _a.refetch;
-    var data = (0, react_1.useMemo)(function () {
-        return ids === null
-            ? defaultData
-            : ids
-                .map(function (id) { return allRecords[id]; })
-                .reduce(function (acc, record) {
-                if (!record)
-                    return acc;
-                acc[record.id] = record;
+    (state) => (0, get_1.default)(state.admin.resources, [
+        resource,
+        'list',
+        'cachedRequests',
+        requestSignature,
+        'total',
+    ]), isDataLoaded);
+    const data = (0, react_1.useMemo)(() => ids === null
+        ? defaultData
+        : ids
+            .map(id => allRecords[id])
+            .reduce((acc, record) => {
+            if (!record)
                 return acc;
-            }, {});
-    }, [ids, allRecords]);
+            acc[record.id] = record;
+            return acc;
+        }, {}), [ids, allRecords]);
     return {
-        data: data,
+        data,
         ids: ids === null ? defaultIds : ids,
-        total: total,
-        error: error,
-        loading: loading,
-        loaded: loaded,
-        refetch: refetch,
+        total,
+        error,
+        loading,
+        loaded,
+        refetch,
     };
 };
-var isDataLoaded = function (data) { return data.ids !== null; };
+const isDataLoaded = (data) => data.ids !== null;
 exports.default = useGetList;

@@ -1,22 +1,13 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getIds = void 0;
-var uniq_1 = __importDefault(require("lodash/uniq"));
-var actions_1 = require("../../../../actions");
-var core_1 = require("../../../../core");
-var initialState = [];
+const uniq_1 = __importDefault(require("lodash/uniq"));
+const actions_1 = require("../../../../actions");
+const core_1 = require("../../../../core");
+const initialState = [];
 /**
  * List of the ids of the latest loaded page, regardless of params
  *
@@ -29,35 +20,34 @@ var initialState = [];
  * @see useListController
  *
  */
-var idsReducer = function (previousState, action) {
-    if (previousState === void 0) { previousState = initialState; }
+const idsReducer = (previousState = initialState, action) => {
     if (action.meta && action.meta.optimistic) {
         if (action.meta.fetch === core_1.DELETE) {
-            var index = previousState
-                .map(function (el) { return el === action.payload.id; }) // eslint-disable-line eqeqeq
+            const index = previousState
+                .map(el => el === action.payload.id) // eslint-disable-line eqeqeq
                 .indexOf(true);
             if (index === -1) {
                 return previousState;
             }
-            return __spreadArray(__spreadArray([], previousState.slice(0, index), true), previousState.slice(index + 1), true);
+            return [
+                ...previousState.slice(0, index),
+                ...previousState.slice(index + 1),
+            ];
         }
         if (action.meta.fetch === core_1.DELETE_MANY) {
-            var newState = previousState.filter(function (el) { return !action.payload.ids.includes(el); });
+            const newState = previousState.filter(el => !action.payload.ids.includes(el));
             return newState;
         }
     }
     switch (action.type) {
         case actions_1.CRUD_GET_LIST_SUCCESS:
-            return action.payload.data.map(function (_a) {
-                var id = _a.id;
-                return id;
-            });
+            return action.payload.data.map(({ id }) => id);
         case actions_1.CRUD_CREATE_SUCCESS:
-            return (0, uniq_1.default)(__spreadArray([action.payload.data.id], previousState, true));
+            return (0, uniq_1.default)([action.payload.data.id, ...previousState]);
         default:
             return previousState;
     }
 };
 exports.default = idsReducer;
-var getIds = function (state) { return state; };
+const getIds = state => state;
 exports.getIds = getIds;

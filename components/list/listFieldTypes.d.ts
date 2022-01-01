@@ -47,7 +47,7 @@ declare const _default: {
         component: (props: any) => JSX.Element;
         representation: () => string;
     };
-    richText: undefined;
+    richText: any;
     string: {
         component: React.FC<import("../field/TextField").TextFieldProps>;
         representation: (props: any) => string;

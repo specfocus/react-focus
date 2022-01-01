@@ -13,4 +13,4 @@ export declare const fetchJson: (url: any, options?: Options) => Promise<{
     json: any;
 }>;
 export declare const queryParameters: typeof stringify;
-export declare const flattenObject: (value: any, path?: never[]) => any;
+export declare const flattenObject: (value: any, path?: any[]) => any;

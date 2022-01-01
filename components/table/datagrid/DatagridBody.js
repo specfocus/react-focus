@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,40 +34,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PureDatagridBody = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var material_1 = require("@mui/material");
-var classnames_1 = __importDefault(require("classnames"));
-var react_redux_1 = require("react-redux");
-var DatagridRow_1 = __importStar(require("./DatagridRow"));
-var DatagridBody = React.forwardRef(function (_a, ref) {
-    var basePath = _a.basePath, children = _a.children, classes = _a.classes, className = _a.className, data = _a.data, expand = _a.expand, hasBulkActions = _a.hasBulkActions, hover = _a.hover, ids = _a.ids, onToggleItem = _a.onToggleItem, resource = _a.resource, row = _a.row, rowClick = _a.rowClick, rowStyle = _a.rowStyle, selectedIds = _a.selectedIds, isRowSelectable = _a.isRowSelectable, rest = __rest(_a, ["basePath", "children", "classes", "className", "data", "expand", "hasBulkActions", "hover", "ids", "onToggleItem", "resource", "row", "rowClick", "rowStyle", "selectedIds", "isRowSelectable"]);
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const material_1 = require("@mui/material");
+const classnames_1 = __importDefault(require("classnames"));
+const react_redux_1 = require("react-redux");
+const DatagridRow_1 = __importStar(require("./DatagridRow"));
+const DatagridBody = React.forwardRef((_a, ref) => {
+    var { basePath, children, classes, className, data, expand, hasBulkActions, hover, ids, onToggleItem, resource, row, rowClick, rowStyle, selectedIds, isRowSelectable } = _a, rest = __rest(_a, ["basePath", "children", "classes", "className", "data", "expand", "hasBulkActions", "hover", "ids", "onToggleItem", "resource", "row", "rowClick", "rowStyle", "selectedIds", "isRowSelectable"]);
     // const classes = useDatagridStyles();
-    return (React.createElement(material_1.TableBody, __assign({ ref: ref, className: (0, classnames_1.default)('datagrid-body', className) }, rest), ids.map(function (id, rowIndex) {
-        var _a;
-        return (0, react_1.cloneElement)(row, {
-            basePath: basePath,
-            classes: classes,
-            className: (0, classnames_1.default)(classes.row, (_a = {},
-                _a[classes.rowEven] = rowIndex % 2 === 0,
-                _a[classes.rowOdd] = rowIndex % 2 !== 0,
-                _a[classes.clickableRow] = rowClick,
-                _a)),
-            expand: expand,
+    return ((0, jsx_runtime_1.jsx)(material_1.TableBody, Object.assign({ ref: ref, className: (0, classnames_1.default)('datagrid-body', className) }, rest, { children: ids.map((id, rowIndex) => (0, react_1.cloneElement)(row, {
+            basePath,
+            classes,
+            className: (0, classnames_1.default)(classes.row, {
+                [classes.rowEven]: rowIndex % 2 === 0,
+                [classes.rowOdd]: rowIndex % 2 !== 0,
+                [classes.clickableRow]: rowClick,
+            }),
+            expand,
             hasBulkActions: hasBulkActions && !!selectedIds,
-            hover: hover,
-            id: id,
+            hover,
+            id,
             key: id,
-            onToggleItem: onToggleItem,
+            onToggleItem,
             record: data[id],
-            resource: resource,
-            rowClick: rowClick,
+            resource,
+            rowClick,
             selectable: !isRowSelectable || isRowSelectable(data[id]),
             selected: selectedIds === null || selectedIds === void 0 ? void 0 : selectedIds.includes(id),
             style: rowStyle ? rowStyle(data[id], rowIndex) : null,
-        }, children);
-    })));
+        }, children)) }), void 0));
 });
 DatagridBody.propTypes = {
     basePath: prop_types_1.default.string,
@@ -105,14 +92,14 @@ DatagridBody.defaultProps = {
     data: {},
     hasBulkActions: false,
     ids: [],
-    row: React.createElement(DatagridRow_1.default, null),
+    row: (0, jsx_runtime_1.jsx)(DatagridRow_1.default, {}, void 0),
 };
 // trick material-ui Table into thinking this is one of the child type it supports
 // @ts-ignore
 DatagridBody.muiName = 'TableBody';
-var areEqual = function (prevProps, nextProps) {
-    var _1 = prevProps.children, _2 = prevProps.expand, _3 = prevProps.row, prevPropsWithoutChildren = __rest(prevProps, ["children", "expand", "row"]);
-    var _4 = nextProps.children, _5 = nextProps.expand, _6 = nextProps.row, nextPropsWithoutChildren = __rest(nextProps, ["children", "expand", "row"]);
+const areEqual = (prevProps, nextProps) => {
+    const { children: _1, expand: _2, row: _3 } = prevProps, prevPropsWithoutChildren = __rest(prevProps, ["children", "expand", "row"]);
+    const { children: _4, expand: _5, row: _6 } = nextProps, nextPropsWithoutChildren = __rest(nextProps, ["children", "expand", "row"]);
     return (0, react_redux_1.shallowEqual)(prevPropsWithoutChildren, nextPropsWithoutChildren);
 };
 exports.PureDatagridBody = (0, react_1.memo)(DatagridBody, areEqual);
@@ -121,6 +108,6 @@ exports.PureDatagridBody = (0, react_1.memo)(DatagridBody, areEqual);
 exports.PureDatagridBody.muiName = 'TableBody';
 // @ts-ignore
 exports.PureDatagridBody.defaultProps = {
-    row: React.createElement(DatagridRow_1.PureDatagridRow, null),
+    row: (0, jsx_runtime_1.jsx)(DatagridRow_1.PureDatagridRow, {}, void 0),
 };
 exports.default = DatagridBody;

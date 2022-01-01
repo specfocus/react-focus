@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -33,28 +22,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var react_router_dom_1 = require("react-router-dom");
-var WithPermissions_1 = __importDefault(require("../auth/WithPermissions"));
-var defaultAuthParams = { route: 'dashboard' };
-var RoutesWithLayout = function (props) {
-    var catchAll = props.catchAll, children = props.children, customRoutes = props.customRoutes, dashboard = props.dashboard, title = props.title;
-    var childrenAsArray = react_1.default.Children.toArray(children);
-    var firstChild = childrenAsArray.length > 0
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = __importStar(require("react"));
+const react_router_1 = require("react-router");
+const WithPermissions_1 = __importDefault(require("../auth/WithPermissions"));
+const defaultAuthParams = { route: 'dashboard' };
+const RoutesWithLayout = (props) => {
+    const { catchAll, children, customRoutes, dashboard, title } = props;
+    const childrenAsArray = react_1.default.Children.toArray(children);
+    const firstChild = childrenAsArray.length > 0
         ? childrenAsArray[0]
         : null;
-    return (react_1.default.createElement(react_router_dom_1.Switch, null,
-        customRoutes &&
-            customRoutes.map(function (route, key) { return (0, react_1.cloneElement)(route, { key: key }); }),
-        react_1.Children.map(children, function (child) { return (react_1.default.createElement(react_router_dom_1.Route, { key: child.props.name, path: "/".concat(child.props.name), render: function (props) {
-                return (0, react_1.cloneElement)(child, __assign({ 
-                    // The context prop instruct the Resource component to
-                    // render itself as a standard component
-                    intent: 'route' }, props));
-            } })); }),
-        dashboard ? (react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/", render: function (routeProps) { return (react_1.default.createElement(WithPermissions_1.default, __assign({ authParams: defaultAuthParams, component: dashboard }, routeProps))); } })) : firstChild ? (react_1.default.createElement(react_router_dom_1.Route, { exact: true, path: "/", render: function () { return react_1.default.createElement(react_router_dom_1.Redirect, { to: "/".concat(firstChild.props.name) }); } })) : null,
-        react_1.default.createElement(react_router_dom_1.Route, { render: function (routeProps) {
-                return (0, react_1.createElement)(catchAll, __assign(__assign({}, routeProps), { title: title }));
-            } })));
+    const wrappers = react_1.Children.map(children, (child) => [
+        child.props.name,
+        (routeProps) => (0, react_1.cloneElement)(child, Object.assign({ 
+            // The context prop instruct the Resource component to
+            // render itself as a standard component
+            intent: 'route' }, props))
+    ]);
+    const Dashboard = (routeProps) => ((0, jsx_runtime_1.jsx)(WithPermissions_1.default, Object.assign({ authParams: defaultAuthParams, component: dashboard }, routeProps), void 0));
+    const CatchAll = (routeProps) => (0, react_1.createElement)(catchAll, Object.assign(Object.assign({}, routeProps), { title }));
+    return ((0, jsx_runtime_1.jsxs)(react_router_1.Routes, { children: [customRoutes && customRoutes.map((route, key) => (0, react_1.cloneElement)(route, { key })), wrappers.map(([name, Wrapper]) => ((0, jsx_runtime_1.jsx)(react_router_1.Route, { path: name, element: (0, jsx_runtime_1.jsx)(Wrapper, {}, void 0) }, name))), dashboard ? ((0, jsx_runtime_1.jsx)(react_router_1.Route, { path: "/", element: (0, jsx_runtime_1.jsx)(Dashboard, {}, void 0) }, void 0))
+                : firstChild ? ((0, jsx_runtime_1.jsx)(react_router_1.Route, { path: "/", element: (0, jsx_runtime_1.jsx)(react_router_1.Navigate, { to: `/${firstChild.props.name}` }, void 0) }, void 0))
+                    : null, (0, jsx_runtime_1.jsx)(react_router_1.Route, { element: (0, jsx_runtime_1.jsx)(CatchAll, {}, void 0) }, void 0)] }, void 0));
 };
 exports.default = RoutesWithLayout;

@@ -83,7 +83,7 @@ export declare const SelectInput: {
         allowEmpty: PropTypes.Requireable<boolean>;
         emptyText: PropTypes.Requireable<string | PropTypes.ReactElementLike>;
         emptyValue: PropTypes.Requireable<any>;
-        choices: PropTypes.Requireable<(object | null | undefined)[]>;
+        choices: PropTypes.Requireable<object[]>;
         className: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string | boolean>;
         options: PropTypes.Requireable<object>;

@@ -22,13 +22,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var Title_1 = __importStar(require("./Title"));
-var TitleForRecord = function (_a) {
-    var defaultTitle = _a.defaultTitle, record = _a.record, title = _a.title;
-    return record ? (React.createElement(Title_1.default, { title: title, record: record, defaultTitle: defaultTitle })) : null;
-};
+const jsx_runtime_1 = require("react/jsx-runtime");
+const prop_types_1 = __importDefault(require("prop-types"));
+const Title_1 = __importStar(require("./Title"));
+const TitleForRecord = ({ defaultTitle, record, title }) => record ? ((0, jsx_runtime_1.jsx)(Title_1.default, { title: title, record: record, defaultTitle: defaultTitle }, void 0)) : null;
 TitleForRecord.propTypes = {
     defaultTitle: prop_types_1.default.any,
     record: prop_types_1.default.object,

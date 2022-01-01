@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,18 +34,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.injectedProps = void 0;
-var classnames_1 = __importDefault(require("classnames"));
-var difference_1 = __importDefault(require("lodash/difference"));
-var union_1 = __importDefault(require("lodash/union"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-var DatagridBody_1 = __importStar(require("./DatagridBody"));
-var DatagridContextProvider_1 = __importDefault(require("./DatagridContextProvider"));
-var DatagridHeader_1 = require("./DatagridHeader");
-var DatagridLoading_1 = __importDefault(require("./DatagridLoading"));
-var useDatagridStyles_1 = require("./useDatagridStyles");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const classnames_1 = __importDefault(require("classnames"));
+const difference_1 = __importDefault(require("lodash/difference"));
+const union_1 = __importDefault(require("lodash/union"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const React = __importStar(require("react"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+const DatagridBody_1 = __importStar(require("./DatagridBody"));
+const DatagridContextProvider_1 = __importDefault(require("./DatagridContextProvider"));
+const DatagridHeader_1 = require("./DatagridHeader");
+const DatagridLoading_1 = __importDefault(require("./DatagridLoading"));
+const useDatagridStyles_1 = require("./useDatagridStyles");
 /**
  * The Datagrid component renders a list of records as a table.
  * It is usually used as a child of the <List> and <ReferenceManyField> components.
@@ -126,32 +116,30 @@ var useDatagridStyles_1 = require("./useDatagridStyles");
  *     );
  * }
  */
-var Datagrid = React.forwardRef(function (props, ref) {
-    var _a = props.optimized, optimized = _a === void 0 ? false : _a, _b = props.body, body = _b === void 0 ? optimized ? DatagridBody_1.PureDatagridBody : DatagridBody_1.default : _b, _c = props.header, header = _c === void 0 ? DatagridHeader_1.DatagridHeader : _c, children = props.children, className = props.className, empty = props.empty, expand = props.expand, _d = props.hasBulkActions, hasBulkActions = _d === void 0 ? false : _d, hover = props.hover, isRowSelectable = props.isRowSelectable, isRowExpandable = props.isRowExpandable, resource = props.resource, rowClick = props.rowClick, rowStyle = props.rowStyle, _e = props.size, size = _e === void 0 ? 'small' : _e, rest = __rest(props, ["optimized", "body", "header", "children", "className", "empty", "expand", "hasBulkActions", "hover", "isRowSelectable", "isRowExpandable", "resource", "rowClick", "rowStyle", "size"]);
-    var _f = (0, core_1.useListContext)(props), basePath = _f.basePath, currentSort = _f.currentSort, data = _f.data, ids = _f.ids, loaded = _f.loaded, onSelect = _f.onSelect, onToggleItem = _f.onToggleItem, selectedIds = _f.selectedIds, setSort = _f.setSort, total = _f.total;
-    var version = (0, core_1.useVersion)();
-    var contextValue = (0, react_1.useMemo)(function () { return ({ isRowExpandable: isRowExpandable }); }, [
+const Datagrid = React.forwardRef((props, ref) => {
+    const { optimized = false, body = optimized ? DatagridBody_1.PureDatagridBody : DatagridBody_1.default, header = DatagridHeader_1.DatagridHeader, children, className, empty, expand, hasBulkActions = false, hover, isRowSelectable, isRowExpandable, resource, rowClick, rowStyle, size = 'small' } = props, rest = __rest(props, ["optimized", "body", "header", "children", "className", "empty", "expand", "hasBulkActions", "hover", "isRowSelectable", "isRowExpandable", "resource", "rowClick", "rowStyle", "size"]);
+    const { basePath, currentSort, data, ids, loaded, onSelect, onToggleItem, selectedIds, setSort, total, } = (0, core_1.useListContext)(props);
+    const version = (0, core_1.useVersion)();
+    const contextValue = (0, react_1.useMemo)(() => ({ isRowExpandable }), [
         isRowExpandable,
     ]);
-    var lastSelected = (0, react_1.useRef)(null);
-    (0, react_1.useEffect)(function () {
+    const lastSelected = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(() => {
         if (!selectedIds || selectedIds.length === 0) {
             lastSelected.current = null;
         }
     }, [JSON.stringify(selectedIds)]); // eslint-disable-line react-hooks/exhaustive-deps
-    var handleToggleItem = (0, react_1.useCallback)(function (id, event) {
-        var lastSelectedIndex = ids.indexOf(lastSelected.current);
+    const handleToggleItem = (0, react_1.useCallback)((id, event) => {
+        const lastSelectedIndex = ids.indexOf(lastSelected.current);
         lastSelected.current = event.target.checked ? id : null;
         if (event.shiftKey && lastSelectedIndex !== -1) {
-            var index = ids.indexOf(id);
-            var idsBetweenSelections = ids.slice(Math.min(lastSelectedIndex, index), Math.max(lastSelectedIndex, index) + 1);
-            var newSelectedIds = event.target.checked
+            const index = ids.indexOf(id);
+            const idsBetweenSelections = ids.slice(Math.min(lastSelectedIndex, index), Math.max(lastSelectedIndex, index) + 1);
+            const newSelectedIds = event.target.checked
                 ? (0, union_1.default)(selectedIds, idsBetweenSelections)
                 : (0, difference_1.default)(selectedIds, idsBetweenSelections);
             onSelect(isRowSelectable
-                ? newSelectedIds.filter(function (id) {
-                    return isRowSelectable(data[id]);
-                })
+                ? newSelectedIds.filter((id) => isRowSelectable(data[id]))
                 : newSelectedIds);
         }
         else {
@@ -164,7 +152,7 @@ var Datagrid = React.forwardRef(function (props, ref) {
      * if loaded is undefined, the Datagrid parent doesn't track loading state (e.g. ReferenceArrayField)
      */
     if (loaded === false) {
-        return (React.createElement(DatagridLoading_1.default, { className: className, expand: expand, hasBulkActions: hasBulkActions, nbChildren: React.Children.count(children), size: size }));
+        return ((0, jsx_runtime_1.jsx)(DatagridLoading_1.default, { className: className, expand: expand, hasBulkActions: hasBulkActions, nbChildren: React.Children.count(children), size: size }, void 0));
     }
     /**
      * Once loaded, the data for the list may be empty. Instead of
@@ -182,42 +170,37 @@ var Datagrid = React.forwardRef(function (props, ref) {
      * and even if the data is refreshing (e.g. after a filter change),
      * the datagrid displays the current data.
      */
-    return (React.createElement(DatagridContextProvider_1.default, { value: contextValue },
-        React.createElement(useDatagridStyles_1.StyledTable, __assign({ ref: ref, className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.table, className), size: size }, sanitizeRestProps(rest)),
-            createOrCloneElement(header, {
-                children: children,
-                currentSort: currentSort,
-                data: data,
-                hasExpand: !!expand,
-                hasBulkActions: hasBulkActions,
-                ids: ids,
-                isRowSelectable: isRowSelectable,
-                onSelect: onSelect,
-                resource: resource,
-                selectedIds: selectedIds,
-                setSort: setSort,
-            }, children),
-            createOrCloneElement(body, {
-                basePath: basePath,
-                expand: expand,
-                rowClick: rowClick,
-                data: data,
-                hasBulkActions: hasBulkActions,
-                hover: hover,
-                ids: ids,
-                onToggleItem: handleToggleItem,
-                resource: resource,
-                rowStyle: rowStyle,
-                selectedIds: selectedIds,
-                isRowSelectable: isRowSelectable,
-                version: version,
-            }, children))));
+    return ((0, jsx_runtime_1.jsx)(DatagridContextProvider_1.default, Object.assign({ value: contextValue }, { children: (0, jsx_runtime_1.jsxs)(useDatagridStyles_1.StyledTable, Object.assign({ ref: ref, className: (0, classnames_1.default)(useDatagridStyles_1.DatagridClasses.table, className), size: size }, sanitizeRestProps(rest), { children: [createOrCloneElement(header, {
+                    children,
+                    currentSort,
+                    data,
+                    hasExpand: !!expand,
+                    hasBulkActions,
+                    ids,
+                    isRowSelectable,
+                    onSelect,
+                    resource,
+                    selectedIds,
+                    setSort,
+                }, children), createOrCloneElement(body, {
+                    basePath,
+                    expand,
+                    rowClick,
+                    data,
+                    hasBulkActions,
+                    hover,
+                    ids,
+                    onToggleItem: handleToggleItem,
+                    resource,
+                    rowStyle,
+                    selectedIds,
+                    isRowSelectable,
+                    version,
+                }, children)] }), void 0) }), void 0));
 });
-var createOrCloneElement = function (element, props, children) {
-    return (0, react_1.isValidElement)(element)
-        ? (0, react_1.cloneElement)(element, props, children)
-        : (0, react_1.createElement)(element, props, children);
-};
+const createOrCloneElement = (element, props, children) => (0, react_1.isValidElement)(element)
+    ? (0, react_1.cloneElement)(element, props, children)
+    : (0, react_1.createElement)(element, props, children);
 Datagrid.propTypes = {
     basePath: prop_types_1.default.string,
     // @ts-ignore
@@ -258,13 +241,8 @@ exports.injectedProps = [
     'limitChoicesToValue',
     'translateChoice',
 ];
-var sanitizeRestProps = function (props) {
-    return Object.keys((0, core_1.sanitizeListRestProps)(props))
-        .filter(function (propName) { return !exports.injectedProps.includes(propName); })
-        .reduce(function (acc, key) {
-        var _a;
-        return (__assign(__assign({}, acc), (_a = {}, _a[key] = props[key], _a)));
-    }, {});
-};
+const sanitizeRestProps = props => Object.keys((0, core_1.sanitizeListRestProps)(props))
+    .filter(propName => !exports.injectedProps.includes(propName))
+    .reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: props[key] })), {});
 Datagrid.displayName = 'Datagrid';
 exports.default = Datagrid;

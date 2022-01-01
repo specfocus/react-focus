@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,26 +34,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceArrayFieldView = void 0;
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_redux_1 = require("react-redux");
-var core_1 = require("../../core");
-var types_1 = require("./types");
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var layout_1 = require("../layout");
-var PREFIX = 'RaReferenceArrayField';
-var classes = {
-    progress: "".concat(PREFIX, "-progress"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_redux_1 = require("react-redux");
+const core_1 = require("../../core");
+const types_1 = require("./types");
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const layout_1 = require("../layout");
+const PREFIX = 'RaReferenceArrayField';
+const classes = {
+    progress: `${PREFIX}-progress`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.progress)] = { marginTop: theme.spacing(2) },
-        _b);
-});
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`& .${classes.progress}`]: { marginTop: theme.spacing(2) },
+}));
 /**
  * A container component that fetches records from another resource specified
  * by an array of *ids* in current record.
@@ -121,43 +107,40 @@ var Root = (0, styles_1.styled)('div')(function (_a) {
  *    ...
  * </ReferenceArrayField>
  */
-var ReferenceArrayField = function (props) {
-    var basePath = props.basePath, children = props.children, filter = props.filter, _a = props.page, page = _a === void 0 ? 1 : _a, perPage = props.perPage, reference = props.reference, resource = props.resource, sort = props.sort, source = props.source;
-    var record = (0, core_1.useRecordContext)(props);
+const ReferenceArrayField = props => {
+    const { basePath, children, filter, page = 1, perPage, reference, resource, sort, source, } = props;
+    const record = (0, core_1.useRecordContext)(props);
     if (React.Children.count(children) !== 1) {
         throw new Error('<ReferenceArrayField> only accepts a single child (like <Datagrid>)');
     }
-    var isReferenceDeclared = (0, react_redux_1.useSelector)(function (state) { return typeof state.admin.resources[props.reference] !== 'undefined'; });
+    const isReferenceDeclared = (0, react_redux_1.useSelector)(state => typeof state.admin.resources[props.reference] !== 'undefined');
     if (!isReferenceDeclared) {
-        throw new Error("You must declare a <Resource name=\"".concat(props.reference, "\"> in order to use a <ReferenceArrayField reference=\"").concat(props.reference, "\">"));
+        throw new Error(`You must declare a <Resource name="${props.reference}"> in order to use a <ReferenceArrayField reference="${props.reference}">`);
     }
-    var controllerProps = (0, core_1.useReferenceArrayFieldController)({
-        basePath: basePath,
-        filter: filter,
-        page: page,
-        perPage: perPage,
-        record: record,
-        reference: reference,
-        resource: resource,
-        sort: sort,
-        source: source,
+    const controllerProps = (0, core_1.useReferenceArrayFieldController)({
+        basePath,
+        filter,
+        page,
+        perPage,
+        record,
+        reference,
+        resource,
+        sort,
+        source,
     });
-    return (React.createElement(core_1.ResourceContextProvider, { value: reference },
-        React.createElement(core_1.ListContextProvider, { value: controllerProps },
-            React.createElement(PureReferenceArrayFieldView, __assign({}, props, controllerProps)))));
+    return ((0, jsx_runtime_1.jsx)(core_1.ResourceContextProvider, Object.assign({ value: reference }, { children: (0, jsx_runtime_1.jsx)(core_1.ListContextProvider, Object.assign({ value: controllerProps }, { children: (0, jsx_runtime_1.jsx)(PureReferenceArrayFieldView, Object.assign({}, props, controllerProps), void 0) }), void 0) }), void 0));
 };
-ReferenceArrayField.propTypes = __assign(__assign({}, types_1.fieldPropTypes), { addLabel: prop_types_1.default.bool, basePath: prop_types_1.default.string, className: prop_types_1.default.string, children: prop_types_1.default.element.isRequired, label: prop_types_1.default.string, record: prop_types_1.default.any, reference: prop_types_1.default.string.isRequired, resource: prop_types_1.default.string, sortBy: prop_types_1.default.string, sortByOrder: types_1.fieldPropTypes.sortByOrder, source: prop_types_1.default.string.isRequired });
+ReferenceArrayField.propTypes = Object.assign(Object.assign({}, types_1.fieldPropTypes), { addLabel: prop_types_1.default.bool, basePath: prop_types_1.default.string, className: prop_types_1.default.string, children: prop_types_1.default.element.isRequired, label: prop_types_1.default.string, record: prop_types_1.default.any, reference: prop_types_1.default.string.isRequired, resource: prop_types_1.default.string, sortBy: prop_types_1.default.string, sortByOrder: types_1.fieldPropTypes.sortByOrder, source: prop_types_1.default.string.isRequired });
 ReferenceArrayField.defaultProps = {
     addLabel: true,
 };
-var ReferenceArrayFieldView = function (props) {
-    var children = props.children, pagination = props.pagination, className = props.className, resource = props.resource, reference = props.reference, rest = __rest(props, ["children", "pagination", "className", "resource", "reference"]);
-    var loaded = (0, core_1.useListContext)(props).loaded;
-    return (React.createElement(Root, null, !loaded ? (React.createElement(layout_1.LinearProgress, { className: classes.progress })) : (React.createElement(React.Fragment, null,
-        (0, react_1.cloneElement)(react_1.Children.only(children), __assign(__assign({}, (0, sanitizeFieldRestProps_1.default)(rest)), { className: className, resource: resource })),
-        pagination &&
-            props.total !== undefined &&
-            (0, react_1.cloneElement)(pagination, (0, sanitizeFieldRestProps_1.default)(rest))))));
+const ReferenceArrayFieldView = props => {
+    const { children, pagination, className, resource, reference } = props, rest = __rest(props, ["children", "pagination", "className", "resource", "reference"]);
+    const { loaded } = (0, core_1.useListContext)(props);
+    return ((0, jsx_runtime_1.jsx)(Root, { children: !loaded ? ((0, jsx_runtime_1.jsx)(layout_1.LinearProgress, { className: classes.progress }, void 0)) : ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, react_1.cloneElement)(react_1.Children.only(children), Object.assign(Object.assign({}, (0, sanitizeFieldRestProps_1.default)(rest)), { className,
+                    resource })), pagination &&
+                    props.total !== undefined &&
+                    (0, react_1.cloneElement)(pagination, (0, sanitizeFieldRestProps_1.default)(rest))] }, void 0)) }, void 0));
 };
 exports.ReferenceArrayFieldView = ReferenceArrayFieldView;
 exports.ReferenceArrayFieldView.propTypes = {
@@ -169,5 +152,5 @@ exports.ReferenceArrayFieldView.propTypes = {
     children: prop_types_1.default.element.isRequired,
     reference: prop_types_1.default.string.isRequired,
 };
-var PureReferenceArrayFieldView = (0, react_1.memo)(exports.ReferenceArrayFieldView);
+const PureReferenceArrayFieldView = (0, react_1.memo)(exports.ReferenceArrayFieldView);
 exports.default = ReferenceArrayField;

@@ -3,22 +3,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var react_redux_1 = require("react-redux");
-var core_1 = require("../../core");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_redux_1 = require("react-redux");
+const core_1 = require("../../core");
 /**
  *@deprecated use BulkDeleteButton instead
  */
-var BulkDeleteAction = function (props) {
-    var dispatch = (0, react_redux_1.useDispatch)();
-    var resource = (0, core_1.useResourceContext)(props);
-    (0, react_1.useEffect)(function () {
+const BulkDeleteAction = props => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const resource = (0, core_1.useResourceContext)(props);
+    (0, react_1.useEffect)(() => {
         if (process.env.NODE_ENV !== 'production') {
             // eslint-disable-next-line no-console
             console.warn('<BulkDeleteAction> is deprecated. Use the <BulkDeleteButton> component instead, via the bulkActionButton props.');
         }
-        var basePath = props.basePath, selectedIds = props.selectedIds, undoable = props.undoable, onExit = props.onExit;
+        const { basePath, selectedIds, undoable, onExit } = props;
         if (undoable) {
             dispatch((0, core_1.startUndoable)((0, core_1.crudDeleteMany)(resource, selectedIds, basePath)));
         }

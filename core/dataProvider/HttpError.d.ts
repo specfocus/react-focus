@@ -1,7 +1,7 @@
 declare class HttpError extends Error {
     readonly message: any;
     readonly status: any;
-    readonly body: null;
-    constructor(message: any, status: any, body?: null);
+    readonly body: any;
+    constructor(message: any, status: any, body?: any);
 }
 export default HttpError;

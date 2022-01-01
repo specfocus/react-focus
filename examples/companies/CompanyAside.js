@@ -1,66 +1,10 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompanyAside = void 0;
-var material_1 = require("@mui/material");
-var React = __importStar(require("react"));
-var app_1 = require("../../app");
-var CompanyAside = function (_a) {
-    var record = _a.record, _b = _a.link, link = _b === void 0 ? 'edit' : _b;
-    return record ? (React.createElement(material_1.Box, { ml: 4, width: 250, minWidth: 250 },
-        React.createElement(material_1.Box, { textAlign: "center", mb: 2 }, link === 'edit' ? (React.createElement(app_1.EditButton, { basePath: "/companies", record: record, label: "Edit Company" })) : (React.createElement(app_1.ShowButton, { basePath: "/companies", record: record, label: "Show Company" }))),
-        React.createElement(material_1.Typography, { variant: "subtitle2" }, "Company info"),
-        React.createElement(material_1.Divider, null),
-        React.createElement(material_1.Box, { mt: 2 },
-            "Website: ",
-            React.createElement(material_1.Link, { href: record.website }, record.website),
-            React.createElement("br", null),
-            "LinkedIn: ",
-            React.createElement(material_1.Link, { href: record.linkedIn }, "LinkedIn")),
-        React.createElement(material_1.Box, { mt: 1 },
-            React.createElement(app_1.TextField, { source: "phone_number", record: record }),
-            ' ',
-            React.createElement(material_1.Typography, { variant: "body2", color: "textSecondary", component: "span" }, "Main")),
-        React.createElement(material_1.Box, { mt: 1, mb: 3 },
-            React.createElement(app_1.TextField, { source: "address" }),
-            React.createElement("br", null),
-            React.createElement(app_1.TextField, { source: "city" }),
-            " ",
-            React.createElement(app_1.TextField, { source: "zipcode" }),
-            ' ',
-            React.createElement(app_1.TextField, { source: "stateAbbr" })),
-        React.createElement(material_1.Typography, { variant: "subtitle2" }, "Background"),
-        React.createElement(material_1.Divider, null),
-        React.createElement(material_1.Box, { mt: 1 },
-            React.createElement(material_1.Typography, { variant: "body2", color: "textSecondary", component: "span" }, "Added on"),
-            ' ',
-            React.createElement(app_1.DateField, { source: "created_at", options: { year: 'numeric', month: 'long', day: 'numeric' }, color: "textSecondary" }),
-            React.createElement("br", null),
-            React.createElement(material_1.Typography, { component: "span", variant: "body2", color: "textSecondary" }, "Followed by"),
-            ' ',
-            React.createElement(app_1.ReferenceField, { resource: "companies", source: "sales_id", reference: "sales" },
-                React.createElement(app_1.FunctionField, { source: "last_name", render: function (record) {
-                        return record
-                            ? "".concat(record.first_name, " ").concat(record.last_name)
-                            : '';
-                    } }))))) : null;
-};
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const app_1 = require("../../app");
+const CompanyAside = ({ record, link = 'edit', }) => record ? ((0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ ml: 4, width: 250, minWidth: 250 }, { children: [(0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ textAlign: "center", mb: 2 }, { children: link === 'edit' ? ((0, jsx_runtime_1.jsx)(app_1.EditButton, { basePath: "/companies", record: record, label: "Edit Company" }, void 0)) : ((0, jsx_runtime_1.jsx)(app_1.ShowButton, { basePath: "/companies", record: record, label: "Show Company" }, void 0)) }), void 0), (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "subtitle2" }, { children: "Company info" }), void 0), (0, jsx_runtime_1.jsx)(material_1.Divider, {}, void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ mt: 2 }, { children: ["Website: ", (0, jsx_runtime_1.jsx)(material_1.Link, Object.assign({ href: record.website }, { children: record.website }), void 0), (0, jsx_runtime_1.jsx)("br", {}, void 0), "LinkedIn: ", (0, jsx_runtime_1.jsx)(material_1.Link, Object.assign({ href: record.linkedIn }, { children: "LinkedIn" }), void 0)] }), void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ mt: 1 }, { children: [(0, jsx_runtime_1.jsx)(app_1.TextField, { source: "phone_number", record: record }, void 0), ' ', (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "body2", color: "textSecondary", component: "span" }, { children: "Main" }), void 0)] }), void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ mt: 1, mb: 3 }, { children: [(0, jsx_runtime_1.jsx)(app_1.TextField, { source: "address" }, void 0), (0, jsx_runtime_1.jsx)("br", {}, void 0), (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "city" }, void 0), " ", (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "zipcode" }, void 0), ' ', (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "stateAbbr" }, void 0)] }), void 0), (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "subtitle2" }, { children: "Background" }), void 0), (0, jsx_runtime_1.jsx)(material_1.Divider, {}, void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ mt: 1 }, { children: [(0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "body2", color: "textSecondary", component: "span" }, { children: "Added on" }), void 0), ' ', (0, jsx_runtime_1.jsx)(app_1.DateField, { source: "created_at", options: { year: 'numeric', month: 'long', day: 'numeric' }, color: "textSecondary" }, void 0), (0, jsx_runtime_1.jsx)("br", {}, void 0), (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2", color: "textSecondary" }, { children: "Followed by" }), void 0), ' ', (0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ resource: "companies", source: "sales_id", reference: "sales" }, { children: (0, jsx_runtime_1.jsx)(app_1.FunctionField, { source: "last_name", render: record => record
+                            ? `${record.first_name} ${record.last_name}`
+                            : '' }, void 0) }), void 0)] }), void 0)] }), void 0)) : null;
 exports.CompanyAside = CompanyAside;

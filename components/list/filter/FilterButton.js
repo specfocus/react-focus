@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,65 +14,55 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var FilterList_1 = __importDefault(require("@mui/icons-material/FilterList"));
-var Menu_1 = __importDefault(require("@mui/material/Menu"));
-var styles_1 = require("@mui/material/styles");
-var classnames_1 = __importDefault(require("classnames"));
-var get_1 = __importDefault(require("lodash/get"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var core_1 = require("../../../core");
-var Button_1 = __importDefault(require("../../button/Button"));
-var FilterContext_1 = require("../FilterContext");
-var FilterButtonMenuItem_1 = require("./FilterButtonMenuItem");
-var PREFIX = 'RaFilterButton';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const FilterList_1 = __importDefault(require("@mui/icons-material/FilterList"));
+const Menu_1 = __importDefault(require("@mui/material/Menu"));
+const styles_1 = require("@mui/material/styles");
+const classnames_1 = __importDefault(require("classnames"));
+const get_1 = __importDefault(require("lodash/get"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const react_1 = require("react");
+const core_1 = require("../../../core");
+const Button_1 = __importDefault(require("../../button/Button"));
+const FilterContext_1 = require("../FilterContext");
+const FilterButtonMenuItem_1 = require("./FilterButtonMenuItem");
+const PREFIX = 'RaFilterButton';
+const classes = {
+    root: `${PREFIX}-root`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(classes.root)] = { display: 'inline-block' },
-        _b);
-});
-var FilterButton = function (props) {
-    var filtersProp = props.filters, className = props.className, rest = __rest(props, ["filters", "className"]);
-    var filters = (0, react_1.useContext)(FilterContext_1.FilterContext) || filtersProp;
-    var resource = (0, core_1.useResourceContext)(props);
-    var _a = (0, core_1.useListContext)(props), _b = _a.displayedFilters, displayedFilters = _b === void 0 ? {} : _b, filterValues = _a.filterValues, showFilter = _a.showFilter;
-    var _c = (0, react_1.useState)(false), open = _c[0], setOpen = _c[1];
-    var anchorEl = (0, react_1.useRef)();
-    var hiddenFilters = filters.filter(function (filterElement) {
-        return !filterElement.props.alwaysOn &&
-            !displayedFilters[filterElement.props.source] &&
-            typeof (0, get_1.default)(filterValues, filterElement.props.source) ===
-                'undefined';
-    });
-    var handleClickButton = (0, react_1.useCallback)(function (event) {
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`&.${classes.root}`]: { display: 'inline-block' },
+}));
+const FilterButton = (props) => {
+    const { filters: filtersProp, className } = props, rest = __rest(props, ["filters", "className"]);
+    const filters = (0, react_1.useContext)(FilterContext_1.FilterContext) || filtersProp;
+    const resource = (0, core_1.useResourceContext)(props);
+    const { displayedFilters = {}, filterValues, showFilter } = (0, core_1.useListContext)(props);
+    const [open, setOpen] = (0, react_1.useState)(false);
+    const anchorEl = (0, react_1.useRef)();
+    const hiddenFilters = filters.filter((filterElement) => !filterElement.props.alwaysOn &&
+        !displayedFilters[filterElement.props.source] &&
+        typeof (0, get_1.default)(filterValues, filterElement.props.source) ===
+            'undefined');
+    const handleClickButton = (0, react_1.useCallback)(event => {
         // This prevents ghost click.
         event.preventDefault();
         setOpen(true);
         anchorEl.current = event.currentTarget;
     }, [anchorEl, setOpen]);
-    var handleRequestClose = (0, react_1.useCallback)(function () {
+    const handleRequestClose = (0, react_1.useCallback)(() => {
         setOpen(false);
     }, [setOpen]);
-    var handleShow = (0, react_1.useCallback)(function (_a) {
-        var source = _a.source, defaultValue = _a.defaultValue;
+    const handleShow = (0, react_1.useCallback)(({ source, defaultValue }) => {
         showFilter(source, defaultValue);
         setOpen(false);
     }, [showFilter, setOpen]);
     if (hiddenFilters.length === 0)
         return null;
-    return (React.createElement(Root, __assign({ className: (0, classnames_1.default)(classes.root, className) }, sanitizeRestProps(rest)),
-        React.createElement(Button_1.default, { className: "add-filter", label: "ra.action.add_filter", onClick: handleClickButton },
-            React.createElement(FilterList_1.default, null)),
-        React.createElement(Menu_1.default, { open: open, anchorEl: anchorEl.current, onClose: handleRequestClose }, hiddenFilters.map(function (filterElement) { return (React.createElement(FilterButtonMenuItem_1.FilterButtonMenuItem, { key: filterElement.props.source, filter: filterElement, resource: resource, onShow: handleShow })); }))));
+    return ((0, jsx_runtime_1.jsxs)(Root, Object.assign({ className: (0, classnames_1.default)(classes.root, className) }, sanitizeRestProps(rest), { children: [(0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({ className: "add-filter", label: "ra.action.add_filter", onClick: handleClickButton }, { children: (0, jsx_runtime_1.jsx)(FilterList_1.default, {}, void 0) }), void 0), (0, jsx_runtime_1.jsx)(Menu_1.default, Object.assign({ open: open, anchorEl: anchorEl.current, onClose: handleRequestClose }, { children: hiddenFilters.map((filterElement) => ((0, jsx_runtime_1.jsx)(FilterButtonMenuItem_1.FilterButtonMenuItem, { filter: filterElement, resource: resource, onShow: handleShow }, filterElement.props.source))) }), void 0)] }), void 0));
 };
-var sanitizeRestProps = function (_a) {
-    var _b = _a.displayedFilters, displayedFilters = _b === void 0 ? null : _b, _c = _a.filterValues, filterValues = _c === void 0 ? null : _c, _d = _a.showFilter, showFilter = _d === void 0 ? null : _d, rest = __rest(_a, ["displayedFilters", "filterValues", "showFilter"]);
+const sanitizeRestProps = (_a) => {
+    var { displayedFilters = null, filterValues = null, showFilter = null } = _a, rest = __rest(_a, ["displayedFilters", "filterValues", "showFilter"]);
     return rest;
 };
 FilterButton.propTypes = {

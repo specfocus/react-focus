@@ -4,24 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrightnessToolButton = void 0;
-var Brightness4_1 = __importDefault(require("@mui/icons-material/Brightness4"));
-var Brightness7_1 = __importDefault(require("@mui/icons-material/Brightness7"));
-var IconButton_1 = __importDefault(require("@mui/material/IconButton"));
-var react_1 = __importDefault(require("react"));
-var recoil_1 = require("recoil");
-var TranslatedTooltip_1 = __importDefault(require("../components/TranslatedTooltip"));
-var AppState_1 = require("./AppState");
-var BrightnessToolButton = function (_a) {
-    var toggle = _a.toggle, value = _a.value;
-    return (react_1.default.createElement(TranslatedTooltip_1.default, { title: "Brightness" },
-        react_1.default.createElement(IconButton_1.default, { color: "inherit", onClick: toggle },
-            value === 'dark' && (react_1.default.createElement(Brightness7_1.default, null)),
-            value !== 'dark' && (react_1.default.createElement(Brightness4_1.default, null)))));
-};
+const jsx_runtime_1 = require("react/jsx-runtime");
+const Brightness4_1 = __importDefault(require("@mui/icons-material/Brightness4"));
+const Brightness7_1 = __importDefault(require("@mui/icons-material/Brightness7"));
+const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
+const recoil_1 = require("recoil");
+const TranslatedTooltip_1 = __importDefault(require("../components/TranslatedTooltip"));
+const AppState_1 = require("./AppState");
+const BrightnessToolButton = ({ toggle, value }) => ((0, jsx_runtime_1.jsx)(TranslatedTooltip_1.default, Object.assign({ title: "Brightness" }, { children: (0, jsx_runtime_1.jsxs)(IconButton_1.default, Object.assign({ color: "inherit", onClick: toggle }, { children: [value === 'dark' && ((0, jsx_runtime_1.jsx)(Brightness7_1.default, {}, void 0)), value !== 'dark' && ((0, jsx_runtime_1.jsx)(Brightness4_1.default, {}, void 0))] }), void 0) }), void 0));
 exports.BrightnessToolButton = BrightnessToolButton;
 function default_1() {
-    var _a = (0, recoil_1.useRecoilState)(AppState_1.appTheme), theme = _a[0], setTheme = _a[1];
-    var toggleTheme = function () { return setTheme(theme === 'dark' ? 'light' : 'dark'); };
-    return (react_1.default.createElement(exports.BrightnessToolButton, { key: "app-brightness-button", toggle: toggleTheme, value: theme }));
+    const [theme, setTheme] = (0, recoil_1.useRecoilState)(AppState_1.atomTheme);
+    const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+    return ((0, jsx_runtime_1.jsx)(exports.BrightnessToolButton, { toggle: toggleTheme, value: theme }, "app-brightness-button"));
 }
 exports.default = default_1;

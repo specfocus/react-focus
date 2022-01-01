@@ -23,10 +23,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPossibleReferences = exports.getPossibleReferenceValues = void 0;
-var redux_1 = require("redux");
-var oneToMany_1 = __importDefault(require("./oneToMany"));
-var possibleValues_1 = __importStar(require("./possibleValues"));
-var defaultReducer = function () { return null; };
+const redux_1 = require("redux");
+const oneToMany_1 = __importDefault(require("./oneToMany"));
+const possibleValues_1 = __importStar(require("./possibleValues"));
+const defaultReducer = () => null;
 exports.default = (0, redux_1.combineReducers)({
     /**
      * ts-jest does some aggressive module mocking when unit testing reducers individually.
@@ -38,8 +38,6 @@ exports.default = (0, redux_1.combineReducers)({
     oneToMany: oneToMany_1.default || defaultReducer,
     possibleValues: possibleValues_1.default || defaultReducer,
 });
-var getPossibleReferenceValues = function (state, props) {
-    return (0, possibleValues_1.getPossibleReferenceValues)(state.possibleValues, props);
-};
+const getPossibleReferenceValues = (state, props) => (0, possibleValues_1.getPossibleReferenceValues)(state.possibleValues, props);
 exports.getPossibleReferenceValues = getPossibleReferenceValues;
 exports.getPossibleReferences = possibleValues_1.getPossibleReferences;

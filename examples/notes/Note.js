@@ -1,37 +1,18 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Note = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var app_1 = require("../../app");
-var material_1 = require("@mui/material");
-var styles_1 = require("@mui/styles");
-var Edit_1 = __importDefault(require("@mui/icons-material/Edit"));
-var Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
-var Status_1 = require("../../components/misc/Status");
-var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const app_1 = require("../../app");
+const material_1 = require("@mui/material");
+const styles_1 = require("@mui/styles");
+const Edit_1 = __importDefault(require("@mui/icons-material/Edit"));
+const Delete_1 = __importDefault(require("@mui/icons-material/Delete"));
+const Status_1 = require("../../components/misc/Status");
+const useStyles = (0, styles_1.makeStyles)((theme) => ({
     root: {
         marginBottom: theme.spacing(2),
     },
@@ -78,73 +59,49 @@ var useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         flexDirection: 'column',
         justifyContent: 'space-around',
     },
-}); });
-var Note = function (_a) {
-    var showStatus = _a.showStatus, note = _a.note, isLast = _a.isLast, reference = _a.reference;
-    var _b = (0, react_1.useState)(false), isHover = _b[0], setHover = _b[1];
-    var _c = (0, react_1.useState)(false), isEditing = _c[0], setEditing = _c[1];
-    var _d = (0, react_1.useState)(note.text), noteText = _d[0], setNoteText = _d[1];
-    var resource = (0, app_1.useResourceContext)();
-    var record = (0, app_1.useRecordContext)();
-    var notify = (0, app_1.useNotify)();
-    var classes = useStyles();
-    var _e = (0, app_1.useUpdate)(), update = _e[0], loading = _e[1].loading;
-    var handleDelete = (0, app_1.useDelete)(resource, note.id, note, {
+}));
+const Note = ({ showStatus, note, isLast, reference, }) => {
+    const [isHover, setHover] = (0, react_1.useState)(false);
+    const [isEditing, setEditing] = (0, react_1.useState)(false);
+    const [noteText, setNoteText] = (0, react_1.useState)(note.text);
+    const resource = (0, app_1.useResourceContext)();
+    const record = (0, app_1.useRecordContext)();
+    const notify = (0, app_1.useNotify)();
+    const classes = useStyles();
+    const [update, { loading }] = (0, app_1.useUpdate)();
+    const [handleDelete] = (0, app_1.useDelete)(resource, note.id, note, {
         mutationMode: 'undoable',
-        onSuccess: function () {
+        onSuccess: () => {
             notify('Note deleted', undefined, undefined, true);
             update(reference, record.id, { nb_notes: record.nb_notes - 1 }, record);
         },
-    })[0];
-    var handleEnterEditMode = function () {
+    });
+    const handleEnterEditMode = () => {
         setEditing(true);
     };
-    var handleCancelEdit = function () {
+    const handleCancelEdit = () => {
         setEditing(false);
         setNoteText(note.text);
         setHover(false);
     };
-    var handleTextChange = function (event) {
+    const handleTextChange = (event) => {
         setNoteText(event.target.value);
     };
-    var handleNoteUpdate = function (event) {
+    const handleNoteUpdate = (event) => {
         event.preventDefault();
         update(resource, note.id, { text: noteText }, note, {
-            onSuccess: function () {
+            onSuccess: () => {
                 setEditing(false);
                 setNoteText(note.text);
                 setHover(false);
             },
         });
     };
-    return (React.createElement("div", { className: classes.root, onMouseEnter: function () { return setHover(true); }, onMouseLeave: function () { return setHover(false); } },
-        React.createElement("div", { className: classes.metadata },
-            React.createElement(app_1.ReferenceField, { record: note, resource: "contactNotes", source: "sales_id", reference: "sales", basePath: "/contactNotes" },
-                React.createElement(app_1.TextField, { source: "first_name", variant: "body1" })),
-            ' ',
-            React.createElement(material_1.Typography, { component: "span", variant: "body1" },
-                "added a note on",
-                ' '),
-            React.createElement(app_1.DateField, { source: "date", record: note, variant: "body1", showTime: true, locales: "en", options: {
-                    dateStyle: 'full',
-                    timeStyle: 'short',
-                } }),
-            ' ',
-            showStatus && React.createElement(Status_1.Status, { status: note.status })),
-        isEditing ? (React.createElement("form", { onSubmit: handleNoteUpdate },
-            React.createElement(material_1.FilledInput, { value: noteText, onChange: handleTextChange, fullWidth: true, multiline: true, className: classes.textarea, autoFocus: true }),
-            React.createElement("div", { className: classes.buttons },
-                React.createElement(material_1.Button, { className: classes.cancel, onClick: handleCancelEdit, color: "primary" }, "Cancel"),
-                React.createElement(material_1.Button, { type: "submit", color: "primary", variant: "contained", disabled: loading }, "Update Note")))) : (React.createElement("div", { className: classes.content },
-            React.createElement("div", { className: classes.text }, note.text
-                .split('\n')
-                .map(function (paragraph, index) { return (React.createElement("p", { className: classes.paragraph, key: index }, paragraph)); })),
-            React.createElement("div", { className: classes.toolbar, style: { visibility: isHover ? 'visible' : 'hidden' } },
-                React.createElement(material_1.Tooltip, { title: "Edit note" },
-                    React.createElement(material_1.IconButton, { size: "small", onClick: handleEnterEditMode },
-                        React.createElement(Edit_1.default, null))),
-                React.createElement(material_1.Tooltip, { title: "Delete note" },
-                    React.createElement(material_1.IconButton, { size: "small", onClick: handleDelete },
-                        React.createElement(Delete_1.default, null))))))));
+    return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.root, onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false) }, { children: [(0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.metadata }, { children: [(0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ record: note, resource: "contactNotes", source: "sales_id", reference: "sales", basePath: "/contactNotes" }, { children: (0, jsx_runtime_1.jsx)(app_1.TextField, { source: "first_name", variant: "body1" }, void 0) }), void 0), ' ', (0, jsx_runtime_1.jsxs)(material_1.Typography, Object.assign({ component: "span", variant: "body1" }, { children: ["added a note on", ' '] }), void 0), (0, jsx_runtime_1.jsx)(app_1.DateField, { source: "date", record: note, variant: "body1", showTime: true, locales: "en", options: {
+                            dateStyle: 'full',
+                            timeStyle: 'short',
+                        } }, void 0), ' ', showStatus && (0, jsx_runtime_1.jsx)(Status_1.Status, { status: note.status }, void 0)] }), void 0), isEditing ? ((0, jsx_runtime_1.jsxs)("form", Object.assign({ onSubmit: handleNoteUpdate }, { children: [(0, jsx_runtime_1.jsx)(material_1.FilledInput, { value: noteText, onChange: handleTextChange, fullWidth: true, multiline: true, className: classes.textarea, autoFocus: true }, void 0), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.buttons }, { children: [(0, jsx_runtime_1.jsx)(material_1.Button, Object.assign({ className: classes.cancel, onClick: handleCancelEdit, color: "primary" }, { children: "Cancel" }), void 0), (0, jsx_runtime_1.jsx)(material_1.Button, Object.assign({ type: "submit", color: "primary", variant: "contained", disabled: loading }, { children: "Update Note" }), void 0)] }), void 0)] }), void 0)) : ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.content }, { children: [(0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.text }, { children: note.text
+                            .split('\n')
+                            .map((paragraph, index) => ((0, jsx_runtime_1.jsx)("p", Object.assign({ className: classes.paragraph }, { children: paragraph }), index))) }), void 0), (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: classes.toolbar, style: { visibility: isHover ? 'visible' : 'hidden' } }, { children: [(0, jsx_runtime_1.jsx)(material_1.Tooltip, Object.assign({ title: "Edit note" }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ size: "small", onClick: handleEnterEditMode }, { children: (0, jsx_runtime_1.jsx)(Edit_1.default, {}, void 0) }), void 0) }), void 0), (0, jsx_runtime_1.jsx)(material_1.Tooltip, Object.assign({ title: "Delete note" }, { children: (0, jsx_runtime_1.jsx)(material_1.IconButton, Object.assign({ size: "small", onClick: handleDelete }, { children: (0, jsx_runtime_1.jsx)(Delete_1.default, {}, void 0) }), void 0) }), void 0)] }), void 0)] }), void 0))] }), void 0));
 };
 exports.Note = Note;

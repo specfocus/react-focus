@@ -1,16 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNotification = void 0;
-var notificationActions_1 = require("../../actions/notificationActions");
-var undoActions_1 = require("../../actions/undoActions");
-var recoil_1 = require("recoil");
-var admin = (0, recoil_1.atom)({
-    key: 'admin',
-    default: { notifiations: [] }
-});
-var initialState = [];
-var notificationsReducer = function (previousState, action) {
-    if (previousState === void 0) { previousState = initialState; }
+exports.firstNotification = void 0;
+const notificationActions_1 = require("../../actions/notificationActions");
+const undoActions_1 = require("../../actions/undoActions");
+const recoil_1 = require("recoil");
+const state_1 = require("../../../core/state");
+const initialState = [];
+const notificationsReducer = (previousState = initialState, action) => {
     switch (action.type) {
         case notificationActions_1.SHOW_NOTIFICATION:
             return previousState.concat(action.payload);
@@ -26,13 +22,11 @@ var notificationsReducer = function (previousState, action) {
 exports.default = notificationsReducer;
 /**
  * Returns the first available notification to show
- * @param {Object} state - Redux state
  */
-exports.getNotification = (0, recoil_1.selector)({
+exports.firstNotification = (0, recoil_1.selector)({
     key: 'firstNotification',
-    get: function (_a) {
-        var get = _a.get;
-        var notifiations = get(admin).notifiations;
-        return notifiations[0];
+    get: ({ get }) => {
+        const notifications = get(state_1.selectorNotifications);
+        return notifications[0];
     }
 });

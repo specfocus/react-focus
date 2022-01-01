@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,38 +33,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var InputLabel_1 = __importDefault(require("@mui/material/InputLabel"));
-var FormControl_1 = __importDefault(require("@mui/material/FormControl"));
-var core_1 = require("../../core");
-var PREFIX = 'RaLabeled';
-var classes = {
-    label: "".concat(PREFIX, "-label"),
-    value: "".concat(PREFIX, "-value"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const InputLabel_1 = __importDefault(require("@mui/material/InputLabel"));
+const FormControl_1 = __importDefault(require("@mui/material/FormControl"));
+const core_1 = require("../../core");
+const PREFIX = 'RaLabeled';
+const classes = {
+    label: `${PREFIX}-label`,
+    value: `${PREFIX}-value`,
 };
-var StyledFormControl = (0, styles_1.styled)(FormControl_1.default)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.label)] = {
-            position: 'relative',
-        },
-        _b["& .".concat(classes.value)] = {
-            fontFamily: theme.typography.fontFamily,
-            color: 'currentColor',
-            padding: "calc(".concat(theme.spacing(1), " 0 ").concat(theme.spacing(1), " / 2)"),
-            border: 0,
-            boxSizing: 'content-box',
-            verticalAlign: 'middle',
-            background: 'none',
-            margin: 0,
-            display: 'block',
-            width: '100%',
-        },
-        _b);
-});
+const StyledFormControl = (0, styles_1.styled)(FormControl_1.default)(({ theme }) => ({
+    [`& .${classes.label}`]: {
+        position: 'relative',
+    },
+    [`& .${classes.value}`]: {
+        fontFamily: theme.typography.fontFamily,
+        color: 'currentColor',
+        padding: `calc(${theme.spacing(1)} 0 ${theme.spacing(1)} / 2)`,
+        border: 0,
+        boxSizing: 'content-box',
+        verticalAlign: 'middle',
+        background: 'none',
+        margin: 0,
+        display: 'block',
+        width: '100%',
+    },
+}));
 /**
  * Use any component as read-only Input, labeled just like other Inputs.
  *
@@ -91,20 +77,18 @@ var StyledFormControl = (0, styles_1.styled)(FormControl_1.default)(function (_a
  *     <FooComponent source="title" />
  * </Labeled>
  */
-var Labeled = function (props) {
-    var children = props.children, className = props.className, fullWidth = props.fullWidth, id = props.id, input = props.input, isRequired = props.isRequired, label = props.label, _a = props.margin, margin = _a === void 0 ? 'dense' : _a, meta = props.meta, resource = props.resource, source = props.source, rest = __rest(props, ["children", "className", "fullWidth", "id", "input", "isRequired", "label", "margin", "meta", "resource", "source"]);
+const Labeled = (props) => {
+    const { children, className, fullWidth, id, input, isRequired, label, margin = 'dense', meta, resource, source } = props, rest = __rest(props, ["children", "className", "fullWidth", "id", "input", "isRequired", "label", "margin", "meta", "resource", "source"]);
     if (!label && !source) {
         // @ts-ignore
-        var name_1 = children && children.type && children.type.name;
-        throw new Error("Cannot create label for component <".concat(name_1, ">: You must set either the label or source props. You can also disable automated label insertion by setting 'addLabel: false' in the component default props"));
+        const name = children && children.type && children.type.name;
+        throw new Error(`Cannot create label for component <${name}>: You must set either the label or source props. You can also disable automated label insertion by setting 'addLabel: false' in the component default props`);
     }
-    var restProps = fullWidth ? __assign(__assign({}, rest), { fullWidth: fullWidth }) : rest;
-    return (React.createElement(StyledFormControl, { className: className, fullWidth: fullWidth, error: meta && meta.touched && !!(meta.error || meta.submitError), margin: margin },
-        React.createElement(InputLabel_1.default, { htmlFor: id, shrink: true, className: classes.label },
-            React.createElement(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired })),
-        React.createElement("div", { className: classes.value }, children && typeof children.type !== 'string'
-            ? React.cloneElement(children, __assign({ input: input, resource: resource }, restProps))
-            : children)));
+    const restProps = fullWidth ? Object.assign(Object.assign({}, rest), { fullWidth }) : rest;
+    return ((0, jsx_runtime_1.jsxs)(StyledFormControl, Object.assign({ className: className, fullWidth: fullWidth, error: meta && meta.touched && !!(meta.error || meta.submitError), margin: margin }, { children: [(0, jsx_runtime_1.jsx)(InputLabel_1.default, Object.assign({ htmlFor: id, shrink: true, className: classes.label }, { children: (0, jsx_runtime_1.jsx)(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired }, void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", Object.assign({ className: classes.value }, { children: children && typeof children.type !== 'string'
+                    ? React.cloneElement(children, Object.assign({ input,
+                        resource }, restProps))
+                    : children }), void 0)] }), void 0));
 };
 Labeled.propTypes = {
     basePath: prop_types_1.default.string,

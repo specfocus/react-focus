@@ -9,9 +9,9 @@ interface GetStatusForInputParams {
     translate: Translate;
 }
 export declare const getStatusForInput: ({ input, matchingReferences, referenceRecord, translate, }: GetStatusForInputParams) => {
-    waiting: any;
-    error: string | null;
-    warning: string | null;
+    waiting: boolean;
+    error: string;
+    warning: string;
     choices: Record[];
 };
 export declare const REFERENCES_STATUS_READY = "REFERENCES_STATUS_READY";
@@ -30,8 +30,8 @@ interface GetStatusForArrayInputParams {
 }
 export declare const getStatusForArrayInput: ({ input, matchingReferences, referenceRecords, translate, }: GetStatusForArrayInputParams) => {
     waiting: boolean;
-    error: string | null;
-    warning: string | null;
+    error: string;
+    warning: string;
     choices: Record[];
 };
 export {};

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShowContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context to store the result of the useShowController() hook.
  *
@@ -9,7 +9,7 @@ var react_1 = require("react");
  *
  * @example
  *
- * import { useShowController, ShowContextProvider } from '../../core';
+ * import { useShowController, ShowContextProvider } from '../../../core';
  *
  * const Show = props => {
  *     const controllerProps = useShowController(props);

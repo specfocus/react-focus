@@ -52,7 +52,7 @@ import { MutationOptions, Mutation } from './useMutation';
  * const [update, { data }] = useUpdate<Product>('products', id, changes, product);
  *                    \-- data is Product
  */
-declare const useUpdate: <RecordType extends Record = Record>(resource?: string | undefined, id?: Identifier | undefined, data?: Partial<RecordType> | undefined, previousData?: any, options?: MutationOptions | undefined) => UseUpdateHookValue<RecordType>;
+declare const useUpdate: <RecordType extends Record = Record>(resource?: string, id?: Identifier, data?: Partial<RecordType>, previousData?: any, options?: MutationOptions) => UseUpdateHookValue<RecordType>;
 declare type UseUpdateHookValue<RecordType extends Record = Record> = [
     (resource?: string | Partial<Mutation> | Event, id?: Identifier | Partial<MutationOptions>, data?: Partial<RecordType>, previousData?: any, options?: MutationOptions) => void | Promise<any>,
     {

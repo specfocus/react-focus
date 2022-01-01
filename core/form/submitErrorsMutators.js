@@ -10,42 +10,40 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isObjectEmpty = exports.isValidationError = exports.flatten = exports.clean = exports.resetSubmitErrors = void 0;
-function resetSubmitErrors(_a, state, _b) {
-    var _c = _a[0], prev = _c.prev, current = _c.current;
-    var getIn = _b.getIn, setIn = _b.setIn;
+function resetSubmitErrors([{ prev, current }], state, { getIn, setIn }) {
     // Reset the general submit error on any value change
     if (state.formState.submitError) {
         delete state.formState.submitError;
     }
     if (!isObjectEmpty(state.formState.submitErrors)) {
         // Flatten nested errors object for easier comparison
-        var flatErrors = flatten(state.formState.submitErrors);
-        var changed_1 = [];
+        const flatErrors = flatten(state.formState.submitErrors);
+        const changed = [];
         // Iterate over each error
-        Object.keys(flatErrors).forEach(function (key) {
+        Object.keys(flatErrors).forEach(key => {
             // Compare the value for the error field path
             if (getIn(prev, key) !== getIn(current, key)) {
-                changed_1.push(key);
+                changed.push(key);
             }
         });
         // Reset the error on value change
-        if (changed_1.length) {
-            var newErrors_1 = state.formState.submitErrors;
-            changed_1.forEach(function (key) {
-                newErrors_1 = setIn(newErrors_1, key, null);
+        if (changed.length) {
+            let newErrors = state.formState.submitErrors;
+            changed.forEach(key => {
+                newErrors = setIn(newErrors, key, null);
             });
             // Clear submit errors from empty objects and arrays
-            var cleanErrors = clean(newErrors_1);
+            const cleanErrors = clean(newErrors);
             state.formState.submitErrors = cleanErrors;
         }
     }
 }
 exports.resetSubmitErrors = resetSubmitErrors;
 function clean(obj) {
-    var newObj = Array.isArray(obj) ? [] : {};
-    Object.keys(obj).forEach(function (key) {
+    const newObj = Array.isArray(obj) ? [] : {};
+    Object.keys(obj).forEach(key => {
         if (obj[key] && typeof obj[key] === 'object') {
-            var newVal = clean(obj[key]);
+            const newVal = clean(obj[key]);
             if (!isObjectEmpty(newVal) && newVal.length !== 0) {
                 newObj[key] = newVal;
             }
@@ -58,29 +56,29 @@ function clean(obj) {
 }
 exports.clean = clean;
 function flatten(obj) {
-    var toReturn = {};
-    for (var i in obj) {
+    const toReturn = {};
+    for (const i in obj) {
         if (!obj.hasOwnProperty(i)) {
             continue;
         }
         if (typeof obj[i] === 'object' &&
             obj[i] !== null &&
             !(0, exports.isValidationError)(obj[i])) {
-            var flatObject = flatten(obj[i]);
-            for (var x in flatObject) {
+            const flatObject = flatten(obj[i]);
+            for (const x in flatObject) {
                 if (!flatObject.hasOwnProperty(x)) {
                     continue;
                 }
                 // Make a bracket array notation like some[1].array[0]
-                var key = "".concat(i, ".").concat(x).split('.').reduce(function (str, value) {
+                const key = `${i}.${x}`.split('.').reduce((str, value) => {
                     if (/^\[\d\]/.test(value)) {
-                        return "".concat(str).concat(value);
+                        return `${str}${value}`;
                     }
                     if (!isNaN(Number(value))) {
-                        return "".concat(str, "[").concat(value, "]");
+                        return `${str}[${value}]`;
                     }
                     if (str) {
-                        return "".concat(str, ".").concat(value);
+                        return `${str}.${value}`;
                     }
                     return value;
                 }, '');
@@ -94,7 +92,7 @@ function flatten(obj) {
     return toReturn;
 }
 exports.flatten = flatten;
-var isValidationError = function (obj) { return obj.message && obj.args; };
+const isValidationError = (obj) => obj.message && obj.args;
 exports.isValidationError = isValidationError;
 function isObjectEmpty(obj) {
     if (!obj) {
@@ -104,5 +102,5 @@ function isObjectEmpty(obj) {
 }
 exports.isObjectEmpty = isObjectEmpty;
 exports.default = {
-    resetSubmitErrors: resetSubmitErrors,
+    resetSubmitErrors,
 };

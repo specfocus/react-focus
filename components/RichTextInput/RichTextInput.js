@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -44,74 +14,76 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var debounce_1 = __importDefault(require("lodash/debounce"));
-var react_1 = __importStar(require("react"));
-var quill_1 = __importDefault(require("quill"));
-var core_1 = require("../../core");
-var __1 = require("..");
-var material_1 = require("@mui/material");
-var styles_1 = require("@mui/styles");
-var prop_types_1 = __importDefault(require("prop-types"));
-var styles_2 = __importDefault(require("./styles"));
-var useStyles = (0, styles_1.makeStyles)(styles_2.default, { name: 'RaRichTextInput' });
-var RichTextInput = function (props) {
-    var _a = props.options, options = _a === void 0 ? {} : _a, // Quill editor options
-    _b = props.toolbar, // Quill editor options
-    toolbar = _b === void 0 ? true : _b, _c = props.fullWidth, fullWidth = _c === void 0 ? true : _c, classesOverride = props.classes, configureQuill = props.configureQuill, helperText = props.helperText, label = props.label, source = props.source, resource = props.resource, variant = props.variant, _d = props.margin, margin = _d === void 0 ? 'dense' : _d, rest = __rest(props, ["options", "toolbar", "fullWidth", "classes", "configureQuill", "helperText", "label", "source", "resource", "variant", "margin"]);
-    var classes = useStyles(props);
-    var quillInstance = (0, react_1.useRef)();
-    var divRef = (0, react_1.useRef)();
-    var editor = (0, react_1.useRef)();
-    var _e = (0, core_1.useInput)(__assign({ source: source }, rest)), id = _e.id, isRequired = _e.isRequired, _f = _e.input, value = _f.value, onChange = _f.onChange, _g = _e.meta, touched = _g.touched, error = _g.error;
-    var lastValueChange = (0, react_1.useRef)(value);
+const jsx_runtime_1 = require("react/jsx-runtime");
+const debounce_1 = __importDefault(require("lodash/debounce"));
+const react_1 = require("react");
+const quill_1 = __importDefault(require("quill"));
+const core_1 = require("../../core");
+const __1 = require("..");
+const material_1 = require("@mui/material");
+const styles_1 = require("@mui/styles");
+const prop_types_1 = __importDefault(require("prop-types"));
+const styles_2 = __importDefault(require("./styles"));
+// @ts-ignore
+const useStyles = (0, styles_1.makeStyles)(styles_2.default);
+const RichTextInput = props => {
+    const { options = {}, // Quill editor options
+    toolbar = true, fullWidth = true, classes: classesOverride, configureQuill, helperText, label, source, resource, variant, margin = 'dense' } = props, rest = __rest(props, ["options", "toolbar", "fullWidth", "classes", "configureQuill", "helperText", "label", "source", "resource", "variant", "margin"]);
+    const classes = useStyles(props);
+    const quillInstance = (0, react_1.useRef)();
+    const divRef = (0, react_1.useRef)();
+    const editor = (0, react_1.useRef)();
+    const { id, isRequired, input: { value, onChange }, meta: { touched, error }, } = (0, core_1.useInput)(Object.assign({ source }, rest));
+    const lastValueChange = (0, react_1.useRef)(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    var onTextChange = (0, react_1.useCallback)((0, debounce_1.default)(function () {
-        var value = editor.current.innerHTML === '<p><br></p>'
+    const onTextChange = (0, react_1.useCallback)((0, debounce_1.default)(() => {
+        var _a, _b;
+        const value = ((_a = editor.current) === null || _a === void 0 ? void 0 : _a.innerHTML) === '<p><br></p>'
             ? ''
-            : editor.current.innerHTML;
+            : (_b = editor.current) === null || _b === void 0 ? void 0 : _b.innerHTML;
         if (lastValueChange.current !== value) {
             lastValueChange.current = value;
             onChange(value);
         }
     }, 500), [onChange]);
-    (0, react_1.useEffect)(function () {
-        quillInstance.current = new quill_1.default(divRef.current, __assign({ modules: { toolbar: toolbar, clipboard: { matchVisual: false } }, theme: 'snow' }, options));
+    (0, react_1.useEffect)(() => {
+        var _a;
+        quillInstance.current = new quill_1.default(divRef.current, Object.assign({ modules: { toolbar, clipboard: { matchVisual: false } }, theme: 'snow' }, options));
         if (configureQuill) {
             configureQuill(quillInstance.current);
         }
         quillInstance.current.setContents(quillInstance.current.clipboard.convert(value));
-        editor.current = divRef.current.querySelector('.ql-editor');
+        editor.current = ((_a = divRef.current) === null || _a === void 0 ? void 0 : _a.querySelector('.ql-editor')) || undefined;
         quillInstance.current.on('text-change', onTextChange);
-        return function () {
-            quillInstance.current.off('text-change', onTextChange);
+        return () => {
+            var _a;
+            (_a = quillInstance.current) === null || _a === void 0 ? void 0 : _a.off('text-change', onTextChange);
             if (onTextChange.cancel) {
                 onTextChange.cancel();
             }
-            quillInstance.current = null;
+            quillInstance.current = undefined;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
+        var _a, _b, _c, _d, _e;
         if (lastValueChange.current !== value) {
-            var selection = quillInstance.current.getSelection();
-            quillInstance.current.setContents(quillInstance.current.clipboard.convert(value));
-            if (selection && quillInstance.current.hasFocus()) {
-                quillInstance.current.setSelection(selection);
+            const selection = (_a = quillInstance.current) === null || _a === void 0 ? void 0 : _a.getSelection();
+            (_b = quillInstance.current) === null || _b === void 0 ? void 0 : _b.setContents((_c = quillInstance.current) === null || _c === void 0 ? void 0 : _c.clipboard.convert(value));
+            if (selection && ((_d = quillInstance.current) === null || _d === void 0 ? void 0 : _d.hasFocus())) {
+                (_e = quillInstance.current) === null || _e === void 0 ? void 0 : _e.setSelection(selection);
             }
         }
     }, [value]);
-    return (react_1.default.createElement(material_1.FormControl, { error: !!(touched && error), fullWidth: fullWidth, className: "ra-rich-text-input", margin: margin },
-        react_1.default.createElement(material_1.InputLabel, { shrink: true, htmlFor: id, className: classes.label },
-            react_1.default.createElement(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired })),
-        react_1.default.createElement("div", { "data-testid": "quill", ref: divRef, className: variant }),
-        react_1.default.createElement(material_1.FormHelperText, { error: !!error, className: !!error ? 'ra-rich-text-input-error' : '' },
-            react_1.default.createElement(__1.InputHelperText, { error: error, helperText: helperText, touched: touched }))));
+    return ((0, jsx_runtime_1.jsxs)(material_1.FormControl, Object.assign({ error: !!(touched && error), fullWidth: fullWidth, className: "ra-rich-text-input", margin: margin }, { children: [(0, jsx_runtime_1.jsx)(material_1.InputLabel, Object.assign({ shrink: true, htmlFor: id, className: classes.label }, { children: (0, jsx_runtime_1.jsx)(core_1.FieldTitle, { label: label, source: source, resource: resource, isRequired: isRequired }, void 0) }), void 0), (0, jsx_runtime_1.jsx)("div", { "data-testid": "quill", 
+                // @ts-ignore
+                ref: divRef, className: variant }, void 0), (0, jsx_runtime_1.jsx)(material_1.FormHelperText, Object.assign({ error: !!error, className: !!error ? 'ra-rich-text-input-error' : '' }, { children: (0, jsx_runtime_1.jsx)(__1.InputHelperText, { error: error, helperText: helperText, touched: touched || false }, void 0) }), void 0)] }), void 0));
 };
 RichTextInput.propTypes = {
     // @ts-ignore
     label: prop_types_1.default.oneOfType([prop_types_1.default.string, prop_types_1.default.bool]),
     options: prop_types_1.default.object,
-    source: prop_types_1.default.string,
+    source: prop_types_1.default.any,
     fullWidth: prop_types_1.default.bool,
     configureQuill: prop_types_1.default.func,
 };

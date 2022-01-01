@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_redux_1 = require("react-redux");
+const react_redux_1 = require("react-redux");
 /**
  * Get the loading status, i.e. a boolean indicating if at least one request is pending
  *
@@ -15,6 +15,4 @@ var react_redux_1 = require("react-redux");
  *      return loading ? <Skeleton /> : <RealContent>;
  * }
  */
-exports.default = (function () {
-    return (0, react_redux_1.useSelector)(function (state) { return state.admin.loading > 0; });
-});
+exports.default = () => (0, react_redux_1.useSelector)((state) => state.admin.loading > 0);

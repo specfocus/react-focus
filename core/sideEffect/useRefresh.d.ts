@@ -16,5 +16,5 @@
  * // hard refresh
  * refresh(true)
  */
-declare const useRefresh: () => (hard?: boolean | undefined) => void;
+declare const useRefresh: () => (hard?: boolean) => void;
 export default useRefresh;

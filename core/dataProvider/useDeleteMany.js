@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useMutation_1 = __importDefault(require("./useMutation"));
+const react_1 = require("react");
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the dataProvider.deleteMany() method, the result
  * of the call (the list of deleted record ids), and the loading state.
@@ -50,13 +50,13 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  *     return <button disabled={loading} onClick={deleteMany}>Delete selected posts</button>;
  * };
  */
-var useDeleteMany = function (resource, ids, options) {
-    var _a = (0, useMutation_1.default)({ type: 'deleteMany', resource: resource, payload: { ids: ids } }, options), mutate = _a[0], state = _a[1];
-    var deleteMany = (0, react_1.useCallback)(function (resource, ids, options) {
+const useDeleteMany = (resource, ids, options) => {
+    const [mutate, state] = (0, useMutation_1.default)({ type: 'deleteMany', resource, payload: { ids } }, options);
+    const deleteMany = (0, react_1.useCallback)((resource, ids, options) => {
         if (typeof resource === 'string') {
-            var query = {
+            const query = {
                 type: 'deleteMany',
-                resource: resource,
+                resource,
                 payload: {
                     ids: ids,
                 },

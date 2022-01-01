@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,58 +14,59 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_final_form_1 = require("react-final-form");
-var validate_1 = require("./validate");
-var isRequired_1 = __importDefault(require("./isRequired"));
-var useFormGroupContext_1 = require("./useFormGroupContext");
-var useFormContext_1 = require("./useFormContext");
-var controller_1 = require("../controller");
-var useInput = function (_a) {
-    var defaultValue = _a.defaultValue, initialValue = _a.initialValue, id = _a.id, name = _a.name, source = _a.source, validate = _a.validate, customOnBlur = _a.onBlur, customOnChange = _a.onChange, customOnFocus = _a.onFocus, isRequiredOption = _a.isRequired, options = __rest(_a, ["defaultValue", "initialValue", "id", "name", "source", "validate", "onBlur", "onChange", "onFocus", "isRequired"]);
-    var finalName = name || source;
-    var formGroupName = (0, useFormGroupContext_1.useFormGroupContext)();
-    var formContext = (0, useFormContext_1.useFormContext)();
-    var record = (0, controller_1.useRecordContext)();
-    (0, react_1.useEffect)(function () {
+const react_1 = require("react");
+const react_final_form_1 = require("react-final-form");
+const validate_1 = require("./validate");
+const isRequired_1 = __importDefault(require("./isRequired"));
+const useFormGroupContext_1 = require("./useFormGroupContext");
+const useFormContext_1 = require("./useFormContext");
+const controller_1 = require("../controller");
+const useInput = (_a) => {
+    var { defaultValue, initialValue, id, name, source, validate, onBlur: customOnBlur, onChange: customOnChange, onFocus: customOnFocus, isRequired: isRequiredOption } = _a, options = __rest(_a, ["defaultValue", "initialValue", "id", "name", "source", "validate", "onBlur", "onChange", "onFocus", "isRequired"]);
+    const finalName = name || source;
+    const formGroupName = (0, useFormGroupContext_1.useFormGroupContext)();
+    const formContext = (0, useFormContext_1.useFormContext)();
+    const record = (0, controller_1.useRecordContext)();
+    (0, react_1.useEffect)(() => {
         if (!formContext || !formGroupName) {
             return;
         }
         formContext.registerField(source, formGroupName);
-        return function () {
+        return () => {
             formContext.unregisterField(source, formGroupName);
         };
     }, [formContext, formGroupName, source]);
-    var sanitizedValidate = Array.isArray(validate)
+    const sanitizedValidate = Array.isArray(validate)
         ? (0, validate_1.composeValidators)(validate)
         : validate;
-    var _b = (0, react_final_form_1.useField)(finalName, __assign({ initialValue: initialValue, defaultValue: defaultValue, validate: sanitizedValidate }, options)), input = _b.input, meta = _b.meta;
+    const { input, meta } = (0, react_final_form_1.useField)(finalName, Object.assign({ initialValue,
+        defaultValue, validate: sanitizedValidate }, options));
     // Extract the event handlers so that we can provide ours
     // allowing users to provide theirs without breaking the form
-    var onBlur = input.onBlur, onChange = input.onChange, onFocus = input.onFocus, inputProps = __rest(input, ["onBlur", "onChange", "onFocus"]);
-    var handleBlur = (0, react_1.useCallback)(function (event) {
+    const { onBlur, onChange, onFocus } = input, inputProps = __rest(input, ["onBlur", "onChange", "onFocus"]);
+    const handleBlur = (0, react_1.useCallback)(event => {
         onBlur(event);
         if (typeof customOnBlur === 'function') {
             customOnBlur(event);
         }
     }, [onBlur, customOnBlur]);
-    var handleChange = (0, react_1.useCallback)(function (event) {
+    const handleChange = (0, react_1.useCallback)(event => {
         onChange(event);
         if (typeof customOnChange === 'function') {
             customOnChange(event);
         }
     }, [onChange, customOnChange]);
-    var handleFocus = (0, react_1.useCallback)(function (event) {
+    const handleFocus = (0, react_1.useCallback)(event => {
         onFocus(event);
         if (typeof customOnFocus === 'function') {
             customOnFocus(event);
         }
     }, [onFocus, customOnFocus]);
-    var form = (0, react_final_form_1.useForm)();
-    var recordId = record === null || record === void 0 ? void 0 : record.id;
+    const form = (0, react_final_form_1.useForm)();
+    const recordId = record === null || record === void 0 ? void 0 : record.id;
     // Every time the record changes and doesn't include a value for this field,
     // reset the field value to the initialValue (or defaultValue)
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (typeof input.checked !== 'undefined' || // checkbox that has a value from record
             (input.value != null && input.value !== '') // any other input that has a value from record
         ) {
@@ -91,7 +81,7 @@ var useInput = function (_a) {
         }
         // apply initial value if provided
         if (initialValue != null) {
-            form.batch(function () {
+            form.batch(() => {
                 form.change(source, initialValue);
                 form.resetFieldState(source);
             });
@@ -117,8 +107,8 @@ var useInput = function (_a) {
     }
     return {
         id: id || source,
-        input: __assign(__assign({}, inputProps), { onBlur: handleBlur, onChange: handleChange, onFocus: handleFocus }),
-        meta: meta,
+        input: Object.assign(Object.assign({}, inputProps), { onBlur: handleBlur, onChange: handleChange, onFocus: handleFocus }),
+        meta,
         isRequired: isRequiredOption || (0, isRequired_1.default)(validate),
     };
 };

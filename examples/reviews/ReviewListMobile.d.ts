@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import PropTypes from 'prop-types';
 declare const ReviewListMobile: {
-    (): JSX.Element | null;
+    (): JSX.Element;
     propTypes: {
         basePath: PropTypes.Requireable<string>;
         data: PropTypes.Requireable<any>;
@@ -12,7 +12,7 @@ declare const ReviewListMobile: {
     };
     defaultProps: {
         hasBulkActions: boolean;
-        selectedIds: never[];
+        selectedIds: any[];
     };
 };
 export default ReviewListMobile;

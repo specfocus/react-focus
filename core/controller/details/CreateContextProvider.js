@@ -1,29 +1,10 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateContextProvider = void 0;
-var React = __importStar(require("react"));
-var RecordContext_1 = require("../RecordContext");
-var CreateContext_1 = require("./CreateContext");
-var SaveContext_1 = require("./SaveContext");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const RecordContext_1 = require("../RecordContext");
+const CreateContext_1 = require("./CreateContext");
+const SaveContext_1 = require("./SaveContext");
 /**
  * Create a Create Context.
  *
@@ -47,10 +28,5 @@ var SaveContext_1 = require("./SaveContext");
  * @see CreateContext
  * @see RecordContext
  */
-var CreateContextProvider = function (_a) {
-    var children = _a.children, value = _a.value;
-    return (React.createElement(CreateContext_1.CreateContext.Provider, { value: value },
-        React.createElement(SaveContext_1.SaveContextProvider, { value: (0, SaveContext_1.usePickSaveContext)(value) },
-            React.createElement(RecordContext_1.RecordContextProvider, { value: value && value.record }, children))));
-};
+const CreateContextProvider = ({ children, value, }) => ((0, jsx_runtime_1.jsx)(CreateContext_1.CreateContext.Provider, Object.assign({ value: value }, { children: (0, jsx_runtime_1.jsx)(SaveContext_1.SaveContextProvider, Object.assign({ value: (0, SaveContext_1.usePickSaveContext)(value) }, { children: (0, jsx_runtime_1.jsx)(RecordContext_1.RecordContextProvider, Object.assign({ value: value && value.record }, { children: children }), void 0) }), void 0) }), void 0));
 exports.CreateContextProvider = CreateContextProvider;

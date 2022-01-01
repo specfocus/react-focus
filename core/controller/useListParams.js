@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -34,21 +23,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNumberOrDefault = exports.getQuery = exports.hasCustomParams = exports.parseQueryFromLocation = exports.validQueryParams = void 0;
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var query_string_1 = require("query-string");
-var debounce_1 = __importDefault(require("lodash/debounce"));
-var pickBy_1 = __importDefault(require("lodash/pickBy"));
-var react_router_dom_1 = require("react-router-dom");
-var queryReducer_1 = __importStar(require("../reducer/admin/resource/list/queryReducer"));
-var listActions_1 = require("../actions/listActions");
-var removeEmpty_1 = __importDefault(require("../util/removeEmpty"));
-var emptyObject = {};
-var defaultSort = {
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const query_string_1 = require("query-string");
+const debounce_1 = __importDefault(require("lodash/debounce"));
+const pickBy_1 = __importDefault(require("lodash/pickBy"));
+const react_router_dom_1 = require("react-router-dom");
+const queryReducer_1 = __importStar(require("../reducer/admin/resource/list/queryReducer"));
+const listActions_1 = require("../actions/listActions");
+const removeEmpty_1 = __importDefault(require("../util/removeEmpty"));
+const emptyObject = {};
+const defaultSort = {
     field: 'id',
     order: queryReducer_1.SORT_ASC,
 };
-var defaultParams = {};
+const defaultParams = {};
 /**
  * Get the list parameters (page, sort, filters) and modifiers.
  *
@@ -98,19 +87,16 @@ var defaultParams = {};
  *      setSort,
  * } = listParamsActions;
  */
-var useListParams = function (_a) {
-    var resource = _a.resource, filterDefaultValues = _a.filterDefaultValues, _b = _a.sort, sort = _b === void 0 ? defaultSort : _b, _c = _a.perPage, perPage = _c === void 0 ? 10 : _c, _d = _a.debounce, debounce = _d === void 0 ? 500 : _d, _e = _a.syncWithLocation, syncWithLocation = _e === void 0 ? false : _e;
-    var dispatch = (0, react_redux_1.useDispatch)();
-    var location = (0, react_router_dom_1.useLocation)();
-    var history = (0, react_router_dom_1.useHistory)();
-    var _f = (0, react_1.useState)(defaultParams), localParams = _f[0], setLocalParams = _f[1];
-    var params = (0, react_redux_1.useSelector)(function (reduxState) {
-        return reduxState.admin.resources[resource]
-            ? reduxState.admin.resources[resource].list.params
-            : defaultParams;
-    }, react_redux_1.shallowEqual);
-    var tempParams = (0, react_1.useRef)();
-    var requestSignature = [
+const useListParams = ({ resource, filterDefaultValues, sort = defaultSort, perPage = 10, debounce = 500, syncWithLocation = false, }) => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    const location = (0, react_router_dom_1.useLocation)();
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const [localParams, setLocalParams] = (0, react_1.useState)(defaultParams);
+    const params = (0, react_redux_1.useSelector)((reduxState) => reduxState.admin.resources[resource]
+        ? reduxState.admin.resources[resource].list.params
+        : defaultParams, react_redux_1.shallowEqual);
+    const tempParams = (0, react_1.useRef)();
+    const requestSignature = [
         location.search,
         resource,
         syncWithLocation ? params : localParams,
@@ -119,38 +105,38 @@ var useListParams = function (_a) {
         perPage,
         syncWithLocation,
     ];
-    var queryFromLocation = syncWithLocation
+    const queryFromLocation = syncWithLocation
         ? (0, exports.parseQueryFromLocation)(location)
         : {};
-    var query = (0, react_1.useMemo)(function () {
-        return (0, exports.getQuery)({
-            queryFromLocation: queryFromLocation,
-            params: syncWithLocation ? params : localParams,
-            filterDefaultValues: filterDefaultValues,
-            sort: sort,
-            perPage: perPage,
-        });
-    }, requestSignature // eslint-disable-line react-hooks/exhaustive-deps
+    const query = (0, react_1.useMemo)(() => (0, exports.getQuery)({
+        queryFromLocation,
+        params: syncWithLocation ? params : localParams,
+        filterDefaultValues,
+        sort,
+        perPage,
+    }), requestSignature // eslint-disable-line react-hooks/exhaustive-deps
     );
     // if the location includes params (for example from a link like
     // the categories products on the demo), we need to persist them in the
     // redux state as well so that we don't lose them after a redirection back
     // to the list
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (Object.keys(queryFromLocation).length > 0) {
             dispatch((0, listActions_1.changeListParams)(resource, query));
         }
     }, [location.search]); // eslint-disable-line
-    var changeParams = (0, react_1.useCallback)(function (action) {
+    const changeParams = (0, react_1.useCallback)(action => {
         if (!tempParams.current) {
             // no other changeParams action dispatched this tick
             tempParams.current = (0, queryReducer_1.default)(query, action);
             // schedule side effects for next tick
-            setTimeout(function () {
+            setTimeout(() => {
+                var _a, _b;
                 if (syncWithLocation) {
-                    history.push({
-                        search: "?".concat((0, query_string_1.stringify)(__assign(__assign({}, tempParams.current), { filter: JSON.stringify(tempParams.current.filter), displayedFilters: JSON.stringify(tempParams.current.displayedFilters) }))),
-                        state: { _scrollToTop: action.type === queryReducer_1.SET_PAGE },
+                    navigate({
+                        search: `?${(0, query_string_1.stringify)(Object.assign(Object.assign({}, tempParams.current), { filter: JSON.stringify((_a = tempParams.current) === null || _a === void 0 ? void 0 : _a.filter), displayedFilters: JSON.stringify((_b = tempParams.current) === null || _b === void 0 ? void 0 : _b.displayedFilters) }))}`
+                    }, {
+                        state: { _scrollToTop: action.type === queryReducer_1.SET_PAGE }
                     });
                     // the useEffect above will apply the changes to the params in the redux state
                 }
@@ -165,68 +151,64 @@ var useListParams = function (_a) {
             tempParams.current = (0, queryReducer_1.default)(tempParams.current, action);
         }
     }, requestSignature); // eslint-disable-line react-hooks/exhaustive-deps
-    var setSort = (0, react_1.useCallback)(function (sort, order) {
-        return changeParams({
-            type: queryReducer_1.SET_SORT,
-            payload: { sort: sort, order: order },
-        });
-    }, requestSignature // eslint-disable-line react-hooks/exhaustive-deps
+    const setSort = (0, react_1.useCallback)((sort, order) => changeParams({
+        type: queryReducer_1.SET_SORT,
+        payload: { sort, order },
+    }), requestSignature // eslint-disable-line react-hooks/exhaustive-deps
     );
-    var setPage = (0, react_1.useCallback)(function (newPage) { return changeParams({ type: queryReducer_1.SET_PAGE, payload: newPage }); }, requestSignature // eslint-disable-line react-hooks/exhaustive-deps
+    const setPage = (0, react_1.useCallback)((newPage) => changeParams({ type: queryReducer_1.SET_PAGE, payload: newPage }), requestSignature // eslint-disable-line react-hooks/exhaustive-deps
     );
-    var setPerPage = (0, react_1.useCallback)(function (newPerPage) {
-        return changeParams({ type: queryReducer_1.SET_PER_PAGE, payload: newPerPage });
-    }, requestSignature // eslint-disable-line react-hooks/exhaustive-deps
+    const setPerPage = (0, react_1.useCallback)((newPerPage) => changeParams({ type: queryReducer_1.SET_PER_PAGE, payload: newPerPage }), requestSignature // eslint-disable-line react-hooks/exhaustive-deps
     );
-    var filterValues = query.filter || emptyObject;
-    var displayedFilterValues = query.displayedFilters || emptyObject;
-    var debouncedSetFilters = (0, debounce_1.default)(function (filter, displayedFilters) {
+    const filterValues = query.filter || emptyObject;
+    const displayedFilterValues = query.displayedFilters || emptyObject;
+    const debouncedSetFilters = (0, debounce_1.default)((filter, displayedFilters) => {
         changeParams({
             type: queryReducer_1.SET_FILTER,
             payload: {
                 filter: (0, removeEmpty_1.default)(filter),
-                displayedFilters: displayedFilters,
+                displayedFilters,
             },
         });
     }, debounce);
-    var setFilters = (0, react_1.useCallback)(function (filter, displayedFilters, debounce) {
-        if (debounce === void 0) { debounce = true; }
-        return debounce
-            ? debouncedSetFilters(filter, displayedFilters)
-            : changeParams({
-                type: queryReducer_1.SET_FILTER,
-                payload: {
-                    filter: (0, removeEmpty_1.default)(filter),
-                    displayedFilters: displayedFilters,
-                },
-            });
-    }, requestSignature // eslint-disable-line react-hooks/exhaustive-deps
+    const setFilters = (0, react_1.useCallback)((filter, displayedFilters, debounce = true) => debounce
+        ? debouncedSetFilters(filter, displayedFilters)
+        : changeParams({
+            type: queryReducer_1.SET_FILTER,
+            payload: {
+                filter: (0, removeEmpty_1.default)(filter),
+                displayedFilters,
+            },
+        }), requestSignature // eslint-disable-line react-hooks/exhaustive-deps
     );
-    var hideFilter = (0, react_1.useCallback)(function (filterName) {
+    const hideFilter = (0, react_1.useCallback)((filterName) => {
         changeParams({
             type: queryReducer_1.HIDE_FILTER,
             payload: filterName,
         });
     }, requestSignature); // eslint-disable-line react-hooks/exhaustive-deps
-    var showFilter = (0, react_1.useCallback)(function (filterName, defaultValue) {
+    const showFilter = (0, react_1.useCallback)((filterName, defaultValue) => {
         changeParams({
             type: queryReducer_1.SHOW_FILTER,
             payload: {
-                filterName: filterName,
-                defaultValue: defaultValue,
+                filterName,
+                defaultValue,
             },
         });
     }, requestSignature); // eslint-disable-line react-hooks/exhaustive-deps
     return [
-        __assign({ displayedFilters: displayedFilterValues, filterValues: filterValues, requestSignature: requestSignature }, query),
+        Object.assign({ 
+            // @ts-ignore
+            displayedFilters: displayedFilterValues, filterValues,
+            requestSignature }, query),
         {
-            changeParams: changeParams,
-            setPage: setPage,
-            setPerPage: setPerPage,
-            setSort: setSort,
-            setFilters: setFilters,
-            hideFilter: hideFilter,
-            showFilter: showFilter,
+            changeParams,
+            setPage,
+            setPerPage,
+            setSort,
+            setFilters,
+            hideFilter,
+            showFilter,
         },
     ];
 };
@@ -238,7 +220,7 @@ exports.validQueryParams = [
     'filter',
     'displayedFilters',
 ];
-var parseObject = function (query, field) {
+const parseObject = (query, field) => {
     if (query[field] && typeof query[field] === 'string') {
         try {
             query[field] = JSON.parse(query[field]);
@@ -248,9 +230,8 @@ var parseObject = function (query, field) {
         }
     }
 };
-var parseQueryFromLocation = function (_a) {
-    var search = _a.search;
-    var query = (0, pickBy_1.default)((0, query_string_1.parse)(search), function (v, k) { return exports.validQueryParams.indexOf(k) !== -1; });
+const parseQueryFromLocation = ({ search }) => {
+    const query = (0, pickBy_1.default)((0, query_string_1.parse)(search), (v, k) => exports.validQueryParams.indexOf(k) !== -1);
     parseObject(query, 'filter');
     parseObject(query, 'displayedFilters');
     return query;
@@ -269,7 +250,7 @@ exports.parseQueryFromLocation = parseQueryFromLocation;
  *
  * @param {Object} params
  */
-var hasCustomParams = function (params) {
+const hasCustomParams = (params) => {
     return (params &&
         params.filter &&
         (Object.keys(params.filter).length > 0 ||
@@ -285,12 +266,11 @@ exports.hasCustomParams = hasCustomParams;
  *   - the params stored in the state (from previous navigation)
  *   - the props passed to the List component (including the filter defaultValues)
  */
-var getQuery = function (_a) {
-    var queryFromLocation = _a.queryFromLocation, params = _a.params, filterDefaultValues = _a.filterDefaultValues, sort = _a.sort, perPage = _a.perPage;
-    var query = Object.keys(queryFromLocation).length > 0
+const getQuery = ({ queryFromLocation, params, filterDefaultValues, sort, perPage, }) => {
+    const query = Object.keys(queryFromLocation).length > 0
         ? queryFromLocation
         : (0, exports.hasCustomParams)(params)
-            ? __assign({}, params) : { filter: filterDefaultValues || {} };
+            ? Object.assign({}, params) : { filter: filterDefaultValues || {} };
     if (!query.sort) {
         query.sort = sort.field;
         query.order = sort.order;
@@ -301,11 +281,11 @@ var getQuery = function (_a) {
     if (query.page == null) {
         query.page = 1;
     }
-    return __assign(__assign({}, query), { page: (0, exports.getNumberOrDefault)(query.page, 1), perPage: (0, exports.getNumberOrDefault)(query.perPage, 10) });
+    return Object.assign(Object.assign({}, query), { page: (0, exports.getNumberOrDefault)(query.page, 1), perPage: (0, exports.getNumberOrDefault)(query.perPage, 10) });
 };
 exports.getQuery = getQuery;
-var getNumberOrDefault = function (possibleNumber, defaultValue) {
-    var parsedNumber = typeof possibleNumber === 'string'
+const getNumberOrDefault = (possibleNumber, defaultValue) => {
+    const parsedNumber = typeof possibleNumber === 'string'
         ? parseInt(possibleNumber, 10)
         : possibleNumber;
     return isNaN(parsedNumber) ? defaultValue : parsedNumber;

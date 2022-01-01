@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { Deal } from '../../data/db/types';
+import { Deal } from '../db/types';
 export declare const DealCard: ({ deal, index }: {
     deal: Deal;
     index: number;
-}) => JSX.Element | null;
+}) => JSX.Element;

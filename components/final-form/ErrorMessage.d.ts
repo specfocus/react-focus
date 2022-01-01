@@ -12,6 +12,6 @@ export declare type ShowErrorFunc = (props: ShowErrorProps) => boolean;
 export interface ShowErrorProps {
     meta: FieldMetaState<any>;
 }
-export declare const useFieldForErrors: (name: string) => any;
+export declare const useFieldForErrors: (name: string) => import("react-final-form").FieldRenderProps<any, HTMLElement, any>;
 export declare const showErrorOnChange: ShowErrorFunc;
 export declare const showErrorOnBlur: ShowErrorFunc;

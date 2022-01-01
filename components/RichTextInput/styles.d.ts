@@ -1,3 +1,4 @@
 import { Theme } from '@mui/material/styles';
-declare const _default: (theme: Theme) => StyleRules<string, any>;
+import { Styles } from '@mui/styles/withStyles';
+declare const _default: (theme: Theme) => Styles<Theme, any, any>;
 export default _default;

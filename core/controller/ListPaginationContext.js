@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePickPaginationContext = void 0;
-var react_1 = require("react");
-var pick_1 = __importDefault(require("lodash/pick"));
+const react_1 = require("react");
+const pick_1 = __importDefault(require("lodash/pick"));
 /**
  * Context to store the pagination part of the useListController() result.
  *
@@ -42,7 +42,7 @@ var pick_1 = __importDefault(require("lodash/pick"));
  *     );
  * };
  */
-var ListPaginationContext = (0, react_1.createContext)({
+const ListPaginationContext = (0, react_1.createContext)({
     loading: null,
     page: null,
     perPage: null,
@@ -52,27 +52,23 @@ var ListPaginationContext = (0, react_1.createContext)({
     resource: null,
 });
 ListPaginationContext.displayName = 'ListPaginationContext';
-var usePickPaginationContext = function (context) {
-    return (0, react_1.useMemo)(function () {
-        return (0, pick_1.default)(context, [
-            'loading',
-            'page',
-            'perPage',
-            'setPage',
-            'setPerPage',
-            'total',
-            'resource',
-        ]);
-    }, 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-        context.loading,
-        context.page,
-        context.perPage,
-        context.setPage,
-        context.setPerPage,
-        context.total,
-    ]);
-};
+const usePickPaginationContext = (context) => (0, react_1.useMemo)(() => (0, pick_1.default)(context, [
+    'loading',
+    'page',
+    'perPage',
+    'setPage',
+    'setPerPage',
+    'total',
+    'resource',
+]), 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+[
+    context.loading,
+    context.page,
+    context.perPage,
+    context.setPage,
+    context.setPerPage,
+    context.total,
+]);
 exports.usePickPaginationContext = usePickPaginationContext;
 exports.default = ListPaginationContext;

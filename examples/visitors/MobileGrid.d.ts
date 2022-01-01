@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { Identifier } from '../../app';
-import { Customer } from '../types';
+import { Customer } from '../db/types';
 interface Props {
     ids?: Identifier[];
     data?: {
@@ -9,10 +9,10 @@ interface Props {
     basePath?: string;
 }
 declare const MobileGrid: {
-    ({ ids, data, basePath }: Props): JSX.Element | null;
+    ({ ids, data, basePath }: Props): JSX.Element;
     defaultProps: {
         data: {};
-        ids: never[];
+        ids: any[];
     };
 };
 export default MobileGrid;

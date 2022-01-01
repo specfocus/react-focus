@@ -10,5 +10,5 @@ interface Params {
     initialState?: InitialState;
     locale?: string;
 }
-declare const _default: ({ dataProvider, history, customReducers, authProvider, customSagas, initialState, }: Params) => any;
+declare const _default: ({ dataProvider, history, customReducers, authProvider, customSagas, initialState, }: Params) => import("redux").Store<any, any>;
 export default _default;

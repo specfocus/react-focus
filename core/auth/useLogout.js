@@ -19,11 +19,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var useAuthProvider_1 = __importStar(require("./useAuthProvider"));
-var clearActions_1 = require("../actions/clearActions");
-var react_router_dom_1 = require("react-router-dom");
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const useAuthProvider_1 = __importStar(require("./useAuthProvider"));
+const clearActions_1 = require("../actions/clearActions");
+const react_router_dom_1 = require("react-router-dom");
 /**
  * Get a callback for calling the authProvider.logout() method,
  * redirect to the login page, and clear the Redux state.
@@ -42,9 +42,9 @@ var react_router_dom_1 = require("react-router-dom");
  *     return <button onClick={handleClick}>Logout</button>;
  * }
  */
-var useLogout = function () {
-    var authProvider = (0, useAuthProvider_1.default)();
-    var dispatch = (0, react_redux_1.useDispatch)();
+const useLogout = () => {
+    const authProvider = (0, useAuthProvider_1.default)();
+    const dispatch = (0, react_redux_1.useDispatch)();
     /**
      * We need the current location to pass in the router state
      * so that the login hook knows where to redirect to as next route after login.
@@ -57,44 +57,41 @@ var useLogout = function () {
      * To avoid that, we read the location directly from history which is mutable.
      * See: https://reacttraining.com/react-router/web/api/history/history-is-mutable
      */
-    var history = (0, react_router_dom_1.useHistory)();
-    var logout = (0, react_1.useCallback)(function (params, redirectTo, redirectToCurrentLocationAfterLogin) {
-        if (params === void 0) { params = {}; }
-        if (redirectTo === void 0) { redirectTo = useAuthProvider_1.defaultAuthParams.loginUrl; }
-        if (redirectToCurrentLocationAfterLogin === void 0) { redirectToCurrentLocationAfterLogin = true; }
-        return authProvider.logout(params).then(function (redirectToFromProvider) {
-            dispatch((0, clearActions_1.clearState)());
-            if (redirectToFromProvider === false) {
-                // do not redirect
-                return;
-            }
-            // redirectTo can contain a query string, e.g. '/login?foo=bar'
-            // we must split the redirectTo to pass a structured location to history.push()
-            var redirectToParts = (redirectToFromProvider || redirectTo).split('?');
-            var newLocation = {
-                pathname: redirectToParts[0],
+    const location = (0, react_router_dom_1.useLocation)();
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const logout = (0, react_1.useCallback)((params = {}, redirectTo = useAuthProvider_1.defaultAuthParams.loginUrl, redirectToCurrentLocationAfterLogin = true) => authProvider.logout(params).then(redirectToFromProvider => {
+        dispatch((0, clearActions_1.clearState)());
+        if (redirectToFromProvider === false) {
+            // do not redirect
+            return;
+        }
+        // redirectTo can contain a query string, e.g. '/login?foo=bar'
+        // we must split the redirectTo to pass a structured location to navigate()
+        const redirectToParts = (redirectToFromProvider || redirectTo).split('?');
+        const newLocation = {
+            pathname: redirectToParts[0],
+        };
+        let state = {};
+        if (redirectToCurrentLocationAfterLogin &&
+            location.pathname) {
+            state = {
+                nextPathname: location.pathname,
+                nextSearch: location.search,
             };
-            if (redirectToCurrentLocationAfterLogin &&
-                history.location &&
-                history.location.pathname) {
-                newLocation.state = {
-                    nextPathname: history.location.pathname,
-                    nextSearch: history.location.search,
-                };
-            }
-            if (redirectToParts[1]) {
-                newLocation.search = redirectToParts[1];
-            }
-            history.push(newLocation);
-            return redirectToFromProvider;
-        });
-    }, [authProvider, history, dispatch]);
-    var logoutWithoutProvider = (0, react_1.useCallback)(function (_) {
-        history.push({
+        }
+        if (redirectToParts[1]) {
+            newLocation.search = redirectToParts[1];
+        }
+        navigate(newLocation, state);
+        return redirectToFromProvider;
+    }), [authProvider, history, dispatch]);
+    const logoutWithoutProvider = (0, react_1.useCallback)(_ => {
+        navigate({
             pathname: useAuthProvider_1.defaultAuthParams.loginUrl,
+        }, {
             state: {
-                nextPathname: history.location && history.location.pathname,
-            },
+                nextPathname: location.pathname,
+            }
         });
         dispatch((0, clearActions_1.clearState)());
         return Promise.resolve();

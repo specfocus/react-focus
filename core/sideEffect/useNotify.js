@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_redux_1 = require("react-redux");
-var notificationActions_1 = require("../actions/notificationActions");
+const react_1 = require("react");
+const react_redux_1 = require("react-redux");
+const notificationActions_1 = require("../actions/notificationActions");
 /**
  * Hook for Notification Side Effect
  *
@@ -18,16 +18,13 @@ var notificationActions_1 = require("../actions/notificationActions");
  * // show the action as undoable in the notification
  * notify('Post renamed', 'info', {}, true)
  */
-var useNotify = function () {
-    var dispatch = (0, react_redux_1.useDispatch)();
-    return (0, react_1.useCallback)(function (message, type, messageArgs, undoable, autoHideDuration) {
-        if (type === void 0) { type = 'info'; }
-        if (messageArgs === void 0) { messageArgs = {}; }
-        if (undoable === void 0) { undoable = false; }
+const useNotify = () => {
+    const dispatch = (0, react_redux_1.useDispatch)();
+    return (0, react_1.useCallback)((message, type = 'info', messageArgs = {}, undoable = false, autoHideDuration) => {
         dispatch((0, notificationActions_1.showNotification)(message, type, {
-            messageArgs: messageArgs,
-            undoable: undoable,
-            autoHideDuration: autoHideDuration,
+            messageArgs,
+            undoable,
+            autoHideDuration,
         }));
     }, [dispatch]);
 };

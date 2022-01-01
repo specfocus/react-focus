@@ -1,49 +1,19 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompanyEdit = void 0;
-var React = __importStar(require("react"));
-var app_1 = require("../../app");
-var material_1 = require("@mui/material");
-var styles_1 = require("@mui/styles");
-var clsx_1 = __importDefault(require("clsx"));
-var CompanyAside_1 = require("./CompanyAside");
-var LogoField_1 = require("./LogoField");
-var sectors_1 = require("./sectors");
-var sizes_1 = require("./sizes");
-var useStyles = (0, styles_1.makeStyles)({
+const jsx_runtime_1 = require("react/jsx-runtime");
+const app_1 = require("../../app");
+const material_1 = require("@mui/material");
+const styles_1 = require("@mui/styles");
+const clsx_1 = __importDefault(require("clsx"));
+const CompanyAside_1 = require("./CompanyAside");
+const LogoField_1 = require("./LogoField");
+const sectors_1 = require("./sectors");
+const sizes_1 = require("./sizes");
+const useStyles = (0, styles_1.makeStyles)({
     inline: {
         display: 'inline-block',
         marginLeft: '1em',
@@ -52,36 +22,13 @@ var useStyles = (0, styles_1.makeStyles)({
         },
     },
 });
-var CompanyEdit = function (props) {
-    var classes = useStyles();
-    return (React.createElement(app_1.Edit, __assign({}, props, { aside: React.createElement(CompanyAside_1.CompanyAside, { link: "show" }), actions: false }),
-        React.createElement(app_1.SimpleForm, { component: CustomLayout, redirect: "show" },
-            React.createElement(app_1.TextInput, { source: "name", validate: (0, app_1.required)(), fullWidth: true }),
-            React.createElement(app_1.SelectInput, { source: "sector", choices: sectors_1.sectors, formClassName: (0, clsx_1.default)(classes.inline, 'first-child') }),
-            React.createElement(app_1.SelectInput, { source: "size", choices: sizes_1.sizes, formClassName: classes.inline }),
-            React.createElement(CustomDivider, null),
-            React.createElement(app_1.TextInput, { source: "address", fullWidth: true, helperText: false }),
-            React.createElement(app_1.TextInput, { source: "city", formClassName: (0, clsx_1.default)(classes.inline, 'first-child') }),
-            React.createElement(app_1.TextInput, { source: "zipcode", formClassName: classes.inline }),
-            React.createElement(app_1.TextInput, { source: "stateAbbr", formClassName: classes.inline }),
-            React.createElement(CustomDivider, null),
-            React.createElement(app_1.TextInput, { source: "website", fullWidth: true, helperText: false }),
-            React.createElement(app_1.TextInput, { source: "linkedIn", fullWidth: true, helperText: false }),
-            React.createElement(app_1.TextInput, { source: "logo", fullWidth: true }),
-            React.createElement(CustomDivider, null),
-            React.createElement(app_1.TextInput, { source: "phone_number", formClassName: (0, clsx_1.default)(classes.inline, 'first-child'), helperText: false }),
-            React.createElement(app_1.ReferenceInput, { source: "sales_id", reference: "sales", label: "Account manager", formClassName: classes.inline, helperText: false },
-                React.createElement(app_1.SelectInput, { optionText: function (sales) {
-                        return "".concat(sales.first_name, " ").concat(sales.last_name);
-                    } })))));
+const CompanyEdit = (props) => {
+    const classes = useStyles();
+    return ((0, jsx_runtime_1.jsx)(app_1.Edit, Object.assign({}, props, { aside: (0, jsx_runtime_1.jsx)(CompanyAside_1.CompanyAside, { link: "show" }, void 0), actions: false }, { children: (0, jsx_runtime_1.jsxs)(app_1.SimpleForm, Object.assign({ component: CustomLayout, redirect: "show" }, { children: [(0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "name", validate: (0, app_1.required)(), fullWidth: true }, void 0), (0, jsx_runtime_1.jsx)(app_1.SelectInput, { source: "sector", choices: sectors_1.sectors, formClassName: (0, clsx_1.default)(classes.inline, 'first-child') }, void 0), (0, jsx_runtime_1.jsx)(app_1.SelectInput, { source: "size", choices: sizes_1.sizes, formClassName: classes.inline }, void 0), (0, jsx_runtime_1.jsx)(CustomDivider, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "address", fullWidth: true, helperText: false }, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "city", formClassName: (0, clsx_1.default)(classes.inline, 'first-child') }, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "zipcode", formClassName: classes.inline }, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "stateAbbr", formClassName: classes.inline }, void 0), (0, jsx_runtime_1.jsx)(CustomDivider, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "website", fullWidth: true, helperText: false }, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "linkedIn", fullWidth: true, helperText: false }, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "logo", fullWidth: true }, void 0), (0, jsx_runtime_1.jsx)(CustomDivider, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.TextInput, { source: "phone_number", formClassName: (0, clsx_1.default)(classes.inline, 'first-child'), helperText: false }, void 0), (0, jsx_runtime_1.jsx)(app_1.ReferenceInput, Object.assign({ source: "sales_id", reference: "sales", label: "Account manager", formClassName: classes.inline, helperText: false }, { children: (0, jsx_runtime_1.jsx)(app_1.SelectInput, { optionText: (sales) => `${sales.first_name} ${sales.last_name}` }, void 0) }), void 0)] }), void 0) }), void 0));
 };
 exports.CompanyEdit = CompanyEdit;
-var CustomLayout = function (props) {
-    var record = (0, app_1.useRecordContext)(props);
-    return (React.createElement(material_1.CardContent, null,
-        React.createElement(material_1.Box, { display: "flex" },
-            React.createElement(LogoField_1.LogoField, { record: record }),
-            React.createElement(material_1.Box, { ml: 2, flex: "1", maxWidth: 796 }, props.children))));
+const CustomLayout = (props) => {
+    const record = (0, app_1.useRecordContext)(props);
+    return ((0, jsx_runtime_1.jsx)(material_1.CardContent, { children: (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ display: "flex" }, { children: [(0, jsx_runtime_1.jsx)(LogoField_1.LogoField, { record: record }, void 0), (0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ ml: 2, flex: "1", maxWidth: 796 }, { children: props.children }), void 0)] }), void 0) }, void 0));
 };
-var CustomDivider = function () { return (React.createElement(material_1.Box, { mb: 2 },
-    React.createElement(material_1.Divider, null))); };
+const CustomDivider = () => ((0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ mb: 2 }, { children: (0, jsx_runtime_1.jsx)(material_1.Divider, {}, void 0) }), void 0));

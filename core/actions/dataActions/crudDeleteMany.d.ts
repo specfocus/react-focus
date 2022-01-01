@@ -1,5 +1,5 @@
 import { Identifier, Record } from '../../types';
-import { DELETE_MANY } from '../../core';
+import { DELETE_MANY } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, RefreshSideEffect } from '../../sideEffect';
 export declare const crudDeleteMany: (resource: string, ids: Identifier[], basePath: string, refresh?: RefreshSideEffect) => CrudDeleteManyAction;

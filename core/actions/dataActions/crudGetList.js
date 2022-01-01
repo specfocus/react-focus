@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CRUD_GET_LIST_SUCCESS = exports.CRUD_GET_LIST_FAILURE = exports.CRUD_GET_LIST_LOADING = exports.CRUD_GET_LIST = exports.crudGetList = void 0;
-var core_1 = require("../../core");
-var crudGetList = function (resource, pagination, sort, filter) { return ({
+const core_1 = require("../../../core");
+const crudGetList = (resource, pagination, sort, filter) => ({
     type: exports.CRUD_GET_LIST,
-    payload: { pagination: pagination, sort: sort, filter: filter },
+    payload: { pagination, sort, filter },
     meta: {
-        resource: resource,
+        resource,
         fetch: core_1.GET_LIST,
         onFailure: {
             notification: {
@@ -15,7 +15,7 @@ var crudGetList = function (resource, pagination, sort, filter) { return ({
             },
         },
     },
-}); };
+});
 exports.crudGetList = crudGetList;
 exports.CRUD_GET_LIST = 'CRUD_GET_LIST';
 exports.CRUD_GET_LIST_LOADING = 'CRUD_GET_LIST_LOADING';

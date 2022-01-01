@@ -1,20 +1,11 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mergeTranslations = exports.resolveBrowserLocale = void 0;
-var merge_1 = __importDefault(require("lodash/merge"));
-var index_1 = require("./index");
+const merge_1 = __importDefault(require("lodash/merge"));
+const index_1 = require("./index");
 /**
  * Resolve the browser locale according to the value of the global window.navigator
  *
@@ -37,11 +28,10 @@ var index_1 = require("./index");
  *
  * @param {string} defaultLocale Defaults to 'en'
  */
-var resolveBrowserLocale = function (defaultLocale) {
-    if (defaultLocale === void 0) { defaultLocale = index_1.DEFAULT_LOCALE; }
+const resolveBrowserLocale = (defaultLocale = index_1.DEFAULT_LOCALE) => {
     // from http://blog.ksol.fr/user-locale-detection-browser-javascript/
     // Rely on the window.navigator object to determine user locale
-    var _a = window.navigator, language = _a.language, browserLanguage = _a.browserLanguage, userLanguage = _a.userLanguage;
+    const { language, browserLanguage, userLanguage, } = window.navigator;
     return (language || browserLanguage || userLanguage || defaultLocale).split('-')[0];
 };
 exports.resolveBrowserLocale = resolveBrowserLocale;
@@ -64,11 +54,5 @@ exports.resolveBrowserLocale = resolveBrowserLocale;
  *         </Admin>
  *     );
  */
-var mergeTranslations = function () {
-    var translationsModules = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        translationsModules[_i] = arguments[_i];
-    }
-    return merge_1.default.apply(void 0, __spreadArray([{}], translationsModules, false));
-};
+const mergeTranslations = (...translationsModules) => (0, merge_1.default)({}, ...translationsModules);
 exports.mergeTranslations = mergeTranslations;

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useTranslatableContext = void 0;
-var react_1 = require("react");
-var TranslatableContext_1 = require("./TranslatableContext");
+const react_1 = require("react");
+const TranslatableContext_1 = require("./TranslatableContext");
 /**
  * Gives access to the current TranslatableContext.
  *
@@ -32,8 +32,8 @@ var TranslatableContext_1 = require("./TranslatableContext");
  *     );
  * }
  */
-var useTranslatableContext = function () {
-    var context = (0, react_1.useContext)(TranslatableContext_1.TranslatableContext);
+const useTranslatableContext = () => {
+    const context = (0, react_1.useContext)(TranslatableContext_1.TranslatableContext);
     if (!context) {
         throw new Error('useTranslatableContext must be used inside a TranslatableContextProvider');
     }

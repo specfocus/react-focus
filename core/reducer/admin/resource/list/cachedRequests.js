@@ -1,42 +1,29 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var actions_1 = require("../../../../actions");
-var core_1 = require("../../../../core");
-var ids_1 = __importDefault(require("./cachedRequests/ids"));
-var total_1 = __importDefault(require("./cachedRequests/total"));
-var validity_1 = __importDefault(require("./cachedRequests/validity"));
-var initialState = {};
-var initialSubstate = { ids: [], total: null, validity: null };
-var cachedRequestsReducer = function (previousState, action) {
+const actions_1 = require("../../../../actions");
+const core_1 = require("../../../../core");
+const ids_1 = __importDefault(require("./cachedRequests/ids"));
+const total_1 = __importDefault(require("./cachedRequests/total"));
+const validity_1 = __importDefault(require("./cachedRequests/validity"));
+const initialState = {};
+const initialSubstate = { ids: [], total: null, validity: null };
+const cachedRequestsReducer = (previousState = initialState, action) => {
     var _a;
-    var _b;
-    if (previousState === void 0) { previousState = initialState; }
     if (action.type === actions_1.REFRESH_VIEW) {
-        if ((_b = action.payload) === null || _b === void 0 ? void 0 : _b.hard) {
+        if ((_a = action.payload) === null || _a === void 0 ? void 0 : _a.hard) {
             // force refresh
             return initialState;
         }
         else {
             // remove validity only
-            var newState_1 = {};
-            Object.keys(previousState).forEach(function (key) {
-                newState_1[key] = __assign(__assign({}, previousState[key]), { validity: undefined });
+            const newState = {};
+            Object.keys(previousState).forEach(key => {
+                newState[key] = Object.assign(Object.assign({}, previousState[key]), { validity: undefined });
             });
-            return newState_1;
+            return newState;
         }
     }
     if (action.meta && action.meta.optimistic) {
@@ -67,12 +54,12 @@ var cachedRequestsReducer = function (previousState, action) {
         // looks like a GET_MANY, a GET_ONE, or a cached response
         return previousState;
     }
-    var requestKey = JSON.stringify(action.requestPayload);
-    var previousSubState = previousState[requestKey] || initialSubstate;
-    return __assign(__assign({}, previousState), (_a = {}, _a[requestKey] = {
-        ids: (0, ids_1.default)(previousSubState.ids, action),
-        total: (0, total_1.default)(previousSubState.total, action),
-        validity: (0, validity_1.default)(previousSubState.validity, action),
-    }, _a));
+    const requestKey = JSON.stringify(action.requestPayload);
+    const previousSubState = previousState[requestKey] || initialSubstate;
+    return Object.assign(Object.assign({}, previousState), { [requestKey]: {
+            ids: (0, ids_1.default)(previousSubState.ids, action),
+            total: (0, total_1.default)(previousSubState.total, action),
+            validity: (0, validity_1.default)(previousSubState.validity, action),
+        } });
 };
 exports.default = cachedRequestsReducer;

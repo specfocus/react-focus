@@ -14,5 +14,5 @@ import { NotificationType } from '../actions/notificationActions';
  * // show the action as undoable in the notification
  * notify('Post renamed', 'info', {}, true)
  */
-declare const useNotify: () => (message: string, type?: NotificationType, messageArgs?: any, undoable?: boolean, autoHideDuration?: number | undefined) => void;
+declare const useNotify: () => (message: string, type?: NotificationType, messageArgs?: any, undoable?: boolean, autoHideDuration?: number) => void;
 export default useNotify;

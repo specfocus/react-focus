@@ -4,19 +4,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useTimeout = exports.useDeepCompareEffect = exports.usePrevious = exports.useSafeSetState = void 0;
-var react_1 = require("react");
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
+const react_1 = require("react");
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
 // thanks Kent C Dodds for the following helpers
 function useSafeSetState(initialState) {
-    var _a = (0, react_1.useState)(initialState), state = _a[0], setState = _a[1];
-    var mountedRef = (0, react_1.useRef)(false);
-    (0, react_1.useEffect)(function () {
+    const [state, setState] = (0, react_1.useState)(initialState);
+    const mountedRef = (0, react_1.useRef)(false);
+    (0, react_1.useEffect)(() => {
         mountedRef.current = true;
-        return function () {
+        return () => {
             mountedRef.current = false;
         };
     }, []);
-    var safeSetState = (0, react_1.useCallback)(function (args) {
+    const safeSetState = (0, react_1.useCallback)(args => {
         if (mountedRef.current) {
             return setState(args);
         }
@@ -25,32 +25,31 @@ function useSafeSetState(initialState) {
 }
 exports.useSafeSetState = useSafeSetState;
 function usePrevious(value) {
-    var ref = (0, react_1.useRef)();
-    (0, react_1.useEffect)(function () {
+    const ref = (0, react_1.useRef)();
+    (0, react_1.useEffect)(() => {
         ref.current = value;
     });
     return ref.current;
 }
 exports.usePrevious = usePrevious;
 function useDeepCompareEffect(callback, inputs) {
-    var cleanupRef = (0, react_1.useRef)();
-    (0, react_1.useEffect)(function () {
+    const cleanupRef = (0, react_1.useRef)();
+    (0, react_1.useEffect)(() => {
         if (!(0, isEqual_1.default)(previousInputs, inputs)) {
             cleanupRef.current = callback();
         }
         return cleanupRef.current;
     });
-    var previousInputs = usePrevious(inputs);
+    const previousInputs = usePrevious(inputs);
 }
 exports.useDeepCompareEffect = useDeepCompareEffect;
-function useTimeout(ms) {
-    if (ms === void 0) { ms = 0; }
-    var _a = (0, react_1.useState)(false), ready = _a[0], setReady = _a[1];
-    (0, react_1.useEffect)(function () {
-        var timer = setTimeout(function () {
+function useTimeout(ms = 0) {
+    const [ready, setReady] = (0, react_1.useState)(false);
+    (0, react_1.useEffect)(() => {
+        let timer = setTimeout(() => {
             setReady(true);
         }, ms);
-        return function () {
+        return () => {
             clearTimeout(timer);
         };
     }, [ms]);

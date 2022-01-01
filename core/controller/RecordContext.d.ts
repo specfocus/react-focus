@@ -53,7 +53,7 @@ export interface RecordContextOptions<RecordType> {
  *
  * @returns {Record} A record object
  */
-export declare const useRecordContext: <RecordType extends Record | Omit<Record, "id"> = Record>(props?: UseRecordContextParams<RecordType> | undefined) => RecordType;
+export declare const useRecordContext: <RecordType extends Record | Omit<Record, "id"> = Record>(props?: UseRecordContextParams<RecordType>) => RecordType;
 export interface UseRecordContextParams<RecordType extends Record | Omit<Record, 'id'> = Record> {
     record?: RecordType;
     [key: string]: any;

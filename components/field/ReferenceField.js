@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -45,33 +34,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReferenceFieldView = exports.NonEmptyReferenceField = void 0;
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var react_1 = require("react");
-var prop_types_1 = __importDefault(require("prop-types"));
-var classnames_1 = __importDefault(require("classnames"));
-var get_1 = __importDefault(require("lodash/get"));
-var material_1 = require("@mui/material");
-var Error_1 = __importDefault(require("@mui/icons-material/Error"));
-var react_redux_1 = require("react-redux");
-var core_1 = require("../../core");
-var LinearProgress_1 = __importDefault(require("../layout/LinearProgress"));
-var Link_1 = __importDefault(require("../Link"));
-var sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
-var types_1 = require("./types");
-var PREFIX = 'RaReferenceField';
-var classes = {
-    link: "".concat(PREFIX, "-link"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const styles_1 = require("@mui/material/styles");
+const react_1 = require("react");
+const prop_types_1 = __importDefault(require("prop-types"));
+const classnames_1 = __importDefault(require("classnames"));
+const get_1 = __importDefault(require("lodash/get"));
+const material_1 = require("@mui/material");
+const Error_1 = __importDefault(require("@mui/icons-material/Error"));
+const react_redux_1 = require("react-redux");
+const core_1 = require("../../core");
+const LinearProgress_1 = __importDefault(require("../layout/LinearProgress"));
+const Link_1 = __importDefault(require("../Link"));
+const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
+const types_1 = require("./types");
+const PREFIX = 'RaReferenceField';
+const classes = {
+    link: `${PREFIX}-link`,
 };
-var Root = (0, styles_1.styled)('div')(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["& .".concat(classes.link)] = {
-            color: theme.palette.primary.main,
-        },
-        _b);
-});
+const Root = (0, styles_1.styled)('div')(({ theme }) => ({
+    [`& .${classes.link}`]: {
+        color: theme.palette.primary.main,
+    },
+}));
 /**
  * Fetch reference record, and delegate rendering to child component.
  *
@@ -116,14 +102,14 @@ var Root = (0, styles_1.styled)('div')(function (_a) {
  * In previous versions of React-Admin, the prop `linkType` was used. It is now deprecated and replaced with `link`. However
  * backward-compatibility is still kept
  */
-var ReferenceField = function (props) {
-    var source = props.source, emptyText = props.emptyText, rest = __rest(props, ["source", "emptyText"]);
-    var record = (0, core_1.useRecordContext)(props);
-    var isReferenceDeclared = (0, react_redux_1.useSelector)(function (state) { return typeof state.admin.resources[props.reference] !== 'undefined'; });
+const ReferenceField = props => {
+    const { source, emptyText } = props, rest = __rest(props, ["source", "emptyText"]);
+    const record = (0, core_1.useRecordContext)(props);
+    const isReferenceDeclared = (0, react_redux_1.useSelector)(state => typeof state.admin.resources[props.reference] !== 'undefined');
     if (!isReferenceDeclared) {
-        throw new Error("You must declare a <Resource name=\"".concat(props.reference, "\"> in order to use a <ReferenceField reference=\"").concat(props.reference, "\">"));
+        throw new Error(`You must declare a <Resource name="${props.reference}"> in order to use a <ReferenceField reference="${props.reference}">`);
     }
-    return (0, get_1.default)(record, source) == null ? (emptyText ? (React.createElement(material_1.Typography, { component: "span", variant: "body2" }, emptyText)) : null) : (React.createElement(exports.NonEmptyReferenceField, __assign({}, rest, { record: record, source: source })));
+    return (0, get_1.default)(record, source) == null ? (emptyText ? ((0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ component: "span", variant: "body2" }, { children: emptyText }), void 0)) : null) : ((0, jsx_runtime_1.jsx)(exports.NonEmptyReferenceField, Object.assign({}, rest, { record: record, source: source }), void 0));
 };
 ReferenceField.propTypes = {
     addLabel: prop_types_1.default.bool,
@@ -159,44 +145,46 @@ ReferenceField.defaultProps = {
  * This intermediate component is made necessary by the useReference hook,
  * which cannot be called conditionally when get(record, source) is empty.
  */
-var NonEmptyReferenceField = function (_a) {
-    var children = _a.children, record = _a.record, source = _a.source, props = __rest(_a, ["children", "record", "source"]);
+const NonEmptyReferenceField = (_a) => {
+    var { children, record, source } = _a, props = __rest(_a, ["children", "record", "source"]);
     if (React.Children.count(children) !== 1) {
         throw new Error('<ReferenceField> only accepts a single child');
     }
-    var basePath = props.basePath, resource = props.resource, reference = props.reference;
-    var resourceLinkPath = (0, core_1.getResourceLinkPath)(__assign(__assign({}, props), { resource: resource, record: record, source: source, basePath: basePath }));
-    return (React.createElement(core_1.ResourceContextProvider, { value: reference },
-        React.createElement(PureReferenceFieldView, __assign({}, props, (0, core_1.useReference)({
-            reference: reference,
+    const { basePath, resource, reference } = props;
+    const resourceLinkPath = (0, core_1.getResourceLinkPath)(Object.assign(Object.assign({}, props), { resource,
+        record,
+        source,
+        basePath }));
+    return ((0, jsx_runtime_1.jsx)(core_1.ResourceContextProvider, Object.assign({ value: reference }, { children: (0, jsx_runtime_1.jsx)(PureReferenceFieldView, Object.assign({}, props, (0, core_1.useReference)({
+            reference,
             id: (0, get_1.default)(record, source),
-        }), { resourceLinkPath: resourceLinkPath }), children)));
+        }), { resourceLinkPath: resourceLinkPath }, { children: children }), void 0) }), void 0));
 };
 exports.NonEmptyReferenceField = NonEmptyReferenceField;
 // useful to prevent click bubbling in a datagrid with rowClick
-var stopPropagation = function (e) { return e.stopPropagation(); };
-var ReferenceFieldView = function (props) {
-    var basePath = props.basePath, children = props.children, className = props.className, error = props.error, loaded = props.loaded, loading = props.loading, record = props.record, reference = props.reference, referenceRecord = props.referenceRecord, refetch = props.refetch, resource = props.resource, resourceLinkPath = props.resourceLinkPath, source = props.source, _a = props.translateChoice, translateChoice = _a === void 0 ? false : _a, rest = __rest(props, ["basePath", "children", "className", "error", "loaded", "loading", "record", "reference", "referenceRecord", "refetch", "resource", "resourceLinkPath", "source", "translateChoice"]);
+const stopPropagation = e => e.stopPropagation();
+const ReferenceFieldView = props => {
+    const { basePath, children, className, error, loaded, loading, record, reference, referenceRecord, refetch, resource, resourceLinkPath, source, translateChoice = false } = props, rest = __rest(props, ["basePath", "children", "className", "error", "loaded", "loading", "record", "reference", "referenceRecord", "refetch", "resource", "resourceLinkPath", "source", "translateChoice"]);
     if (error) {
         return (
         /* eslint-disable jsx-a11y/role-supports-aria-props */
-        React.createElement(Error_1.default, { "aria-errormessage": error.message ? error.message : error, role: "presentation", color: "error", fontSize: "small" })
+        (0, jsx_runtime_1.jsx)(Error_1.default, { "aria-errormessage": error.message ? error.message : error, role: "presentation", color: "error", fontSize: "small" }, void 0)
         /* eslint-enable */
         );
     }
     if (!loaded) {
-        return React.createElement(LinearProgress_1.default, null);
+        return (0, jsx_runtime_1.jsx)(LinearProgress_1.default, {}, void 0);
     }
     if (!referenceRecord) {
         return null;
     }
     if (resourceLinkPath) {
-        return (React.createElement(Root, null,
-            React.createElement(core_1.RecordContextProvider, { value: referenceRecord },
-                React.createElement(Link_1.default, { to: resourceLinkPath, className: className, onClick: stopPropagation }, (0, react_1.cloneElement)(react_1.Children.only(children), __assign({ className: (0, classnames_1.default)(children.props.className, classes.link // force color override for Typography components
-                    ), record: referenceRecord, refetch: refetch, resource: reference, basePath: basePath, translateChoice: translateChoice }, (0, sanitizeFieldRestProps_1.default)(rest)))))));
+        return ((0, jsx_runtime_1.jsx)(Root, { children: (0, jsx_runtime_1.jsx)(core_1.RecordContextProvider, Object.assign({ value: referenceRecord }, { children: (0, jsx_runtime_1.jsx)(Link_1.default, Object.assign({ to: resourceLinkPath, className: className, onClick: stopPropagation }, { children: (0, react_1.cloneElement)(react_1.Children.only(children), Object.assign({ className: (0, classnames_1.default)(children.props.className, classes.link // force color override for Typography components
+                        ), record: referenceRecord, refetch, resource: reference, basePath,
+                        translateChoice }, (0, sanitizeFieldRestProps_1.default)(rest))) }), void 0) }), void 0) }, void 0));
     }
-    return (React.createElement(core_1.RecordContextProvider, { value: referenceRecord }, (0, react_1.cloneElement)(react_1.Children.only(children), __assign({ record: referenceRecord, resource: reference, basePath: basePath, translateChoice: translateChoice }, (0, sanitizeFieldRestProps_1.default)(rest)))));
+    return ((0, jsx_runtime_1.jsx)(core_1.RecordContextProvider, Object.assign({ value: referenceRecord }, { children: (0, react_1.cloneElement)(react_1.Children.only(children), Object.assign({ record: referenceRecord, resource: reference, basePath,
+            translateChoice }, (0, sanitizeFieldRestProps_1.default)(rest))) }), void 0));
 };
 exports.ReferenceFieldView = ReferenceFieldView;
 exports.ReferenceFieldView.propTypes = {
@@ -215,5 +203,5 @@ exports.ReferenceFieldView.propTypes = {
     source: prop_types_1.default.string,
     translateChoice: prop_types_1.default.oneOfType([prop_types_1.default.func, prop_types_1.default.bool]),
 };
-var PureReferenceFieldView = (0, react_1.memo)(exports.ReferenceFieldView);
+const PureReferenceFieldView = (0, react_1.memo)(exports.ReferenceFieldView);
 exports.default = ReferenceField;

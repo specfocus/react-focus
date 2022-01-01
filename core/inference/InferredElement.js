@@ -1,51 +1,36 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var InferredElement = /** @class */ (function () {
-    function InferredElement(type, props, children) {
+const react_1 = require("react");
+class InferredElement {
+    constructor(type, props, children) {
         this.type = type;
         this.props = props;
         this.children = children;
     }
-    InferredElement.prototype.getElement = function (props) {
-        if (props === void 0) { props = {}; }
+    getElement(props = {}) {
         if (!this.isDefined()) {
             return;
         }
         return this.children
-            ? (0, react_1.createElement)(this.type.component, __assign(__assign({}, this.props), props), this.children.length > 0
-                ? this.children.map(function (child, index) {
-                    return child.getElement({ key: index });
-                })
+            ? (0, react_1.createElement)(this.type.component, Object.assign(Object.assign({}, this.props), props), this.children.length > 0
+                ? this.children.map((child, index) => child.getElement({ key: index }))
                 : this.children.getElement())
-            : (0, react_1.createElement)(this.type.component, __assign(__assign({}, this.props), props));
-    };
-    InferredElement.prototype.getProps = function () {
+            : (0, react_1.createElement)(this.type.component, Object.assign(Object.assign({}, this.props), props));
+    }
+    getProps() {
         return this.props;
-    };
-    InferredElement.prototype.isDefined = function () {
+    }
+    isDefined() {
         return !!this.type;
-    };
-    InferredElement.prototype.getRepresentation = function () {
+    }
+    getRepresentation() {
         if (!this.isDefined()) {
             return;
         }
         if (this.type.representation) {
             return this.type.representation(this.props, this.children);
         }
-        return "<".concat(this.type.component.displayName || this.type.component.name, " source=\"").concat(this.props.source, "\" />");
-    };
-    return InferredElement;
-}());
+        return `<${this.type.component.displayName || this.type.component.name} source="${this.props.source}" />`;
+    }
+}
 exports.default = InferredElement;

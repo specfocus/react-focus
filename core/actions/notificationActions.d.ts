@@ -20,7 +20,7 @@ export interface ShowNotificationAction {
  * @see {@link https://material-ui.com/api/snackbar/|Material ui snackbar component}
  * @see {@link https://material.io/guidelines/components/snackbars-toasts.html|Material ui reference document on snackbar}
  */
-export declare const showNotification: (message: string, type?: NotificationType, notificationOptions?: NotificationOptions | undefined) => ShowNotificationAction;
+export declare const showNotification: (message: string, type?: NotificationType, notificationOptions?: NotificationOptions) => ShowNotificationAction;
 export declare const HIDE_NOTIFICATION = "HIDE_NOTIFICATION";
 export interface HideNotificationAction {
     readonly type: typeof HIDE_NOTIFICATION;

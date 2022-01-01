@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var useCheckAuth_1 = __importDefault(require("./useCheckAuth"));
-var hooks_1 = require("../util/hooks");
-var emptyParams = {};
+const react_1 = require("react");
+const useCheckAuth_1 = __importDefault(require("./useCheckAuth"));
+const hooks_1 = require("../util/hooks");
+const emptyParams = {};
 /**
  * Hook for getting the authentication status
  *
@@ -43,22 +43,17 @@ var emptyParams = {};
  *     return <AnonymousContent />;
  * };
  */
-var useAuthState = function (params) {
-    if (params === void 0) { params = emptyParams; }
-    var _a = (0, hooks_1.useSafeSetState)({
+const useAuthState = (params = emptyParams) => {
+    const [state, setState] = (0, hooks_1.useSafeSetState)({
         loading: true,
         loaded: false,
         authenticated: true, // optimistic
-    }), state = _a[0], setState = _a[1];
-    var checkAuth = (0, useCheckAuth_1.default)();
-    (0, react_1.useEffect)(function () {
+    });
+    const checkAuth = (0, useCheckAuth_1.default)();
+    (0, react_1.useEffect)(() => {
         checkAuth(params, false)
-            .then(function () {
-            return setState({ loading: false, loaded: true, authenticated: true });
-        })
-            .catch(function () {
-            return setState({ loading: false, loaded: true, authenticated: false });
-        });
+            .then(() => setState({ loading: false, loaded: true, authenticated: true }))
+            .catch(() => setState({ loading: false, loaded: true, authenticated: false }));
     }, [checkAuth, params, setState]);
     return state;
 };

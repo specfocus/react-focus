@@ -1,78 +1,39 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var styles_1 = require("@mui/material/styles");
-var app_1 = require("../../app");
-var inflection_1 = __importDefault(require("inflection"));
-var material_1 = require("@mui/material");
-var LinkToRelatedProducts_1 = __importDefault(require("./LinkToRelatedProducts"));
-var PREFIX = 'CategoryList';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
-    media: "".concat(PREFIX, "-media"),
-    title: "".concat(PREFIX, "-title"),
-    actionSpacer: "".concat(PREFIX, "-actionSpacer"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/material/styles");
+const app_1 = require("../../app");
+const inflection_1 = __importDefault(require("inflection"));
+const material_1 = require("@mui/material");
+const LinkToRelatedProducts_1 = __importDefault(require("./LinkToRelatedProducts"));
+const PREFIX = 'CategoryList';
+const classes = {
+    root: `${PREFIX}-root`,
+    media: `${PREFIX}-media`,
+    title: `${PREFIX}-title`,
+    actionSpacer: `${PREFIX}-actionSpacer`,
 };
-var StyledGrid = (0, styles_1.styled)(material_1.Grid)((_a = {},
-    _a["&.".concat(classes.root)] = {
+const StyledGrid = (0, styles_1.styled)(material_1.Grid)({
+    [`&.${classes.root}`]: {
         marginTop: '1em',
     },
-    _a["& .".concat(classes.media)] = {
+    [`& .${classes.media}`]: {
         height: 140,
     },
-    _a["& .".concat(classes.title)] = {
+    [`& .${classes.title}`]: {
         paddingBottom: '0.5em',
     },
-    _a["& .".concat(classes.actionSpacer)] = {
+    [`& .${classes.actionSpacer}`]: {
         display: 'flex',
         justifyContent: 'space-around',
     },
-    _a));
-var CategoryGrid = function (props) {
-    var _a = (0, app_1.useListContext)(), data = _a.data, ids = _a.ids;
-    return ids ? (React.createElement(StyledGrid, { container: true, spacing: 2, className: classes.root }, ids.map(function (id) { return (React.createElement(material_1.Grid, { key: id, xs: 12, sm: 6, md: 4, lg: 3, xl: 2, item: true },
-        React.createElement(material_1.Card, null,
-            React.createElement(material_1.CardMedia, { image: "https://marmelab.com/posters/".concat(data[id].name, "-1.jpeg"), className: classes.media }),
-            React.createElement(material_1.CardContent, { className: classes.title },
-                React.createElement(material_1.Typography, { variant: "h5", component: "h2", align: "center" }, inflection_1.default.humanize(data[id].name))),
-            React.createElement(material_1.CardActions, { classes: { spacing: classes.actionSpacer } },
-                React.createElement(LinkToRelatedProducts_1.default, { record: data[id] }),
-                React.createElement(app_1.EditButton, { basePath: "/categories", record: data[id] }))))); }))) : null;
+});
+const CategoryGrid = (props) => {
+    const { data, ids } = (0, app_1.useListContext)();
+    return ids ? ((0, jsx_runtime_1.jsx)(StyledGrid, Object.assign({ container: true, spacing: 2, className: classes.root }, { children: ids.map(id => ((0, jsx_runtime_1.jsx)(material_1.Grid, Object.assign({ xs: 12, sm: 6, md: 4, lg: 3, xl: 2, item: true }, { children: (0, jsx_runtime_1.jsxs)(material_1.Card, { children: [(0, jsx_runtime_1.jsx)(material_1.CardMedia, { image: `https://marmelab.com/posters/${data[id].name}-1.jpeg`, className: classes.media }, void 0), (0, jsx_runtime_1.jsx)(material_1.CardContent, Object.assign({ className: classes.title }, { children: (0, jsx_runtime_1.jsx)(material_1.Typography, Object.assign({ variant: "h5", component: "h2", align: "center" }, { children: inflection_1.default.humanize(data[id].name) }), void 0) }), void 0), (0, jsx_runtime_1.jsxs)(material_1.CardActions, Object.assign({ classes: { spacing: classes.actionSpacer } }, { children: [(0, jsx_runtime_1.jsx)(LinkToRelatedProducts_1.default, { record: data[id] }, void 0), (0, jsx_runtime_1.jsx)(app_1.EditButton, { basePath: "/categories", record: data[id] }, void 0)] }), void 0)] }, void 0) }), id))) }), void 0)) : null;
 };
-var CategoryList = function (props) { return (React.createElement(app_1.List, __assign({}, props, { sort: { field: 'name', order: 'ASC' }, perPage: 20, pagination: false, component: "div", actions: false }),
-    React.createElement(CategoryGrid, null))); };
+const CategoryList = (props) => ((0, jsx_runtime_1.jsx)(app_1.List, Object.assign({}, props, { sort: { field: 'name', order: 'ASC' }, perPage: 20, pagination: false, component: "div", actions: false }, { children: (0, jsx_runtime_1.jsx)(CategoryGrid, {}, void 0) }), void 0));
 exports.default = CategoryList;

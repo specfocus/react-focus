@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResourceContext = void 0;
-var react_1 = require("react");
+const react_1 = require("react");
 /**
  * Context to store the current resource information.
  *

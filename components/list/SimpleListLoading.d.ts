@@ -11,7 +11,7 @@ interface Props {
     nbFakeLines?: number;
 }
 declare const SimpleListLoading: {
-    (props: Props & ListProps): JSX.Element | null;
+    (props: Props & ListProps): JSX.Element;
     propTypes: {
         className: PropTypes.Requireable<string>;
         hasLeftAvatarOrIcon: PropTypes.Requireable<boolean>;

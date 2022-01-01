@@ -1,8 +1,7 @@
-import { ReactNode, ReactElement, ComponentType } from 'react';
-import { RouteProps, RouteComponentProps, match as Match } from 'react-router-dom';
 import { ThemeOptions } from '@mui/material';
-import { StaticContext } from 'react-router';
-import { Location, History, LocationState } from 'history';
+import { History } from 'history';
+import { ComponentType, ReactElement, ReactNode } from 'react';
+import { Location, PathMatch, RouteProps } from 'react-router';
 import { AuthActionType } from './auth/types';
 /**
  * data types
@@ -242,7 +241,7 @@ export declare type InitialState = object | (() => object);
 export declare type Dispatch<T> = T extends (...args: infer A) => any ? (...args: A) => void : never;
 export declare type ResourceElement = ReactElement<ResourceProps>;
 export declare type RenderResourcesFunction = (permissions: any) => ResourceElement[] | Promise<ResourceElement[]>;
-export declare type AdminChildren = RenderResourcesFunction | ReactNode;
+export declare type ResourceChildren = RenderResourcesFunction | ReactNode;
 export interface CustomRoute extends RouteProps {
     noLayout?: boolean;
     [key: string]: any;
@@ -252,7 +251,7 @@ export declare type TitleComponent = string | ReactElement<any>;
 export declare type CatchAllComponent = ComponentType<{
     title?: TitleComponent;
 }>;
-interface LoginComponentProps extends RouteComponentProps {
+interface LoginComponentProps extends RouteProps {
     title?: TitleComponent;
     theme?: object;
 }
@@ -287,18 +286,18 @@ export interface ResourceComponentInjectedProps {
 }
 export interface ResourceComponentProps<Params extends {
     [K in keyof Params]?: string;
-} = {}, C extends StaticContext = StaticContext, S = LocationState> extends Partial<RouteComponentProps<Params, C, S>>, ResourceComponentInjectedProps {
+} = {}, C = any, // extends StaticContext = StaticContext,
+S = any> extends Partial<RouteProps>, ResourceComponentInjectedProps {
 }
 export declare type ReactAdminComponentProps = ResourceComponentProps;
 export interface ResourceComponentPropsWithId<Params extends {
     id?: string;
-} = {}, C extends StaticContext = StaticContext, S = LocationState> extends Partial<RouteComponentProps<Params, C, S>>, ResourceComponentInjectedProps {
+} = {}, C = any, // StaticContext,
+S = any> extends Partial<RouteProps>, ResourceComponentInjectedProps {
     id?: string;
 }
 export declare type ReactAdminComponentPropsWithId = ResourceComponentPropsWithId;
-export declare type ResourceMatch = Match<{
-    id?: string;
-}>;
+export declare type ResourceMatch = PathMatch<'id'>;
 export interface ResourceProps {
     intent?: 'route' | 'registration';
     match?: ResourceMatch;
@@ -314,7 +313,7 @@ export interface AppProps {
     appLayout?: LayoutComponent;
     authProvider?: AuthProvider | LegacyAuthProvider;
     catchAll?: CatchAllComponent;
-    children?: AdminChildren;
+    children?: ResourceChildren;
     customReducers?: object;
     customRoutes?: CustomRoutes;
     customSagas?: any[];

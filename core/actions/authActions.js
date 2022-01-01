@@ -1,37 +1,23 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userLogout = exports.USER_LOGOUT = exports.userCheck = exports.USER_CHECK_SUCCESS = exports.USER_CHECK = exports.userLogin = exports.USER_LOGIN_SUCCESS = exports.USER_LOGIN_FAILURE = exports.USER_LOGIN_LOADING = exports.USER_LOGIN = void 0;
 exports.USER_LOGIN = 'USER_LOGIN';
 exports.USER_LOGIN_LOADING = 'USER_LOGIN_LOADING';
 exports.USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE';
 exports.USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
-var userLogin = function (payload, pathName) { return ({
+const userLogin = (payload, pathName) => ({
     type: exports.USER_LOGIN,
-    payload: payload,
-    meta: { auth: true, pathName: pathName },
-}); };
+    payload,
+    meta: { auth: true, pathName },
+});
 exports.userLogin = userLogin;
 exports.USER_CHECK = 'USER_CHECK';
 exports.USER_CHECK_SUCCESS = 'USER_CHECK_SUCCESS';
-var userCheck = function (payload, pathName, routeParams) {
-    if (routeParams === void 0) { routeParams = {}; }
-    return ({
-        type: exports.USER_CHECK,
-        payload: __assign(__assign({}, payload), { routeParams: routeParams }),
-        meta: { auth: true, pathName: pathName },
-    });
-};
+const userCheck = (payload, pathName, routeParams = {}) => ({
+    type: exports.USER_CHECK,
+    payload: Object.assign(Object.assign({}, payload), { routeParams }),
+    meta: { auth: true, pathName },
+});
 exports.userCheck = userCheck;
 exports.USER_LOGOUT = 'USER_LOGOUT';
 /**
@@ -41,9 +27,9 @@ exports.USER_LOGOUT = 'USER_LOGOUT';
  * @param redirectTo Path to direct to after logout
  * @return {{type: string, payload: {redirectTo: string}, meta: {auth: boolean}}}
  */
-var userLogout = function (redirectTo) { return ({
+const userLogout = (redirectTo) => ({
     type: exports.USER_LOGOUT,
-    payload: { redirectTo: redirectTo },
+    payload: { redirectTo },
     meta: { auth: true },
-}); };
+});
 exports.userLogout = userLogout;

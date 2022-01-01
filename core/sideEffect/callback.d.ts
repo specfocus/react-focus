@@ -5,4 +5,4 @@ export declare type CallbackSideEffect = (args: {
         message: string;
     };
 }) => any;
-export default function (): Generator<any, void, unknown>;
+export default function (): Generator<import("redux-saga/effects").ForkEffect<never>, void, unknown>;

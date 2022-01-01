@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -44,17 +33,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var TableCell_1 = __importDefault(require("@mui/material/TableCell"));
-var classnames_1 = __importDefault(require("classnames"));
-var DatagridCell = React.forwardRef(function (_a, ref) {
-    var className = _a.className, field = _a.field, record = _a.record, basePath = _a.basePath, resource = _a.resource, rest = __rest(_a, ["className", "field", "record", "basePath", "resource"]);
-    return (React.createElement(TableCell_1.default, __assign({ className: (0, classnames_1.default)(className, field.props.cellClassName), align: field.props.textAlign, ref: ref }, rest), React.cloneElement(field, {
-        record: record,
-        basePath: field.props.basePath || basePath,
-        resource: resource,
-    })));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const React = __importStar(require("react"));
+const prop_types_1 = __importDefault(require("prop-types"));
+const TableCell_1 = __importDefault(require("@mui/material/TableCell"));
+const classnames_1 = __importDefault(require("classnames"));
+const DatagridCell = React.forwardRef((_a, ref) => {
+    var { className, field, record, basePath, resource } = _a, rest = __rest(_a, ["className", "field", "record", "basePath", "resource"]);
+    return ((0, jsx_runtime_1.jsx)(TableCell_1.default, Object.assign({ className: (0, classnames_1.default)(className, field.props.cellClassName), align: field.props.textAlign, ref: ref }, rest, { children: React.cloneElement(field, {
+            record,
+            basePath: field.props.basePath || basePath,
+            resource,
+        }) }), void 0));
 });
 DatagridCell.propTypes = {
     className: prop_types_1.default.string,

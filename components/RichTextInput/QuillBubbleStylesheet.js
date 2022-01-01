@@ -1,4 +1,5 @@
 "use strict";
+// import { StyleRules } from '@mui/material/styles';
 Object.defineProperty(exports, "__esModule", { value: true });
 // converted from vendor (node_modules/quill/dist/quill.bubble.css) using the jss cli
 exports.default = {
@@ -807,4 +808,4 @@ exports.default = {
             visibility: 'visible',
         },
     },
-};
+}; // as StyleRules;

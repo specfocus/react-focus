@@ -1,5 +1,5 @@
 import { Record, PaginationPayload, SortPayload } from '../../types';
-import { GET_LIST } from '../../core';
+import { GET_LIST } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect } from '../../sideEffect';
 export declare const crudGetMatching: (reference: string, relatedTo: string, pagination: PaginationPayload, sort: SortPayload, filter: object) => CrudGetMatchingAction;

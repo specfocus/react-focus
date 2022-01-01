@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,12 +15,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextWide = exports.TextLarge = exports.TextMedium = exports.TextSmall = exports.DateMedium = exports.DateSmall = exports.DateText = exports.Text = exports.InputLabelProps = exports.InputProps = void 0;
-var styles_1 = require("@mui/styles");
-var Grid_1 = __importDefault(require("@mui/material/Grid"));
-var TranslatedTextField_1 = __importDefault(require("../../../components/TranslatedTextField"));
-var Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
-var date_fns_1 = require("date-fns");
-var useDatagridStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const jsx_runtime_1 = require("react/jsx-runtime");
+const styles_1 = require("@mui/styles");
+const Grid_1 = __importDefault(require("@mui/material/Grid"));
+const TranslatedTextField_1 = __importDefault(require("../../../components/TranslatedTextField"));
+const Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
+const date_fns_1 = require("date-fns");
+const useDatagridStyles = (0, styles_1.makeStyles)((theme) => ({
     table: {
         tableLayout: 'auto',
         backgroundColor: theme.palette.mode !== 'dark' ? '#DDD' : '#555'
@@ -40,7 +30,7 @@ var useDatagridStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         position: 'sticky',
         top: 0,
         backgroundColor: theme.palette.background.paper,
-        borderBottom: "1px solid ".concat(theme.palette.divider),
+        borderBottom: `1px solid ${theme.palette.divider}`,
         height: theme.spacing(6),
         zIndex: 2,
     },
@@ -90,36 +80,32 @@ var useDatagridStyles = (0, styles_1.makeStyles)(function (theme) { return ({
     expanded: {
         transform: 'rotate(0deg)',
     }
-}); }, { name: 'Datagrid' });
+}), { name: 'Datagrid' });
 exports.InputProps = { style: { fontSize: '1.0em' } };
 exports.InputLabelProps = { style: { fontSize: '1.2em' } };
-var Text = function (_a) {
-    var xs = _a.xs, sm = _a.sm, md = _a.md, lg = _a.lg, xl = _a.xl, tooltip = _a.tooltip, value = _a.value, props = __rest(_a, ["xs", "sm", "md", "lg", "xl", "tooltip", "value"]);
-    return !tooltip ? (React.createElement(Grid_1.default, { item: true, xs: xs, sm: sm, md: md, lg: lg, xl: xl },
-        React.createElement(TranslatedTextField_1.default, __assign({ fullWidth: true, value: value || typeof value === 'number' ? String(value) : '', InputProps: __assign(__assign({}, exports.InputProps), { readOnly: true, disableUnderline: true }), InputLabelProps: __assign(__assign({}, exports.InputLabelProps), { shrink: true }) }, props, { variant: "standard" })))) : (React.createElement(Grid_1.default, { item: true, xs: xs, sm: sm, md: md, lg: lg, xl: xl },
-        React.createElement(Tooltip_1.default, { title: tooltip },
-            React.createElement("span", null,
-                React.createElement(TranslatedTextField_1.default, __assign({ fullWidth: true, value: value || typeof value === 'number' ? String(value) : '', InputProps: __assign(__assign({}, exports.InputProps), { readOnly: true, disableUnderline: true }), InputLabelProps: __assign(__assign({}, exports.InputLabelProps), { shrink: true }) }, props, { variant: "standard" }))))));
+const Text = (_a) => {
+    var { xs, sm, md, lg, xl, tooltip, value } = _a, props = __rest(_a, ["xs", "sm", "md", "lg", "xl", "tooltip", "value"]);
+    return !tooltip ? ((0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ item: true, xs: xs, sm: sm, md: md, lg: lg, xl: xl }, { children: (0, jsx_runtime_1.jsx)(TranslatedTextField_1.default, Object.assign({ fullWidth: true, value: value || typeof value === 'number' ? String(value) : '', InputProps: Object.assign(Object.assign({}, exports.InputProps), { readOnly: true, disableUnderline: true }), InputLabelProps: Object.assign(Object.assign({}, exports.InputLabelProps), { shrink: true }) }, props, { variant: "standard" }), void 0) }), void 0)) : ((0, jsx_runtime_1.jsx)(Grid_1.default, Object.assign({ item: true, xs: xs, sm: sm, md: md, lg: lg, xl: xl }, { children: (0, jsx_runtime_1.jsx)(Tooltip_1.default, Object.assign({ title: tooltip }, { children: (0, jsx_runtime_1.jsx)("span", { children: (0, jsx_runtime_1.jsx)(TranslatedTextField_1.default, Object.assign({ fullWidth: true, value: value || typeof value === 'number' ? String(value) : '', InputProps: Object.assign(Object.assign({}, exports.InputProps), { readOnly: true, disableUnderline: true }), InputLabelProps: Object.assign(Object.assign({}, exports.InputLabelProps), { shrink: true }) }, props, { variant: "standard" }), void 0) }, void 0) }), void 0) }), void 0));
 };
 exports.Text = Text;
-var DateText = function (_a) {
-    var value = _a.value, props = __rest(_a, ["value"]);
-    var date = new Date(String(value));
-    var now = new Date();
-    var ok = date.toString() !== 'Invalid Date';
-    return (React.createElement(exports.Text, __assign({}, props, { value: value, tooltip: ok ? "".concat((0, date_fns_1.format)(date, 'EEEE, MMMM do, yyyy'), " (").concat((0, date_fns_1.formatDistance)(date, now), ")") : '' })));
+const DateText = (_a) => {
+    var { value } = _a, props = __rest(_a, ["value"]);
+    const date = new Date(String(value));
+    const now = new Date();
+    const ok = date.toString() !== 'Invalid Date';
+    return ((0, jsx_runtime_1.jsx)(exports.Text, Object.assign({}, props, { value: value, tooltip: ok ? `${(0, date_fns_1.format)(date, 'EEEE, MMMM do, yyyy')} (${(0, date_fns_1.formatDistance)(date, now)})` : '' }), void 0));
 };
 exports.DateText = DateText;
-var DateSmall = function (props) { return (React.createElement(exports.DateText, __assign({ xs: 12, lg: 4 }, props))); };
+const DateSmall = (props) => ((0, jsx_runtime_1.jsx)(exports.DateText, Object.assign({ xs: 12, lg: 4 }, props), void 0));
 exports.DateSmall = DateSmall;
-var DateMedium = function (props) { return (React.createElement(exports.DateText, __assign({ xs: 12, lg: 6 }, props))); };
+const DateMedium = (props) => ((0, jsx_runtime_1.jsx)(exports.DateText, Object.assign({ xs: 12, lg: 6 }, props), void 0));
 exports.DateMedium = DateMedium;
-var TextSmall = function (props) { return (React.createElement(exports.Text, __assign({ xs: 12, lg: 4 }, props))); };
+const TextSmall = (props) => ((0, jsx_runtime_1.jsx)(exports.Text, Object.assign({ xs: 12, lg: 4 }, props), void 0));
 exports.TextSmall = TextSmall;
-var TextMedium = function (props) { return (React.createElement(exports.Text, __assign({ xs: 12, lg: 6 }, props))); };
+const TextMedium = (props) => ((0, jsx_runtime_1.jsx)(exports.Text, Object.assign({ xs: 12, lg: 6 }, props), void 0));
 exports.TextMedium = TextMedium;
-var TextLarge = function (props) { return (React.createElement(exports.Text, __assign({ xs: 12, lg: 8 }, props))); };
+const TextLarge = (props) => ((0, jsx_runtime_1.jsx)(exports.Text, Object.assign({ xs: 12, lg: 8 }, props), void 0));
 exports.TextLarge = TextLarge;
-var TextWide = function (props) { return (React.createElement(exports.Text, __assign({ xs: 12 }, props))); };
+const TextWide = (props) => ((0, jsx_runtime_1.jsx)(exports.Text, Object.assign({ xs: 12 }, props), void 0));
 exports.TextWide = TextWide;
 exports.default = useDatagridStyles;

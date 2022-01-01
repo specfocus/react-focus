@@ -1,71 +1,67 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StyledTable = exports.DatagridClasses = void 0;
-var material_1 = require("@mui/material");
-var PREFIX = 'RaDatagrid';
+const material_1 = require("@mui/material");
+const PREFIX = 'RaDatagrid';
 exports.DatagridClasses = {
-    table: "".concat(PREFIX, "-table"),
-    thead: "".concat(PREFIX, "-thead"),
-    tbody: "".concat(PREFIX, "-tbody"),
-    headerRow: "".concat(PREFIX, "-headerRow"),
-    headerCell: "".concat(PREFIX, "-headerCell"),
-    checkbox: "".concat(PREFIX, "-checkbox"),
-    row: "".concat(PREFIX, "-row"),
-    clickableRow: "".concat(PREFIX, "-clickableRow"),
-    rowEven: "".concat(PREFIX, "-rowEven"),
-    rowOdd: "".concat(PREFIX, "-rowOdd"),
-    rowCell: "".concat(PREFIX, "-rowCell"),
-    expandHeader: "".concat(PREFIX, "-expandHeader"),
-    expandIconCell: "".concat(PREFIX, "-expandIconCell"),
-    expandIcon: "".concat(PREFIX, "-expandIcon"),
-    expanded: "".concat(PREFIX, "-expanded"),
+    table: `${PREFIX}-table`,
+    thead: `${PREFIX}-thead`,
+    tbody: `${PREFIX}-tbody`,
+    headerRow: `${PREFIX}-headerRow`,
+    headerCell: `${PREFIX}-headerCell`,
+    checkbox: `${PREFIX}-checkbox`,
+    row: `${PREFIX}-row`,
+    clickableRow: `${PREFIX}-clickableRow`,
+    rowEven: `${PREFIX}-rowEven`,
+    rowOdd: `${PREFIX}-rowOdd`,
+    rowCell: `${PREFIX}-rowCell`,
+    expandHeader: `${PREFIX}-expandHeader`,
+    expandIconCell: `${PREFIX}-expandIconCell`,
+    expandIcon: `${PREFIX}-expandIcon`,
+    expanded: `${PREFIX}-expanded`,
 };
-exports.StyledTable = (0, material_1.styled)(material_1.Table)(function (_a) {
-    var _b;
-    var theme = _a.theme;
-    return (_b = {},
-        _b["&.".concat(exports.DatagridClasses.table)] = {
-            tableLayout: 'auto',
+exports.StyledTable = (0, material_1.styled)(material_1.Table)(({ theme }) => ({
+    [`&.${exports.DatagridClasses.table}`]: {
+        tableLayout: 'auto',
+    },
+    [`& .${exports.DatagridClasses.thead}`]: {},
+    [`& .${exports.DatagridClasses.tbody}`]: {},
+    [`& .${exports.DatagridClasses.headerRow}`]: {},
+    [`& .${exports.DatagridClasses.headerCell}`]: {
+        position: 'sticky',
+        top: 0,
+        zIndex: 2,
+        backgroundColor: theme.palette.background.paper,
+        '&:first-of-type': {
+            borderTopLeftRadius: theme.shape.borderRadius,
         },
-        _b["& .".concat(exports.DatagridClasses.thead)] = {},
-        _b["& .".concat(exports.DatagridClasses.tbody)] = {},
-        _b["& .".concat(exports.DatagridClasses.headerRow)] = {},
-        _b["& .".concat(exports.DatagridClasses.headerCell)] = {
-            position: 'sticky',
-            top: 0,
-            zIndex: 2,
-            backgroundColor: theme.palette.background.paper,
-            '&:first-of-type': {
-                borderTopLeftRadius: theme.shape.borderRadius,
-            },
-            '&:last-child': {
-                borderTopRightRadius: theme.shape.borderRadius,
-            },
+        '&:last-child': {
+            borderTopRightRadius: theme.shape.borderRadius,
         },
-        _b["& .".concat(exports.DatagridClasses.checkbox)] = {},
-        _b["& .".concat(exports.DatagridClasses.row)] = {},
-        _b["& .".concat(exports.DatagridClasses.clickableRow)] = {
-            cursor: 'pointer',
-        },
-        _b["& .".concat(exports.DatagridClasses.rowEven)] = {},
-        _b["& .".concat(exports.DatagridClasses.rowOdd)] = {},
-        _b["& .".concat(exports.DatagridClasses.rowCell)] = {},
-        _b["& .".concat(exports.DatagridClasses.expandHeader)] = {
-            padding: 0,
-            width: theme.spacing(6),
-        },
-        _b["& .".concat(exports.DatagridClasses.expandIconCell)] = {
-            width: theme.spacing(6),
-        },
-        _b["& .".concat(exports.DatagridClasses.expandIcon)] = {
-            padding: theme.spacing(1),
-            transform: 'rotate(-90deg)',
-            transition: theme.transitions.create('transform', {
-                duration: theme.transitions.duration.shortest,
-            }),
-        },
-        _b["& .".concat(exports.DatagridClasses.expandIcon, ".").concat(exports.DatagridClasses.expanded)] = {
-            transform: 'rotate(0deg)',
-        },
-        _b);
-});
+    },
+    [`& .${exports.DatagridClasses.checkbox}`]: {},
+    [`& .${exports.DatagridClasses.row}`]: {},
+    [`& .${exports.DatagridClasses.clickableRow}`]: {
+        cursor: 'pointer',
+    },
+    [`& .${exports.DatagridClasses.rowEven}`]: {},
+    [`& .${exports.DatagridClasses.rowOdd}`]: {},
+    [`& .${exports.DatagridClasses.rowCell}`]: {},
+    [`& .${exports.DatagridClasses.expandHeader}`]: {
+        padding: 0,
+        width: theme.spacing(6),
+    },
+    [`& .${exports.DatagridClasses.expandIconCell}`]: {
+        width: theme.spacing(6),
+    },
+    [`& .${exports.DatagridClasses.expandIcon}`]: {
+        padding: theme.spacing(1),
+        transform: 'rotate(-90deg)',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    [`& .${exports.DatagridClasses.expandIcon}.${exports.DatagridClasses.expanded}`]: {
+        transform: 'rotate(0deg)',
+    },
+}));

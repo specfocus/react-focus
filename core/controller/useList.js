@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -26,13 +15,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useList = void 0;
-var react_1 = require("react");
-var get_1 = __importDefault(require("lodash/get"));
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var util_1 = require("../util");
-var usePaginationState_1 = __importDefault(require("./usePaginationState"));
-var useSortState_1 = __importDefault(require("./useSortState"));
-var useSelectionState_1 = __importDefault(require("./useSelectionState"));
+const react_1 = require("react");
+const get_1 = __importDefault(require("lodash/get"));
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const util_1 = require("../util");
+const usePaginationState_1 = __importDefault(require("./usePaginationState"));
+const useSortState_1 = __importDefault(require("./useSortState"));
+const useSelectionState_1 = __importDefault(require("./useSelectionState"));
 /**
  * Handle filtering, sorting and pagination on local data.
  *
@@ -74,54 +63,47 @@ var useSelectionState_1 = __importDefault(require("./useSelectionState"));
  * @param {Number} props.perPage: Optional. The initial page size
  * @param {SortPayload} props.sort: Optional. The initial sort (field and order)
  */
-var useList = function (props) {
-    var data = props.data, error = props.error, _a = props.filter, filter = _a === void 0 ? defaultFilter : _a, ids = props.ids, loaded = props.loaded, loading = props.loading, _b = props.page, initialPage = _b === void 0 ? 1 : _b, _c = props.perPage, initialPerPage = _c === void 0 ? 1000 : _c, _d = props.sort, initialSort = _d === void 0 ? defaultSort : _d;
-    var _e = (0, util_1.useSafeSetState)(loading), loadingState = _e[0], setLoadingState = _e[1];
-    var _f = (0, util_1.useSafeSetState)(loaded), loadedState = _f[0], setLoadedState = _f[1];
-    var _g = (0, util_1.useSafeSetState)(function () { return ({
+const useList = (props) => {
+    const { data, error, filter = defaultFilter, ids, loaded, loading, page: initialPage = 1, perPage: initialPerPage = 1000, sort: initialSort = defaultSort, } = props;
+    const [loadingState, setLoadingState] = (0, util_1.useSafeSetState)(loading);
+    const [loadedState, setLoadedState] = (0, util_1.useSafeSetState)(loaded);
+    const [finalItems, setFinalItems] = (0, util_1.useSafeSetState)(() => ({
         data: (0, util_1.indexById)(data),
-        ids: ids,
+        ids,
         total: ids.length,
-    }); }), finalItems = _g[0], setFinalItems = _g[1];
+    }));
     // pagination logic
-    var _h = (0, usePaginationState_1.default)({
+    const { page, setPage, perPage, setPerPage } = (0, usePaginationState_1.default)({
         page: initialPage,
         perPage: initialPerPage,
-    }), page = _h.page, setPage = _h.setPage, perPage = _h.perPage, setPerPage = _h.setPerPage;
+    });
     // sort logic
-    var _j = (0, useSortState_1.default)(initialSort), sort = _j.sort, setSortObject = _j.setSort;
-    var setSort = (0, react_1.useCallback)(function (field, order) {
-        if (order === void 0) { order = 'ASC'; }
-        setSortObject({ field: field, order: order });
+    const { sort, setSort: setSortObject } = (0, useSortState_1.default)(initialSort);
+    const setSort = (0, react_1.useCallback)((field, order = 'ASC') => {
+        setSortObject({ field, order });
         setPage(1);
     }, [setPage, setSortObject]);
     // selection logic
-    var _k = (0, useSelectionState_1.default)(), selectedIds = _k.selectedIds, onSelect = _k.onSelect, onToggleItem = _k.onToggleItem, onUnselectItems = _k.onUnselectItems;
+    const { selectedIds, onSelect, onToggleItem, onUnselectItems, } = (0, useSelectionState_1.default)();
     // filter logic
-    var filterRef = (0, react_1.useRef)(filter);
-    var _l = (0, util_1.useSafeSetState)({}), displayedFilters = _l[0], setDisplayedFilters = _l[1];
-    var _m = (0, util_1.useSafeSetState)(filter), filterValues = _m[0], setFilterValues = _m[1];
-    var hideFilter = (0, react_1.useCallback)(function (filterName) {
-        setDisplayedFilters(function (previousState) {
-            var _a = previousState, _b = filterName, _ = _a[_b], newState = __rest(_a, [typeof _b === "symbol" ? _b : _b + ""]);
+    const filterRef = (0, react_1.useRef)(filter);
+    const [displayedFilters, setDisplayedFilters] = (0, util_1.useSafeSetState)({});
+    const [filterValues, setFilterValues] = (0, util_1.useSafeSetState)(filter);
+    const hideFilter = (0, react_1.useCallback)((filterName) => {
+        setDisplayedFilters(previousState => {
+            const _a = previousState, _b = filterName, _ = _a[_b], newState = __rest(_a, [typeof _b === "symbol" ? _b : _b + ""]);
             return newState;
         });
-        setFilterValues(function (previousState) {
-            var _a = previousState, _b = filterName, _ = _a[_b], newState = __rest(_a, [typeof _b === "symbol" ? _b : _b + ""]);
+        setFilterValues(previousState => {
+            const _a = previousState, _b = filterName, _ = _a[_b], newState = __rest(_a, [typeof _b === "symbol" ? _b : _b + ""]);
             return newState;
         });
     }, [setDisplayedFilters, setFilterValues]);
-    var showFilter = (0, react_1.useCallback)(function (filterName, defaultValue) {
-        setDisplayedFilters(function (previousState) {
-            var _a;
-            return (__assign(__assign({}, previousState), (_a = {}, _a[filterName] = true, _a)));
-        });
-        setFilterValues(function (previousState) {
-            var _a;
-            return (0, util_1.removeEmpty)(__assign(__assign({}, previousState), (_a = {}, _a[filterName] = defaultValue, _a)));
-        });
+    const showFilter = (0, react_1.useCallback)((filterName, defaultValue) => {
+        setDisplayedFilters(previousState => (Object.assign(Object.assign({}, previousState), { [filterName]: true })));
+        setFilterValues(previousState => (0, util_1.removeEmpty)(Object.assign(Object.assign({}, previousState), { [filterName]: defaultValue })));
     }, [setDisplayedFilters, setFilterValues]);
-    var setFilters = (0, react_1.useCallback)(function (filters, displayedFilters) {
+    const setFilters = (0, react_1.useCallback)((filters, displayedFilters) => {
         setFilterValues((0, util_1.removeEmpty)(filters));
         if (displayedFilters) {
             setDisplayedFilters(displayedFilters);
@@ -129,35 +111,32 @@ var useList = function (props) {
         setPage(1);
     }, [setDisplayedFilters, setFilterValues, setPage]);
     // handle filter prop change
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (!(0, isEqual_1.default)(filter, filterRef.current)) {
             filterRef.current = filter;
             setFilterValues(filter);
         }
     });
     // We do all the data processing (filtering, sorting, paginating) client-side
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (!loaded)
             return;
         // 1. filter
-        var tempData = data.filter(function (record) {
-            return Object.entries(filterValues).every(function (_a) {
-                var filterName = _a[0], filterValue = _a[1];
-                var recordValue = (0, get_1.default)(record, filterName);
-                var result = Array.isArray(recordValue)
-                    ? Array.isArray(filterValue)
-                        ? recordValue.some(function (item) { return filterValue.includes(item); })
-                        : recordValue.includes(filterValue)
-                    : Array.isArray(filterValue)
-                        ? filterValue.includes(recordValue)
-                        : filterValue == recordValue; // eslint-disable-line eqeqeq
-                return result;
-            });
-        });
-        var filteredLength = tempData.length;
+        let tempData = data.filter(record => Object.entries(filterValues).every(([filterName, filterValue]) => {
+            const recordValue = (0, get_1.default)(record, filterName);
+            const result = Array.isArray(recordValue)
+                ? Array.isArray(filterValue)
+                    ? recordValue.some(item => filterValue.includes(item))
+                    : recordValue.includes(filterValue)
+                : Array.isArray(filterValue)
+                    ? filterValue.includes(recordValue)
+                    : filterValue == recordValue; // eslint-disable-line eqeqeq
+            return result;
+        }));
+        const filteredLength = tempData.length;
         // 2. sort
         if (sort.field) {
-            tempData = tempData.sort(function (a, b) {
+            tempData = tempData.sort((a, b) => {
                 if ((0, get_1.default)(a, sort.field) > (0, get_1.default)(b, sort.field)) {
                     return sort.order === 'ASC' ? 1 : -1;
                 }
@@ -169,10 +148,10 @@ var useList = function (props) {
         }
         // 3. paginate
         tempData = tempData.slice((page - 1) * perPage, page * perPage);
-        var finalData = (0, util_1.indexById)(tempData);
-        var finalIds = tempData
-            .filter(function (data) { return typeof data !== 'undefined'; })
-            .map(function (data) { return data.id; });
+        const finalData = (0, util_1.indexById)(tempData);
+        const finalIds = tempData
+            .filter(data => typeof data !== 'undefined')
+            .map(data => data.id);
         setFinalItems({
             data: finalData,
             ids: finalIds,
@@ -188,12 +167,12 @@ var useList = function (props) {
         sort.field,
         sort.order,
     ]);
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (loaded !== loadedState) {
             setLoadedState(loaded);
         }
     }, [loaded, loadedState, setLoadedState]);
-    (0, react_1.useEffect)(function () {
+    (0, react_1.useEffect)(() => {
         if (loading !== loadingState) {
             setLoadingState(loading);
         }
@@ -201,27 +180,27 @@ var useList = function (props) {
     return {
         currentSort: sort,
         data: finalItems.data,
-        error: error,
-        displayedFilters: displayedFilters,
-        filterValues: filterValues,
-        hideFilter: hideFilter,
+        error,
+        displayedFilters,
+        filterValues,
+        hideFilter,
         ids: finalItems.ids,
         loaded: loadedState,
         loading: loadingState,
-        onSelect: onSelect,
-        onToggleItem: onToggleItem,
-        onUnselectItems: onUnselectItems,
-        page: page,
-        perPage: perPage,
-        selectedIds: selectedIds,
-        setFilters: setFilters,
-        setPage: setPage,
-        setPerPage: setPerPage,
-        setSort: setSort,
-        showFilter: showFilter,
+        onSelect,
+        onToggleItem,
+        onUnselectItems,
+        page,
+        perPage,
+        selectedIds,
+        setFilters,
+        setPage,
+        setPerPage,
+        setSort,
+        showFilter,
         total: finalItems.total,
     };
 };
 exports.useList = useList;
-var defaultFilter = {};
-var defaultSort = { field: null, order: null };
+const defaultFilter = {};
+const defaultSort = { field: null, order: null };

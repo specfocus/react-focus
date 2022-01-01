@@ -1,20 +1,9 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var useMutation_1 = __importDefault(require("./useMutation"));
+const useMutation_1 = __importDefault(require("./useMutation"));
 /**
  * Get a callback to call the data provider and pass the result to a child function
  *
@@ -43,14 +32,8 @@ var useMutation_1 = __importDefault(require("./useMutation"));
  *     </Mutation>
  * );
  */
-var Mutation = function (_a) {
-    var children = _a.children, type = _a.type, resource = _a.resource, payload = _a.payload, 
-    // Provides an undefined onSuccess just so the key `onSuccess` is defined
-    // This is used to detect options in useDataProvider
-    _b = _a.options, 
-    // Provides an undefined onSuccess just so the key `onSuccess` is defined
-    // This is used to detect options in useDataProvider
-    options = _b === void 0 ? { onSuccess: undefined } : _b;
-    return children.apply(void 0, (0, useMutation_1.default)({ type: type, resource: resource, payload: payload }, __assign(__assign({}, options), { withDeclarativeSideEffectsSupport: true })));
-};
+const Mutation = ({ children, type, resource, payload, 
+// Provides an undefined onSuccess just so the key `onSuccess` is defined
+// This is used to detect options in useDataProvider
+options = { onSuccess: undefined }, }) => children(...(0, useMutation_1.default)({ type, resource, payload }, Object.assign(Object.assign({}, options), { withDeclarativeSideEffectsSupport: true })));
 exports.default = Mutation;

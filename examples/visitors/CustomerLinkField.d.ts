@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { FieldProps } from '../../app';
-import { Customer } from '../types';
+import { Customer } from '../db/types';
 declare const CustomerLinkField: {
-    (props: FieldProps<Customer>): JSX.Element | null;
+    (props: FieldProps<Customer>): JSX.Element;
     defaultProps: {
         source: string;
         addLabel: boolean;

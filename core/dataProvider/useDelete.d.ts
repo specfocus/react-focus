@@ -46,7 +46,7 @@ import { MutationOptions, Mutation } from './useMutation';
  *     return <button disabled={loading} onClick={deleteOne}>Delete</button>;
  * };
  */
-declare const useDelete: <RecordType extends Record = Record>(resource?: string | undefined, id?: Identifier | undefined, previousData?: any, options?: MutationOptions | undefined) => UseDeleteHookValue<RecordType>;
+declare const useDelete: <RecordType extends Record = Record>(resource?: string, id?: Identifier, previousData?: any, options?: MutationOptions) => UseDeleteHookValue<RecordType>;
 declare type UseDeleteHookValue<RecordType extends Record = Record> = [
     (resource?: string | Partial<Mutation> | Event, id?: Identifier | Partial<MutationOptions>, previousData?: RecordType, options?: MutationOptions) => void | Promise<any>,
     {

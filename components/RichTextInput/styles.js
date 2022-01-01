@@ -1,34 +1,23 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var QuillSnowStylesheet_1 = __importDefault(require("./QuillSnowStylesheet"));
-exports.default = (function (theme) { return ({
+const QuillSnowStylesheet_1 = __importDefault(require("./QuillSnowStylesheet"));
+exports.default = (theme) => ({
     label: {
         position: 'relative',
     },
-    '@global': __assign(__assign({}, QuillSnowStylesheet_1.default), { '.ra-rich-text-input': {
+    '@global': Object.assign(Object.assign({}, QuillSnowStylesheet_1.default), { '.ra-rich-text-input': {
             '& .ql-editor': {
                 fontSize: '1rem',
                 fontFamily: 'Roboto, sans-serif',
                 padding: '6px 12px',
-                backgroundColor: theme.palette.type === 'dark'
+                backgroundColor: theme.palette.mode === 'dark'
                     ? 'rgba(255, 255, 255, 0.04)'
                     : 'rgba(0, 0, 0, 0.04)',
                 '&:hover::before': {
-                    backgroundColor: theme.palette.type === 'dark'
+                    backgroundColor: theme.palette.mode === 'dark'
                         ? 'rgba(255, 255, 255, 1)'
                         : 'rgba(0, 0, 0, 1)',
                     height: 2,
@@ -41,7 +30,7 @@ exports.default = (function (theme) { return ({
                     content: '""',
                     position: 'absolute',
                     transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-                    backgroundColor: theme.palette.type === 'dark'
+                    backgroundColor: theme.palette.mode === 'dark'
                         ? 'rgba(255, 255, 255, 0.7)'
                         : 'rgba(0, 0, 0, 0.5)',
                 },
@@ -159,4 +148,4 @@ exports.default = (function (theme) { return ({
                 },
             },
         } }),
-}); });
+});

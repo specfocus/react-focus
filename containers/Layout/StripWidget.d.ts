@@ -4,7 +4,7 @@ import React from 'react';
 export declare const BACKWARD = "BACKWARD";
 export declare const FOREWARD = "FOREWARD";
 export declare const PATCH = "NAV_TO";
-export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"button" | "header" | "title" | "content" | "icon" | "container" | "toolbar" | "speedDial" | "divider" | "buttons" | "strip" | "speedDialFav" | "stepper">;
+export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"title" | "button" | "header" | "content" | "icon" | "toolbar" | "speedDial" | "container" | "divider" | "buttons" | "strip" | "speedDialFav" | "stepper">;
 export interface WidgetAction {
     action: any;
     icon: React.FC<IconProps>;

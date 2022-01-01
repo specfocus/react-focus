@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fetchActions_1 = require("../../actions/fetchActions");
-var loadingReducer = function (previousState, _a) {
-    if (previousState === void 0) { previousState = 0; }
-    var type = _a.type;
+const fetchActions_1 = require("../../actions/fetchActions");
+const loadingReducer = (previousState = 0, { type }) => {
     switch (type) {
         case fetchActions_1.FETCH_START:
             return previousState + 1;

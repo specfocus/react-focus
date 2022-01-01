@@ -1,4 +1,4 @@
-declare const _default: () => any;
+declare const _default: () => boolean;
 /**
  * Get the loading status, i.e. a boolean indicating if at least one request is pending
  *

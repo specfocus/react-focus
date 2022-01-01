@@ -33,7 +33,7 @@ interface State {
  *     const PostDetail = props => {
  *         const { permissions } = usePermissionsOptimized();
  *         if (permissions !== 'editor') {
- *             return <Redirect to={`posts/${props.id}/show`} />
+ *             return <Navigate to={`posts/${props.id}/show`} />
  *         } else {
  *             return <PostEdit {...props} />
  *         }

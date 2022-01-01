@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { Company } from '../../data/db/types';
+import { Company } from '../db/types';
 export declare const CompanyAvatar: ({ record, size, }: {
-    record?: Company | undefined;
-    size?: "small" | "large" | undefined;
-}) => JSX.Element | null;
+    record?: Company;
+    size?: 'small' | 'large';
+}) => JSX.Element;

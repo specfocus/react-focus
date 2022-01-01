@@ -1,5 +1,5 @@
 import { Identifier, Record } from '../../types';
-import { DELETE } from '../../core';
+import { DELETE } from '../../../core';
 import { FETCH_END, FETCH_ERROR } from '../fetchActions';
 import { NotificationSideEffect, RedirectionSideEffect, RefreshSideEffect } from '../../sideEffect';
 export declare const crudDelete: (resource: string, id: Identifier, previousData: Record, basePath: string, redirectTo?: RedirectionSideEffect, refresh?: RefreshSideEffect) => CrudDeleteAction;

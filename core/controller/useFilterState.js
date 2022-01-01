@@ -1,24 +1,13 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var debounce_1 = __importDefault(require("lodash/debounce"));
-var isEqual_1 = __importDefault(require("lodash/isEqual"));
-var util_1 = require("../util");
-var defaultFilterToQuery = function (v) { return ({ q: v }); };
+const react_1 = require("react");
+const debounce_1 = __importDefault(require("lodash/debounce"));
+const isEqual_1 = __importDefault(require("lodash/isEqual"));
+const util_1 = require("../util");
+const defaultFilterToQuery = (v) => ({ q: v });
 /**
  * Hooks to provide filter state and setFilter which update the query part of the filter
  *
@@ -48,32 +37,31 @@ var defaultFilterToQuery = function (v) { return ({ q: v }); };
  *
  * @returns {UseFilterStateOptions} The filter props
  */
-exports.default = (function (_a) {
-    var _b = _a.filterToQuery, filterToQuery = _b === void 0 ? defaultFilterToQuery : _b, _c = _a.permanentFilter, permanentFilter = _c === void 0 ? {} : _c, _d = _a.debounceTime, debounceTime = _d === void 0 ? 500 : _d;
-    var permanentFilterProp = (0, react_1.useRef)(permanentFilter);
-    var latestValue = (0, react_1.useRef)();
-    var _e = (0, util_1.useSafeSetState)(__assign(__assign({}, permanentFilter), filterToQuery(''))), filter = _e[0], setFilterValue = _e[1];
+exports.default = ({ filterToQuery = defaultFilterToQuery, permanentFilter = {}, debounceTime = 500, }) => {
+    const permanentFilterProp = (0, react_1.useRef)(permanentFilter);
+    const latestValue = (0, react_1.useRef)();
+    const [filter, setFilterValue] = (0, util_1.useSafeSetState)(Object.assign(Object.assign({}, permanentFilter), filterToQuery('')));
     // Developers often pass an object literal as permanent filter
     // e.g. <ReferenceInput source="book_id" reference="books" filter={{ is_published: true }}>
     // The effect should execute again when the parent component updates the filter value,
     // but not when the object literal describes the same values. Therefore,
     // we use JSON.stringify(permanentFilter) in the `useEffect` and `useCallback`
     // dependencies instead of permanentFilter.
-    var permanentFilterSignature = JSON.stringify(permanentFilter);
-    (0, react_1.useEffect)(function () {
+    const permanentFilterSignature = JSON.stringify(permanentFilter);
+    (0, react_1.useEffect)(() => {
         if (!(0, isEqual_1.default)(permanentFilterProp.current, permanentFilter)) {
             permanentFilterProp.current = permanentFilter;
-            setFilterValue(__assign(__assign({}, permanentFilter), filterToQuery(latestValue.current)));
+            setFilterValue(Object.assign(Object.assign({}, permanentFilter), filterToQuery(latestValue.current)));
         }
     }, [permanentFilterSignature, permanentFilterProp, filterToQuery]); // eslint-disable-line react-hooks/exhaustive-deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    var setFilter = (0, react_1.useCallback)((0, debounce_1.default)(function (value) {
-        setFilterValue(__assign(__assign({}, permanentFilter), filterToQuery(value)));
+    const setFilter = (0, react_1.useCallback)((0, debounce_1.default)((value) => {
+        setFilterValue(Object.assign(Object.assign({}, permanentFilter), filterToQuery(value)));
         latestValue.current = value;
     }, debounceTime), [permanentFilterSignature] // eslint-disable-line react-hooks/exhaustive-deps
     );
     return {
-        filter: filter,
-        setFilter: setFilter,
+        filter,
+        setFilter,
     };
-});
+};

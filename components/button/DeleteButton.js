@@ -1,34 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -45,11 +15,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteButton = void 0;
-var React = __importStar(require("react"));
-var prop_types_1 = __importDefault(require("prop-types"));
-var core_1 = require("../../core");
-var DeleteWithUndoButton_1 = require("./DeleteWithUndoButton");
-var DeleteWithConfirmButton_1 = require("./DeleteWithConfirmButton");
+const jsx_runtime_1 = require("react/jsx-runtime");
+const prop_types_1 = __importDefault(require("prop-types"));
+const core_1 = require("../../core");
+const DeleteWithUndoButton_1 = require("./DeleteWithUndoButton");
+const DeleteWithConfirmButton_1 = require("./DeleteWithConfirmButton");
 /**
  * Button used to delete a single record. Added by default by the <Toolbar> of edit and show views.
  *
@@ -87,13 +57,13 @@ var DeleteWithConfirmButton_1 = require("./DeleteWithConfirmButton");
  *     return <Edit actions={<EditActions />} {...props} />;
  * };
  */
-var DeleteButton = function (props) {
-    var undoable = props.undoable, mutationMode = props.mutationMode, record = props.record, rest = __rest(props, ["undoable", "mutationMode", "record"]);
-    var mode = (0, core_1.getMutationMode)(mutationMode, undoable);
+const DeleteButton = (props) => {
+    const { undoable, mutationMode, record } = props, rest = __rest(props, ["undoable", "mutationMode", "record"]);
+    const mode = (0, core_1.getMutationMode)(mutationMode, undoable);
     if (!record || record.id == null) {
         return null;
     }
-    return mode === 'undoable' ? (React.createElement(DeleteWithUndoButton_1.DeleteWithUndoButton, __assign({ record: record }, rest))) : (React.createElement(DeleteWithConfirmButton_1.DeleteWithConfirmButton, __assign({ mutationMode: mode, record: record, undoable: undoable }, rest)));
+    return mode === 'undoable' ? ((0, jsx_runtime_1.jsx)(DeleteWithUndoButton_1.DeleteWithUndoButton, Object.assign({ record: record }, rest), void 0)) : ((0, jsx_runtime_1.jsx)(DeleteWithConfirmButton_1.DeleteWithConfirmButton, Object.assign({ mutationMode: mode, record: record, undoable: undoable }, rest), void 0));
 };
 exports.DeleteButton = DeleteButton;
 exports.DeleteButton.propTypes = {

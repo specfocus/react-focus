@@ -8,7 +8,7 @@ export declare type ValidationErrorMessage = string | ValidationErrorMessageWith
 export declare type Validator = (value: any, values: any, props: any) => ValidationErrorMessage | null | undefined | Promise<ValidationErrorMessage | null | undefined>;
 export declare const combine2Validators: (validator1: Validator, validator2: Validator) => Validator;
 export declare const composeValidators: (...validators: any[]) => Validator;
-export declare const composeSyncValidators: (...validators: any[]) => (value: any, values: any, meta: any) => ValidationErrorMessage | Promise<ValidationErrorMessage | null | undefined> | undefined;
+export declare const composeSyncValidators: (...validators: any[]) => (value: any, values: any, meta: any) => ValidationErrorMessage | Promise<ValidationErrorMessage>;
 /**
  * Required validator
  *
@@ -24,7 +24,7 @@ export declare const composeSyncValidators: (...validators: any[]) => (value: an
 export declare const required: (message?: any) => ((value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined) & {
+}) & {
     isRequired: boolean;
 };
 /**
@@ -43,7 +43,7 @@ export declare const required: (message?: any) => ((value: any, values: any) => 
 export declare const minLength: (min: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Maximum length validator
  *
@@ -60,7 +60,7 @@ export declare const minLength: (min: any, message?: any) => (value: any, values
 export declare const maxLength: (max: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Minimum validator
  *
@@ -77,7 +77,7 @@ export declare const maxLength: (max: any, message?: any) => (value: any, values
 export declare const minValue: (min: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Maximum validator
  *
@@ -94,7 +94,7 @@ export declare const minValue: (min: any, message?: any) => (value: any, values:
 export declare const maxValue: (max: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Number validator
  *
@@ -110,7 +110,7 @@ export declare const maxValue: (max: any, message?: any) => (value: any, values:
 export declare const number: (message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Regular expression validator
  *
@@ -127,7 +127,7 @@ export declare const number: (message?: any) => (value: any, values: any) => str
 export declare const regex: ((pattern: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined) & import("lodash").MemoizedFunction;
+}) & import("lodash").MemoizedFunction;
 /**
  * Email validator
  *
@@ -143,7 +143,7 @@ export declare const regex: ((pattern: any, message?: any) => (value: any, value
 export declare const email: (message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};
 /**
  * Choices validator
  *
@@ -160,4 +160,4 @@ export declare const email: (message?: any) => (value: any, values: any) => stri
 export declare const choices: (list: any, message?: any) => (value: any, values: any) => string | {
     message: string;
     args: any;
-} | undefined;
+};

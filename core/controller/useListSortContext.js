@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var ListSortContext_1 = __importDefault(require("./ListSortContext"));
+const react_1 = require("react");
+const ListSortContext_1 = __importDefault(require("./ListSortContext"));
 /**
  * Hook to read the list controller props from the ListContext.
  *
@@ -20,8 +20,8 @@ var ListSortContext_1 = __importDefault(require("./ListSortContext"));
  *
  * @see useListController for how it is filled
  */
-var useListSortContext = function (props) {
-    var context = (0, react_1.useContext)(ListSortContext_1.default);
+const useListSortContext = (props) => {
+    const context = (0, react_1.useContext)(ListSortContext_1.default);
     if (!context.setSort) {
         /**
          * The element isn't inside a <ListSortContext.Provider>

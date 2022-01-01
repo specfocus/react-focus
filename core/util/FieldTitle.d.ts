@@ -7,11 +7,11 @@ export interface FieldTitleProps {
     label?: string | ReactElement | false;
 }
 export declare const FieldTitle: {
-    (props: FieldTitleProps): JSX.Element | null;
+    (props: FieldTitleProps): JSX.Element;
     displayName: string;
 };
 declare const _default: React.MemoExoticComponent<{
-    (props: FieldTitleProps): JSX.Element | null;
+    (props: FieldTitleProps): JSX.Element;
     displayName: string;
 }>;
 export default _default;

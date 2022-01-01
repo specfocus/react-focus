@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
  * @param {Props} props
  */
 declare const LinearProgress: {
-    ({ timeout, ...props }: LinearProgressProps): JSX.Element | null;
+    ({ timeout, ...props }: LinearProgressProps): JSX.Element;
     propTypes: {
         className: PropTypes.Requireable<string>;
         timeout: PropTypes.Requireable<number>;

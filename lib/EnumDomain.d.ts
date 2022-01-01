@@ -1,5 +1,5 @@
-import * as DOMAINS from '../data/domains';
-import * as STRING_DOMAINS from '../data/domains/string';
+import * as DOMAINS from './domains';
+import * as STRING_DOMAINS from './domains/string';
 import { BaseDomain } from './BaseDomain';
 import { Schema } from './Schema';
 import { StringDomain } from './StringDomain';

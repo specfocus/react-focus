@@ -1,36 +1,14 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.usePickSaveContext = exports.useSaveContext = exports.SaveContextProvider = exports.SaveContext = void 0;
-var React = __importStar(require("react"));
-var react_1 = require("react");
-var pick_1 = __importDefault(require("lodash/pick"));
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const pick_1 = __importDefault(require("lodash/pick"));
 exports.SaveContext = (0, react_1.createContext)(undefined);
-var SaveContextProvider = function (_a) {
-    var children = _a.children, value = _a.value;
-    return (React.createElement(exports.SaveContext.Provider, { value: value }, children));
-};
+const SaveContextProvider = ({ children, value }) => ((0, jsx_runtime_1.jsx)(exports.SaveContext.Provider, Object.assign({ value: value }, { children: children }), void 0));
 exports.SaveContextProvider = SaveContextProvider;
 /**
  * Get the save() function and its status
@@ -44,8 +22,8 @@ exports.SaveContextProvider = SaveContextProvider;
  *     saving
  * } = useSaveContext();
  */
-var useSaveContext = function (props) {
-    var context = (0, react_1.useContext)(exports.SaveContext);
+const useSaveContext = (props) => {
+    const context = (0, react_1.useContext)(exports.SaveContext);
     if (!context || !context.save || !context.setOnFailure) {
         /**
          * The element isn't inside a <SaveContextProvider>
@@ -61,19 +39,17 @@ var useSaveContext = function (props) {
     return context;
 };
 exports.useSaveContext = useSaveContext;
-var usePickSaveContext = function (context) {
-    var value = (0, react_1.useMemo)(function () {
-        return (0, pick_1.default)(context, [
-            'save',
-            'saving',
-            'setOnFailure',
-            'setOnSuccess',
-            'setTransform',
-            'onSuccessRef',
-            'onFailureRef',
-            'transformRef',
-        ]);
-    }, 
+const usePickSaveContext = (context) => {
+    const value = (0, react_1.useMemo)(() => (0, pick_1.default)(context, [
+        'save',
+        'saving',
+        'setOnFailure',
+        'setOnSuccess',
+        'setTransform',
+        'onSuccessRef',
+        'onFailureRef',
+        'transformRef',
+    ]), 
     /* eslint-disable react-hooks/exhaustive-deps */
     [
         context.save,

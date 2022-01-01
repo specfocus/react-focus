@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -40,22 +29,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
 require("date-fns");
-var react_1 = __importDefault(require("react"));
-var react_final_form_1 = require("react-final-form");
-var TextField_1 = require("../../../components/final-form/TextField");
+const react_final_form_1 = require("react-final-form");
+const TextField_1 = require("../../../components/final-form/TextField");
 // import ruLocale from 'date-fns/locale/ru';
-var DOMAINS = __importStar(require("../../../data/domains"));
+const DOMAINS = __importStar(require("../../../lib/domains"));
 function domainProps(type, domain) {
-    var domains = DOMAINS;
-    var props = domains[type.toUpperCase()] || {};
-    var position = domain ? domain.length : -1;
+    const domains = DOMAINS;
+    let props = domains[type.toUpperCase()] || {};
+    let position = domain ? domain.length : -1;
     while (domain && position > 0) {
-        var val = domains[domain];
+        const val = domains[domain];
         if (val) {
             props = val;
             break;
@@ -66,11 +52,10 @@ function domainProps(type, domain) {
     return props;
 }
 ;
-var NumberField = function (_a) {
-    var label = _a.label, name = _a.name, placeholder = _a.placeholder, readonly = _a.readonly, required = _a.required, schema = _a.schema;
-    var domain = schema.domain;
-    var textFieldProps = {
-        name: name
+const NumberField = ({ label: label, name, placeholder, readonly, required, schema }) => {
+    const { domain } = schema;
+    const textFieldProps = {
+        name
     };
     if (readonly) {
         Object.assign(textFieldProps, {
@@ -83,9 +68,9 @@ var NumberField = function (_a) {
             'aria-readonly': true,
         });
     }
-    return (react_1.default.createElement(react_final_form_1.Field, { type: "number", name: name, render: function (_a) {
-            var _b = _a.input, name = _b.name, value = _b.value, onChange = _b.onChange, checked = _b.checked, restInput = __rest(_b, ["name", "value", "onChange", "checked"]);
-            return (react_1.default.createElement(TextField_1.TextField, __assign({ name: name, label: label, placeholder: placeholder, helperText: required && '* Required', type: "number", InputProps: restInput }, domainProps('string', domain), textFieldProps)));
-        } }));
+    return ((0, jsx_runtime_1.jsx)(react_final_form_1.Field, { type: "number", name: name, render: (_a) => {
+            var _b = _a.input, { name, value, onChange, checked } = _b, restInput = __rest(_b, ["name", "value", "onChange", "checked"]);
+            return ((0, jsx_runtime_1.jsx)(TextField_1.TextField, Object.assign({ name: name, label: label, placeholder: placeholder, helperText: required && '* Required', type: "number", InputProps: restInput }, domainProps('string', domain), textFieldProps), void 0));
+        } }, void 0));
 };
 exports.default = NumberField;

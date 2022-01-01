@@ -1,13 +1,13 @@
-import React, { HtmlHTMLAttributes, ComponentType, ReactNode } from 'react';
-import { StaticContext } from 'react-router';
 import { TitleComponent } from '../../core';
+import React, { HtmlHTMLAttributes, ReactNode } from 'react';
+import { NotificationProps } from '../layout/Notification';
 export interface LoginProps extends Omit<HtmlHTMLAttributes<HTMLDivElement>, 'title'> {
     backgroundImage?: string;
     children?: ReactNode;
     classes?: object;
     className?: string;
-    notification?: ComponentType;
-    staticContext?: StaticContext;
+    notification?: React.FC<NotificationProps>;
+    staticContext?: any;
     theme?: object;
     title?: TitleComponent;
 }

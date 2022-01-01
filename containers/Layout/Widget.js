@@ -1,23 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -34,12 +15,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useStyles = void 0;
-var SpeedDial_1 = __importDefault(require("@mui/lab/SpeedDial"));
-var SpeedDialAction_1 = __importDefault(require("@mui/lab/SpeedDialAction"));
-var styles_1 = require("@mui/styles");
-var react_1 = __importStar(require("react"));
-var TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
-exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
+const jsx_runtime_1 = require("react/jsx-runtime");
+const SpeedDial_1 = __importDefault(require("@mui/lab/SpeedDial"));
+const SpeedDialAction_1 = __importDefault(require("@mui/material/SpeedDialAction"));
+const styles_1 = require("@mui/styles");
+const react_1 = require("react");
+const TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
+exports.useStyles = (0, styles_1.makeStyles)((theme) => ({
     button: {
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
@@ -101,24 +83,18 @@ exports.useStyles = (0, styles_1.makeStyles)(function (theme) { return ({
         textAlign: 'center'
     },
     toolbar: {}
-}); });
+}));
 function Widget(_a) {
-    var actions = _a.actions, children = _a.children, Icon = _a.icon, maxWidth = _a.maxWidth, reducer = _a.reducer, subtitle = _a.title, title = _a.title, props = __rest(_a, ["actions", "children", "icon", "maxWidth", "reducer", "title", "title"]);
-    var classes = (0, exports.useStyles)();
-    var _b = (0, react_1.useState)(false), openSpeedDial = _b[0], setOpenSpeedDial = _b[1];
-    var handleSpeedDialClose = function () {
+    var { actions, children, icon: Icon, maxWidth, reducer, title: subtitle, title } = _a, props = __rest(_a, ["actions", "children", "icon", "maxWidth", "reducer", "title", "title"]);
+    const classes = (0, exports.useStyles)();
+    const [openSpeedDial, setOpenSpeedDial] = (0, react_1.useState)(false);
+    const handleSpeedDialClose = () => {
         setOpenSpeedDial(false);
     };
-    var handleSpeedDialOpen = function () {
+    const handleSpeedDialOpen = () => {
         setOpenSpeedDial(true);
     };
-    var _c = (0, react_1.useReducer)(reducer, { index: 0, canNext: true }), state = _c[0], dispatch = _c[1];
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(TranslatedTypography_1.default, { className: classes.title, color: "inherit", component: "h5", i18nKey: title, variant: "h5", noWrap: true }, title),
-        react_1.default.createElement(SpeedDial_1.default, { ariaLabel: "SpeedDial example", className: classes.speedDial, FabProps: { className: classes.speedDialFav }, hidden: false, icon: react_1.default.createElement(Icon, { className: classes.icon }), onClose: handleSpeedDialClose, onOpen: handleSpeedDialOpen, open: openSpeedDial, direction: 'down' }, Object.entries(actions).map(function (_a) {
-            var name = _a[0], _b = _a[1], action = _b.action, Icon = _b.icon, label = _b.label;
-            return (react_1.default.createElement(SpeedDialAction_1.default, { key: name, icon: react_1.default.createElement(Icon, null), title: label, onClick: function () { return dispatch(action); } }));
-        })),
-        children));
+    const [state, dispatch] = (0, react_1.useReducer)(reducer, { index: 0, canNext: true });
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(TranslatedTypography_1.default, Object.assign({ className: classes.title, color: "inherit", component: "h5", i18nKey: title, variant: "h5", noWrap: true }, { children: title }), void 0), (0, jsx_runtime_1.jsx)(SpeedDial_1.default, Object.assign({ ariaLabel: "SpeedDial example", className: classes.speedDial, FabProps: { className: classes.speedDialFav }, hidden: false, icon: (0, jsx_runtime_1.jsx)(Icon, { className: classes.icon }, void 0), onClose: handleSpeedDialClose, onOpen: handleSpeedDialOpen, open: openSpeedDial, direction: 'down' }, { children: Object.entries(actions).map(([name, { action, icon: Icon, label }]) => ((0, jsx_runtime_1.jsx)(SpeedDialAction_1.default, { icon: (0, jsx_runtime_1.jsx)(Icon, {}, void 0), title: label, onClick: () => dispatch(action) }, name))) }), void 0), children] }, void 0));
 }
 exports.default = Widget;

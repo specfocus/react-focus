@@ -48,8 +48,8 @@ declare const ListActions: {
         total: PropTypes.Requireable<number>;
     };
     defaultProps: {
-        selectedIds: never[];
-        onUnselectItems: () => null;
+        selectedIds: any[];
+        onUnselectItems: () => any;
     };
 };
 export interface ListActionsProps extends ToolbarProps {

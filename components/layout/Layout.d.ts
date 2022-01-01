@@ -31,7 +31,7 @@ declare const Layout: {
         theme: PropTypes.Requireable<object>;
     };
     defaultProps: {
-        theme: import("../../theme/default").AppThemeOptions;
+        theme: import("@mui/material").ThemeOptions;
     };
 };
 export default Layout;

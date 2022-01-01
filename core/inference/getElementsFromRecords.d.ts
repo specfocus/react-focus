@@ -1,5 +1,5 @@
 import { InferredTypeMap } from './types';
-declare const _default: (records: any[], types: InferredTypeMap) => never[];
+declare const _default: (records: any[], types: InferredTypeMap) => any[];
 /**
  * Get a list of React-admin field components from a list of records
  *

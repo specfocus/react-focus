@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -25,16 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Button_1 = __importDefault(require("@mui/material/Button"));
-var react_1 = __importDefault(require("react"));
-var react_i18next_1 = require("react-i18next");
-var translation_1 = require("../utilities/translation");
-var TranslatedButton = function (_a) {
-    var children = _a.children, count = _a.count, i18nKey = _a.i18nKey, otherProps = __rest(_a, ["children", "count", "i18nKey"]);
+const jsx_runtime_1 = require("react/jsx-runtime");
+const Button_1 = __importDefault(require("@mui/material/Button"));
+const react_i18next_1 = require("react-i18next");
+const translation_1 = require("../utilities/translation");
+const TranslatedButton = (_a) => {
+    var { children, count, i18nKey } = _a, otherProps = __rest(_a, ["children", "count", "i18nKey"]);
     if (!i18nKey && typeof children === 'string') {
         i18nKey = (0, translation_1.formattedKey)(children);
     }
-    return (react_1.default.createElement(Button_1.default, __assign({}, otherProps),
-        react_1.default.createElement(react_i18next_1.Trans, { i18nKey: i18nKey, count: count }, children)));
+    return ((0, jsx_runtime_1.jsx)(Button_1.default, Object.assign({}, otherProps, { children: (0, jsx_runtime_1.jsx)(react_i18next_1.Trans, Object.assign({ i18nKey: i18nKey, count: count }, { children: children }), void 0) }), void 0));
 };
 exports.default = TranslatedButton;

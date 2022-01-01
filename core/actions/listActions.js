@@ -2,25 +2,25 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toggleListItemExpand = exports.TOGGLE_LIST_ITEM_EXPAND = exports.toggleListItem = exports.TOGGLE_LIST_ITEM = exports.setListSelectedIds = exports.SET_LIST_SELECTED_IDS = exports.changeListParams = exports.CRUD_CHANGE_LIST_PARAMS = void 0;
 exports.CRUD_CHANGE_LIST_PARAMS = 'CRUD_CHANGE_LIST_PARAMS';
-var changeListParams = function (resource, params) { return ({
+const changeListParams = (resource, params) => ({
     type: exports.CRUD_CHANGE_LIST_PARAMS,
     payload: params,
-    meta: { resource: resource },
-}); };
+    meta: { resource },
+});
 exports.changeListParams = changeListParams;
 exports.SET_LIST_SELECTED_IDS = 'SET_LIST_SELECTED_IDS';
-var setListSelectedIds = function (resource, ids) { return ({
+const setListSelectedIds = (resource, ids) => ({
     type: exports.SET_LIST_SELECTED_IDS,
     payload: ids,
-    meta: { resource: resource },
-}); };
+    meta: { resource },
+});
 exports.setListSelectedIds = setListSelectedIds;
 exports.TOGGLE_LIST_ITEM = 'TOGGLE_LIST_ITEM';
-var toggleListItem = function (resource, id) { return ({
+const toggleListItem = (resource, id) => ({
     type: exports.TOGGLE_LIST_ITEM,
     payload: id,
-    meta: { resource: resource },
-}); };
+    meta: { resource },
+});
 exports.toggleListItem = toggleListItem;
 exports.TOGGLE_LIST_ITEM_EXPAND = 'TOGGLE_LIST_ITEM_EXPAND';
 /**
@@ -33,9 +33,9 @@ exports.TOGGLE_LIST_ITEM_EXPAND = 'TOGGLE_LIST_ITEM_EXPAND';
  *
  * const onToggleItem = () => dispatch(toggleListItemExpand('posts', 123));
  */
-var toggleListItemExpand = function (resource, id) { return ({
+const toggleListItemExpand = (resource, id) => ({
     type: exports.TOGGLE_LIST_ITEM_EXPAND,
     payload: id,
-    meta: { resource: resource },
-}); };
+    meta: { resource },
+});
 exports.toggleListItemExpand = toggleListItemExpand;

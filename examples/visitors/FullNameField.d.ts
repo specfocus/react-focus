@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FieldProps } from '../../app';
-import { Customer } from '../types';
+import { Customer } from '../db/types';
 interface Props extends FieldProps<Customer> {
     size?: string;
 }

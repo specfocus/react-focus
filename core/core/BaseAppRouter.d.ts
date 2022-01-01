@@ -1,9 +1,9 @@
 import { ComponentType } from 'react';
-import { AdminChildren, CustomRoutes, CatchAllComponent, LayoutComponent, LoadingComponent, CoreLayoutProps } from '../types';
+import { ResourceChildren, CustomRoutes, CatchAllComponent, LayoutComponent, LoadingComponent, CoreLayoutProps } from '../types';
 export interface AppRouterProps extends CoreLayoutProps {
     layout: LayoutComponent;
     catchAll: CatchAllComponent;
-    children?: AdminChildren;
+    children?: ResourceChildren;
     customRoutes?: CustomRoutes;
     loading: LoadingComponent;
     ready?: ComponentType;
@@ -11,7 +11,7 @@ export interface AppRouterProps extends CoreLayoutProps {
 declare const BaseAppRouter: {
     (props: AppRouterProps): JSX.Element;
     defaultProps: {
-        customRoutes: never[];
+        customRoutes: any[];
     };
 };
 export default BaseAppRouter;

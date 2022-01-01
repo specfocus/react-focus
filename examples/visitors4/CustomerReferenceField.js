@@ -1,43 +1,12 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
-var app_1 = require("../../app");
-var FullNameField_1 = __importDefault(require("./FullNameField"));
-var CustomerReferenceField = function (props) { return (React.createElement(app_1.ReferenceField, __assign({ source: "customer_id", reference: "customers" }, props),
-    React.createElement(FullNameField_1.default, null))); };
+const jsx_runtime_1 = require("react/jsx-runtime");
+const app_1 = require("../../app");
+const FullNameField_1 = __importDefault(require("./FullNameField"));
+const CustomerReferenceField = (props) => ((0, jsx_runtime_1.jsx)(app_1.ReferenceField, Object.assign({ source: "customer_id", reference: "customers" }, props, { children: (0, jsx_runtime_1.jsx)(FullNameField_1.default, {}, void 0) }), void 0));
 CustomerReferenceField.defaultProps = {
     source: 'customer_id',
     addLabel: true,

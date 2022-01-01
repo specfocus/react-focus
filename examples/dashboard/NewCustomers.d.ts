@@ -1,3 +1,3 @@
 /// <reference types="react" />
-declare const NewCustomers: () => JSX.Element | null;
+declare const NewCustomers: () => JSX.Element;
 export default NewCustomers;

@@ -12,7 +12,7 @@ declare const Menu: {
         onMenuClick: PropTypes.Requireable<(...args: any[]) => any>;
     };
     defaultProps: {
-        onMenuClick: () => null;
+        onMenuClick: () => any;
     };
 };
 export interface MenuProps {

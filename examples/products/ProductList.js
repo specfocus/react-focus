@@ -1,90 +1,39 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productFilters = void 0;
-var material_1 = require("@mui/material");
-var React = __importStar(require("react"));
-var app_1 = require("../../app");
-var layout_1 = require("../../components/layout");
-var Aside_1 = __importDefault(require("./Aside"));
-var GridList_1 = __importDefault(require("./GridList"));
-var PREFIX = 'ProductList';
-var classes = {
-    root: "".concat(PREFIX, "-root"),
+const jsx_runtime_1 = require("react/jsx-runtime");
+const material_1 = require("@mui/material");
+const app_1 = require("../../app");
+const layout_1 = require("../../components/layout");
+const Aside_1 = __importDefault(require("./Aside"));
+const GridList_1 = __importDefault(require("./GridList"));
+const PREFIX = 'ProductList';
+const classes = {
+    root: `${PREFIX}-root`,
 };
-var QuickFilter = function (_a) {
-    var label = _a.label;
-    var translate = (0, app_1.useTranslate)();
-    return (React.createElement(material_1.Chip, { sx: { marginBottom: 1 }, className: classes.root, label: translate(label) }));
+const QuickFilter = ({ label }) => {
+    const translate = (0, app_1.useTranslate)();
+    return ((0, jsx_runtime_1.jsx)(material_1.Chip, { sx: { marginBottom: 1 }, className: classes.root, label: translate(label) }, void 0));
 };
 exports.productFilters = [
-    React.createElement(app_1.SearchInput, { source: "q", alwaysOn: true }),
-    React.createElement(app_1.ReferenceInput, { source: "category_id", reference: "categories", sort: { field: 'id', order: 'ASC' } },
-        React.createElement(app_1.SelectInput, { source: "name" })),
-    React.createElement(app_1.NumberInput, { source: "width_gte" }),
-    React.createElement(app_1.NumberInput, { source: "width_lte" }),
-    React.createElement(app_1.NumberInput, { source: "height_gte" }),
-    React.createElement(app_1.NumberInput, { source: "height_lte" }),
-    React.createElement(QuickFilter, { label: "resources.products.fields.stock_lte", source: "stock_lte", defaultValue: 10 }),
+    (0, jsx_runtime_1.jsx)(app_1.SearchInput, { source: "q", alwaysOn: true }, void 0),
+    (0, jsx_runtime_1.jsx)(app_1.ReferenceInput, Object.assign({ source: "category_id", reference: "categories", sort: { field: 'id', order: 'ASC' } }, { children: (0, jsx_runtime_1.jsx)(app_1.SelectInput, { source: "name" }, void 0) }), void 0),
+    (0, jsx_runtime_1.jsx)(app_1.NumberInput, { source: "width_gte" }, void 0),
+    (0, jsx_runtime_1.jsx)(app_1.NumberInput, { source: "width_lte" }, void 0),
+    (0, jsx_runtime_1.jsx)(app_1.NumberInput, { source: "height_gte" }, void 0),
+    (0, jsx_runtime_1.jsx)(app_1.NumberInput, { source: "height_lte" }, void 0),
+    (0, jsx_runtime_1.jsx)(QuickFilter, { label: "resources.products.fields.stock_lte", source: "stock_lte", defaultValue: 10 }, void 0),
 ];
-var ListActions = function (_a) {
-    var isSmall = _a.isSmall;
-    return (React.createElement(layout_1.TopToolbar, null,
-        isSmall && React.createElement(app_1.FilterButton, null),
-        React.createElement(app_1.SortButton, { fields: ['reference', 'sales', 'stock'] }),
-        React.createElement(app_1.CreateButton, { basePath: "/products" }),
-        React.createElement(app_1.ExportButton, null)));
+const ListActions = ({ isSmall }) => ((0, jsx_runtime_1.jsxs)(layout_1.TopToolbar, { children: [isSmall && (0, jsx_runtime_1.jsx)(app_1.FilterButton, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.SortButton, { fields: ['reference', 'sales', 'stock'] }, void 0), (0, jsx_runtime_1.jsx)(app_1.CreateButton, { basePath: "/products" }, void 0), (0, jsx_runtime_1.jsx)(app_1.ExportButton, {}, void 0)] }, void 0));
+const ProductList = (props) => {
+    const isSmall = (0, material_1.useMediaQuery)((theme) => theme.breakpoints.down('md'));
+    return ((0, jsx_runtime_1.jsx)(app_1.ListBase, Object.assign({ perPage: 20, sort: { field: 'reference', order: 'ASC' } }, props, { children: (0, jsx_runtime_1.jsx)(ProductListView, { isSmall: isSmall }, void 0) }), void 0));
 };
-var ProductList = function (props) {
-    var isSmall = (0, material_1.useMediaQuery)(function (theme) { return theme.breakpoints.down('md'); });
-    return (React.createElement(app_1.ListBase, __assign({ perPage: 20, sort: { field: 'reference', order: 'ASC' } }, props),
-        React.createElement(ProductListView, { isSmall: isSmall })));
-};
-var ProductListView = function (_a) {
-    var isSmall = _a.isSmall;
-    var defaultTitle = (0, app_1.useListContext)().defaultTitle;
-    return (React.createElement(React.Fragment, null,
-        React.createElement(layout_1.Title, { defaultTitle: defaultTitle }),
-        React.createElement(app_1.FilterContext.Provider, { value: exports.productFilters },
-            React.createElement(ListActions, { isSmall: isSmall }),
-            isSmall && (React.createElement(material_1.Box, { m: 1 },
-                React.createElement(app_1.FilterForm, null)))),
-        React.createElement(material_1.Box, { display: "flex" },
-            React.createElement(Aside_1.default, null),
-            React.createElement(material_1.Box, { width: isSmall ? 'auto' : 'calc(100% - 16em)' },
-                React.createElement(GridList_1.default, null),
-                React.createElement(app_1.Pagination, { rowsPerPageOptions: [10, 20, 40] })))));
+const ProductListView = ({ isSmall }) => {
+    const { defaultTitle } = (0, app_1.useListContext)();
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Title, { defaultTitle: defaultTitle }, void 0), (0, jsx_runtime_1.jsxs)(app_1.FilterContext.Provider, Object.assign({ value: exports.productFilters }, { children: [(0, jsx_runtime_1.jsx)(ListActions, { isSmall: isSmall }, void 0), isSmall && ((0, jsx_runtime_1.jsx)(material_1.Box, Object.assign({ m: 1 }, { children: (0, jsx_runtime_1.jsx)(app_1.FilterForm, {}, void 0) }), void 0))] }), void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ display: "flex" }, { children: [(0, jsx_runtime_1.jsx)(Aside_1.default, {}, void 0), (0, jsx_runtime_1.jsxs)(material_1.Box, Object.assign({ width: isSmall ? 'auto' : 'calc(100% - 16em)' }, { children: [(0, jsx_runtime_1.jsx)(GridList_1.default, {}, void 0), (0, jsx_runtime_1.jsx)(app_1.Pagination, { rowsPerPageOptions: [10, 20, 40] }, void 0)] }), void 0)] }), void 0)] }, void 0));
 };
 exports.default = ProductList;
