@@ -1,7 +1,6 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { TextFieldProps } from '@mui/material/TextField';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 export declare type NullableBooleanInputProps = InputProps<TextFieldProps> & Omit<TextFieldProps, 'label' | 'helperText'> & {
     nullLabel?: string;
     falseLabel?: string;

@@ -22,7 +22,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const classnames_1 = __importDefault(require("classnames"));
 const material_1 = require("@mui/material");
 const Clear_1 = __importDefault(require("@mui/icons-material/Clear"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaResettableTextField';
 const classes = {
     clearIcon: `${PREFIX}-clearIcon`,

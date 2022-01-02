@@ -1,6 +1,5 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 import { TextFieldProps } from '@mui/material/TextField';
 export declare type TextInputProps = InputProps<TextFieldProps> & Omit<TextFieldProps, 'label' | 'helperText'>;
 /**

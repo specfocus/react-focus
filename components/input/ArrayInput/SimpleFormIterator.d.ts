@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ReactElement, ReactNode } from 'react';
 import { FieldArrayRenderProps } from 'react-final-form-arrays';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { Record } from '../../../core';
+import { Record } from '../../../features/core';
 import { DisableRemoveFunction } from './SimpleFormIteratorItem';
 export declare const SimpleFormIterator: {
     (props: SimpleFormIteratorProps): JSX.Element;

@@ -40,7 +40,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const material_1 = require("@mui/material");
 const styles_1 = require("@mui/material/styles");
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaButton';
 const classes = {
     button: `${PREFIX}-button`,

@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { ValidationErrorMessage } from '../../core';
+import { ValidationErrorMessage } from '../../features/core';
 export interface InputHelperTextProps {
     helperText?: string | boolean;
     error?: ValidationErrorMessage;

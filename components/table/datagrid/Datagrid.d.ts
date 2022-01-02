@@ -1,5 +1,5 @@
 import { FC, ComponentType, ReactElement } from 'react';
-import { Identifier, Record, RecordMap, SortPayload } from '../../../core';
+import { Identifier, Record, RecordMap, SortPayload } from '../../../features/core';
 import { TableProps } from '@mui/material';
 import useDatagridStyles from './useDatagridStyles';
 import { ClassesOverride } from '../../types';

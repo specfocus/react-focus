@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { InputProps, SortPayload, PaginationPayload, Translate } from '../../core';
+import { InputProps, SortPayload, PaginationPayload, Translate } from '../../features/core';
 import { FieldInputProps, FieldMetaState } from 'react-final-form';
 export interface ReferenceArrayInputProps extends InputProps {
     allowEmpty?: boolean;

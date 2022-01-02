@@ -9,7 +9,7 @@ export declare function panelProps(index: any): {
     id: string;
     'aria-labelledby': string;
 };
-export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"title" | "button" | "icon" | "toolbar" | "speedDial" | "container" | "divider" | "buttons" | "strip" | "speedDialFav" | "stepper">;
+export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"icon" | "title" | "button" | "toolbar" | "container" | "divider" | "speedDial" | "buttons" | "strip" | "speedDialFav" | "stepper">;
 export interface WidgetAction {
     action: any;
     icon: React.FC<IconProps>;

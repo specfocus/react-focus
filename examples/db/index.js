@@ -24,6 +24,7 @@ exports.default = (options = { serializeDate: true }) => {
     db.companies = (0, companies_1.generateCompanies)(db);
     db.contacts = (0, contacts_1.generateContacts)(db);
     db.contactNotes = (0, contactNotes_1.generateContactNotes)(db);
+    // @ts-ignore
     db.customers = (0, customers_1.default)(db, options);
     db.deals = (0, deals_1.generateDeals)(db);
     db.dealNotes = (0, dealNotes_1.generateDealNotes)(db);

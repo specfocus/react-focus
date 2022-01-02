@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MenuItemProps } from '@mui/material/MenuItem';
 export interface AutocompleteSuggestionItemProps {
     createValue?: any;

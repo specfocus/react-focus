@@ -1,2 +1,2 @@
-declare const delayedDataProvider: import("../../core").DataProvider;
+declare const delayedDataProvider: import("../../app").DataProvider;
 export default delayedDataProvider;

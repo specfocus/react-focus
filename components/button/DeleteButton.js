@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteButton = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const DeleteWithUndoButton_1 = require("./DeleteWithUndoButton");
 const DeleteWithConfirmButton_1 = require("./DeleteWithConfirmButton");
 /**

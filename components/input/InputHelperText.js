@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const InputHelperText = (props) => {
     const { helperText, touched, error } = props;
     const translate = (0, core_1.useTranslate)();

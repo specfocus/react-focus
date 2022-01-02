@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { EditControllerProps } from '../../core';
+import { EditControllerProps } from '../../features/core';
 import { EditProps } from '../types';
 export declare const EditView: {
     (props: EditViewProps): JSX.Element;

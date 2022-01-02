@@ -12,7 +12,7 @@ const react_1 = require("react");
 const TranslatedTooltip_1 = __importDefault(require("../../components/TranslatedTooltip"));
 const TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
 const Widget_1 = __importDefault(require("../../containers/Layout/Widget"));
-const controller_1 = require("../../core/controller");
+const controller_1 = require("../core/controller");
 const DataFilterButton = (props) => ((0, jsx_runtime_1.jsx)(TranslatedTooltip_1.default, Object.assign({ title: "Filter" }, { children: (0, jsx_runtime_1.jsx)(IconButton_1.default, Object.assign({ color: "inherit" }, props, { children: (0, jsx_runtime_1.jsx)(FilterList_1.default, {}, void 0) }), void 0) }), "data-filter-button"));
 exports.DataFilterButton = DataFilterButton;
 const DataFilterWidget = ({ onClose }) => {

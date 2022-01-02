@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement, ReactNode, HtmlHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
-import { FormWithRedirectProps, MutationMode, Record, RedirectionSideEffect, OnSuccess, OnFailure } from '../../core';
+import { FormWithRedirectProps, MutationMode, Record, RedirectionSideEffect, OnSuccess, OnFailure } from '../../features/core';
 /**
  * Form layout where inputs are divided by tab, one input per line.
  *

@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { AppRouterProps } from '../core';
+import { AppRouterProps } from '../features/core';
 declare const AppRouter: {
     (props: AppRouterProps): JSX.Element;
     defaultProps: {

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const query_string_1 = require("query-string");
-const core_1 = require("../core");
+const core_1 = require("../features/core");
 /**
  * Maps ../../app queries to a json-server powered REST API
  *

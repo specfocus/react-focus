@@ -21,7 +21,7 @@ const styles_1 = require("@mui/material/styles");
 const classnames_1 = __importDefault(require("classnames"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_1 = require("react");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const PREFIX = 'RaDatagridHeaderCell';
 const classes = {
     icon: `${PREFIX}-icon`,

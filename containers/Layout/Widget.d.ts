@@ -1,7 +1,7 @@
 import { ContainerProps } from '@mui/material/Container';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import React from 'react';
-export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"title" | "button" | "header" | "content" | "icon" | "toolbar" | "speedDial" | "container" | "divider" | "buttons" | "speedDialFav">;
+export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"icon" | "title" | "button" | "header" | "content" | "toolbar" | "container" | "divider" | "speedDial" | "buttons" | "speedDialFav">;
 export interface WidgetAction {
     action: any;
     icon: React.FC<SvgIconProps>;

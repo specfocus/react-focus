@@ -21,7 +21,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const classnames_1 = __importDefault(require("classnames"));
 const material_1 = require("@mui/material");
 const styles_1 = require("@mui/styles");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 // remove the sort icons when not active
 const useStyles = (0, styles_1.makeStyles)({
     icon: {

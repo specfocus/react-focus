@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TranslatableFields = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const styles_1 = require("@mui/material/styles");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const TranslatableFieldsTabs_1 = require("./TranslatableFieldsTabs");
 const TranslatableFieldsTabContent_1 = require("./TranslatableFieldsTabContent");
 const PREFIX = 'RaTranslatableFields';

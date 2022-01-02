@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 /**
  * Default container for a group of translatable inputs inside a TranslatableInputs component.
  * @see TranslatableInputs

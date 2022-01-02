@@ -9,7 +9,7 @@ const material_1 = require("@mui/material");
 const classnames_1 = __importDefault(require("classnames"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_1 = require("react");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const Placeholder_1 = __importDefault(require("../Placeholder"));
 const useDatagridStyles_1 = require("./useDatagridStyles");
 const times = (nbChildren, fn) => Array.from({ length: nbChildren }, (_, key) => fn(key));

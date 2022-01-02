@@ -19,7 +19,7 @@ const react_1 = require("react");
 const get_1 = __importDefault(require("lodash/get"));
 const Typography_1 = __importDefault(require("@mui/material/Typography"));
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
 const types_1 = require("./types");
 // useful to prevent click bubbling in a datagrid with rowClick

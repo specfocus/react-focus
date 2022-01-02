@@ -19,7 +19,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
 const TopToolbar_1 = __importDefault(require("../layout/TopToolbar"));
 const button_1 = require("../button");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 /**
  * Action Toolbar for the Create view
  *

@@ -1,8 +1,7 @@
-/// <reference types="react" />
 import { DownshiftProps } from 'downshift';
 import { InputProps } from '@mui/material';
 import { TextFieldProps } from '@mui/material/TextField';
-import { ChoicesInputProps } from '../../core';
+import { ChoicesInputProps } from '../../features/core';
 import { SupportCreateSuggestionOptions } from './useSupportCreateSuggestion';
 /**
  * An Input component for an autocomplete field, using an array of objects for the options

@@ -1,8 +1,7 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { RadioGroupProps } from '@mui/material/RadioGroup';
 import { FormControlProps } from '@mui/material/FormControl';
-import { ChoicesInputProps } from '../../core';
+import { ChoicesInputProps } from '../../features/core';
 /**
  * An Input component for a radio button group, using an array of objects for the options
  *
@@ -66,7 +65,7 @@ declare const RadioButtonGroupInput: {
         choices: PropTypes.Requireable<any[]>;
         label: PropTypes.Requireable<string | boolean>;
         options: PropTypes.Requireable<object>;
-        optionText: PropTypes.Requireable<string | ((...args: any[]) => any) | PropTypes.ReactElementLike>;
+        optionText: PropTypes.Requireable<string | PropTypes.ReactElementLike | ((...args: any[]) => any)>;
         optionValue: PropTypes.Requireable<string>;
         resource: PropTypes.Requireable<string>;
         source: PropTypes.Requireable<string>;

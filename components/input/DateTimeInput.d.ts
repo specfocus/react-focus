@@ -1,7 +1,6 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { TextFieldProps } from '@mui/material/TextField';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 /**
  * Input component for entering a date and a time with timezone, using the browser locale
  */

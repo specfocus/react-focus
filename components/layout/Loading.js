@@ -8,7 +8,7 @@ const styles_1 = require("@mui/material/styles");
 const prop_types_1 = __importDefault(require("prop-types"));
 const classnames_1 = __importDefault(require("classnames"));
 const CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaLoading';
 const classes = {
     container: `${PREFIX}-container`,

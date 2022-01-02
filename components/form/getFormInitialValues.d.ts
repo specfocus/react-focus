@@ -1,4 +1,4 @@
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 export default function getFormInitialValues(initialValues: any, defaultValue: DefaultValue, record: Record): any;
 interface DefaultValueObject {
     [key: string]: any;

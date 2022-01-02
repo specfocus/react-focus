@@ -1,6 +1,6 @@
 import { ReactElement, SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
-import { Record, RedirectionSideEffect, MutationMode } from '../../core';
+import { Record, RedirectionSideEffect, MutationMode } from '../../features/core';
 import { ButtonProps } from './Button';
 /**
  * Button used to delete a single record. Added by default by the <Toolbar> of edit and show views.

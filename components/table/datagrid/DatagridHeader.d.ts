@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Identifier, Record, RecordMap, SortPayload } from '../../../core';
+import { Identifier, Record, RecordMap, SortPayload } from '../../../features/core';
 import useDatagridStyles from './useDatagridStyles';
 import { ClassesOverride } from '../../types';
 /**

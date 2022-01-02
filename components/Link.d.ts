@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { LinkProps as RRLinkProps } from 'react-router-dom';
 import { ClassNameMap } from '@mui/styles';

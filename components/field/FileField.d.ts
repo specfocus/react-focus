@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**
@@ -28,14 +27,14 @@ declare const FileField: {
         rel: PropTypes.Requireable<string>;
         addLabel: PropTypes.Requireable<boolean>;
         sortBy: PropTypes.Requireable<string>;
-        sortByOrder: PropTypes.Requireable<"DESC" | "ASC">;
+        sortByOrder: PropTypes.Requireable<"ASC" | "DESC">;
         source: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string | PropTypes.ReactElementLike>;
         sortable: PropTypes.Requireable<boolean>;
         className: PropTypes.Requireable<string>;
         cellClassName: PropTypes.Requireable<string>;
         headerClassName: PropTypes.Requireable<string>;
-        textAlign: PropTypes.Requireable<"center" | "inherit" | "justify" | "left" | "right">;
+        textAlign: PropTypes.Requireable<"right" | "left" | "inherit" | "center" | "justify">;
         emptyText: PropTypes.Requireable<string>;
     };
 };

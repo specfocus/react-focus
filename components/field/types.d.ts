@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 import PropTypes from 'prop-types';
 import { TableCellProps } from '@mui/material/TableCell';
 declare type TextAlign = TableCellProps['align'];
@@ -36,7 +36,7 @@ export declare const fieldPropTypes: {
     className: PropTypes.Requireable<string>;
     cellClassName: PropTypes.Requireable<string>;
     headerClassName: PropTypes.Requireable<string>;
-    textAlign: PropTypes.Requireable<"center" | "inherit" | "justify" | "left" | "right">;
+    textAlign: PropTypes.Requireable<"right" | "left" | "inherit" | "center" | "justify">;
     emptyText: PropTypes.Requireable<string>;
 };
 export {};

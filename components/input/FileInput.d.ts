@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { DropzoneOptions } from 'react-dropzone';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 export interface FileInputProps {
     accept?: string;
     children?: ReactNode;

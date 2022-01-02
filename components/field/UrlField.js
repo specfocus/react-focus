@@ -19,7 +19,7 @@ const react_1 = require("react");
 const get_1 = __importDefault(require("lodash/get"));
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const types_1 = require("./types");
 const UrlField = (0, react_1.memo)(props => {
     const { className, emptyText, source } = props, rest = __rest(props, ["className", "emptyText", "source"]);

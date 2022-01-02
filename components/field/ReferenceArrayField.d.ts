@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { ListControllerProps, SortPayload, FilterPayload } from '../../core';
+import { ListControllerProps, SortPayload, FilterPayload } from '../../features/core';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**
  * A container component that fetches records from another resource specified

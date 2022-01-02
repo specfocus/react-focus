@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { FC, ReactElement } from 'react';
-import { Identifier, Record } from '../../../core';
+import { Identifier, Record } from '../../../features/core';
 export interface DatagridLoadingProps {
     className?: string;
     expand?: ReactElement | FC<{

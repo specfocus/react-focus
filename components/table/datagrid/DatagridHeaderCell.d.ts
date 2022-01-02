@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TableCellProps } from '@mui/material/TableCell';
-import { SortPayload } from '../../../core';
+import { SortPayload } from '../../../features/core';
 import { ClassesOverride } from '../../types';
 declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"icon" | "active">;
 export declare const DatagridHeaderCell: {

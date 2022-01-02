@@ -49,26 +49,26 @@ export const data: ({
     multiple?: undefined;
 })[];
 export const validationSchema: Yup.ObjectSchema<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    autocomplete: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-}>, Record<string, any>, import("yup/lib/object").TypeOfShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    autocomplete: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    username: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    password: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    email: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    autocomplete: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+}>, import("yup/lib/object").AnyObject, import("yup/lib/object").TypeOfShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
+    username: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    password: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    email: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    autocomplete: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
 }>>, import("yup/lib/object").AssertsShape<import("yup/lib/object").Assign<import("yup/lib/object").ObjectShape, {
-    username: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    password: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    email: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
-    date: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    time: import("yup/lib/date").RequiredDateSchema<Date, Record<string, any>>;
-    autocomplete: import("yup/lib/string").RequiredStringSchema<string, Record<string, any>>;
+    username: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    password: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    email: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+    date: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    time: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
+    autocomplete: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
 }>>>;
 export namespace initialValues {
     const username: string;

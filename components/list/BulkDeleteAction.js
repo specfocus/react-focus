@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_redux_1 = require("react-redux");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 /**
  *@deprecated use BulkDeleteButton instead
  */

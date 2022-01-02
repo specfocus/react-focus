@@ -9,7 +9,7 @@ const material_1 = require("@mui/material");
 const classnames_1 = __importDefault(require("classnames"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_1 = require("react");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const DatagridHeaderCell_1 = __importDefault(require("./DatagridHeaderCell"));
 const useDatagridStyles_1 = require("./useDatagridStyles");
 /**

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import 'date-fns';
 import { NumberSchema } from '../../../lib/NumberSchema';
 import { FieldProps } from '../useFieldset';

@@ -19,7 +19,7 @@ const styles_1 = require("@mui/material/styles");
 const LinearProgress_1 = __importDefault(require("@mui/material/LinearProgress"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaLinearProgress';
 const classes = {
     root: `${PREFIX}-root`,

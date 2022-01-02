@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { LinearProgressProps as ProgressProps } from '@mui/material/LinearProgress';
 import PropTypes from 'prop-types';
 /**

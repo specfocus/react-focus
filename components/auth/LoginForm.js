@@ -19,7 +19,7 @@ const styles_1 = require("@mui/material/styles");
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_final_form_1 = require("react-final-form");
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaLoginForm';
 const classes = {
     form: `${PREFIX}-form`,

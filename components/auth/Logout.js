@@ -41,7 +41,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const material_1 = require("@mui/material");
 const PowerSettingsNew_1 = __importDefault(require("@mui/icons-material/PowerSettingsNew"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaLogout';
 const classes = {
     menuItem: `${PREFIX}-menuItem`,

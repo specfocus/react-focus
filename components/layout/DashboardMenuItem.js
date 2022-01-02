@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
 const Dashboard_1 = __importDefault(require("@mui/icons-material/Dashboard"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const MenuItemLink_1 = __importDefault(require("./MenuItemLink"));
 const DashboardMenuItem = (props) => {
     const { locale } = props, rest = __rest(props, ["locale"]);

@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { UseReferenceProps, getResourceLinkPath, LinkToType, Record } from '../../core';
+import { UseReferenceProps, getResourceLinkPath, LinkToType, Record } from '../../features/core';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**
  * Fetch reference record, and delegate rendering to child component.

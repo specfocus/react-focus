@@ -1,7 +1,7 @@
 import { TableCellProps } from '@mui/material/TableCell';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { SortPayload } from '../../../core';
+import { SortPayload } from '../../../features/core';
 export declare const DatagridHeaderCell: {
     (props: DatagridHeaderCellProps): JSX.Element;
     propTypes: {

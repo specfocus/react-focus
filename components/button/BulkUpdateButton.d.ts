@@ -1,8 +1,7 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { BulkUpdateWithConfirmButtonProps } from './BulkUpdateWithConfirmButton';
 import { BulkUpdateWithUndoButtonProps } from './BulkUpdateWithUndoButton';
-import { MutationMode } from '../../core';
+import { MutationMode } from '../../features/core';
 /**
  * Updates the selected rows.
  *

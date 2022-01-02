@@ -1,7 +1,6 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { TextFieldProps } from '@mui/material/TextField';
-import { ChoicesInputProps } from '../../core';
+import { ChoicesInputProps } from '../../features/core';
 import { SupportCreateSuggestionOptions } from './useSupportCreateSuggestion';
 /**
  * An Input component for a select box, using an array of objects for the options
@@ -87,7 +86,7 @@ export declare const SelectInput: {
         className: PropTypes.Requireable<string>;
         label: PropTypes.Requireable<string | boolean>;
         options: PropTypes.Requireable<object>;
-        optionText: PropTypes.Validator<string | ((...args: any[]) => any) | PropTypes.ReactElementLike>;
+        optionText: PropTypes.Validator<string | PropTypes.ReactElementLike | ((...args: any[]) => any)>;
         optionValue: PropTypes.Validator<string>;
         disableValue: PropTypes.Requireable<string>;
         resettable: PropTypes.Requireable<boolean>;

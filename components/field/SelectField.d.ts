@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ChoicesProps } from '../../core';
+import { ChoicesProps } from '../../features/core';
 import { TypographyProps } from '@mui/material';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**

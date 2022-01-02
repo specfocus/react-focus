@@ -40,7 +40,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_router_dom_1 = require("react-router-dom");
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const classnames_1 = __importDefault(require("classnames"));
 const Labeled_1 = __importDefault(require("../input/Labeled"));
 /**

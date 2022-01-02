@@ -9,7 +9,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const material_1 = require("@mui/material");
 const ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const Placeholder_1 = __importDefault(require("../Placeholder"));
 const times = (nbChildren, fn) => Array.from({ length: nbChildren }, (_, key) => fn(key));
 const DatagridLoading = ({ classes, className, expand, hasBulkActions, nbChildren, nbFakeLines = 5, size, }) => {

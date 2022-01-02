@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 import { TypographyProps } from '@mui/material/Typography';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**

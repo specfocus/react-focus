@@ -2,15 +2,15 @@ declare const _default: (db: any, { serializeDate }: {
     serializeDate: any;
 }) => {
     id: number;
-    first_name: any;
-    last_name: any;
-    email: any;
-    address: any;
-    zipcode: any;
-    city: any;
-    stateAbbr: any;
+    first_name: string;
+    last_name: string;
+    email: string;
+    address: string;
+    zipcode: string;
+    city: string;
+    stateAbbr: string;
     avatar: string;
-    birthday: any;
+    birthday: string | Date;
     first_seen: string | Date;
     last_seen: string | Date;
     has_ordered: boolean;

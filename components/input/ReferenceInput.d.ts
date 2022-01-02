@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { InputProps, ReferenceInputValue, UseInputValue } from '../../core';
+import { InputProps, ReferenceInputValue, UseInputValue } from '../../features/core';
 /**
  * An Input component for choosing a reference record. Useful for foreign keys.
  *

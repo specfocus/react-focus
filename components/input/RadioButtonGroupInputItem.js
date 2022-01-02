@@ -18,7 +18,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_final_form_1 = require("react-final-form");
 const FormControlLabel_1 = __importDefault(require("@mui/material/FormControlLabel"));
 const Radio_1 = __importDefault(require("@mui/material/Radio"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const RadioButtonGroupInputItem = ({ choice, optionText, optionValue, source, translateChoice, onChange, }) => {
     const { getChoiceText, getChoiceValue } = (0, core_1.useChoices)({
         optionText,

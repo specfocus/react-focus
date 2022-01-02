@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 exports.default = (introspectionResults) => (raFetchMethod, resource, queryType) => (response) => {
     const data = response.data;
     if (raFetchMethod === core_1.GET_LIST ||

@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { InputProps } from '../../../core';
+import { InputProps } from '../../../features/core';
 /**
  * To edit arrays of data embedded inside a record, <ArrayInput> creates a list of sub-forms.
  *

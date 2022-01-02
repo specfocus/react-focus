@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const TopToolbar_1 = __importDefault(require("../layout/TopToolbar"));
 const button_1 = require("../button");
 const FilterContext_1 = require("./FilterContext");

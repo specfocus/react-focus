@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 import { ButtonProps } from './Button';
 export declare const CloneButton: {
     (props: CloneButtonProps): JSX.Element;

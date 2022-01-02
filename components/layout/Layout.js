@@ -20,7 +20,7 @@ const classnames_1 = __importDefault(require("classnames"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_1 = require("react");
 const react_router_1 = require("react-router");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const default_1 = __importDefault(require("../../theme/default"));
 const SkipNavigationButton_1 = __importDefault(require("../button/SkipNavigationButton"));
 const AppBar_1 = __importDefault(require("./AppBar"));
@@ -29,7 +29,7 @@ const Menu_1 = __importDefault(require("./Menu"));
 const Notification_1 = __importDefault(require("./Notification"));
 const Sidebar_1 = __importDefault(require("./Sidebar"));
 const recoil_1 = require("recoil");
-const state_1 = require("../../core/state");
+const state_1 = require("../../features/core/state");
 const PREFIX = 'RaLayout';
 const classes = {
     root: `${PREFIX}-root`,

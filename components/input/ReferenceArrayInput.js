@@ -38,7 +38,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const React = __importStar(require("react"));
 const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
 const ReferenceError_1 = __importDefault(require("./ReferenceError"));
 /**

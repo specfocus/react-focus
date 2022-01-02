@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
 const React = __importStar(require("react"));
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const FilterButton_1 = __importDefault(require("./FilterButton"));
 const FilterForm_1 = __importDefault(require("./FilterForm"));
 const PREFIX = 'RaFilter';

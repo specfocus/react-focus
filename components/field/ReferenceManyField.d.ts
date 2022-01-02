@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { FilterPayload, SortPayload, ListControllerProps } from '../../core';
+import { FilterPayload, SortPayload, ListControllerProps } from '../../features/core';
 import { PublicFieldProps, InjectedFieldProps } from './types';
 /**
  * Render related records to the current one.

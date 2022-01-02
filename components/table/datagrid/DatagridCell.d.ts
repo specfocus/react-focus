@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TableCellProps } from '@mui/material/TableCell';
-import { Record } from '../../../core';
+import { Record } from '../../../features/core';
 declare const DatagridCell: React.FC<DatagridCellProps>;
 export interface DatagridCellProps extends TableCellProps {
     basePath?: string;

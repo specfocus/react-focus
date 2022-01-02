@@ -1,6 +1,6 @@
 import { HtmlHTMLAttributes, ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 declare const FormInput: {
     <RecordType extends Record | Omit<Record, "id"> = Record>(props: FormInputProps<RecordType>): JSX.Element;
     propTypes: {

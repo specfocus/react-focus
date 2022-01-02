@@ -1,4 +1,4 @@
-import { DataProvider } from '../../../core';
+import { DataProvider } from '../../../features/core';
 import { ApolloClient, ApolloClientOptions, ApolloQueryResult, MutationOptions, WatchQueryOptions, QueryOptions, OperationVariables } from '@apollo/client';
 import { IntrospectionOptions, IntrospectionResult } from './introspection';
 export * from './introspection';

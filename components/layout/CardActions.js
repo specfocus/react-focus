@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const styles_1 = require("@mui/material/styles");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const classnames_1 = __importDefault(require("classnames"));
 const PREFIX = 'RaCardActions';
 const classes = {

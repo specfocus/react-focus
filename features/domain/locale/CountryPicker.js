@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.COUNTRY_OPTION_TEMPLATE = exports.countryTransformFn = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const PublicOutlined_1 = __importDefault(require("@mui/icons-material/PublicOutlined"));
-const convertCountryCodeToFlag_1 = __importDefault(require("features/domain/locale/convertCountryCodeToFlag"));
+const convertCountryCodeToFlag_1 = __importDefault(require("./convertCountryCodeToFlag"));
 const DomainPicker_1 = __importDefault(require("../DomainPicker"));
 const useCountryContext_1 = __importDefault(require("./useCountryContext"));
 const countryTransformFn = (_a) => {

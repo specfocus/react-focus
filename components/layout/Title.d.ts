@@ -1,6 +1,6 @@
 import { FC, ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 export interface TitleProps {
     className?: string;
     defaultTitle?: string;

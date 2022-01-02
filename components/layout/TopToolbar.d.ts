@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 declare const TopToolbar: {
     (props: any): JSX.Element;

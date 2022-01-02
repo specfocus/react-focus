@@ -1,6 +1,6 @@
 import React, { ReactEventHandler, ReactElement, SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
-import { MutationMode, OnSuccess, OnFailure, Record, RedirectionSideEffect } from '../../core';
+import { MutationMode, OnSuccess, OnFailure, Record, RedirectionSideEffect } from '../../features/core';
 import { ButtonProps } from './Button';
 export declare const DeleteWithConfirmButton: {
     (props: DeleteWithConfirmButtonProps): JSX.Element;

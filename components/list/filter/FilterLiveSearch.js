@@ -19,7 +19,7 @@ const Search_1 = __importDefault(require("@mui/icons-material/Search"));
 const material_1 = require("@mui/material");
 const react_1 = require("react");
 const react_final_form_1 = require("react-final-form");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const TextInput_1 = __importDefault(require("../../input/TextInput"));
 /**
  * Form and search input for doing a full-text search filter.

@@ -24,7 +24,7 @@ const ListItemAvatar_1 = __importDefault(require("@mui/material/ListItemAvatar")
 const ListItemSecondaryAction_1 = __importDefault(require("@mui/material/ListItemSecondaryAction"));
 const ListItemText_1 = __importDefault(require("@mui/material/ListItemText"));
 const Placeholder_1 = __importDefault(require("./Placeholder"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaSimpleListLoading';
 const classes = {
     primary: `${PREFIX}-primary`,

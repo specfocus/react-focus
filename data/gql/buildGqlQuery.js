@@ -34,7 +34,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getArgType = exports.buildApolloArgs = exports.buildArgs = exports.buildFragments = exports.buildFields = void 0;
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const build_1 = require("./build");
 const graphql_1 = require("graphql");
 const gqlTypes = __importStar(require("graphql-ast-types-browser"));

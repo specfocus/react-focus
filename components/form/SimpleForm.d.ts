@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement, ReactNode, HtmlHTMLAttributes } from 'react';
 import PropTypes from 'prop-types';
-import { FormWithRedirectProps, MutationMode } from '../../core';
+import { FormWithRedirectProps, MutationMode } from '../../features/core';
 /**
  * Form with a one column layout, one input per line.
  *

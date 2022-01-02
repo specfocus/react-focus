@@ -21,7 +21,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const react_router_dom_1 = require("react-router-dom");
 const Tab_1 = __importDefault(require("@mui/material/Tab"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const react_final_form_1 = require("react-final-form");
 const TabbedFormView_1 = require("./TabbedFormView");
 const FormTabHeader = (_a) => {

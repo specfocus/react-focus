@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { ListProps } from '@mui/material/List';
 interface Props {

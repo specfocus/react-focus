@@ -19,7 +19,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_redux_1 = require("react-redux");
 const Refresh_1 = __importDefault(require("@mui/icons-material/Refresh"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Button_1 = __importDefault(require("./Button"));
 const RefreshButton = (props) => {
     const { label = 'ra.action.refresh', icon = defaultIcon, onClick } = props, rest = __rest(props, ["label", "icon", "onClick"]);

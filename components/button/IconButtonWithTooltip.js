@@ -34,7 +34,7 @@ exports.IconButtonWithTooltip = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const React = __importStar(require("react"));
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 /**
  * An IconButton with a tooltip which ensures the tooltip is closed on click to avoid ghost tooltips
  * when the button position changes.

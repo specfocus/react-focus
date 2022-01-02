@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Title_1 = require("../layout/Title");
 const ListView_1 = __importDefault(require("./ListView"));
 /**

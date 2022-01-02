@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 /**
  * Tabbed Layout for a Show view, showing fields grouped in tabs.
  *

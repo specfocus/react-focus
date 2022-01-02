@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const material_1 = require("@mui/material");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 /**
  * Header and container for a list of filter list items
  *

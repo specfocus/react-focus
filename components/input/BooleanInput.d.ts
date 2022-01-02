@@ -1,8 +1,7 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { FormGroupProps } from '@mui/material/FormGroup';
 import { SwitchProps } from '@mui/material/Switch';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 declare const BooleanInput: {
     (props: BooleanInputProps): JSX.Element;
     propTypes: {

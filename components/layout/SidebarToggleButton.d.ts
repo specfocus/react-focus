@@ -1,4 +1,3 @@
-/// <reference types="react" />
 /**
  * A button that toggles the sidebar. Used by default in the <AppBar>.
  * @param props The component props

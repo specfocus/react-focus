@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { TableRowProps } from '@mui/material';
-import { Identifier, Record } from '../../../core';
+import { Identifier, Record } from '../../../features/core';
 import useDatagridStyles from './useDatagridStyles';
 declare const DatagridRow: FC<DatagridRowProps>;
 export interface DatagridRowProps extends Omit<TableRowProps, 'id' | 'classes'> {

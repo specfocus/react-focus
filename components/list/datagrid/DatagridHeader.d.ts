@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { Identifier, Record, RecordMap, SortPayload } from '../../../core';
+import { Identifier, Record, RecordMap, SortPayload } from '../../../features/core';
 /**
  * The default Datagrid Header component.
  *

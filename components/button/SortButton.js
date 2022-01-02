@@ -29,7 +29,7 @@ const material_1 = require("@mui/material");
 const Sort_1 = __importDefault(require("@mui/icons-material/Sort"));
 const ArrowDropDown_1 = __importDefault(require("@mui/icons-material/ArrowDropDown"));
 const react_redux_1 = require("react-redux");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 /**
  * A button allowing to change the sort field and order.
  *

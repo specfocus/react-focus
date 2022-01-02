@@ -1,4 +1,4 @@
-import { TitleComponent } from '../../core';
+import { TitleComponent } from '../../features/core';
 import React, { HtmlHTMLAttributes, ReactNode } from 'react';
 import { NotificationProps } from '../layout/Notification';
 export interface LoginProps extends Omit<HtmlHTMLAttributes<HTMLDivElement>, 'title'> {

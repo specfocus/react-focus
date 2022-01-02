@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const inflection_1 = __importDefault(require("inflection"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const ShowView_1 = require("./ShowView");
 const showFieldTypes_1 = __importDefault(require("./showFieldTypes"));
 const ShowViewGuesser = props => {

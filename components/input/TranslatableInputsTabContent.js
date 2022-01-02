@@ -15,9 +15,9 @@ exports.TranslatableInputsTabContent = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const styles_1 = require("@mui/material/styles");
 const react_1 = require("react");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const form_1 = require("../form");
-const core_2 = require("../../core");
+const core_2 = require("../../features/core");
 const PREFIX = 'RaTranslatableInputsTabContent';
 const classes = {
     root: `${PREFIX}-root`,

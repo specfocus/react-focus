@@ -19,7 +19,7 @@ const react_1 = require("react");
 const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
 const ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const ExpandRowButton = (_a) => {
     var { classes, expanded, expandContentId } = _a, props = __rest(_a, ["classes", "expanded", "expandContentId"]);
     const translate = (0, core_1.useTranslate)();

@@ -1,5 +1,5 @@
 import { ToolbarProps as MuiToolbarProps } from '@mui/material';
-import { MutationMode, Record, RedirectionSideEffect } from '../../core';
+import { MutationMode, Record, RedirectionSideEffect } from '../../features/core';
 import { FC, ReactNode } from 'react';
 import { FormRenderProps } from 'react-final-form';
 /**

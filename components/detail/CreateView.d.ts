@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { CreateControllerProps } from '../../core';
+import { CreateControllerProps } from '../../features/core';
 import { CreateProps } from '../types';
 export declare const CreateView: {
     (props: CreateViewProps): JSX.Element;

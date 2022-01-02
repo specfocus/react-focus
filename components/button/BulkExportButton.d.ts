@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import PropTypes from 'prop-types';
-import { Identifier, Exporter } from '../../core';
+import { Identifier, Exporter } from '../../features/core';
 import { ButtonProps } from './Button';
 /**
  * Export the selected rows

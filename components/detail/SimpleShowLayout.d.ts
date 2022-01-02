@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 /**
  * Simple Layout for a Show view, showing fields in one column.
  *

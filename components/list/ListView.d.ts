@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { ListControllerProps } from '../../core';
+import { ListControllerProps } from '../../features/core';
 import { ListProps } from '../types';
 export declare const ListView: {
     (props: ListViewProps): JSX.Element;

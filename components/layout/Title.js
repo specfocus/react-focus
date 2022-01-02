@@ -19,7 +19,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const react_dom_1 = require("react-dom");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Title = (_a) => {
     var { className, defaultTitle, record, title } = _a, rest = __rest(_a, ["className", "defaultTitle", "record", "title"]);
     const translate = (0, core_1.useTranslate)();

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.useCreateSuggestionContext = exports.useSupportCreateSuggestion = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const set_1 = __importDefault(require("lodash/set"));
 /**
  * This hook provides support for suggestion creation in inputs which have choices.

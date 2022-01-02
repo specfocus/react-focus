@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { IconButtonProps } from '@mui/material/IconButton';
 import { AppWidgetProps } from '../../app/AppStack';
 export declare const DataExportButton: (props: IconButtonProps) => JSX.Element;

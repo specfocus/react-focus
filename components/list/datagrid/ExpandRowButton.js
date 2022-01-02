@@ -18,7 +18,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const ExpandMore_1 = __importDefault(require("@mui/icons-material/ExpandMore"));
 const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
 const react_1 = require("react");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const ExpandRowButton = (_a) => {
     var { expanded, expandContentId } = _a, props = __rest(_a, ["expanded", "expandContentId"]);
     const translate = (0, core_1.useTranslate)();

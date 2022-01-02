@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonProps as MuiButtonProps } from '@mui/material/Button';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 import { ButtonProps } from './Button';
 /**
  * Opens the Edit view of a given record:

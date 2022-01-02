@@ -1,7 +1,7 @@
 import { ReactElement, SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonProps } from '@mui/material/Button';
-import { RedirectionSideEffect, OnSuccess, OnFailure, TransformData, Record, HandleSubmitWithRedirect } from '../../core';
+import { RedirectionSideEffect, OnSuccess, OnFailure, TransformData, Record, HandleSubmitWithRedirect } from '../../features/core';
 import { FormRenderProps } from 'react-final-form';
 /**
  * Submit button for resource forms (Edit and Create).

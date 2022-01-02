@@ -11,7 +11,7 @@ const matches_1 = __importDefault(require("lodash/matches"));
 const pickBy_1 = __importDefault(require("lodash/pickBy"));
 const react_1 = require("react");
 const react_redux_1 = require("react-redux");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const PREFIX = 'FilterListItem';
 const classes = {
     listItem: `${PREFIX}-listItem`,

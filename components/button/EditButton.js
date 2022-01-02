@@ -19,7 +19,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const Create_1 = __importDefault(require("@mui/icons-material/Create"));
 const react_router_dom_1 = require("react-router-dom");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Button_1 = __importDefault(require("./Button"));
 /**
  * Opens the Edit view of a given record:

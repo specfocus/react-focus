@@ -37,7 +37,7 @@ exports.ALL_TYPES = exports.MUTATION_TYPES = exports.QUERY_TYPES = void 0;
 const merge_1 = __importDefault(require("lodash/merge"));
 const get_1 = __importDefault(require("lodash/get"));
 const pluralize_1 = __importDefault(require("pluralize"));
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const buildApolloClient_1 = __importDefault(require("./buildApolloClient"));
 const constants_1 = require("./constants");
 const introspection_1 = require("./introspection");

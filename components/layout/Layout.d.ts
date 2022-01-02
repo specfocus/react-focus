@@ -1,7 +1,7 @@
 import { DeprecatedThemeOptions } from '@mui/material';
 import PropTypes from 'prop-types';
 import { ComponentType, ErrorInfo, HtmlHTMLAttributes, ReactElement } from 'react';
-import { CoreLayoutProps } from '../../core';
+import { CoreLayoutProps } from '../../features/core';
 import { AppBarProps } from './AppBar';
 import { MenuProps } from './Menu';
 export interface LayoutProps extends CoreLayoutProps, Omit<HtmlHTMLAttributes<HTMLDivElement>, 'title'> {

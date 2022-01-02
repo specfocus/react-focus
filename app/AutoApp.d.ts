@@ -1,5 +1,4 @@
-/// <reference types="react" />
-import { AppProps } from '../core';
+import { AppProps } from '../features/core';
 /**
  * Main admin component, entry point to the application.
  *

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FC, ReactElement } from 'react';
 import { TableBodyProps } from '@mui/material';
-import { Identifier, Record, RecordMap } from '../../../core';
+import { Identifier, Record, RecordMap } from '../../../features/core';
 import { RowClickFunction } from './DatagridRow';
 declare const DatagridBody: FC<DatagridBodyProps>;
 export interface DatagridBodyProps extends Omit<TableBodyProps, 'classes'> {

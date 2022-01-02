@@ -1,4 +1,4 @@
-import { DataProvider } from '../../core';
+import { DataProvider } from '../../features/core';
 declare const _default: (apiUrl: string, httpClient?: (arg1: any, arg2?: any) => Promise<any>, countHeader?: string) => DataProvider;
 /**
  * Maps ../../app queries to a simple REST API

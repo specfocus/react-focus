@@ -1,6 +1,5 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 /**
  * Action Toolbar for the Edit view
  *

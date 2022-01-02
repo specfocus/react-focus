@@ -1,6 +1,6 @@
 import { ReactElement, ReactEventHandler, SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
-import { Record, RedirectionSideEffect, OnSuccess, OnFailure } from '../../core';
+import { Record, RedirectionSideEffect, OnSuccess, OnFailure } from '../../features/core';
 import { ButtonProps } from './Button';
 export declare const DeleteWithUndoButton: {
     (props: DeleteWithUndoButtonProps): JSX.Element;

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import PropTypes from 'prop-types';
-import { SortPayload, Exporter, FilterPayload } from '../../core';
+import { SortPayload, Exporter, FilterPayload } from '../../features/core';
 import { ButtonProps } from './Button';
 declare const ExportButton: {
     (props: ExportButtonProps): JSX.Element;

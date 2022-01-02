@@ -20,7 +20,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const RemoveCircle_1 = __importDefault(require("@mui/icons-material/RemoveCircle"));
 const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaFileInputPreview';
 const classes = {
     removeButton: `${PREFIX}-removeButton`,

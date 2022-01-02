@@ -20,7 +20,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const get_1 = __importDefault(require("lodash/get"));
 const Typography_1 = __importDefault(require("@mui/material/Typography"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
 const types_1 = require("./types");
 const hasNumberFormat = !!(typeof Intl === 'object' &&

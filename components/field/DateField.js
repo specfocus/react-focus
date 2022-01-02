@@ -20,7 +20,7 @@ const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const get_1 = __importDefault(require("lodash/get"));
 const material_1 = require("@mui/material");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));
 const types_1 = require("./types");
 const toLocaleStringSupportsLocales = (() => {

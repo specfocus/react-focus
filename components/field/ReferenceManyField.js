@@ -37,7 +37,7 @@ exports.ReferenceManyFieldView = exports.ReferenceManyField = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = __importStar(require("react"));
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const react_redux_1 = require("react-redux");
 const types_1 = require("./types");
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));

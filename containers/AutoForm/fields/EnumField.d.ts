@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { EnumDomain } from '../../../lib/EnumDomain';
 import { StringSchema } from '../../../lib/StringSchema';
 import { FieldProps } from '../useFieldset';

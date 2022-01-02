@@ -8,7 +8,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
 const prop_types_1 = __importDefault(require("prop-types"));
 const react_1 = require("react");
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 exports.FilterButtonMenuItem = (0, react_1.forwardRef)((props, ref) => {
     const { filter, onShow } = props;
     const resource = (0, core_1.useResourceContext)(props);

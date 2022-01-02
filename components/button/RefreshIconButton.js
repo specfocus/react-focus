@@ -21,7 +21,7 @@ const react_redux_1 = require("react-redux");
 const Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
 const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
 const Refresh_1 = __importDefault(require("@mui/icons-material/Refresh"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const RefreshIconButton = (props) => {
     const { label = 'ra.action.refresh', icon = defaultIcon, onClick, className } = props, rest = __rest(props, ["label", "icon", "onClick", "className"]);
     const dispatch = (0, react_redux_1.useDispatch)();

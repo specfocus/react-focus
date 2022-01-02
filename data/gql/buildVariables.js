@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const getFinalType_1 = __importDefault(require("./getFinalType"));
 const isList_1 = __importDefault(require("./isList"));
 exports.default = (introspectionResults) => (resource, raFetchMethod, params, queryType) => {

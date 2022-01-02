@@ -29,7 +29,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
 const HighlightOff_1 = __importDefault(require("@mui/icons-material/HighlightOff"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../../core");
+const core_1 = require("../../../features/core");
 const PREFIX = 'RaFilterFormInput';
 const classes = {
     body: `${PREFIX}-body`,

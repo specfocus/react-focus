@@ -1,8 +1,7 @@
-/// <reference types="react" />
 import { GridTypeMap } from '@mui/material/Grid';
 import { TextFieldProps } from '../../../components/TranslatedTextField';
 import { OverrideProps } from '@mui/types';
-declare const useDatagridStyles: (props?: any) => import("@mui/styles").ClassNameMap<"table" | "tbody" | "thead" | "row" | "expanded" | "checkbox" | "expandIcon" | "headerRow" | "headerCell" | "clickableRow" | "rowEven" | "rowOdd" | "rowCell" | "expandHeader" | "expandIconCell">;
+declare const useDatagridStyles: (props?: any) => import("@mui/styles").ClassNameMap<"expanded" | "table" | "tbody" | "thead" | "checkbox" | "row" | "expandIcon" | "headerRow" | "headerCell" | "clickableRow" | "rowEven" | "rowOdd" | "rowCell" | "expandHeader" | "expandIconCell">;
 export declare const InputProps: {
     style: {
         fontSize: string;

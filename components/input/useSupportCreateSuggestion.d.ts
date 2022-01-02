@@ -1,5 +1,5 @@
 import { ChangeEvent, ReactElement } from 'react';
-import { Identifier, OptionText } from '../../core';
+import { Identifier, OptionText } from '../../features/core';
 /**
  * This hook provides support for suggestion creation in inputs which have choices.
  *

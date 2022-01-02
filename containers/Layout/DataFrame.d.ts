@@ -1,7 +1,7 @@
 import { IconButtonProps } from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
-import { ListProps } from '../../core/controller/useListController';
+import { ListProps } from '../../features/core/controller/useListController';
 import { FrameProps } from './Frame';
 export declare const useStyles: (props?: any) => import("@mui/styles").ClassNameMap<"footer" | "container">;
 export interface DataWidgetProps {

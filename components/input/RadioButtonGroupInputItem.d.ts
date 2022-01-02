@@ -1,4 +1,3 @@
-/// <reference types="react" />
 declare const RadioButtonGroupInputItem: ({ choice, optionText, optionValue, source, translateChoice, onChange, }: {
     choice: any;
     optionText: any;

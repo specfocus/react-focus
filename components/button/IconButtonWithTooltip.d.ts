@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { IconButtonProps } from '@mui/material';
 /**
  * An IconButton with a tooltip which ensures the tooltip is closed on click to avoid ghost tooltips

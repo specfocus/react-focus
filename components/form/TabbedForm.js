@@ -7,7 +7,7 @@ exports.findTabsWithErrors = exports.TabbedForm = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const get_1 = __importDefault(require("lodash/get"));
 const TabbedFormView_1 = require("./TabbedFormView");
 /**

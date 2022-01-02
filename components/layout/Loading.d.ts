@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 declare const Loading: {
     (props: any): JSX.Element;

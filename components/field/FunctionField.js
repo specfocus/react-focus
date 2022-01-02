@@ -16,7 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const prop_types_1 = __importDefault(require("prop-types"));
 const Typography_1 = __importDefault(require("@mui/material/Typography"));
 const sanitizeFieldRestProps_1 = __importDefault(require("./sanitizeFieldRestProps"));

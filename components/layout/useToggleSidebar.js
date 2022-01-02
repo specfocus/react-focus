@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useToggleSidebar = void 0;
 const react_redux_1 = require("react-redux");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 /**
  * A hook that returns the sidebar open state and a function to toggle it.
  * @returns A tuple containing a boolean indicating whether the sidebar is open or not and a function to toggle the sidebar.

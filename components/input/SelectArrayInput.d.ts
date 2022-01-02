@@ -1,6 +1,5 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
-import { InputProps, ChoicesProps } from '../../core';
+import { InputProps, ChoicesProps } from '../../features/core';
 import { SelectProps } from '@mui/material/Select';
 import { FormControlProps } from '@mui/material/FormControl';
 import { SupportCreateSuggestionOptions } from './useSupportCreateSuggestion';
@@ -64,7 +63,7 @@ declare const SelectArrayInput: {
         children: PropTypes.Requireable<PropTypes.ReactNodeLike>;
         label: PropTypes.Requireable<string | boolean>;
         options: PropTypes.Requireable<object>;
-        optionText: PropTypes.Validator<string | ((...args: any[]) => any) | PropTypes.ReactElementLike>;
+        optionText: PropTypes.Validator<string | PropTypes.ReactElementLike | ((...args: any[]) => any)>;
         optionValue: PropTypes.Validator<string>;
         disableValue: PropTypes.Requireable<string>;
         resource: PropTypes.Requireable<string>;

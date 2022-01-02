@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import { FormWithRedirectRenderProps, MutationMode, Record } from '../../core';
+import { FormWithRedirectRenderProps, MutationMode, Record } from '../../features/core';
 export declare const TabbedFormClasses: {
     errorTabButton: string;
     content: string;

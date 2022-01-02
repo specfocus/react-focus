@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { FormControlProps } from '@mui/material/FormControl';
 import { CheckboxProps } from '@mui/material/Checkbox';
-import { ChoicesInputProps } from '../../core';
+import { ChoicesInputProps } from '../../features/core';
 /**
  * An Input component for a checkbox group, using an array of objects for the options
  *

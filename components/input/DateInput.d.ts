@@ -1,7 +1,6 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { TextFieldProps } from '@mui/material/TextField';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 /**
  * Form input to edit a Date string value in the "YYYY-MM-DD" format (e.g. '2021-06-23').
  *

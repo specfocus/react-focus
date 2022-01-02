@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TranslatableFieldsTab = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const Tab_1 = __importDefault(require("@mui/material/Tab"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const inflection_1 = require("inflection");
 /**
  * Single tab that selects a locale in a TranslatableFields component.

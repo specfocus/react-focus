@@ -1,5 +1,5 @@
 import { ReactElement, ElementType } from 'react';
-import { Identifier, Exporter, SortPayload, FilterPayload, Record as RaRecord, ResourceComponentProps, ResourceComponentPropsWithId, MutationMode, OnSuccess, OnFailure } from '../core';
+import { Identifier, Exporter, SortPayload, FilterPayload, Record as RaRecord, ResourceComponentProps, ResourceComponentPropsWithId, MutationMode, OnSuccess, OnFailure } from '../features/core';
 export interface ListProps extends ResourceComponentProps {
     actions?: ReactElement | false;
     aside?: ReactElement;

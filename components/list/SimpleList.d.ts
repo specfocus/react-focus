@@ -1,7 +1,7 @@
 import { ReactNode, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import { ListProps } from '@mui/material';
-import { Record, RecordMap, Identifier } from '../../core';
+import { Record, RecordMap, Identifier } from '../../features/core';
 /**
  * The <SimpleList> component renders a list of records as a material-ui <List>.
  * It is usually used as a child of ../../app's <List> and <ReferenceManyField> components.
@@ -43,11 +43,11 @@ declare const SimpleList: {
         leftAvatar: PropTypes.Requireable<(...args: any[]) => any>;
         leftIcon: PropTypes.Requireable<(...args: any[]) => any>;
         linkType: PropTypes.Requireable<string | boolean | ((...args: any[]) => any)>;
-        primaryText: PropTypes.Requireable<((...args: any[]) => any) | PropTypes.ReactElementLike>;
+        primaryText: PropTypes.Requireable<PropTypes.ReactElementLike | ((...args: any[]) => any)>;
         rightAvatar: PropTypes.Requireable<(...args: any[]) => any>;
         rightIcon: PropTypes.Requireable<(...args: any[]) => any>;
-        secondaryText: PropTypes.Requireable<((...args: any[]) => any) | PropTypes.ReactElementLike>;
-        tertiaryText: PropTypes.Requireable<((...args: any[]) => any) | PropTypes.ReactElementLike>;
+        secondaryText: PropTypes.Requireable<PropTypes.ReactElementLike | ((...args: any[]) => any)>;
+        tertiaryText: PropTypes.Requireable<PropTypes.ReactElementLike | ((...args: any[]) => any)>;
         rowStyle: PropTypes.Requireable<(...args: any[]) => any>;
     };
 };

@@ -1,6 +1,6 @@
 import { TableProps } from '@mui/material';
 import { ComponentType, FC, ReactElement } from 'react';
-import { Identifier, Record, RecordMap, SortPayload } from '../../../core';
+import { Identifier, Record, RecordMap, SortPayload } from '../../../features/core';
 import { RowClickFunction } from './DatagridRow';
 /**
  * The Datagrid component renders a list of records as a table.

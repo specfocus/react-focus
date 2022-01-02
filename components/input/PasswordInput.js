@@ -16,7 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const material_1 = require("@mui/material");
 const Visibility_1 = __importDefault(require("@mui/icons-material/Visibility"));
 const VisibilityOff_1 = __importDefault(require("@mui/icons-material/VisibilityOff"));

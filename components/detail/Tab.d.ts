@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { TabProps as MuiTabProps } from '@mui/material';
-import { Record } from '../../core';
+import { Record } from '../../features/core';
 /**
  * Tab element for the SimpleShowLayout.
  *

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { SnackbarProps } from '@mui/material';
 import PropTypes from 'prop-types';
 export interface NotificationProps extends Omit<SnackbarProps, 'open'> {

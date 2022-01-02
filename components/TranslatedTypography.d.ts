@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TypographyProps } from '@mui/material/Typography';
 export interface TranslatedTypography extends TypographyProps {
     i18nKey?: string;

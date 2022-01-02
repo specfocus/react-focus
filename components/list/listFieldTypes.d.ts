@@ -32,7 +32,7 @@ declare const _default: {
         representation: (props: any) => string;
     };
     reference: {
-        component: React.FC<import("../field/ReferenceField").ReferenceFieldProps<import("../../core").Record>>;
+        component: React.FC<import("../field/ReferenceField").ReferenceFieldProps<import("../../app").Record>>;
         representation: (props: any) => string;
     };
     referenceChild: {

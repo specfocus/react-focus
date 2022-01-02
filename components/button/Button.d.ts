@@ -1,7 +1,7 @@
 import { ReactElement, SyntheticEvent, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { ButtonProps as MuiButtonProps, PropTypes as MuiPropTypes } from '@mui/material';
-import { Record, RedirectionSideEffect } from '../../core';
+import { Record, RedirectionSideEffect } from '../../features/core';
 /**
  * A generic Button with side icon. Only the icon is displayed on small screens.
  *

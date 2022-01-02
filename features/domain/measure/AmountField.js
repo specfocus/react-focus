@@ -20,7 +20,7 @@ const CheckBoxOutlineBlank_1 = __importDefault(require("@mui/icons-material/Chec
 const Autocomplete_1 = __importDefault(require("@mui/material/Autocomplete"));
 const Checkbox_1 = __importDefault(require("@mui/material/Checkbox"));
 const Chip_1 = __importDefault(require("@mui/material/Chip"));
-const MixedField_1 = __importDefault(require("components/MixedField"));
+const MixedField_1 = __importDefault(require("../../../components/MixedField"));
 const react_1 = __importDefault(require("react"));
 const styles_1 = require("@mui/material/styles");
 const Option = (0, styles_1.styled)('li')(({ theme }) => ({

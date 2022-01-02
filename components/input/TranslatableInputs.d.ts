@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
-import { UseTranslatableOptions } from '../../core';
+import { UseTranslatableOptions } from '../../features/core';
 /**
  * Provides a way to edit multiple languages for any input passed as children.
  * It expects the translatable values to have the following structure:

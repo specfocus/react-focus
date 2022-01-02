@@ -1,4 +1,4 @@
-import { ReduxState } from '../core';
+import { ReduxState } from '../features/core';
 export declare type ThemeName = 'light' | 'dark';
 export interface AppState extends ReduxState {
     theme: ThemeName;

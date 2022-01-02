@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TextInputProps } from './TextInput';
 export interface PasswordInputProps extends TextInputProps {
     initiallyVisible?: boolean;

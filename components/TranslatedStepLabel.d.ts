@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { StepLabelProps } from '@mui/material/StepLabel';
 export interface TranslatedStepLabel extends StepLabelProps {
     i18nKey?: string;

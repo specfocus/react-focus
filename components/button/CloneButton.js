@@ -21,7 +21,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const Queue_1 = __importDefault(require("@mui/icons-material/Queue"));
 const react_router_dom_1 = require("react-router-dom");
 const query_string_1 = require("query-string");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Button_1 = __importDefault(require("./Button"));
 const CloneButton = (props) => {
     const { basePath = '', label = 'ra.action.clone', scrollToTop = true, record, icon = defaultIcon } = props, rest = __rest(props, ["basePath", "label", "scrollToTop", "record", "icon"]);

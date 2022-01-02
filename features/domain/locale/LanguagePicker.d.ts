@@ -1,5 +1,5 @@
 import { DomainPickerProps } from '../DomainPicker';
-export declare const countryTransformFn: ({ code, ...spread }: any) => any;
-export declare const COUNTRY_OPTION_TEMPLATE = "<span>{icon}</span>\n&nbsp;<span>{name} ({code}) +{phone}<span>\n";
-declare const CountryPicker: (props: DomainPickerProps) => JSX.Element;
-export default CountryPicker;
+export declare const countryTransformFn: ({ country, ...spread }: any) => any;
+export declare const LANGUAGE_OPTION_TEMPLATE = "<span>{icon}</span>\n&nbsp;<span>{name} ({code}) +{phone}<span>\n";
+declare const LanguagePicker: (props: DomainPickerProps) => JSX.Element;
+export default LanguagePicker;

@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
 const TextField_1 = __importDefault(require("@mui/material/TextField"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const sanitizeInputRestProps_1 = __importDefault(require("./sanitizeInputRestProps"));
 const InputHelperText_1 = __importDefault(require("./InputHelperText"));
 /**

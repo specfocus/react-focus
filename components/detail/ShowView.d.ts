@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { ShowControllerProps } from '../../core';
+import { ShowControllerProps } from '../../features/core';
 import { ShowProps } from '../types';
 export declare const ShowView: {
     (props: ShowViewProps): JSX.Element;

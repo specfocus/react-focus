@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { FormApi } from 'final-form';
 import { ActionSchema } from '../../../lib/ActionSchema';
 import { SimpleObject, SimpleType } from '../../../lib/ObjectSchema';

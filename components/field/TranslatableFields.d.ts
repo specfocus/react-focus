@@ -1,5 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
-import { UseTranslatableOptions, Record } from '../../core';
+import { UseTranslatableOptions, Record } from '../../features/core';
 /**
  * Provides a way to show multiple languages for any field passed as children.
  * It expects the translatable values to have the following structure:

@@ -1,1 +1,1 @@
-export declare const dataProvider: import("../core").DataProvider;
+export declare const dataProvider: import("../app").DataProvider;

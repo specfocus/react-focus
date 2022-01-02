@@ -17,7 +17,7 @@ const styles_2 = require("@mui/material/styles");
 const CheckCircle_1 = __importDefault(require("@mui/icons-material/CheckCircle"));
 const ErrorOutline_1 = __importDefault(require("@mui/icons-material/ErrorOutline"));
 const classnames_1 = __importDefault(require("classnames"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaConfirm';
 const classes = {
     confirmPrimary: `${PREFIX}-confirmPrimary`,

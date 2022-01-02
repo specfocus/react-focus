@@ -18,7 +18,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const styles_1 = require("@mui/material/styles");
 const FormControlLabel_1 = __importDefault(require("@mui/material/FormControlLabel"));
 const Checkbox_1 = __importDefault(require("@mui/material/Checkbox"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaCheckboxGroupInputItem';
 const classes = {
     checkbox: `${PREFIX}-checkbox`,

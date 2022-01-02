@@ -18,7 +18,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const prop_types_1 = __importDefault(require("prop-types"));
 const GetApp_1 = __importDefault(require("@mui/icons-material/GetApp"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Button_1 = __importDefault(require("./Button"));
 const ExportButton = (props) => {
     const { maxResults = 1000, onClick, label = 'ra.action.export', icon = defaultIcon, exporter: customExporter, sort } = props, // deprecated, to be removed in v4

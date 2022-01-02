@@ -14,19 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.COUNTRY_OPTION_TEMPLATE = exports.countryTransformFn = void 0;
+exports.LANGUAGE_OPTION_TEMPLATE = exports.countryTransformFn = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const convertCountryCodeToFlag_1 = __importDefault(require("features/domain/locale/convertCountryCodeToFlag"));
+const convertCountryCodeToFlag_1 = __importDefault(require("./convertCountryCodeToFlag"));
 const DomainPicker_1 = __importDefault(require("../DomainPicker"));
 const countryTransformFn = (_a) => {
-    var { code } = _a, spread = __rest(_a, ["code"]);
-    return (Object.assign(Object.assign({}, spread), { code, icon: (0, convertCountryCodeToFlag_1.default)(code) }));
+    var { country } = _a, spread = __rest(_a, ["country"]);
+    return (Object.assign(Object.assign({}, spread), { country, icon: (0, convertCountryCodeToFlag_1.default)(country) }));
 };
 exports.countryTransformFn = countryTransformFn;
-exports.COUNTRY_OPTION_TEMPLATE = `<span>{icon}</span>
+exports.LANGUAGE_OPTION_TEMPLATE = `<span>{icon}</span>
 &nbsp;<span>{name} ({code}) +{phone}<span>
 `;
-const CountryPicker = (props) => {
-    return ((0, jsx_runtime_1.jsx)(DomainPicker_1.default, Object.assign({ domain: "locale/language", labelKey: "name", optionTemplate: exports.COUNTRY_OPTION_TEMPLATE, transformFn: exports.countryTransformFn }, props), void 0));
+const LanguagePicker = (props) => {
+    return ((0, jsx_runtime_1.jsx)(DomainPicker_1.default, Object.assign({ domain: "locale/language", labelKey: "name", optionTemplate: exports.LANGUAGE_OPTION_TEMPLATE, transformFn: exports.countryTransformFn }, props), void 0));
 };
-exports.default = CountryPicker;
+exports.default = LanguagePicker;

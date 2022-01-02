@@ -1,4 +1,4 @@
-import { fetchUtils, DataProvider } from '../core';
+import { fetchUtils, DataProvider } from '../features/core';
 declare const _default: (apiUrl: any, httpClient?: (url: any, options?: fetchUtils.Options) => Promise<{
     status: number;
     headers: Headers;

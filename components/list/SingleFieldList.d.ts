@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HtmlHTMLAttributes, ComponentType } from 'react';
 import PropTypes from 'prop-types';
-import { Record, RecordMap, Identifier } from '../../core';
+import { Record, RecordMap, Identifier } from '../../features/core';
 /**
  * Iterator component to be used to display a list of entities, using a single field
  *

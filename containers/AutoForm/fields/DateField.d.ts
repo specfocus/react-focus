@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import 'date-fns';
 import { DateDomain } from '../../../lib/DateDomain';
 import { StringSchema } from '../../../lib/StringSchema';

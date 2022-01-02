@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ListProps } from '../types';
 /**
  * List component rendering a <Datagrid> based on the result of the

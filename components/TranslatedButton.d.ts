@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ButtonProps } from '@mui/material/Button';
 interface TranslatedButtonProps extends ButtonProps {
     count?: number;

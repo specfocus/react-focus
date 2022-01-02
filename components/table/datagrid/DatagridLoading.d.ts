@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement, FC } from 'react';
 import PropTypes from 'prop-types';
-import { Identifier, Record } from '../../../core';
+import { Identifier, Record } from '../../../features/core';
 import useDatagridStyles from './useDatagridStyles';
 import { ClassesOverride } from '../../types';
 export interface DatagridLoadingProps {

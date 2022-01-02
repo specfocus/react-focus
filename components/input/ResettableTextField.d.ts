@@ -1,7 +1,6 @@
-/// <reference types="react" />
 import PropTypes from 'prop-types';
 import { TextFieldProps } from '@mui/material';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 export declare const ResettableTextFieldStyles: {
     [x: string]: {
         height: number;

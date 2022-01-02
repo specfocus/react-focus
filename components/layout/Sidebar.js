@@ -21,7 +21,7 @@ const prop_types_1 = __importDefault(require("prop-types"));
 const react_redux_1 = require("react-redux");
 const material_1 = require("@mui/material");
 const get_1 = __importDefault(require("lodash/get"));
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const PREFIX = 'RaSidebar';
 const classes = {
     root: `${PREFIX}-root`,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import { ToolbarProps } from '@mui/material';
-import { Exporter } from '../../core';
+import { Exporter } from '../../features/core';
 export interface ListToolbarProps extends Omit<ToolbarProps, 'classes' | 'onSelect'> {
     actions?: ReactElement | false;
     filters?: ReactElement | ReactElement[];

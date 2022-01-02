@@ -18,7 +18,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const prop_types_1 = __importDefault(require("prop-types"));
 const List_1 = __importDefault(require("@mui/icons-material/List"));
 const react_router_dom_1 = require("react-router-dom");
-const core_1 = require("../../core");
+const core_1 = require("../../features/core");
 const Button_1 = __importDefault(require("./Button"));
 /**
  * Opens the List view of a given resource

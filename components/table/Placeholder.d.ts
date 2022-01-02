@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface Props {
     className?: string;
     classes?: Record<'root', string>;

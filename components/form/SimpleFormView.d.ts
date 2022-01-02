@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import { FormWithRedirectRenderProps, MutationMode, Record } from '../../core';
+import { FormWithRedirectRenderProps, MutationMode, Record } from '../../features/core';
 export declare const SimpleFormView: {
     ({ basePath, children, className, component: Component, handleSubmit, handleSubmitWithRedirect, invalid, margin, mutationMode, pristine, record, redirect, resource, saving, submitOnEnter, toolbar, undoable, variant, validating, ...rest }: SimpleFormViewProps): ReactElement;
     propTypes: {

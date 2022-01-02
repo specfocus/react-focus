@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { MutationMode } from '../../core';
+import { MutationMode } from '../../features/core';
 import { ButtonProps } from './Button';
 import { BulkActionProps } from '../types';
 declare const BulkUpdateWithConfirmButton: {

@@ -1,10 +1,9 @@
-/// <reference types="react" />
-import { AppContextProps } from '../core';
+import { AppContextProps } from '../features/core';
 import { AppAction } from './AppAction';
 declare const AppContext: {
     (props: AppContextProps): JSX.Element;
     defaultProps: {
-        i18nProvider: import("../core").I18nProvider;
+        i18nProvider: import("../features/core").I18nProvider;
     };
     displayName: string;
 };

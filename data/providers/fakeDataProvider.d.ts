@@ -1,4 +1,4 @@
-import { DataProvider } from '../../core';
+import { DataProvider } from '../../features/core';
 declare const _default: (data: any, loggingEnabled?: boolean) => DataProvider;
 /**
  * Respond to ../../app data queries using a local JavaScript object

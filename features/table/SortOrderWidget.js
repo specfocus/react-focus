@@ -11,7 +11,7 @@ const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
 const TranslatedTooltip_1 = __importDefault(require("../../components/TranslatedTooltip"));
 const TranslatedTypography_1 = __importDefault(require("../../components/TranslatedTypography"));
 const Widget_1 = __importDefault(require("../../containers/Layout/Widget"));
-const core_1 = require("../../core");
+const core_1 = require("../core");
 const DataSortOrderButton = (props) => ((0, jsx_runtime_1.jsx)(TranslatedTooltip_1.default, Object.assign({ title: "Sort" }, { children: (0, jsx_runtime_1.jsx)(IconButton_1.default, Object.assign({ color: "inherit" }, props, { children: (0, jsx_runtime_1.jsx)(Sort_1.default, {}, void 0) }), void 0) }), "data-sort-order-button"));
 exports.DataSortOrderButton = DataSortOrderButton;
 const DataSortOrderWidget = ({ onClose }) => {

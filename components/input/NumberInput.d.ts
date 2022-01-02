@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { TextFieldProps } from '@mui/material/TextField';
-import { InputProps } from '../../core';
+import { InputProps } from '../../features/core';
 /**
  * An Input component for a number
  *
