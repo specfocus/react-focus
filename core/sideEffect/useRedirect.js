@@ -52,6 +52,6 @@ const useRedirect = () => {
             // state: { _scrollToTop: true, ...state },
             );
         }
-    }, [dispatch, history]);
+    }, [dispatch, location]);
 };
 exports.default = useRedirect;

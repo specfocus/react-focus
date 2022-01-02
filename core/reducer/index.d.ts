@@ -13,7 +13,7 @@ declare const _default: (customReducers: CustomReducers, history: any) => Reduce
         references: any;
         ui: any;
     }>;
-    router: import("connected-react-router").RouterState<any>;
+    router: import("connected-react-router").RouterState<LocationState>;
 }>, import("redux").AnyAction>;
 export default _default;
 export declare const getPossibleReferenceValues: (state: any, props: any) => any;

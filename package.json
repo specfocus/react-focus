@@ -1,6 +1,6 @@
 {
   "name": "@specfocus/react-focus",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "repository": {
     "type": "git",
     "url": "http://github.com/specfocus/react-focus"
@@ -12,7 +12,7 @@
     "@mui/material": "^5.2.5",
     "@mui/styles": "^5.2.3",
     "@nivo/bar": "^0.76.0",
-    "@specfocus/spec-focus": "0.1.2",
+    "@specfocus/spec-focus": "0.1.4",
     "@types/faker": "^5.5.9",
     "date-fns": "^2.28.0",
     "faker": "^5.5.3",
